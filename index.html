@@ -96,6 +96,15 @@ nav button.on{color:var(--tx)}nav button.on::before{content:"";position:absolute
 #pad button{border-radius:6px;font-family:var(--mono);font-weight:500}
 .v.on{animation:vin .16s ease-out}@keyframes vin{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+header>.tb{max-width:480px;margin:0 auto;height:38px;display:flex;gap:2px;align-items:center;border-top:1px solid var(--bd)}body.desktop header>.tb{max-width:1000px}
+.tb button{flex:1;display:flex;align-items:center;justify-content:center;gap:5px;height:30px;border:0;background:none;color:var(--tx);font:inherit;font-size:12.5px;font-weight:500;border-radius:6px;cursor:pointer}.tb button svg{width:16px;height:16px}.tb button:active{background:var(--pri2)}.tb button[disabled]{opacity:.35}
+#app{padding-top:calc(env(safe-area-inset-top) + 104px)}
+#pad button.sm{height:28px;font-size:12px}#pad button.x{display:none;height:36px}#pad.fx button.x{display:block}
+.mpv{margin:8px 0;font:13px/1.55 var(--mono);white-space:pre;overflow:auto;max-height:230px;color:var(--tx)}
+.cell label{max-width:76px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#sheet{position:fixed;inset:0;z-index:60;display:none;background:rgba(0,0,0,.4)}#sheet.on{display:block}
+#sheet .p{position:absolute;left:0;right:0;bottom:0;max-height:80vh;overflow:auto;background:var(--card);border-top:1px solid var(--bd);border-radius:12px 12px 0 0;padding:14px 14px calc(14px + env(safe-area-inset-bottom));max-width:560px;margin:0 auto}
+.mig{display:block;width:100%;text-align:left;margin-bottom:8px}.mig small{display:block;color:var(--mut);font-weight:400;margin-top:2px}
 </style>
 </head>
 <body>
@@ -103,7 +112,8 @@ nav button.on{color:var(--tx)}nav button.on::before{content:"";position:absolute
   <h1>OR Solver<small id="hSub">Operations research toolkit</small></h1>
   <button class="btn sm" id="themeQ" title="Toggle light/dark">Theme</button>
   <button class="btn pri" id="solveBtn">Solve ▶</button>
-</div></header>
+</div>
+<div class="tb"><button id="undoBtn" disabled title="Undo (Ctrl+Z)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 010 12h-3"/></svg>Undo</button><button id="redoBtn" disabled title="Redo (Ctrl+Y)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14l5-5-5-5"/><path d="M20 9H10a6 6 0 000 12h3"/></svg>Redo</button><button id="pvBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h13"/></svg>Preview</button><button id="migBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>Migrate</button></div></header>
 
 <main id="app">
   <!-- MODEL -->
@@ -111,6 +121,7 @@ nav button.on{color:var(--tx)}nav button.on::before{content:"";position:absolute
     <div class="card"><div style="font-weight:700;margin-bottom:6px">Syllabus presets</div>
       <select id="presetSel" class="sl" style="max-width:none;width:100%"><option value="">Load a verified sample problem…</option><option value="media">Media selection (advertising reach)</option><option value="diet">Diet / blending (nutrient minimums)</option><option value="make">Make-or-buy decision</option><option value="prod">Multi-period production scheduling</option></select></div>
     <div id="presetInfo"></div>
+    <details class="card" id="mpvBox" open><summary style="font-weight:700">Live model preview</summary><pre id="mpv" class="mpv"></pre><button class="btn sm" id="mpvCopy">Copy</button></details>
     <div class="card">
       <div class="seg" id="goalSeg"><button data-g="max">Maximize</button><button data-g="min">Minimize</button></div>
       <div class="row" style="margin-top:10px;flex-wrap:wrap">
@@ -121,6 +132,7 @@ nav button.on{color:var(--tx)}nav button.on::before{content:"";position:absolute
     </div>
     <h2>Objective function</h2>
     <div class="card"><div class="scroll"><div class="coefs" id="objRow"></div></div><div class="preview" id="objPrev"></div></div>
+    <details class="card" id="vnBox"><summary style="font-weight:700">Variable names</summary><div class="scroll" style="margin-top:8px"><div class="coefs" id="vnRow"></div></div><div class="preview">Names appear in results, reports and the preview. Leave blank to keep x₁, x₂…</div></details>
     <h2>Constraints</h2>
     <div id="cons"></div>
     <div class="row"><button class="btn sp" id="addC">+ Add constraint</button><button class="btn" id="exBtn">Example</button><button class="btn bad" id="clrBtn">Clear</button></div>
@@ -147,6 +159,7 @@ nav button.on{color:var(--tx)}nav button.on::before{content:"";position:absolute
       <div class="row" style="margin-top:8px"><button class="btn sm" id="gPlay">▶ Play</button><input type="range" id="gIso" min="0" max="1000" value="1000" style="flex:1"><b id="gZ" style="min-width:64px;text-align:right"></b></div>
       <div id="gLeg" style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap"></div>
       <button class="btn sm noprint" id="gPng" style="margin-top:8px">Save image</button></div>
+    <h2>Pivot and sensitivity</h2><div class="card" id="gPv"></div>
     <h2>Analysis</h2><div id="gInfo"></div>
     <h2>Corner points</h2><div class="card scroll" id="gTbl"></div>
   </section>
@@ -197,6 +210,7 @@ nav button.on{color:var(--tx)}nav button.on::before{content:"";position:absolute
   <button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button><button data-k="±">±</button>
   <button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button><button data-k=".">.</button>
   <button data-k="0">0</button><button data-k="/">/</button><button data-k="C">C</button><button class="go" data-k="N">Next ›</button>
+  <button class="sm" data-k="fx" style="grid-column:1/-1">Formula keys: = + − × ÷ ^ ( )</button><button class="x" data-k="=">=</button><button class="x" data-k="+">+</button><button class="x" data-k="-">−</button><button class="x" data-k="*">×</button><button class="x" data-k="^">^</button><button class="x" data-k="(">(</button><button class="x" data-k=")">)</button><button class="x" data-k="/">÷</button>
 </div></div>
 
 <nav>
@@ -210,6 +224,7 @@ nav button.on{color:var(--tx)}nav button.on::before{content:"";position:absolute
   <button data-v="gm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r=".6"/><circle cx="15" cy="15" r=".6"/><circle cx="15" cy="9" r=".6"/><circle cx="9" cy="15" r=".6"/></svg>Game</button>
   <button data-v="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg>Settings</button>
 </nav>
+<div id="sheet"><div class="p"><div class="row" style="margin-bottom:10px"><b id="shT" class="sp" style="font-family:var(--serif);font-size:17px"></b><button class="btn sm" data-shx>Close</button></div><div id="shB"></div></div></div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -223,19 +238,26 @@ let cur=null,fresh=false,lastRes=null;
 
 /* ---------- persistence ---------- */
 try{const d=JSON.parse(localStorage.getItem(KEY)||"null");if(d&&d.obj){Object.assign(S,d);S.set=Object.assign({theme:"auto",view:"mobile",pad:false,haptic:true,dec:4},d.set)}}catch(e){}
-const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+var H={u:[],r:[],prev:null,t:0};
+const snap=()=>JSON.stringify(S,(k,v)=>k==="set"?undefined:v);
+function hist(){if(H.lock)return;const j=snap();if(H.prev===null){H.prev=j;return}if(j===H.prev)return;const n=Date.now();
+  if(n-H.t>700){H.u.push(H.prev);if(H.u.length>80)H.u.shift();H.r.length=0}H.t=n;H.prev=j;if(typeof histUI==="function")histUI()}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}hist()};
 
 /* ---------- helpers ---------- */
 function num(s){s=String(s).trim();if(s.includes("/")){const[a,b]=s.split("/");const x=parseFloat(a),y=parseFloat(b);return y?x/y:0}const v=parseFloat(s);return isFinite(v)?v:0}
 const fmt=v=>{const r=Math.abs(v)<1e-9?0:v;return String(+r.toFixed(S.set.dec))};
 const buzz=()=>{if(S.set.haptic&&navigator.vibrate)navigator.vibrate(8)};
 function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("on"),1600)}
-const sub=i=>"x"+String(i+1).replace(/\d/g,d=>"₀₁₂₃₄₅₆₇₈₉"[d]);
+const sub=i=>(S.vn&&S.vn[i])||"x"+String(i+1).replace(/\d/g,d=>"₀₁₂₃₄₅₆₇₈₉"[d]);
+const cname=i=>(S.cons[i]&&S.cons[i].nm)||"C"+(i+1);
+const esc=t=>String(t).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
 function resize(){
   S.n=Math.max(1,S.n|0);S.m=Math.max(0,S.m|0);
   while(S.obj.length<S.n)S.obj.push("0");S.obj.length=S.n;
   while(S.cons.length<S.m)S.cons.push(mk(S.n));S.cons.length=S.m;
   S.cons.forEach(c=>{while(c.a.length<S.n)c.a.push("0");c.a.length=S.n});
+  S.vn=S.vn||[];while(S.vn.length<S.n)S.vn.push("");S.vn.length=S.n;
 }
 
 /* ---------- render ---------- */
@@ -245,18 +267,19 @@ function render(){
   $("#nIn").value=S.n;$("#mIn").value=S.m;$("#nonneg").checked=S.nonneg;
   $$("#goalSeg button").forEach(b=>b.classList.toggle("on",b.dataset.g===S.goal));
   $("#objRow").innerHTML=S.obj.map((v,j)=>`<div class="cell"><label>${sub(j)}</label>${inp(0,j,v,"o")}</div>`).join("");
-  $("#cons").innerHTML=S.cons.map((c,i)=>`<div class="card"><div class="row" style="margin-bottom:8px"><span class="tag">C${i+1}</span><span style="font-size:12px;color:var(--mut)">${plabel(i)}</span><span class="sp"></span>
+  $("#cons").innerHTML=S.cons.map((c,i)=>`<div class="card"><div class="row" style="margin-bottom:8px"><span class="tag">C${i+1}</span><input class="tx cnm" data-cn="${i}" placeholder="name (optional)" value="${esc(c.nm||"")}" maxlength="28" style="flex:1;min-width:90px;width:auto"><span class="sp"></span>
     <button class="btn sm" data-dup="${i}">Copy</button><button class="btn sm bad" data-del="${i}">✕</button></div>
     <div class="scroll"><div class="coefs">${c.a.map((v,j)=>`<div class="cell"><label>${sub(j)}</label>${inp(i+1,j,v,"a")}</div>`).join("")}
     <div class="cell"><label>op</label><button class="op" data-op="${i}">${c.op==="=="?"=":c.op}</button></div>
     <div class="cell"><label>RHS</label>${inp(i+1,S.n,c.b,"b")}</div></div></div>
     <div class="preview">${lhs(c.a)} ${c.op==="=="?"=":c.op} ${fmt(num(c.b))}</div></div>`).join("")||`<div class="card empty">No constraints yet.</div>`;
   $("#objPrev").textContent=(S.goal==="max"?"Max":"Min")+" Z = "+lhs(S.obj);
+  renderNames();
   // settings
   $$("#themeSeg button").forEach(b=>b.classList.toggle("on",b.dataset.th===S.set.theme));
   $$("#viewSeg button").forEach(b=>b.classList.toggle("on",b.dataset.vw===S.set.view));
   $("#padOn").checked=S.set.pad;$("#haptic").checked=S.set.haptic;$("#dIn").value=S.set.dec;
-  applyLook();save();if(typeof presetShow==="function")presetShow();
+  applyLook();save();if(typeof presetShow==="function")presetShow();if(typeof mpvUpdate==="function")mpvUpdate();
 }
 function lhs(a){const t=a.map((v,j)=>[num(v),j]).filter(x=>x[0]!==0).map(([v,j],k)=>{const s=v<0?"− ":(k?"+ ":"");const m=Math.abs(v);return s+(m===1?"":fmt(m))+sub(j)});return t.length?t.join(" "):"0"}
 function applyLook(){
@@ -300,7 +323,7 @@ function showResults(){
    <div style="color:var(--mut);margin-top:10px;font-weight:600">Z* (${S.goal==="max"?"maximum":"minimum"})</div><div class="z">${z}</div></div>
    <h2>Decision variables</h2><div class="card"><table><tr><th>Var</th><th class="r">Value</th></tr>${R.x.map((v,j)=>`<tr><td>${sub(j)}</td><td class="r">${fmt(v)}</td></tr>`).join("")}</table></div>
    ${R.rows.length?`<h2>Slack / surplus</h2><div class="card scroll"><table><tr><th>Constraint</th><th class="r">LHS</th><th class="r">RHS</th><th class="r">Slack/Surplus</th><th>State</th></tr>
-   ${R.rows.map(w=>{const bind=Math.abs(w.val)<1e-7;return`<tr><td>C${w.r+1} (${w.op==="=="?"=":w.op})</td><td class="r">${fmt(w.l)}</td><td class="r">${fmt(w.b)}</td><td class="r">${w.kind==="—"?"—":fmt(w.val)+" <small style='color:var(--mut)'>"+(w.kind==="Slack"?"s":"e")+(w.r+1)+"</small>"}</td><td>${bind?'<span class="tag">Binding</span>':'<span style="color:var(--mut)">Loose</span>'}</td></tr>`}).join("")}</table></div>`:""}`;
+   ${R.rows.map(w=>{const bind=Math.abs(w.val)<1e-7;return`<tr><td>${cname(w.r)} (${w.op==="=="?"=":w.op})</td><td class="r">${fmt(w.l)}</td><td class="r">${fmt(w.b)}</td><td class="r">${w.kind==="—"?"—":fmt(w.val)+" <small style='color:var(--mut)'>"+(w.kind==="Slack"?"s":"e")+(w.r+1)+"</small>"}</td><td>${bind?'<span class="tag">Binding</span>':'<span style="color:var(--mut)">Loose</span>'}</td></tr>`}).join("")}</table></div>`:""}`;
   const c=$("#cpy");if(c)c.onclick=()=>{const t=`Z* = ${z}\n`+R.x.map((v,j)=>`x${j+1} = ${fmt(v)}`).join("\n")+"\n"+R.rows.map(w=>w.kind==="—"?"":`${w.kind==="Slack"?"s":"e"}${w.r+1} = ${fmt(w.val)}`).filter(Boolean).join("\n");
     (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast("Copied ✓"),()=>toast("Copy blocked by browser"))};
 }
@@ -349,7 +372,7 @@ function analyze(x,Z){
         return{name:sub(j),val:xj,rc:r<0?cl0(sg*d[j]):0,c:c[j],basic:r>=0,inc:sg>0?im:dm,dec:sg>0?dm:im}});
       const cn=S.cons.map((k,i)=>{let inc=BIG,dec=BIG;
         Bi.forEach((row,r)=>{const g=row[i];if(g>1e-9)dec=Math.min(dec,xB[r]/g);else if(g<-1e-9)inc=Math.min(inc,xB[r]/-g)});
-        return{name:"C"+(i+1),L:L[i],sp:cl0(sg*y[i]),b:b[i],inc,dec}});
+        return{name:cname(i),L:L[i],sp:cl0(sg*y[i]),b:b[i],inc,dec}});
       sens={v,c:cn};
     }
   }
@@ -361,7 +384,7 @@ function secs(){
     {t:"Objective Cell ("+goal+")",h:["Name","Original Value","Final Value"],r:[["Z","0",fmt(Z)]]},
     {t:"Variable Cells",h:["Name","Original Value","Final Value","Reduced Cost"],r:x.map((v,j)=>[vn(j),"0",fmt(v),a.sens?fx(a.sens.v[j].rc):"n/a"])},
     {t:"Constraints",h:["Name","Cell Value","Formula","Status","Slack/Surplus"],r:K.map((k,i)=>{const w=lastRes.rows[i];
-      return["C"+(i+1),fmt(w.l),lhs(k.a)+" "+(k.op==="=="?"=":k.op)+" "+fmt(num(k.b)),Math.abs(w.val)<1e-7?"Binding":"Not Binding",w.kind==="—"?"0":fmt(w.val)]})}];
+      return[cname(i),fmt(w.l),lhs(k.a)+" "+(k.op==="=="?"=":k.op)+" "+fmt(num(k.b)),Math.abs(w.val)<1e-7?"Binding":"Not Binding",w.kind==="—"?"0":fmt(w.val)]})}];
   if(rp==="sen")return a.sens?[
     {t:"Variable Cells",h:["Name","Final Value","Reduced Cost","Objective Coefficient","Allowable Increase","Allowable Decrease"],
      r:a.sens.v.map(o=>[o.name,fmt(o.val),fx(o.rc),fmt(o.c),fx(o.inc),fx(o.dec)])},
@@ -404,7 +427,7 @@ const EX=[["Standard optimum","max",[3,5],[[1,0,"<=",4],[0,2,"<=",12],[3,2,"<=",
  ["Minimize (open region)","min",[2,3],[[1,1,">=",4],[1,3,">=",6]]]];
 let GA=null,gt=1,gAnim=0;
 function halves(){const H=[],zero=[];let bad=false;
-  G.cons.forEach((k,i)=>{const a=num(k.a[0]),b2=num(k.a[1]),b=num(k.b),nm="C"+(i+1);
+  G.cons.forEach((k,i)=>{const a=num(k.a[0]),b2=num(k.a[1]),b=gb(i),nm="C"+(i+1);
     if(!a&&!b2){zero.push(i);if(k.op==="<="?b<0:k.op===">="?b>0:b!==0)bad=true;return}
     if(k.op!==">=")H.push({n:[a,b2],h:b,ci:i,eq:k.op==="==",nm});
     if(k.op!=="<=")H.push({n:[-a,-b2],h:-b,ci:i,eq:k.op==="==",nm})});
@@ -417,9 +440,9 @@ function reg(L){const V=[],R=[];
   if(V.length)L.forEach(l=>[[-l.n[1],l.n[0]],[l.n[1],-l.n[0]]].forEach(d=>{const m=Math.hypot(...d);if(m<1e-12)return;const u=[d[0]/m,d[1]/m];
     if(L.every(q=>q.n[0]*u[0]+q.n[1]*u[1]<=1e-9)&&!R.some(r=>Math.hypot(r[0]-u[0],r[1]-u[1])<1e-6))R.push(u)}));
   return{V,R}}
-const icp=k=>{const a=num(k.a[0]),b=num(k.a[1]),r=num(k.b);return[a?r/a:null,b?r/b:null]};
+const icp=k=>{const a=num(k.a[0]),b=num(k.a[1]),r=gb(G.cons.indexOf(k));return[a?r/a:null,b?r/b:null]};
 function gAnalyze(){
-  const{H,zero,bad}=halves(),L=H.concat(H0),c=[num(G.obj[0]),num(G.obj[1])],sg=G.goal==="max"?1:-1,{V,R}=reg(L),A={H,zero,c,sg,V,R,red:[],bad};
+  const{H,zero,bad}=halves(),L=H.concat(H0),c=[gc(0),gc(1)],sg=G.goal==="max"?1:-1,{V,R}=reg(L),A={H,zero,c,sg,V,R,red:[],bad};
   if(bad||!V.length){A.inf=true;return A}
   const cx=p=>c[0]*p[0]+c[1]*p[1],mx=V.reduce((s,v)=>s+v[0],0)/V.length,my=V.reduce((s,v)=>s+v[1],0)/V.length;
   V.sort((p,q)=>Math.atan2(p[1]-my,p[0]-mx)-Math.atan2(q[1]-my,q[0]-mx));
@@ -464,14 +487,14 @@ function gDraw(){
       q.sort((p,r)=>Math.atan2(p[1]-b,p[0]-a)-Math.atan2(r[1]-b,r[0]-a));
       x.beginPath();q.forEach((v,i)=>i?x.lineTo(sx(v[0]),sy(v[1])):x.moveTo(sx(v[0]),sy(v[1])));x.closePath();x.fillStyle=pri+"3a";x.fill();x.strokeStyle=pri;x.lineWidth=2;x.stroke()}}
   const labs=[];
-  G.cons.forEach((k,i)=>{const a=num(k.a[0]),b=num(k.a[1]),r=num(k.b);if(!a&&!b)return;const sg=clipLine(a,b,r,X,Y);if(!sg)return;
+  G.cons.forEach((k,i)=>{const a=num(k.a[0]),b=num(k.a[1]),r=gb(i);if(!a&&!b)return;const sg=clipLine(a,b,r,X,Y);if(!sg)return;
     const red=A.red.some(o=>o.i===i);x.strokeStyle=red?mut:COL[i];x.lineWidth=2;x.setLineDash(red?[6,5]:[]);
     x.beginPath();x.moveTo(sx(sg[0][0]),sy(sg[0][1]));x.lineTo(sx(sg[1][0]),sy(sg[1][1]));x.stroke();x.setLineDash([]);
     labs.push(["C"+(i+1)+(red?" (redundant)":""),sx(sg[1][0])-(sg[1][0]>X*.8?24:0),sy(sg[1][1])+(sg[1][1]<Y*.1?-8:12),red?mut:COL[i]])});
   let k=null;
   if(!A.inf){
     const sgn=A.sg,cx=A.c[0],cy=A.c[1],mx=A.V.reduce((s,v)=>s+v[0],0)/A.V.length,my=A.V.reduce((s,v)=>s+v[1],0)/A.V.length;
-    k=gIso(A);
+    k=(GP.v0&&GP.mode!=="off"&&GP.mode!=="b")?A.c[0]*GP.v0[0]+A.c[1]*GP.v0[1]:gIso(A);
     if(cx||cy){const seg=clipLine(cx,cy,k,X,Y);if(seg){x.strokeStyle=gold;x.lineWidth=2.5;x.setLineDash([8,5]);x.beginPath();x.moveTo(sx(seg[0][0]),sy(seg[0][1]));x.lineTo(sx(seg[1][0]),sy(seg[1][1]));x.stroke();x.setLineDash([]);
         labs.push(["Z = "+fmt(k),(sx(seg[0][0])+sx(seg[1][0]))/2+(sgn>0?-4:4),(sy(seg[0][1])+sy(seg[1][1]))/2-8,gold])}
       let dx=cx*(sx(1)-sx(0))*sgn,dy=cy*(sy(1)-sy(0))*sgn;const m=Math.hypot(dx,dy)||1;dx=dx/m*38;dy=dy/m*38;const ax=sx(mx),ay=sy(my);
@@ -488,6 +511,7 @@ function gDraw(){
       lab("("+fmt(p[0])+","+fmt(p[1])+")",sx(p[0])+(p[1]===0?0:30),sy(p[1])+(p[1]===0?-8:-6),COL[i])})});
   if(!A.inf)A.V.forEach((v,i)=>{const o=!A.unb&&A.opt.includes(i);x.beginPath();x.arc(sx(v[0]),sy(v[1]),o?7:5,0,7);x.fillStyle=o?gold:tx;x.fill();x.strokeStyle=bg;x.lineWidth=2;x.stroke();
     lab(String.fromCharCode(65+i)+(o?" ★":""),sx(v[0])+10,sy(v[1])-9,o?gold:tx,1)});
+  if(GP.v0&&GP.mode!=="off"){x.beginPath();x.arc(sx(GP.v0[0]),sy(GP.v0[1]),11,0,7);x.setLineDash([3,3]);x.strokeStyle=gold;x.lineWidth=2;x.stroke();x.setLineDash([])}
   $("#gZ").textContent=k==null?"":fmt(k);
 }
 function gPanels(){
@@ -515,7 +539,7 @@ function gPanels(){
   $("#gLeg").innerHTML=G.cons.map((k,i)=>`<span class="tag" style="background:${COL[i]}22;color:${COL[i]}">C${i+1}</span>`).join("")+`<span class="tag">▭ feasible</span><span class="tag" style="background:#f59e0b33;color:#b45309">- - iso-line</span>`;
   G.cons.forEach((k,i)=>{const e=$("#gt"+i);if(e)e.innerHTML=A.red.some(o=>o.i===i)?'<span class="badge b-warn">Redundant</span>':A.zero.includes(i)?'<span class="badge b-warn">Ignored</span>':(A.H.some(l=>l.ci===i)?'<span class="badge b-ok">Shapes region</span>':"")});
 }
-function gUpdate(){GA=gAnalyze();gPanels();gDraw()}
+function gUpdate(){gOv={c:null,b:{}};GP.mode="off";gRefresh();gPivotUI()}
 function gInputs(){
   $$("#gGoal button").forEach(b=>b.classList.toggle("on",b.dataset.gg===G.goal));
   $("#gObj").innerHTML=[0,1].map(j=>`<div class="cell"><label>${sub(j)}</label>${inp(1000,j,G.obj[j],"g")}</div>`).join("");
@@ -1016,7 +1040,7 @@ const PRESETS={
    [1,0,0,0,0,0,0,0,"<=",700,"Q1 capacity"],[0,1,0,0,0,0,0,0,"<=",700,"Q2 capacity"],[0,0,1,0,0,0,0,0,"<=",700,"Q3 capacity"],[0,0,0,1,0,0,0,0,"<=",700,"Q4 capacity"],[0,0,0,0,0,0,0,1,">=",60,"Closing stock ≥ 60"]]}};
 const plabel=i=>{const P=S.preset&&PRESETS[S.preset];return P&&P.rows[i]?P.rows[i][P.rows[i].length-1]:""};
 function presetLoad(k){const P=PRESETS[k];if(!P)return;S.goal=P.goal;S.n=P.obj.length;S.m=P.rows.length;S.obj=P.obj.map(String);S.nonneg=true;
-  S.cons=P.rows.map(r=>({a:r.slice(0,S.n).map(String),op:r[S.n],b:String(r[S.n+1])}));S.preset=k;lastRes=null;render();toast("Loaded: "+P.name)}
+  S.cons=P.rows.map(r=>({a:r.slice(0,S.n).map(String),op:r[S.n],b:String(r[S.n+1]),nm:r[r.length-1]}));S.vn=P.vars.slice();S.preset=k;lastRes=null;render();toast("Loaded: "+P.name)}
 function lpQuick(){const M={optimize:"z",opType:S.goal,constraints:{},variables:{}};
   S.cons.forEach((c,i)=>{const b=num(c.b);M.constraints["c"+i]=c.op==="<="?{max:b}:c.op===">="?{min:b}:{equal:b}});
   S.obj.forEach((o,j)=>{const v={z:num(o)};S.cons.forEach((c,i)=>{const a=num(c.a[j]);if(a)v["c"+i]=a});M.variables["x"+j]=v});return Solver.Solve(M)}
@@ -1024,9 +1048,149 @@ function presetShow(){const el=$("#presetInfo"),P=S.preset&&PRESETS[S.preset];if
   let ver="";try{const r=lpQuick();if(r.feasible===false)ver='<span class="badge b-bad">infeasible after your edits</span>';else{const Z=S.obj.reduce((t,o,j)=>t+num(o)*(r["x"+j]||0),0);
     ver=`<span class="badge b-ok">Verified optimum Z* = ${fmt(Z)}</span><div class="preview">${S.obj.map((_,j)=>`${sub(j)} = ${fmt(r["x"+j]||0)}`).join(" · ")}</div>`}}catch(e){}
   el.innerHTML=`<div class="card" style="border-color:var(--pri)"><div class="row"><b class="sp">${P.name}</b><button class="btn sm" data-pclose="1">✕</button></div><div style="font-size:13px;margin:6px 0">${P.desc}</div>
-   <details><summary>Variables</summary><div style="font-size:13px;line-height:1.7">${P.vars.map((v,j)=>`<b>${sub(j)}</b> = ${v}`).join("<br>")}</div></details><div style="margin-top:8px">${ver}</div><div class="preview">Tap <b>Solve ▶</b> for the full output, then open Reports for sensitivity analysis.</div></div>`}
+   <details><summary>Variables</summary><div style="font-size:13px;line-height:1.7">${P.vars.map((v,j)=>`<b>x${j+1}</b> = ${v}`).join("<br>")}</div></details><div style="margin-top:8px">${ver}</div><div class="preview">Tap <b>Solve ▶</b> for the full output, then open Reports for sensitivity analysis.</div></div>`}
 $("#presetSel").addEventListener("change",e=>{if(e.target.value)presetLoad(e.target.value);e.target.value=""});
 $("#presetInfo").addEventListener("click",e=>{if(e.target.closest("[data-pclose]")){S.preset=null;presetShow();save()}});
+
+/* ---------- Phase 9: names, formulas, undo, migration, preview, pivot ---------- */
+/*CALC*/
+function calc(src){const s=String(src).toLowerCase().replace(/\s+/g,"").replace(/×/g,"*").replace(/÷/g,"/").replace(/−/g,"-");let i=0;
+  const F={sqrt:Math.sqrt,abs:Math.abs,round:Math.round,min:Math.min,max:Math.max,pow:Math.pow,exp:Math.exp,ln:Math.log,log:Math.log10,floor:Math.floor,ceil:Math.ceil};
+  const expr=()=>{let v=term();while(s[i]==="+"||s[i]==="-"){const o=s[i++],r=term();v=o==="+"?v+r:v-r}return v};
+  const term=()=>{let v=unary();while(s[i]==="*"||s[i]==="/"){const o=s[i++],r=unary();v=o==="*"?v*r:v/r}return v};
+  const unary=()=>{if(s[i]==="-"){i++;return-unary()}if(s[i]==="+"){i++;return unary()}return pw()};
+  const pw=()=>{const b=post();if(s[i]==="^"){i++;return Math.pow(b,unary())}return b};
+  const post=()=>{let v=atom();while(s[i]==="%"){i++;v/=100}return v};
+  const atom=()=>{if(s[i]==="("){i++;const v=expr();if(s[i]!==")")throw 0;i++;return v}
+    let m=/^(\d+\.?\d*|\.\d+)(e[+-]?\d+)?/.exec(s.slice(i));if(m){i+=m[0].length;return parseFloat(m[0])}
+    m=/^[a-z]+/.exec(s.slice(i));if(!m)throw 0;i+=m[0].length;const id=m[0];if(id==="pi")return Math.PI;if(id==="e")return Math.E;
+    if(!F[id]||s[i]!=="(")throw 0;i++;const a=[];if(s[i]!==")"){a.push(expr());while(s[i]===","){i++;a.push(expr())}}if(s[i]!==")")throw 0;i++;return F[id](...a)};
+  try{const v=expr();return i===s.length&&isFinite(v)?v:null}catch(e){return null}}
+/*ENDCALC*/
+document.addEventListener("focusin",e=>{if(e.target.matches&&e.target.matches("input.n"))e.target.dataset.prev=e.target.value});
+document.addEventListener("keydown",e=>{
+  if((e.ctrlKey||e.metaKey)&&!e.altKey){const k=e.key.toLowerCase();if(k==="z"&&!e.shiftKey){e.preventDefault();undo();return}if(k==="y"||(k==="z"&&e.shiftKey)){e.preventDefault();redo();return}}
+  const el=e.target;if(!(el.matches&&el.matches("input.n")))return;const r=+el.dataset.r,c=+el.dataset.c,k=e.key,a=el.selectionStart,b=el.selectionEnd,len=el.value.length;let t=null;
+  if(k==="ArrowDown"||(k==="Enter"&&!e.shiftKey))t=at(r+1,c)||at(r+1,c-1);
+  else if(k==="ArrowUp"||(k==="Enter"&&e.shiftKey))t=at(r-1,c)||at(r-1,c-1);
+  else if(k==="ArrowRight"&&((a===0&&b===len)||(a===b&&b===len)))t=at(r,c+1);
+  else if(k==="ArrowLeft"&&((a===0&&b===len)||(a===b&&a===0)))t=at(r,c-1);
+  else return;
+  e.preventDefault();if(t)go(t);else if(k==="Enter")el.blur()});
+/* names */
+function renderNames(){const e=$("#vnRow");if(e)e.innerHTML=S.vn.map((v,j)=>`<div class="cell"><label>x${j+1}</label><input class="tx" data-vn="${j}" value="${esc(v)}" placeholder="x${j+1}" maxlength="24"></div>`).join("")}
+document.addEventListener("input",e=>{const t=e.target,d=t.dataset||{};
+  if(d.vn!==undefined){S.vn[+d.vn]=t.value.trim();mpvUpdate();save()}else if(d.cn!==undefined){S.cons[+d.cn].nm=t.value.trim();mpvUpdate();save()}});
+document.addEventListener("change",e=>{const d=e.target.dataset||{};if(d.vn!==undefined||d.cn!==undefined)render()});
+/* live model preview */
+const exprTxt=a=>{const t=[];a.forEach((v,j)=>{v=num(v);if(!v)return;const m=Math.abs(v),nm=S.vn&&S.vn[j];
+  t.push((t.length?(v<0?"− ":"+ "):(v<0?"−":""))+(nm?(m===1?nm:fmt(m)+"·"+nm):(m===1?"":fmt(m))+sub(j)))});return t.length?t.join(" "):"0"};
+function modelText(P){const L=[(P.goal==="max"?"Max":"Min")+" Z = "+exprTxt(P.obj),"s.t."],nm=P.obj.map((_,j)=>sub(j));
+  P.cons.forEach((c,i)=>L.push("  "+(c.nm||"C"+(i+1))+":  "+exprTxt(c.a)+" "+({"<=":"≤",">=":"≥","==":"="}[c.op])+" "+fmt(num(c.b))));
+  L.push("  "+(nm.length>6?nm[0]+", …, "+nm[nm.length-1]:nm.join(", "))+(P.nonneg===false?"  free":" ≥ 0"));return L.join("\n")}
+const mdl=()=>({goal:S.goal,obj:S.obj,cons:S.cons,nonneg:S.nonneg});
+function mpvUpdate(){const e=$("#mpv");if(e)e.textContent=modelText(mdl())}
+const copyTxt=t=>(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast("Copied"),()=>toast("Copy blocked by browser"));
+$("#mpvCopy").onclick=()=>copyTxt(modelText(mdl()));
+function sheet(t,h){$("#shT").textContent=t;$("#shB").innerHTML=h;$("#sheet").classList.add("on")}
+$("#sheet").addEventListener("click",e=>{if(e.target.id==="sheet"||e.target.closest("[data-shx]"))$("#sheet").classList.remove("on")});
+$("#pvBtn").onclick=()=>{const g=($(".v.on")||{}).id==="v-graph",txt=g?modelText({goal:G.goal,obj:G.obj,cons:G.cons}):modelText(mdl());
+  sheet(g?"Graph problem":"Model problem",`<pre class="mpv" style="max-height:50vh">${esc(txt)}</pre><div class="row"><button class="btn sp" id="shCopy">Copy</button><button class="btn sp" data-shx>Close</button></div>`);$("#shCopy").onclick=()=>copyTxt(txt)};
+/* undo / redo */
+function histUI(){$("#undoBtn").disabled=!H.u.length;$("#redoBtn").disabled=!H.r.length}
+function restoreS(j){const o=JSON.parse(j),refs=["g","t","nw","pj","gm"];Object.keys(S).forEach(k=>{if(k!=="set"&&!(k in o))delete S[k]});
+  Object.keys(o).forEach(k=>{if(refs.includes(k)&&S[k]&&typeof S[k]==="object"){const d=S[k];Object.keys(d).forEach(x=>delete d[x]);Object.assign(d,o[k])}else S[k]=o[k]})}
+function afterRestore(){H.lock=1;try{afterRestore2()}finally{H.lock=0;H.prev=snap();H.t=0;histUI()}}
+function afterRestore2(){lastRes=null;for(const k in TRES)delete TRES[k];for(const k in NWR)delete NWR[k];PJR.cpm=PJR.pert=PJR.o=null;GMR.html=null;GMR.gr=null;gOv={c:null,b:{}};GP.mode="off";cur=null;
+  render();const f={"v-graph":gInputs,"v-tr":trRender,"v-nw":nwRender,"v-pj":pjRender,"v-gm":gmRender,"v-results":showResults,"v-reports":showReports}[($(".v.on")||{}).id];if(f)f();H.prev=snap();H.t=0;histUI()}
+function undo(){if(!H.u.length)return toast("Nothing to undo");H.r.push(H.prev);restoreS(H.u.pop());afterRestore();toast("Undone")}
+function redo(){if(!H.r.length)return toast("Nothing to redo");H.u.push(H.prev);restoreS(H.r.pop());afterRestore();toast("Redone")}
+$("#undoBtn").onclick=undo;$("#redoBtn").onclick=redo;
+document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest("button"))H.t=0},true);
+document.addEventListener("change",()=>{H.t=0},true);
+/* migration */
+function goTab(v){const b=document.querySelector('nav button[data-v="'+v+'"]');if(b)b.click()}
+function setModel(P,msg){S.goal=P.goal;S.n=P.obj.length;S.m=P.cons.length;S.obj=P.obj.map(String);S.vn=P.vn.slice();
+  S.cons=P.cons.map(c=>({a:c.a.map(String),op:c.op,b:String(c.b),nm:c.nm||""}));S.nonneg=true;S.preset=null;lastRes=null;render();goTab("model");toast(msg)}
+function migItems(){const v=($(".v.on")||{}).id,out=[],add=(t,d,f)=>out.push({t,d,f});
+  const toGraph=()=>{if(S.n!==2)return toast("Model has "+S.n+" variables; the graph needs 2");G.goal=S.goal;G.obj=[S.obj[0],S.obj[1]];G.cons=S.cons.slice(0,5).map(c=>({a:[c.a[0],c.a[1]],op:c.op,b:c.b}));gInputs();goTab("graph");toast("Model sent to Graph")};
+  const fromGraph=()=>setModel({goal:G.goal,obj:G.obj,cons:G.cons,vn:["",""]},"Graph problem sent to Model");
+  if(v==="v-model")add("Model → Graph","Plot a 2-variable problem (first 5 constraints)",toGraph);
+  else if(v==="v-graph"){add("Graph → Model","Open this problem in the Model tab for solving and reports",fromGraph);add("Model → Graph","Replace the graph with the Model tab's problem",toGraph)}
+  else if(v==="v-tr"){
+    if(T.sub==="tp")add("Transportation → LP","Variables per route, supply and demand constraints (dummy added if unbalanced)",()=>{const q=tpData(),n=q.d.length,vn=[],obj=[];q.c.forEach((r,i)=>r.forEach((c,j)=>{obj.push(c);vn.push(q.rl[i]+"→"+q.cl[j])}));
+      const cons=[...q.s.map((s,i)=>({a:obj.map((_,k)=>+(Math.floor(k/n)===i)),op:"==",b:s,nm:"Supply "+q.rl[i]})),...q.d.map((d,j)=>({a:obj.map((_,k)=>+(k%n===j)),op:"==",b:d,nm:"Demand "+q.cl[j]}))];setModel({goal:"min",obj,cons,vn},"Transportation LP loaded")});
+    else if(T.sub==="as")add("Assignment → LP","One variable per worker–job pair, each worker and job used once",()=>{const n=T.as.n,C=T.as.c.map(r=>r.map(num)),obj=C.flat(),vn=obj.map((_,k)=>"W"+(Math.floor(k/n)+1)+"→J"+(k%n+1));
+      const cons=[...Array(n)].map((_,i)=>({a:obj.map((_,k)=>+(Math.floor(k/n)===i)),op:"==",b:1,nm:"Worker "+(i+1)})).concat([...Array(n)].map((_,j)=>({a:obj.map((_,k)=>+(k%n===j)),op:"==",b:1,nm:"Job "+(j+1)})));setModel({goal:T.as.goal,obj,cons,vn},"Assignment LP loaded")});
+    else add("Transshipment → LP","Min-cost flow: node balances and route capacities",()=>{const N=T.ts.nodes,nb=N.map(x=>num(x.b)),arcs=T.ts.arcs.map(a=>({f:a.f,t:a.t,c:num(a.c),u:num(a.u)})).filter(a=>a.f!==a.t);if(!arcs.length)return toast("Add a route first");
+      const nm=k=>N[k].nm||"N"+(k+1),Sx=sum(nb.filter(b=>b>0)),Dx=-sum(nb.filter(b=>b<0)),vn=arcs.map(a=>nm(a.f)+"→"+nm(a.t)),
+        cons=N.map((x,k)=>({a:arcs.map(a=>(a.f===k?1:0)-(a.t===k?1:0)),op:nb[k]>0?(Sx>Dx+1e-9?"<=":"=="):nb[k]<0?(Sx<Dx-1e-9?">=":"=="):"==",b:nb[k],nm:"Node "+nm(k)}));
+      arcs.forEach((a,i)=>{if(a.u>0)cons.push({a:arcs.map((_,k)=>+(k===i)),op:"<=",b:a.u,nm:"Capacity "+vn[i]})});setModel({goal:"min",obj:arcs.map(a=>a.c),cons,vn},"Transshipment LP loaded")})}
+  else if(v==="v-nw"){
+    if(NW.sub==="mst")add("Not available","A spanning tree has no compact LP form",()=>{});
+    else add(NW.sub==="sp"?"Shortest path → LP":"Max flow → LP","One flow variable per arc (undirected edges give two arcs)",()=>{
+      const E=nwE(),arcs=[];E.forEach(e=>{if(e.a===e.b)return;arcs.push({f:e.a,t:e.b,w:e.w});if(!e.d)arcs.push({f:e.b,t:e.a,w:e.w})});if(!arcs.length)return toast("Add an edge first");
+      const vn=arcs.map(a=>nl(a.f)+"→"+nl(a.t)),bal=k=>arcs.map(a=>(a.f===k?1:0)-(a.t===k?1:0)),s=NW.src,t=NW.snk;
+      if(NW.sub==="sp")setModel({goal:"min",obj:arcs.map(a=>a.w),vn,cons:[...Array(NW.n)].map((_,k)=>({a:bal(k),op:"==",b:k===s?1:k===t?-1:0,nm:"Balance "+nl(k)}))},"Shortest-path LP loaded");
+      else setModel({goal:"max",obj:arcs.map(a=>(a.f===s?1:0)-(a.t===s?1:0)),vn,cons:[...[...Array(NW.n)].map((_,k)=>k).filter(k=>k!==s&&k!==t).map(k=>({a:bal(k),op:"==",b:0,nm:"Balance "+nl(k)})),...arcs.map((a,i)=>({a:arcs.map((_,k)=>+(k===i)),op:"<=",b:a.w,nm:"Capacity "+vn[i]}))]},"Max-flow LP loaded")})}
+  else if(v==="v-pj")add("Project → LP","Minimise finish time T subject to precedence: start(j) ≥ start(i) + duration(i)",()=>{
+    const pert=PJ.mode==="pert",L=PJ.acts.map(x=>({id:x.id.trim(),pred:pjParse(x.pred),d:pert?(num(x.a)+4*num(x.m)+num(x.b))/6:num(x.d)})),r=cpm(L);if(r.err)return toast(r.err);
+    const n=L.length,idx={};L.forEach((x,i)=>idx[x.id]=i);const row=(p,q)=>[...Array(n+1)].map((_,k)=>(k===p?-1:0)+(k===q?1:0)),cons=[];
+    L.forEach((x,i)=>x.pred.forEach(p=>cons.push({a:row(idx[p],i),op:">=",b:L[idx[p]].d,nm:p+" before "+x.id})));L.forEach((x,i)=>cons.push({a:row(i,n),op:">=",b:x.d,nm:"Finish after "+x.id}));
+    setModel({goal:"min",obj:[...Array(n)].map(()=>0).concat([1]),vn:L.map(x=>"Start "+x.id).concat(["Finish T"]),cons},"Project LP loaded")});
+  else if(v==="v-gm"){if(GMR.lp){add("Column player's LP","max Σy subject to A′y ≤ 1",()=>{loadLP(GMR.lp.B,true);goTab("model")});add("Row player's LP","min Σx subject to A′ᵀx ≥ 1",()=>{loadLP(GMR.lp.B,false);goTab("model")})}else add("Solve the game first","The LP is built from the payoff matrix",()=>{})}
+  return out}
+let migFns=[];
+$("#migBtn").onclick=()=>{migFns=migItems();sheet("Migrate data",migFns.length?migFns.map((m,i)=>`<button class="btn mig" data-mig="${i}"><b>${m.t}</b><small>${m.d}</small></button>`).join("")+'<div class="preview">Undo restores the previous data if a migration overwrites something.</div>':'<div class="preview" style="margin:0">Open a module (Model, Graph, Transport, Network, Project or Game) to see what it can send elsewhere.</div>')};
+$("#shB").addEventListener("click",e=>{const b=e.target.closest("[data-mig]");if(!b)return;const m=migFns[+b.dataset.mig];$("#sheet").classList.remove("on");if(m)m.f()});
+/* graph: pivot iso-line (range of optimality) and move a constraint (range of feasibility) */
+var gOv={c:null,b:{}},GB=null;const GP={mode:"off",ci:0,v0:null,R:null,vmin:0,vmax:1,cur:0};
+const gb=i=>gOv.b[i]!=null?gOv.b[i]:num(G.cons[i].b),gc=j=>gOv.c&&gOv.c[j]!=null?gOv.c[j]:num(G.obj[j]);
+/*RANGES*/
+function gRanges(A){const L=A.H.concat(H0),v=A.V[A.opt[0]],c=A.c,sg=A.sg,out={c:[],rhs:[]};
+  for(let j=0;j<2;j++){let lo=-Infinity,hi=Infinity;const lim=(a,b)=>{if(Math.abs(a)<1e-12)return;const t=-b/a;if(a>0)lo=Math.max(lo,t);else hi=Math.min(hi,t)};
+    A.V.forEach((u,i)=>{if(i!==A.opt[0])lim(sg*(v[j]-u[j]),sg*c[1-j]*(v[1-j]-u[1-j]))});A.R.forEach(r=>lim(-sg*r[j],-sg*c[1-j]*r[1-j]));out.c.push({lo,hi,cur:c[j]})}
+  const seen=new Set(),bind=L.filter(l=>Math.abs(l.n[0]*v[0]+l.n[1]*v[1]-l.h)<1e-6).filter(l=>{if(l.ci<0)return true;if(seen.has(l.ci))return false;seen.add(l.ci);return true});
+  let pair=null;for(let a=0;a<bind.length&&!pair;a++)for(let b=a+1;b<bind.length&&!pair;b++){const d=bind[a].n[0]*bind[b].n[1]-bind[a].n[1]*bind[b].n[0];if(Math.abs(d)>1e-9)pair=[bind[a],bind[b],d]}
+  const mu=pair?[(c[0]*pair[1].n[1]-c[1]*pair[1].n[0])/pair[2],(pair[0].n[0]*c[1]-pair[0].n[1]*c[0])/pair[2]]:null;
+  G.cons.forEach((k,i)=>{const ent=A.H.find(l=>l.ci===i);if(!ent){out.rhs.push(null);return}const flip=k.op===">=",bu=num(k.b);
+    if(pair&&(ent===pair[0]||ent===pair[1])){const idx=ent===pair[0]?0:1,det=pair[2],col=idx===0?[pair[1].n[1]/det,-pair[1].n[0]/det]:[-pair[0].n[1]/det,pair[0].n[0]/det];let lo=-Infinity,hi=Infinity;
+      L.forEach(l=>{if(l===pair[0]||l===pair[1])return;const g=l.n[0]*col[0]+l.n[1]*col[1],s=l.h-(l.n[0]*v[0]+l.n[1]*v[1]);if(g>1e-12)hi=Math.min(hi,s/g);else if(g<-1e-12)lo=Math.max(lo,s/g)});
+      out.rhs.push({bind:true,b:bu,sp:(flip?-1:1)*mu[idx],lo:flip?bu-hi:bu+lo,hi:flip?bu-lo:bu+hi})}
+    else if(bind.includes(ent))out.rhs.push({bind:true,b:bu,sp:0,lo:bu,hi:bu,deg:true});
+    else{const s=ent.h-(ent.n[0]*v[0]+ent.n[1]*v[1]);out.rhs.push({bind:false,b:bu,sp:0,lo:flip?-Infinity:bu-s,hi:flip?bu+s:Infinity})}});
+  return out}
+/*ENDRANGES*/
+const rg=x=>x>=1e29||x===Infinity?"∞":x<=-1e29||x===-Infinity?"−∞":fmt(x);
+function gPvSetup(){const R=GP.R;let cur,lo,hi;if(GP.mode==="b"){const r=R.rhs[GP.ci];cur=num(G.cons[GP.ci].b);lo=r?r.lo:-Infinity;hi=r?r.hi:Infinity}else{const j=GP.mode==="c0"?0:1;cur=R.c[j].cur;lo=R.c[j].lo;hi=R.c[j].hi}
+  const sp=Math.max(Math.abs(cur),1)*1.5;GP.cur=cur;GP.vmin=Math.min(cur-sp,isFinite(lo)?lo-sp*.4:Infinity);GP.vmax=Math.max(cur+sp,isFinite(hi)?hi+sp*.4:-Infinity)}
+function gPivotUI(){const el=$("#gPv");if(!el)return;const A=GB;GP.v0=null;
+  if(!A||A.inf||A.unb||A.alt||!A.V.length){GP.mode="off";el.innerHTML=`<div class="preview" style="margin:0">Pivoting needs one optimal corner. ${!A||A.inf?"The problem is infeasible or empty.":A.unb?"The problem is unbounded.":"There are alternate optima, so the objective already sits on the edge of its range."}</div>`;return}
+  const v=A.V[A.opt[0]],R=GP.R=gRanges(A),Lt=String.fromCharCode(65+A.opt[0]);GP.v0=v;
+  if(GP.mode==="b"&&!R.rhs[GP.ci])GP.ci=Math.max(0,R.rhs.findIndex(x=>x));if(GP.mode!=="off")gPvSetup();
+  const opts=G.cons.map((k,i)=>R.rhs[i]?`<option value="${i}" ${i===GP.ci?"selected":""}>C${i+1}</option>`:"").join("");
+  el.innerHTML=`<div style="font-size:13px;margin-bottom:8px">Optimal corner <b>${Lt}</b> (${fmt(v[0])}, ${fmt(v[1])}), Z* = <b>${fmt(A.best)}</b></div>
+   <div class="seg" id="gPvSeg">${[["off","Off"],["c0","Pivot c₁"],["c1","Pivot c₂"],["b","Move RHS"]].map(x=>`<button data-pv="${x[0]}" class="${GP.mode===x[0]?"on":""}">${x[1]}</button>`).join("")}</div>
+   ${GP.mode!=="off"?`<div class="row" style="margin-top:10px">${GP.mode==="b"?`<select class="sl" id="gPvC">${opts}</select>`:""}<input type="range" id="gPvS" min="0" max="1000" value="${Math.round((GP.cur-GP.vmin)/((GP.vmax-GP.vmin)||1)*1000)}" style="flex:1"><b id="gPvV" style="min-width:56px;text-align:right"></b></div><div class="preview" id="gPvT"></div>`:""}
+   <div style="font-weight:600;margin:12px 0 4px">Range of optimality</div>${tbl(["Coefficient","Current","Lower","Upper"],R.c.map((r,j)=>({c:["c"+(j+1)+" ("+sub(j)+")",fmt(r.cur),rg(r.lo),rg(r.hi)]})))}
+   <div class="preview">The corner stays optimal while the iso-line, pivoting about it, stays between the slopes of the two binding constraints.</div>
+   <div style="font-weight:600;margin:12px 0 4px">Range of feasibility (right-hand sides)</div>${tbl(["Constraint","RHS","Binding","Shadow price","Lower","Upper"],R.rhs.map((r,i)=>r?{c:["C"+(i+1),fmt(r.b),r.bind?"yes":"no",fmt(r.sp),rg(r.lo),rg(r.hi)]}:{c:["C"+(i+1),"—","—","—","—","—"]}))}
+   <div class="preview">Inside these limits the same constraints stay binding, so the shadow price holds: ΔZ = shadow price × ΔRHS.</div>`;gPvStatus()}
+function gPvStatus(){const t=$("#gPvT");if(!t||GP.mode==="off"||!GP.v0)return;const A=GA,R=GP.R,v0=GP.v0,pt=p=>"("+fmt(p[0])+", "+fmt(p[1])+")",Lt=i=>String.fromCharCode(65+i);let val,head,rng,inside;
+  if(GP.mode==="b"){val=gOv.b[GP.ci]!=null?gOv.b[GP.ci]:GP.cur;rng=R.rhs[GP.ci];inside=val>=rng.lo-1e-9&&val<=rng.hi+1e-9;head=`RHS of C${GP.ci+1} = ${fmt(val)} (was ${fmt(GP.cur)}). Range of feasibility [${rg(rng.lo)}, ${rg(rng.hi)}]. `}
+  else{const j=GP.mode==="c0"?0:1;val=gOv.c&&gOv.c[j]!=null?gOv.c[j]:GP.cur;rng=R.c[j];inside=val>=rng.lo-1e-9&&val<=rng.hi+1e-9;head=`c${j+1} = ${fmt(val)} (was ${fmt(GP.cur)}). Range of optimality [${rg(rng.lo)}, ${rg(rng.hi)}]. `}
+  $("#gPvV").textContent=fmt(val);let tail;
+  if(A.inf)tail="No feasible region at this value.";else if(A.unb)tail="Z becomes unbounded.";
+  else{const o=A.V[A.opt[0]],same=Math.hypot(o[0]-v0[0],o[1]-v0[1])<1e-6&&!A.alt;
+    if(GP.mode==="b"){const r=R.rhs[GP.ci];tail=(inside?"Inside the range: the same constraints bind. ":"Outside the range: a different set of constraints binds, so the shadow price no longer applies. ")+`New optimum ${pt(o)}, Z = ${fmt(A.best)}${inside&&r.bind?` (ΔZ = ${fmt(r.sp)} × ${fmt(val-GP.cur)} = ${fmt(r.sp*(val-GP.cur))})`:""}.`}
+    else tail=same?`Corner ${Lt(A.opt[0])} ${pt(o)} stays optimal.`:A.alt?"On the boundary: alternate optima along an edge.":`The optimum jumps to corner ${Lt(A.opt[0])} ${pt(o)}, Z = ${fmt(A.best)}.`}
+  t.textContent=head+tail}
+function gRefresh(){const sv=gOv;gOv={c:null,b:{}};GB=gAnalyze();gOv=sv;GA=(sv.c||Object.keys(sv.b).length)?gAnalyze():GB;gPanels();gDraw();gPvStatus()}
+$("#v-graph").addEventListener("click",e=>{const b=e.target.closest("[data-pv]");if(!b)return;GP.mode=b.dataset.pv;gOv={c:null,b:{}};gPivotUI();gRefresh()});
+$("#v-graph").addEventListener("input",e=>{if(e.target.id!=="gPvS")return;const val=+(GP.vmin+e.target.value/1000*(GP.vmax-GP.vmin)).toFixed(3);
+  if(GP.mode==="b")gOv={c:null,b:{[GP.ci]:val}};else{const c=[null,null];c[GP.mode==="c0"?0:1]=val;gOv={c,b:{}}}gRefresh()});
+$("#v-graph").addEventListener("change",e=>{if(e.target.id==="gPvC"){GP.ci=+e.target.value;gOv={c:null,b:{}};gPivotUI();gRefresh()}});
+histUI();
 
 /* ---------- Phase 8: offline, install, connectivity ---------- */
 let dip=null;
@@ -1049,12 +1213,15 @@ if("serviceWorker" in navigator&&location.protocol!=="file:"){
 function at(r,c){return document.querySelector(`input[data-r="${r}"][data-c="${c}"]`)}
 function go(el){if(el){el.focus();el.select&&el.select()}}
 function pad(k){
-  buzz();if(!cur)return;
+  buzz();if(k==="fx"){$("#pad").classList.toggle("fx");layoutPad();return}if(!cur)return;
   const r=+cur.dataset.r,c=+cur.dataset.c,rows=S.m,nn=cur.dataset.t==="g"?2:S.n;
   if(k==="L")return go(at(r,c-1)||(r>0&&lastCol(r-1))||null);
   if(k==="R"||k==="N")return go(at(r,c+1)||at(r+1,0)||(k==="N"&&(cur.blur(),cur=null,layoutPad(),null)));
   if(k==="U"||k==="D"){const t=r+(k==="U"?-1:1);return go(at(t,c)||at(t,c-1))}
   let v=cur.value;
+  const OPS="=+-*^()";
+  if(OPS.includes(k)){if(k==="=")v="=";else if(v.startsWith("="))v+=k;else if(k==="-"&&(fresh||v==="0"))v="-";else{toast("Start with = for a formula");return}fresh=false;cur.value=v;commit(cur);return}
+  if(v.startsWith("=")&&/[0-9./]/.test(k)){v+=k;fresh=false;cur.value=v;commit(cur);return}
   if(k==="B")v=v.length>1?v.slice(0,-1):"0";
   else if(k==="C")v="0";
   else if(k==="±")v=v.startsWith("-")?v.slice(1):"-"+v;
@@ -1071,7 +1238,7 @@ function commit(el){
   const{t,r,c}=el.dataset,v=el.value;if(t==="g"){gSet(el);return}if(t==="w"){nwSet(el);return}if(t==="p"){pjSet(el);return}if(t==="m"){gmSet(el);return}
   if(t==="o")S.obj[c]=v;else if(t==="a")S.cons[r-1].a[c]=v;else S.cons[r-1].b=v;
   $("#objPrev").textContent=(S.goal==="max"?"Max":"Min")+" Z = "+lhs(S.obj);
-  if(t!=="o"){const k=S.cons[r-1],pv=el.closest(".card").querySelector(".preview");pv.textContent=`${lhs(k.a)} ${k.op==="=="?"=":k.op} ${fmt(num(k.b))}`}
+  if(typeof mpvUpdate==="function")mpvUpdate();if(t!=="o"){const k=S.cons[r-1],pv=el.closest(".card").querySelector(".preview");pv.textContent=`${lhs(k.a)} ${k.op==="=="?"=":k.op} ${fmt(num(k.b))}`}
   save();
 }
 
@@ -1079,7 +1246,9 @@ function commit(el){
 document.addEventListener("focusin",e=>{if(e.target.matches("input.n")){cur=e.target;fresh=true;setTimeout(()=>e.target.select(),0);layoutPad();
   setTimeout(()=>e.target.scrollIntoView({block:"center",inline:"center",behavior:"smooth"}),60)}});
 document.addEventListener("input",e=>{if(e.target.matches("input.n")){fresh=false;commit(e.target)}});
-document.addEventListener("focusout",e=>{if(e.target.matches("input.n")&&e.target.value.trim()===""){e.target.value="0";commit(e.target)}});
+document.addEventListener("focusout",e=>{const el=e.target;if(!el.matches("input.n"))return;const v=el.value.trim();
+  if(v[0]==="="){const r=calc(v.slice(1));if(r!=null){el.value=String(+r.toFixed(10));commit(el)}else{el.value=el.dataset.prev||"0";commit(el);toast("Invalid formula")}}
+  else if(v===""){el.value="0";commit(el)}});
 $("#pad").addEventListener("pointerdown",e=>e.preventDefault());           // keep focus
 $("#pad").addEventListener("click",e=>{const b=e.target.closest("button");if(b)pad(b.dataset.k)});
 document.addEventListener("click",e=>{
