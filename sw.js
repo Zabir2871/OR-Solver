@@ -1,6 +1,6 @@
 // OR Solver service worker. Bump VERSION whenever any file changes.
-const VERSION="or-solver-v9";
-const SHELL=["./","index.html","solver.js","manifest.json","icons/icon-192.png","icons/icon-512.png","icons/icon-maskable-512.png"];
+const VERSION="or-solver-v10";
+const SHELL=["./","index.html","solver.js","html2canvas.min.js","manifest.json","icons/icon-192.png","icons/icon-512.png","icons/icon-maskable-512.png"];
 self.addEventListener("install",e=>{e.waitUntil(caches.open(VERSION).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()))});
 self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==VERSION).map(x=>caches.delete(x)))).then(()=>self.clients.claim()))});
 self.addEventListener("fetch",e=>{

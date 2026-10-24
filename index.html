@@ -105,6 +105,16 @@ header>.tb{max-width:480px;margin:0 auto;height:38px;display:flex;gap:2px;align-
 #sheet{position:fixed;inset:0;z-index:60;display:none;background:rgba(0,0,0,.4)}#sheet.on{display:block}
 #sheet .p{position:absolute;left:0;right:0;bottom:0;max-height:80vh;overflow:auto;background:var(--card);border-top:1px solid var(--bd);border-radius:12px 12px 0 0;padding:14px 14px calc(14px + env(safe-area-inset-bottom));max-width:560px;margin:0 auto}
 .mig{display:block;width:100%;text-align:left;margin-bottom:8px}.mig small{display:block;color:var(--mut);font-weight:400;margin-top:2px}
+.vl{width:64px;text-align:center;background:transparent;border:0;border-bottom:1px dashed var(--bd);border-radius:0;font:500 11px var(--mono);color:var(--mut);padding:1px 0;outline:0}
+.vl:hover{border-bottom-color:var(--mut)}.vl:focus{border-bottom:1px solid var(--pri);color:var(--tx)}
+textarea#rawIn{width:100%;font:13px/1.5 var(--mono);background:var(--inp);color:var(--tx);border:1px solid var(--bd);border-radius:6px;padding:8px;resize:vertical}
+code{font-family:var(--mono);font-size:12px;background:var(--pri2);padding:1px 4px;border-radius:3px}
+.hn{width:62px;text-align:center;background:transparent;border:0;border-bottom:1px dashed var(--bd);border-radius:0;font:600 12px var(--mono);color:var(--tx);padding:2px 0;outline:0;text-transform:none;letter-spacing:0}
+.hn:hover{border-bottom-color:var(--mut)}.hn:focus{border-bottom:1px solid var(--pri)}
+.chip{padding:5px 10px;font:500 12px var(--mono);border-radius:5px;border:1px solid var(--bd);background:transparent;color:var(--mut);cursor:pointer}.chip.on{background:var(--tx);color:var(--bg);border-color:var(--tx)}
+@media(max-width:400px){.tb button{font-size:11px;gap:3px}.tb button svg{width:14px;height:14px}}
+#xpwrap{position:fixed;left:-12000px;top:0;z-index:-1}
+@media print{body>*:not(#xpwrap){display:none!important}#xpwrap{position:static!important;left:auto!important}#xpwrap .xp{width:auto!important}@page{margin:12mm}}
 </style>
 </head>
 <body>
@@ -113,7 +123,7 @@ header>.tb{max-width:480px;margin:0 auto;height:38px;display:flex;gap:2px;align-
   <button class="btn sm" id="themeQ" title="Toggle light/dark">Theme</button>
   <button class="btn pri" id="solveBtn">Solve ▶</button>
 </div>
-<div class="tb"><button id="undoBtn" disabled title="Undo (Ctrl+Z)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 010 12h-3"/></svg>Undo</button><button id="redoBtn" disabled title="Redo (Ctrl+Y)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14l5-5-5-5"/><path d="M20 9H10a6 6 0 000 12h3"/></svg>Redo</button><button id="pvBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h13"/></svg>Preview</button><button id="migBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>Migrate</button></div></header>
+<div class="tb"><button id="undoBtn" disabled title="Undo (Ctrl+Z)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 010 12h-3"/></svg>Undo</button><button id="redoBtn" disabled title="Redo (Ctrl+Y)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14l5-5-5-5"/><path d="M20 9H10a6 6 0 000 12h3"/></svg>Redo</button><button id="pvBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h13"/></svg>Preview</button><button id="migBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>Migrate</button><button id="xpBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>Export</button></div></header>
 
 <main id="app">
   <!-- MODEL -->
@@ -121,7 +131,12 @@ header>.tb{max-width:480px;margin:0 auto;height:38px;display:flex;gap:2px;align-
     <div class="card"><div style="font-weight:700;margin-bottom:6px">Syllabus presets</div>
       <select id="presetSel" class="sl" style="max-width:none;width:100%"><option value="">Load a verified sample problem…</option><option value="media">Media selection (advertising reach)</option><option value="diet">Diet / blending (nutrient minimums)</option><option value="make">Make-or-buy decision</option><option value="prod">Multi-period production scheduling</option></select></div>
     <div id="presetInfo"></div>
-    <details class="card" id="mpvBox" open><summary style="font-weight:700">Live model preview</summary><pre id="mpv" class="mpv"></pre><button class="btn sm" id="mpvCopy">Copy</button></details>
+    <details class="card" id="mpvBox" open><summary style="font-weight:700">Live model preview</summary><pre id="mpv" class="mpv"></pre><button class="btn sm" id="mpvCopy">Copy</button>
+      <div style="font-weight:700;margin:14px 0 6px;border-top:1px solid var(--bd);padding-top:10px">Paste a problem (comma separated)</div>
+      <textarea id="rawIn" rows="6" spellcheck="false" placeholder="max, 3, 5&#10;vars, Doors, Windows&#10;Plant 1, 1, 0, &lt;=, 4&#10;Plant 2, 0, 2, &lt;=, 12&#10;Plant 3, 3, 2, &lt;=, 18"></textarea>
+      <div class="row" style="margin-top:6px;flex-wrap:wrap"><button class="btn sm pri" id="rawLoad">Load into model</button><button class="btn sm" id="rawFill">From current model</button><button class="btn sm" id="rawEx">Example</button></div>
+      <div class="preview" id="rawMsg"></div>
+      <details><summary>Format</summary><div style="font-size:13px;line-height:1.6;margin-top:6px"><b>First line:</b> <code>max</code> or <code>min</code>, then the objective coefficients.<br><b>Constraints:</b> optional name, coefficients, operator (<code>&lt;=</code> <code>&gt;=</code> <code>=</code>), right-hand side.<br><b>Optional lines:</b> <code>vars, name1, name2…</code> · <code>types, cont, int, bin…</code> · <code>int, x1, x3</code> · <code>binary, 2</code> · <code>free</code>.<br>Separate lines with new lines or semicolons. Numbers may be formulas such as <code>=3*4</code> or fractions like <code>1/3</code>. Lines starting with # are ignored.</div></details></details>
     <div class="card">
       <div class="seg" id="goalSeg"><button data-g="max">Maximize</button><button data-g="min">Minimize</button></div>
       <div class="row" style="margin-top:10px;flex-wrap:wrap">
@@ -129,10 +144,13 @@ header>.tb{max-width:480px;margin:0 auto;height:38px;display:flex;gap:2px;align-
         <div class="stepper"><span style="font-weight:600">Constraints</span><button data-st="m-">−</button><input id="mIn" inputmode="numeric"><button data-st="m+">+</button></div>
       </div>
       <label class="row" style="margin-top:10px"><input type="checkbox" id="nonneg"> <span>Non-negativity (x ≥ 0)</span></label>
+      <div class="preview" id="ipTag"></div>
     </div>
     <h2>Objective function</h2>
     <div class="card"><div class="scroll"><div class="coefs" id="objRow"></div></div><div class="preview" id="objPrev"></div></div>
-    <details class="card" id="vnBox"><summary style="font-weight:700">Variable names</summary><div class="scroll" style="margin-top:8px"><div class="coefs" id="vnRow"></div></div><div class="preview">Names appear in results, reports and the preview. Leave blank to keep x₁, x₂…</div></details>
+    <details class="card" id="vnBox"><summary style="font-weight:700">Variable types (continuous, integer, binary)</summary><div class="scroll" style="margin-top:8px"><div class="coefs" id="vnRow"></div></div>
+      <div class="row" style="margin-top:8px;flex-wrap:wrap"><button class="btn sm" data-vtall="i">All integer</button><button class="btn sm" data-vtall="b">All binary</button><button class="btn sm" data-vtall="c">All continuous</button></div>
+      <div class="preview">Tip: click a variable name above any column to rename it. Integer and binary variables are solved by branch and bound.</div></details>
     <h2>Constraints</h2>
     <div id="cons"></div>
     <div class="row"><button class="btn sp" id="addC">+ Add constraint</button><button class="btn" id="exBtn">Example</button><button class="btn bad" id="clrBtn">Clear</button></div>
@@ -151,14 +169,16 @@ header>.tb{max-width:480px;margin:0 auto;height:38px;display:flex;gap:2px;align-
   <section class="v" id="v-graph">
     <div class="card"><div class="seg" id="gGoal"><button data-gg="max">Maximize</button><button data-gg="min">Minimize</button></div></div>
     <h2>Objective · Z =</h2><div class="card"><div class="scroll"><div class="coefs" id="gObj"></div></div></div>
-    <h2>Constraints (max 5, x ≥ 0 assumed)</h2><div id="gCons"></div>
+    <h2>Constraints (up to 12, x ≥ 0 assumed)</h2><div id="gCons"></div>
     <div class="row"><button class="btn sp" id="gAdd">+ Add</button><button class="btn sp" id="gEx">Examples ▸</button></div>
     <div class="row" style="margin-top:8px"><button class="btn sm sp" id="gImp">From Model</button><button class="btn sm sp" id="gSend">To Model</button><button class="btn sm bad" id="gClr">Clear</button></div>
     <h2>Graph</h2>
     <div class="card" style="padding:8px"><canvas id="gcv" style="width:100%;display:block;border-radius:10px"></canvas>
       <div class="row" style="margin-top:8px"><button class="btn sm" id="gPlay">▶ Play</button><input type="range" id="gIso" min="0" max="1000" value="1000" style="flex:1"><b id="gZ" style="min-width:64px;text-align:right"></b></div>
       <div id="gLeg" style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap"></div>
+      <div id="gChips" class="noprint" style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap"><button class="chip on" data-gv="icp">Intercepts</button><button class="chip on" data-gv="cor">Corners</button><button class="chip on" data-gv="iso">Iso-line</button><button class="chip" data-gv="lat">Integer points</button><button class="chip" data-gv="drag">Drag lines</button><button class="chip" data-gv="zout">Zoom −</button><button class="chip" data-gv="zin">Zoom +</button><button class="chip" data-gv="fit">Fit</button></div>
       <button class="btn sm noprint" id="gPng" style="margin-top:8px">Save image</button></div>
+    <h2>Tweak any number</h2><div class="card" id="gTw"></div>
     <h2>Pivot and sensitivity</h2><div class="card" id="gPv"></div>
     <h2>Analysis</h2><div id="gInfo"></div>
     <h2>Corner points</h2><div class="card scroll" id="gTbl"></div>
@@ -249,7 +269,9 @@ function num(s){s=String(s).trim();if(s.includes("/")){const[a,b]=s.split("/");c
 const fmt=v=>{const r=Math.abs(v)<1e-9?0:v;return String(+r.toFixed(S.set.dec))};
 const buzz=()=>{if(S.set.haptic&&navigator.vibrate)navigator.vibrate(8)};
 function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("on"),1600)}
-const sub=i=>(S.vn&&S.vn[i])||"x"+String(i+1).replace(/\d/g,d=>"₀₁₂₃₄₅₆₇₈₉"[d]);
+const dsub=i=>"x"+String(i+1).replace(/\d/g,d=>"₀₁₂₃₄₅₆₇₈₉"[d]);
+const sub=i=>(S.vn&&S.vn[i])||dsub(i);
+const vl=j=>`<input class="vl" data-vn="${j}" value="${esc(S.vn[j]||"")}" placeholder="${dsub(j)}" maxlength="24" aria-label="Variable name">`;
 const cname=i=>(S.cons[i]&&S.cons[i].nm)||"C"+(i+1);
 const esc=t=>String(t).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
 function resize(){
@@ -258,6 +280,7 @@ function resize(){
   while(S.cons.length<S.m)S.cons.push(mk(S.n));S.cons.length=S.m;
   S.cons.forEach(c=>{while(c.a.length<S.n)c.a.push("0");c.a.length=S.n});
   S.vn=S.vn||[];while(S.vn.length<S.n)S.vn.push("");S.vn.length=S.n;
+  S.vt=S.vt||[];while(S.vt.length<S.n)S.vt.push("c");S.vt.length=S.n;
 }
 
 /* ---------- render ---------- */
@@ -266,10 +289,10 @@ function render(){
   resize();
   $("#nIn").value=S.n;$("#mIn").value=S.m;$("#nonneg").checked=S.nonneg;
   $$("#goalSeg button").forEach(b=>b.classList.toggle("on",b.dataset.g===S.goal));
-  $("#objRow").innerHTML=S.obj.map((v,j)=>`<div class="cell"><label>${sub(j)}</label>${inp(0,j,v,"o")}</div>`).join("");
+  $("#objRow").innerHTML=S.obj.map((v,j)=>`<div class="cell">${vl(j)}${inp(0,j,v,"o")}</div>`).join("");
   $("#cons").innerHTML=S.cons.map((c,i)=>`<div class="card"><div class="row" style="margin-bottom:8px"><span class="tag">C${i+1}</span><input class="tx cnm" data-cn="${i}" placeholder="name (optional)" value="${esc(c.nm||"")}" maxlength="28" style="flex:1;min-width:90px;width:auto"><span class="sp"></span>
     <button class="btn sm" data-dup="${i}">Copy</button><button class="btn sm bad" data-del="${i}">✕</button></div>
-    <div class="scroll"><div class="coefs">${c.a.map((v,j)=>`<div class="cell"><label>${sub(j)}</label>${inp(i+1,j,v,"a")}</div>`).join("")}
+    <div class="scroll"><div class="coefs">${c.a.map((v,j)=>`<div class="cell">${vl(j)}${inp(i+1,j,v,"a")}</div>`).join("")}
     <div class="cell"><label>op</label><button class="op" data-op="${i}">${c.op==="=="?"=":c.op}</button></div>
     <div class="cell"><label>RHS</label>${inp(i+1,S.n,c.b,"b")}</div></div></div>
     <div class="preview">${lhs(c.a)} ${c.op==="=="?"=":c.op} ${fmt(num(c.b))}</div></div>`).join("")||`<div class="card empty">No constraints yet.</div>`;
@@ -297,30 +320,39 @@ function layoutPad(){
 /* ---------- solve ---------- */
 function solve(){
   resize();
-  const n=S.n,model={optimize:"z",opType:S.goal==="max"?"max":"min",constraints:{},variables:{}};
-  const cols=[];  // {name,i,sign}
-  for(let j=0;j<n;j++){cols.push({name:"x"+(j+1)+(S.nonneg?"":"p"),i:j,s:1});if(!S.nonneg)cols.push({name:"x"+(j+1)+"n",i:j,s:-1})}
-  cols.forEach(c=>{const v=model.variables[c.name]={z:c.s*num(S.obj[c.i])};S.cons.forEach((k,r)=>{const a=c.s*num(k.a[c.i]);if(a)v["c"+r]=a})});
-  S.cons.forEach((k,r)=>{const b=num(k.b);model.constraints["c"+r]=k.op==="<="?{max:b}:k.op===">="?{min:b}:{equal:b}});
-  let out;
-  try{out=Solver.Solve(model)}catch(e){out={feasible:false,err:e.message}}
-  const x=Array(n).fill(0);cols.forEach(c=>{x[c.i]+=c.s*(out[c.name]||0)});
-  let status="optimal";
-  if(out.feasible===false)status="infeasible";else if(out.bounded===false)status="unbounded";
-  const Z=S.obj.reduce((s,v,j)=>s+num(v)*x[j],0);
-  const rows=S.cons.map((k,r)=>{const l=k.a.reduce((s,v,j)=>s+num(v)*x[j],0),b=num(k.b);
-    const d=k.op==="<="?b-l:k.op===">="?l-b:0;return{r,l,b,op:k.op,kind:k.op==="<="?"Slack":k.op===">="?"Surplus":"—",val:d}});
-  lastRes={status,Z,x,rows};if(status==="optimal")lastRes.rep=analyze(x,Z);showResults();showReports();
+  const n=S.n,vt=S.vt,isIP=vt.some(t=>t!=="c"),nn=S.nonneg?"":"p";
+  const mkRows=x=>S.cons.map((k,r)=>{const l=k.a.reduce((s,v,j)=>s+num(v)*x[j],0),b=num(k.b),d=k.op==="<="?b-l:k.op===">="?l-b:0;
+    return{r,l,b,op:k.op,kind:k.op==="<="?"Slack":k.op===">="?"Surplus":"—",val:d}});
+  const run=relax=>{const model={optimize:"z",opType:S.goal==="max"?"max":"min",constraints:{},variables:{}},cols=[];
+    for(let j=0;j<n;j++){cols.push({name:"x"+(j+1)+nn,i:j,s:1});if(!S.nonneg)cols.push({name:"x"+(j+1)+"n",i:j,s:-1})}
+    cols.forEach(c=>{const v=model.variables[c.name]={z:c.s*num(S.obj[c.i])};S.cons.forEach((k,r)=>{const a=c.s*num(k.a[c.i]);if(a)v["c"+r]=a})});
+    S.cons.forEach((k,r)=>{const b=num(k.b);model.constraints["c"+r]=k.op==="<="?{max:b}:k.op===">="?{min:b}:{equal:b}});
+    if(relax)vt.forEach((t,j)=>{if(t==="b"){model.constraints["u"+j]={max:1};model.variables["x"+(j+1)+nn]["u"+j]=1}});
+    else{const ints={},bins={};cols.forEach(c=>{if(vt[c.i]==="i")ints[c.name]=1;else if(vt[c.i]==="b")bins[c.name]=1});if(Object.keys(ints).length)model.ints=ints;if(Object.keys(bins).length)model.binaries=bins}
+    let out;try{out=Solver.Solve(model)}catch(e){out={feasible:false}}
+    const x=Array(n).fill(0);cols.forEach(c=>{x[c.i]+=c.s*(out[c.name]||0)});
+    if(!relax)x.forEach((v,j)=>{if(vt[j]!=="c"&&Math.abs(v-Math.round(v))<1e-6)x[j]=Math.round(v)});
+    let status="optimal";if(out.feasible===false)status="infeasible";else if(out.bounded===false)status="unbounded";
+    return{status,Z:S.obj.reduce((s,v,j)=>s+num(v)*x[j],0),x,rows:mkRows(x)}};
+  const r=run(false);lastRes={status:r.status,Z:r.Z,x:r.x,rows:r.rows};
+  if(isIP){const rl=run(true);lastRes.ip=true;lastRes.rx=rl;
+    if(r.status==="optimal"&&rl.status==="optimal"){const gap=Math.abs(rl.Z-r.Z),pct=rl.Z?gap/Math.abs(rl.Z)*100:0,
+        xr=rl.x.map((v,j)=>vt[j]==="c"?v:vt[j]==="b"?Math.min(1,Math.max(0,Math.round(v))):Math.round(v)),
+        feas=S.cons.every(k=>{const l=k.a.reduce((s,v,j)=>s+num(v)*xr[j],0),b=num(k.b);return k.op==="<="?l<=b+1e-6:k.op===">="?l>=b-1e-6:Math.abs(l-b)<1e-6}),zr=S.obj.reduce((s,v,j)=>s+num(v)*xr[j],0);
+      lastRes.gap=gap;lastRes.relZ=rl.Z;lastRes.ipHtml=`<div class="card"><table><tr><td class="t">LP relaxation bound</td><td class="r">${fmt(rl.Z)}</td></tr><tr><td class="t">Integer optimum</td><td class="r"><b>${fmt(r.Z)}</b></td></tr><tr><td class="t">Gap (price of integrality)</td><td class="r">${fmt(gap)} (${fmt(pct)}%)</td></tr><tr><td class="t">LP solution, rounded</td><td class="r">${feas?"feasible, Z = "+fmt(zr):"infeasible"}</td></tr></table><div class="preview">${feas?(Math.abs(zr-r.Z)<1e-6?"Rounding the LP solution happens to hit the integer optimum here, but that is not guaranteed.":"Rounding gives a feasible plan, but it is not the best integer plan."):"Rounding the LP solution does not give a feasible plan. That is why integer programming is needed."}</div></div>`}
+    if(rl.status==="optimal"){lastRes.rep=analyze(rl.x,rl.Z);lastRes.rep.warn.push("Integer restrictions are ignored in these reports: they describe the LP relaxation (bound "+fmt(rl.Z)+")."+(vt.includes("b")?" The 0–1 upper bounds are not part of the sensitivity ranges.":""))}}
+  else if(r.status==="optimal")lastRes.rep=analyze(r.x,r.Z);
+  showResults();showReports();
   $$("nav button")[1].click();buzz();
 }
 function showResults(){
   const R=lastRes,el=$("#res");if(!R){el.className="empty";return}
   el.className="";
   if(R.status!=="optimal"){
-    el.innerHTML=`<div class="card"><span class="badge b-bad">${R.status.toUpperCase()}</span><p style="margin:12px 0 0">${R.status==="infeasible"?"No point satisfies all constraints at once. Check the operators and RHS values, or non-negativity.":"The objective can improve forever. A constraint is probably missing or has the wrong direction."}</p></div>`;return}
+    el.innerHTML=`<div class="card"><span class="badge b-bad">${R.status.toUpperCase()}</span><p style="margin:12px 0 0">${R.status==="infeasible"?(R.ip&&R.rx&&R.rx.status==="optimal"?"The LP relaxation is feasible, but no integer point satisfies every constraint. Loosen a constraint or relax an integer requirement.":"No point satisfies all constraints at once. Check the operators and RHS values, or non-negativity."):"The objective can improve forever. A constraint is probably missing or has the wrong direction."}</p></div>`;return}
   const z=fmt(R.Z);
-  el.innerHTML=`<div class="card"><div class="row"><span class="badge b-ok">OPTIMAL</span><span class="sp"></span><button class="btn sm" id="cpy">Copy</button></div>
-   <div style="color:var(--mut);margin-top:10px;font-weight:600">Z* (${S.goal==="max"?"maximum":"minimum"})</div><div class="z">${z}</div></div>
+  el.innerHTML=`<div class="card"><div class="row"><span class="badge b-ok">${R.ip?"OPTIMAL (INTEGER)":"OPTIMAL"}</span><span class="sp"></span><button class="btn sm" id="cpy">Copy</button></div>
+   <div style="color:var(--mut);margin-top:10px;font-weight:600">Z* (${S.goal==="max"?"maximum":"minimum"})</div><div class="z">${z}</div></div>${R.ipHtml||""}
    <h2>Decision variables</h2><div class="card"><table><tr><th>Var</th><th class="r">Value</th></tr>${R.x.map((v,j)=>`<tr><td>${sub(j)}</td><td class="r">${fmt(v)}</td></tr>`).join("")}</table></div>
    ${R.rows.length?`<h2>Slack / surplus</h2><div class="card scroll"><table><tr><th>Constraint</th><th class="r">LHS</th><th class="r">RHS</th><th class="r">Slack/Surplus</th><th>State</th></tr>
    ${R.rows.map(w=>{const bind=Math.abs(w.val)<1e-7;return`<tr><td>${cname(w.r)} (${w.op==="=="?"=":w.op})</td><td class="r">${fmt(w.l)}</td><td class="r">${fmt(w.b)}</td><td class="r">${w.kind==="—"?"—":fmt(w.val)+" <small style='color:var(--mut)'>"+(w.kind==="Slack"?"s":"e")+(w.r+1)+"</small>"}</td><td>${bind?'<span class="tag">Binding</span>':'<span style="color:var(--mut)">Loose</span>'}</td></tr>`}).join("")}</table></div>`:""}`;
@@ -379,11 +411,11 @@ function analyze(x,Z){
   return{lim,sens,warn};
 }
 function secs(){
-  const a=lastRes.rep,x=lastRes.x,Z=lastRes.Z,K=S.cons,vn=sub,goal=S.goal==="max"?"Max":"Min";
+  const a=lastRes.rep,RR=lastRes.ip?lastRes.rx:lastRes,x=RR.x,Z=RR.Z,K=S.cons,vn=sub,goal=S.goal==="max"?"Max":"Min";
   if(rp==="ans")return[
     {t:"Objective Cell ("+goal+")",h:["Name","Original Value","Final Value"],r:[["Z","0",fmt(Z)]]},
     {t:"Variable Cells",h:["Name","Original Value","Final Value","Reduced Cost"],r:x.map((v,j)=>[vn(j),"0",fmt(v),a.sens?fx(a.sens.v[j].rc):"n/a"])},
-    {t:"Constraints",h:["Name","Cell Value","Formula","Status","Slack/Surplus"],r:K.map((k,i)=>{const w=lastRes.rows[i];
+    {t:"Constraints",h:["Name","Cell Value","Formula","Status","Slack/Surplus"],r:K.map((k,i)=>{const w=RR.rows[i];
       return[cname(i),fmt(w.l),lhs(k.a)+" "+(k.op==="=="?"=":k.op)+" "+fmt(num(k.b)),Math.abs(w.val)<1e-7?"Binding":"Not Binding",w.kind==="—"?"0":fmt(w.val)]})}];
   if(rp==="sen")return a.sens?[
     {t:"Variable Cells",h:["Name","Final Value","Reduced Cost","Objective Coefficient","Allowable Increase","Allowable Decrease"],
@@ -417,17 +449,17 @@ function showReports(){
 
 /* ---------- Phase 3: 2-variable graphical method ---------- */
 const G=S.g=S.g||{goal:"max",obj:["0","0"],cons:[{a:["0","0"],op:"<=",b:"0"},{a:["0","0"],op:"<=",b:"0"}],ex:0};
-const COL=["#1f5f8b","#b0372a","#3d7a50","#946610","#5b6b7a"],EPS=1e-7;
+const COL=["#1f5f8b","#b0372a","#3d7a50","#946610","#5b6b7a","#a0522d","#2f7f86","#7f7f2f","#6b3f3f","#4a5f8a","#3b6f4a","#7f5539"],EPS=1e-7;
 const H0=[{n:[-1,0],h:0,ci:-1,nm:"x₁ ≥ 0"},{n:[0,-1],h:0,ci:-1,nm:"x₂ ≥ 0"}];
 const EX=[["Standard optimum","max",[3,5],[[1,0,"<=",4],[0,2,"<=",12],[3,2,"<=",18]]],
  ["Alternate optima","max",[2,4],[[1,2,"<=",8],[1,0,"<=",6],[0,1,"<=",3]]],
  ["Unbounded","max",[1,1],[[1,-1,"<=",2],[-1,1,"<=",2]]],
  ["Infeasible","max",[1,1],[[1,1,"<=",4],[1,0,">=",5]]],
  ["Redundant constraints","max",[3,5],[[1,0,"<=",4],[0,2,"<=",12],[3,2,"<=",18],[1,1,"<=",20],[1,0,"<=",8]]],
- ["Minimize (open region)","min",[2,3],[[1,1,">=",4],[1,3,">=",6]]]];
+ ["Minimize (open region)","min",[2,3],[[1,1,">=",4],[1,3,">=",6]]],["Equality line","max",[2,3],[[1,1,"==",6],[1,0,"<=",4],[0,1,"<=",5]]],["Diet minimum","min",[3,2],[[2,1,">=",8],[1,3,">=",9],[1,1,">=",5]]],["Six constraints","max",[4,3],[[1,1,"<=",10],[2,1,"<=",16],[1,0,"<=",7],[0,1,"<=",8],[1,2,"<=",14],[1,-1,"<=",5]]]];
 let GA=null,gt=1,gAnim=0;
 function halves(){const H=[],zero=[];let bad=false;
-  G.cons.forEach((k,i)=>{const a=num(k.a[0]),b2=num(k.a[1]),b=gb(i),nm="C"+(i+1);
+  G.cons.forEach((k,i)=>{const a=num(k.a[0]),b2=num(k.a[1]),b=gb(i),nm=gcn(i);
     if(!a&&!b2){zero.push(i);if(k.op==="<="?b<0:k.op===">="?b>0:b!==0)bad=true;return}
     if(k.op!==">=")H.push({n:[a,b2],h:b,ci:i,eq:k.op==="==",nm});
     if(k.op!=="<=")H.push({n:[-a,-b2],h:-b,ci:i,eq:k.op==="==",nm})});
@@ -457,9 +489,11 @@ function gAnalyze(){
     const m=Math.max(...q.V.map(v=>g.n[0]*v[0]+g.n[1]*v[1]));if(m<=g.h+1e-7)A.red.push({i,touch:m>=g.h-1e-7})});
   return A}
 const nice=r=>{const p=10**Math.floor(Math.log10(r/5)),f=r/5/p;return(f<1.5?1:f<3.5?2:f<7.5?5:10)*p};
+const gcn=i=>(G.cons[i]&&G.cons[i].nm)||"C"+(i+1);
+var GV={z:1,icp:1,cor:1,iso:1,lat:0,drag:0,tw:0,map:null};
 function gView(A){let X=0,Y=0;const up=(x,y)=>{if(x>X)X=x;if(y>Y)Y=y};
   G.cons.forEach(k=>{const[a,b]=icp(k);if(a>0)up(a,0);if(b>0)up(0,b)});(A.V||[]).forEach(v=>up(v[0],v[1]));
-  return[X>0?X*1.2:10,Y>0?Y*1.2:10]}
+  return[(X>0?X*1.2:10)*GV.z,(Y>0?Y*1.2:10)*GV.z]}
 function clipLine(a,b,h,X,Y){const P=[],add=(x,y)=>{if(x>=-1e-9&&x<=X+1e-9&&y>=-1e-9&&y<=Y+1e-9)P.push([x,y])};
   if(Math.abs(b)>1e-12){add(0,h/b);add(X,(h-a*X)/b)}if(Math.abs(a)>1e-12){add(h/a,0);add((h-b*Y)/a,Y)}
   let best=null,bd=1e-9;for(let i=0;i<P.length;i++)for(let j=i+1;j<P.length;j++){const d=Math.hypot(P[i][0]-P[j][0],P[i][1]-P[j][1]);if(d>bd){bd=d;best=[P[i],P[j]]}}
@@ -472,7 +506,7 @@ function gDraw(){
   cv.width=w*dpr;cv.height=h*dpr;cv.style.height=h+"px";
   const x=cv.getContext("2d");x.setTransform(dpr,0,0,dpr,0,0);
   const cs=getComputedStyle(document.documentElement),css=n=>cs.getPropertyValue(n).trim(),tx=css("--tx"),mut=css("--mut"),bd=css("--bd"),pri=css("--pri"),bg=css("--card"),gold="#f59e0b";
-  const[X,Y]=gView(A),ml=42,mr=14,mt=14,mb=30,sx=v=>ml+v/X*(w-ml-mr),sy=v=>h-mb-v/Y*(h-mt-mb);
+  const[X,Y]=gView(A),ml=42,mr=14,mt=14,mb=30,sx=v=>ml+v/X*(w-ml-mr),sy=v=>h-mb-v/Y*(h-mt-mb);GV.map={ml,mr,mt,mb,X,Y,w,h};
   const lab=(t,px,py,col,b)=>{x.font=(b?"700 ":"600 ")+"11px system-ui";x.textAlign="center";const tw=x.measureText(t).width/2+3;px=Math.min(Math.max(px,tw),w-tw);
     x.lineWidth=3;x.strokeStyle=bg;x.strokeText(t,px,py);x.fillStyle=col;x.fillText(t,px,py)};
   x.fillStyle=bg;x.fillRect(0,0,w,h);x.lineWidth=1;
@@ -486,16 +520,17 @@ function gDraw(){
     if(q.length){const a=q.reduce((s,v)=>s+v[0],0)/q.length,b=q.reduce((s,v)=>s+v[1],0)/q.length;
       q.sort((p,r)=>Math.atan2(p[1]-b,p[0]-a)-Math.atan2(r[1]-b,r[0]-a));
       x.beginPath();q.forEach((v,i)=>i?x.lineTo(sx(v[0]),sy(v[1])):x.moveTo(sx(v[0]),sy(v[1])));x.closePath();x.fillStyle=pri+"3a";x.fill();x.strokeStyle=pri;x.lineWidth=2;x.stroke()}}
+  if(GV.lat&&!A.inf){const Q=gLattice(A,X,Y);x.fillStyle=mut;Q.pts.forEach(p=>{x.beginPath();x.arc(sx(p[0]),sy(p[1]),2.3,0,7);x.fill()})}
   const labs=[];
   G.cons.forEach((k,i)=>{const a=num(k.a[0]),b=num(k.a[1]),r=gb(i);if(!a&&!b)return;const sg=clipLine(a,b,r,X,Y);if(!sg)return;
     const red=A.red.some(o=>o.i===i);x.strokeStyle=red?mut:COL[i];x.lineWidth=2;x.setLineDash(red?[6,5]:[]);
     x.beginPath();x.moveTo(sx(sg[0][0]),sy(sg[0][1]));x.lineTo(sx(sg[1][0]),sy(sg[1][1]));x.stroke();x.setLineDash([]);
-    labs.push(["C"+(i+1)+(red?" (redundant)":""),sx(sg[1][0])-(sg[1][0]>X*.8?24:0),sy(sg[1][1])+(sg[1][1]<Y*.1?-8:12),red?mut:COL[i]])});
+    labs.push([gcn(i)+(red?" (redundant)":""),sx(sg[1][0])-(sg[1][0]>X*.8?24:0),sy(sg[1][1])+(sg[1][1]<Y*.1?-8:12),red?mut:COL[i]])});
   let k=null;
   if(!A.inf){
     const sgn=A.sg,cx=A.c[0],cy=A.c[1],mx=A.V.reduce((s,v)=>s+v[0],0)/A.V.length,my=A.V.reduce((s,v)=>s+v[1],0)/A.V.length;
     k=(GP.v0&&GP.mode!=="off"&&GP.mode!=="b")?A.c[0]*GP.v0[0]+A.c[1]*GP.v0[1]:gIso(A);
-    if(cx||cy){const seg=clipLine(cx,cy,k,X,Y);if(seg){x.strokeStyle=gold;x.lineWidth=2.5;x.setLineDash([8,5]);x.beginPath();x.moveTo(sx(seg[0][0]),sy(seg[0][1]));x.lineTo(sx(seg[1][0]),sy(seg[1][1]));x.stroke();x.setLineDash([]);
+    if(GV.iso&&(cx||cy)){const seg=clipLine(cx,cy,k,X,Y);if(seg){x.strokeStyle=gold;x.lineWidth=2.5;x.setLineDash([8,5]);x.beginPath();x.moveTo(sx(seg[0][0]),sy(seg[0][1]));x.lineTo(sx(seg[1][0]),sy(seg[1][1]));x.stroke();x.setLineDash([]);
         labs.push(["Z = "+fmt(k),(sx(seg[0][0])+sx(seg[1][0]))/2+(sgn>0?-4:4),(sy(seg[0][1])+sy(seg[1][1]))/2-8,gold])}
       let dx=cx*(sx(1)-sx(0))*sgn,dy=cy*(sy(1)-sy(0))*sgn;const m=Math.hypot(dx,dy)||1;dx=dx/m*38;dy=dy/m*38;const ax=sx(mx),ay=sy(my);
       x.strokeStyle=gold;x.fillStyle=gold;x.lineWidth=3;x.beginPath();x.moveTo(ax,ay);x.lineTo(ax+dx,ay+dy);x.stroke();
@@ -506,18 +541,19 @@ function gDraw(){
   }
   x.restore();
   labs.forEach(l=>lab(l[0],l[1],l[2],l[3],1));
-  G.cons.forEach((kk,i)=>{const[a,b]=icp(kk),pts=[];if(a!=null&&a>=0&&a<=X)pts.push([a,0]);if(b!=null&&b>=0&&b<=Y)pts.push([0,b]);
+  if(GV.icp)G.cons.forEach((kk,i)=>{const[a,b]=icp(kk),pts=[];if(a!=null&&a>=0&&a<=X)pts.push([a,0]);if(b!=null&&b>=0&&b<=Y)pts.push([0,b]);
     pts.forEach(p=>{x.beginPath();x.arc(sx(p[0]),sy(p[1]),3.5,0,7);x.fillStyle=bg;x.fill();x.strokeStyle=COL[i];x.lineWidth=2;x.stroke();
       lab("("+fmt(p[0])+","+fmt(p[1])+")",sx(p[0])+(p[1]===0?0:30),sy(p[1])+(p[1]===0?-8:-6),COL[i])})});
   if(!A.inf)A.V.forEach((v,i)=>{const o=!A.unb&&A.opt.includes(i);x.beginPath();x.arc(sx(v[0]),sy(v[1]),o?7:5,0,7);x.fillStyle=o?gold:tx;x.fill();x.strokeStyle=bg;x.lineWidth=2;x.stroke();
-    lab(String.fromCharCode(65+i)+(o?" ★":""),sx(v[0])+10,sy(v[1])-9,o?gold:tx,1)});
+    if(GV.cor||o)lab(String.fromCharCode(65+i)+(o?" ★":""),sx(v[0])+10,sy(v[1])-9,o?gold:tx,1)});
+  if(GV.lat&&!A.inf){const Q=gLattice(A,X,Y);if(Q.best){x.beginPath();x.arc(sx(Q.best[0]),sy(Q.best[1]),9,0,7);x.strokeStyle=css("--ok");x.lineWidth=3;x.stroke()}}
   if(GP.v0&&GP.mode!=="off"){x.beginPath();x.arc(sx(GP.v0[0]),sy(GP.v0[1]),11,0,7);x.setLineDash([3,3]);x.strokeStyle=gold;x.lineWidth=2;x.stroke();x.setLineDash([])}
   $("#gZ").textContent=k==null?"":fmt(k);
 }
 function gPanels(){
   const A=GA,f=fmt,pt=v=>`(${f(v[0])}, ${f(v[1])})`,L=i=>String.fromCharCode(65+i),out=[];
   const card=(kind,t,txt)=>`<div class="card" style="border-color:var(--${kind==="ok"?"ok":kind==="warn"?"warn":"bad"})"><span class="badge ${kind==="ok"?"b-ok":kind==="warn"?"b-warn":"b-bad"}">${t}</span><div style="margin-top:8px;font-size:13px">${txt}</div></div>`;
-  const nm=i=>"C"+(i+1);
+  const nm=i=>gcn(i);
   if(A.inf)out.push(card("bad","INFEASIBLE","No point satisfies every constraint (together with x ≥ 0), so there is no feasible region and no solution."+(A.bad?" A constraint with all-zero coefficients is itself violated.":" Check the ≤ / ≥ directions and right-hand sides: the shaded half-planes do not overlap.")));
   else{
     if(!A.c[0]&&!A.c[1])out.push(card("warn","ZERO OBJECTIVE","All objective coefficients are 0, so every feasible point gives Z = 0."));
@@ -531,32 +567,33 @@ function gPanels(){
   }
   if(A.red.length)out.push(card("warn","REDUNDANT CONSTRAINT"+(A.red.length>1?"S":""),A.red.map(o=>`<b>${nm(o.i)}</b>${o.touch?" only touches the region at a corner":" lies outside the feasible boundary"}`).join("; ")+". Removing it does not change the feasible region. It is drawn dashed grey."));
   if(A.zero.length)out.push(card("warn","ZERO-COEFFICIENT ROW",A.zero.map(nm).join(", ")+" has both coefficients 0, so it is ignored on the plot (0 ≤ RHS)."));
-  $("#gInfo").innerHTML=out.join("");
+  if(GV.lat&&!A.inf){const[X,Y]=gView(A),Q=gLattice(A,X,Y);out.push(Q.big?card("warn","INTEGER POINTS","Too many points to list at this zoom. Zoom in."):Q.best?card("ok","BEST INTEGER POINT",`(${f(Q.best[0])}, ${f(Q.best[1])}) gives Z = <b>${f(Q.best[2])}</b>${A.unb||A.alt?"":` versus the LP optimum ${f(A.best)}`}. ${Q.pts.length} integer points lie in the visible feasible region.`):card("warn","INTEGER POINTS","No integer point lies in the visible feasible region."))}
+  $("#gInfo").innerHTML=gExplain(A)+out.join("");
   const ic=G.cons.map((k,i)=>{const[a,b]=icp(k);return`<tr><td class="t">${nm(i)}</td><td class="r">${a==null?"—":"("+f(a)+", 0)"}</td><td class="r">${b==null?"—":"(0, "+f(b)+")"}</td></tr>`}).join("");
   $("#gTbl").innerHTML=A.inf?'<div class="empty" style="padding:14px">No feasible corner points.</div>':`<table><tr><th class="t">Pt</th><th class="r">x₁</th><th class="r">x₂</th><th class="r">Z</th></tr>`+
     A.V.map((v,i)=>{const o=!A.unb&&A.opt.includes(i);return`<tr style="${o?"background:var(--pri2);font-weight:700":""}"><td class="t">${L(i)}${o?" ★":""}</td><td class="r">${f(v[0])}</td><td class="r">${f(v[1])}</td><td class="r">${f(A.Z[i])}</td></tr>`}).join("")+
     `</table>`+(ic?`<table style="margin-top:12px"><tr><th class="t">Intercepts</th><th class="r">with x₁-axis</th><th class="r">with x₂-axis</th></tr>${ic}</table>`:"");
-  $("#gLeg").innerHTML=G.cons.map((k,i)=>`<span class="tag" style="background:${COL[i]}22;color:${COL[i]}">C${i+1}</span>`).join("")+`<span class="tag">▭ feasible</span><span class="tag" style="background:#f59e0b33;color:#b45309">- - iso-line</span>`;
+  $("#gLeg").innerHTML=G.cons.map((k,i)=>`<span class="tag" style="background:${COL[i]}22;color:${COL[i]}">${esc(gcn(i))}</span>`).join("")+`<span class="tag">▭ feasible</span><span class="tag" style="background:#f59e0b33;color:#b45309">- - iso-line</span>`;
   G.cons.forEach((k,i)=>{const e=$("#gt"+i);if(e)e.innerHTML=A.red.some(o=>o.i===i)?'<span class="badge b-warn">Redundant</span>':A.zero.includes(i)?'<span class="badge b-warn">Ignored</span>':(A.H.some(l=>l.ci===i)?'<span class="badge b-ok">Shapes region</span>':"")});
 }
 function gUpdate(){gOv={c:null,b:{}};GP.mode="off";gRefresh();gPivotUI()}
 function gInputs(){
   $$("#gGoal button").forEach(b=>b.classList.toggle("on",b.dataset.gg===G.goal));
-  $("#gObj").innerHTML=[0,1].map(j=>`<div class="cell"><label>${sub(j)}</label>${inp(1000,j,G.obj[j],"g")}</div>`).join("");
-  $("#gCons").innerHTML=G.cons.map((k,i)=>`<div class="card"><div class="row" style="margin-bottom:8px"><span class="tag" style="background:${COL[i]}22;color:${COL[i]}">C${i+1}</span><span id="gt${i}"></span><span class="sp"></span><button class="btn sm bad" data-gdel="${i}">✕</button></div>
-    <div class="scroll"><div class="coefs">${[0,1].map(j=>`<div class="cell"><label>${sub(j)}</label>${inp(1001+i,j,k.a[j],"g")}</div>`).join("")}<div class="cell"><label>op</label><button class="op" data-gop="${i}">${k.op==="=="?"=":k.op}</button></div><div class="cell"><label>RHS</label>${inp(1001+i,2,k.b,"g")}</div></div></div></div>`).join("");
-  $("#gAdd").style.display=G.cons.length>=5?"none":"";save();gUpdate()}
+  $("#gObj").innerHTML=[0,1].map(j=>`<div class="cell">${vl(j)}${inp(1000,j,G.obj[j],"g")}</div>`).join("");
+  $("#gCons").innerHTML=G.cons.map((k,i)=>`<div class="card"><div class="row" style="margin-bottom:8px"><span class="tag" style="background:${COL[i]}22;color:${COL[i]}">C${i+1}</span><span id="gt${i}"></span><input class="tx cnm" data-gcn="${i}" placeholder="name (optional)" value="${esc(k.nm||"")}" maxlength="28" style="flex:1;min-width:80px;width:auto"><button class="btn sm bad" data-gdel="${i}">✕</button></div>
+    <div class="scroll"><div class="coefs">${[0,1].map(j=>`<div class="cell">${vl(j)}${inp(1001+i,j,k.a[j],"g")}</div>`).join("")}<div class="cell"><label>op</label><button class="op" data-gop="${i}">${k.op==="=="?"=":k.op}</button></div><div class="cell"><label>RHS</label>${inp(1001+i,2,k.b,"g")}</div></div></div></div>`).join("");
+  $("#gAdd").style.display=G.cons.length>=12?"none":"";save();gTweakUI();gUpdate()}
 function gSet(el){const r=+el.dataset.r,c=+el.dataset.c;if(r===1000)G.obj[c]=el.value;else{const k=G.cons[r-1001];if(!k)return;if(c<2)k.a[c]=el.value;else k.b=el.value}save();gUpdate()}
 $("#v-graph").addEventListener("click",e=>{const t=e.target.closest("button");if(!t)return;const d=t.dataset;
   if(d.gg){G.goal=d.gg;gInputs()}
   else if(d.gop!==undefined){const k=G.cons[+d.gop];k.op=k.op==="<="?">=":k.op===">="?"==":"<=";buzz();gInputs()}
   else if(d.gdel!==undefined){G.cons.splice(+d.gdel,1);cur=null;gInputs()}});
-$("#gAdd").onclick=()=>{if(G.cons.length<5){G.cons.push({a:["0","0"],op:"<=",b:"0"});gInputs();go(at(1000+G.cons.length,0))}};
+$("#gAdd").onclick=()=>{if(G.cons.length<12){G.cons.push({a:["0","0"],op:"<=",b:"0"});gInputs();go(at(1000+G.cons.length,0))}};
 $("#gEx").onclick=()=>{const e=EX[G.ex%EX.length];G.ex=(G.ex+1)%EX.length;G.goal=e[1];G.obj=e[2].map(String);
   G.cons=e[3].map(r=>({a:[String(r[0]),String(r[1])],op:r[2],b:String(r[3])}));gt=1;$("#gIso").value=1000;gInputs();toast("Example: "+e[0])};
 $("#gClr").onclick=()=>{G.obj=["0","0"];G.cons=G.cons.map(()=>({a:["0","0"],op:"<=",b:"0"}));gInputs()};
 $("#gImp").onclick=()=>{if(S.n!==2)return toast("Model has "+S.n+" variables; graph needs 2");
-  G.goal=S.goal;G.obj=[S.obj[0],S.obj[1]];G.cons=S.cons.slice(0,5).map(c=>({a:[c.a[0],c.a[1]],op:c.op,b:c.b}));gInputs();toast(S.cons.length>5?"Imported first 5 constraints":"Imported from Model")};
+  G.goal=S.goal;G.obj=[S.obj[0],S.obj[1]];G.cons=S.cons.slice(0,12).map(c=>({a:[c.a[0],c.a[1]],op:c.op,b:c.b}));gInputs();toast(S.cons.length>5?"Imported first 12 constraints":"Imported from Model")};
 $("#gSend").onclick=()=>{S.goal=G.goal;S.n=2;S.m=G.cons.length;S.obj=[...G.obj];S.cons=G.cons.map(c=>({a:[...c.a],op:c.op,b:c.b}));S.nonneg=true;render();toast("Sent to Model tab")};
 $("#gIso").oninput=e=>{cancelAnimationFrame(gAnim);gt=e.target.value/1000;gDraw()};
 $("#gPlay").onclick=()=>{cancelAnimationFrame(gAnim);const t0=performance.now(),st=ts=>{gt=Math.min(1,(ts-t0)/3000);$("#gIso").value=gt*1000;gDraw();if(gt<1)gAnim=requestAnimationFrame(st)};gt=0;gAnim=requestAnimationFrame(st)};
@@ -628,20 +665,22 @@ function tFit(){const p=T.tp,a=T.as;p.c.length=p.m;
 const sum=a=>a.reduce((x,y)=>x+y,0),box=(t,b)=>`<h2>${t}</h2><div class="card">${b}</div>`;
 const stp=(lbl,k,v)=>`<div class="stepper"><span style="font-weight:600">${lbl}</span><button data-ta="${k}-">−</button><input readonly value="${v}"><button data-ta="${k}+">+</button></div>`;
 const acts=(solve)=>`<div class="row" style="margin-top:10px"><button class="btn pri sp" data-ta="solve">${solve}</button><button class="btn" data-ta="ex">Example ▸</button><button class="btn bad" data-ta="clr">Clear</button></div>`;
-function tpData(){const p=T.tp,c=p.c.map(r=>r.map(num)),s=p.s.map(num),d=p.d.map(num),S_=sum(s),D=sum(d),rl=s.map((_,i)=>"S"+(i+1)),cl=d.map((_,j)=>"D"+(j+1));let dummy=null;
+const an=(k,i)=>(T.as[k]&&T.as[k][i])||(k==="rn"?"W":"J")+(i+1);
+const hin=(kind,i,def,val)=>`<input class="hn" data-nm="${kind}:${i}" value="${esc(val||"")}" placeholder="${def}" maxlength="14" aria-label="Name">`;
+function tpData(){const p=T.tp,c=p.c.map(r=>r.map(num)),s=p.s.map(num),d=p.d.map(num),S_=sum(s),D=sum(d),rl=s.map((_,i)=>(p.rn&&p.rn[i])||"S"+(i+1)),cl=d.map((_,j)=>(p.cn&&p.cn[j])||"D"+(j+1));let dummy=null;
   if(S_>D+1e-9){dummy="col";c.forEach(r=>r.push(0));d.push(S_-D);cl.push("Dummy")}else if(D>S_+1e-9){dummy="row";c.push(Array(d.length).fill(0));s.push(D-S_);rl.push("Dummy")}
   return{c,s,d,rl,cl,dummy,S:S_,D}}
 function balHtml(){const q=tpData(),ok=!q.dummy;
   return`Total supply <b>${fmt(q.S)}</b> · Total demand <b>${fmt(q.D)}</b> → `+(ok?'<span class="badge b-ok">Balanced</span>':`<span class="badge b-warn">Unbalanced</span> a <b>dummy ${q.dummy==="col"?"destination":"source"}</b> with ${q.dummy==="col"?"demand":"supply"} ${fmt(Math.abs(q.S-q.D))} and zero costs is added automatically.`)}
-function tpIn(){const{m,n}=T.tp,H=`<th></th>${T.tp.d.map((_,j)=>`<th class="r">D${j+1}</th>`).join("")}<th class="r">Supply</th>`;
+function tpIn(){const{m,n}=T.tp,H=`<th></th>${T.tp.d.map((_,j)=>`<th class="r">${hin("tpc",j,"D"+(j+1),T.tp.cn&&T.tp.cn[j])}</th>`).join("")}<th class="r">Supply</th>`;
   return`<div class="card"><div class="row" style="flex-wrap:wrap;gap:14px">${stp("Sources","tpm",m)}${stp("Destinations","tpn",n)}</div><div class="preview" id="tpBal" style="font-family:inherit;font-size:13px">${balHtml()}</div></div>
   <h2>Unit costs, supply (right) and demand (bottom)</h2><div class="card scroll"><table class="tt"><tr>${H}</tr>
-  ${T.tp.c.map((r,i)=>`<tr><td class="t"><b>S${i+1}</b></td>${r.map((v,j)=>`<td>${inp(2000+i,j,v,"t")}</td>`).join("")}<td>${inp(2000+i,n,T.tp.s[i],"t")}</td></tr>`).join("")}
+  ${T.tp.c.map((r,i)=>`<tr><td class="t">${hin("tpr",i,"S"+(i+1),T.tp.rn&&T.tp.rn[i])}</td>${r.map((v,j)=>`<td>${inp(2000+i,j,v,"t")}</td>`).join("")}<td>${inp(2000+i,n,T.tp.s[i],"t")}</td></tr>`).join("")}
   <tr><td class="t"><b>Demand</b></td>${T.tp.d.map((v,j)=>`<td>${inp(2000+m,j,v,"t")}</td>`).join("")}<td></td></tr></table></div>${acts("Solve: NWC · VAM · Optimal ▶")}`}
 function asIn(){const n=T.as.n;
   return`<div class="card"><div class="seg" style="margin-bottom:10px"><button data-ta="goal" data-val="min" class="${T.as.goal==="min"?"on":""}">Minimize cost/time</button><button data-ta="goal" data-val="max" class="${T.as.goal==="max"?"on":""}">Maximize profit</button></div>${stp("Workers = Jobs","asn",n)}</div>
-  <h2>Cost matrix (workers × jobs)</h2><div class="card scroll"><table class="tt"><tr><th></th>${T.as.c.map((_,j)=>`<th class="r">J${j+1}</th>`).join("")}</tr>
-  ${T.as.c.map((r,i)=>`<tr><td class="t"><b>W${i+1}</b></td>${r.map((v,j)=>`<td>${inp(3000+i,j,v,"t")}</td>`).join("")}</tr>`).join("")}</table></div>${acts("Solve (Hungarian) ▶")}`}
+  <h2>Cost matrix (workers × jobs)</h2><div class="card scroll"><table class="tt"><tr><th></th>${T.as.c.map((_,j)=>`<th class="r">${hin("asc",j,"J"+(j+1),T.as.cn&&T.as.cn[j])}</th>`).join("")}</tr>
+  ${T.as.c.map((r,i)=>`<tr><td class="t">${hin("asr",i,"W"+(i+1),T.as.rn&&T.as.rn[i])}</td>${r.map((v,j)=>`<td>${inp(3000+i,j,v,"t")}</td>`).join("")}</tr>`).join("")}</table></div>${acts("Solve (Hungarian) ▶")}`}
 function tsIn(){const N=T.ts.nodes,opts=(sel)=>N.map((x,k)=>`<option value="${k}" ${k===sel?"selected":""}>${x.nm||"N"+(k+1)}</option>`).join("");
   return`<div class="card"><div class="row" style="flex-wrap:wrap;gap:14px">${stp("Nodes","tsn",N.length)}</div>
   <div class="preview" style="font-family:inherit;font-size:13px">Net supply: <b>+</b> = source, <b>−</b> = destination (demand), <b>0</b> = transshipment node. Unbalanced totals are handled automatically.</div></div>
@@ -673,10 +712,10 @@ function tpRun(){
    box("Northwest Corner · cost "+fmt(z1),allocTbl(A1,c,rl,cl)+`<div class="preview">${nb(A1)} basic cells${nb(A1)<rl.length+cl.length-1?" (fewer than m+n−1: degenerate)":""}. Cells show allocation ×unit cost.</div>`)+
    box("Vogel's Approximation · cost "+fmt(z2),allocTbl(V.A,c,rl,cl)+`<details><summary>Penalty steps</summary><ol class="how">${lg}</ol></details>`)+
    box("Optimal (simplex LP) · cost "+fmt(zo),O.ok?allocTbl(O.A,c,rl,cl)+(q.dummy?`<div class="preview">Units shipped from/to the Dummy ${q.dummy==="col"?"destination are unshipped supply":"source are unmet demand"}.</div>`:""):"No feasible solution.")}
-function stepTbl(M,o){o=o||{};return`<div class="scroll"><table><tr><th></th>${M[0].map((_,j)=>`<th class="r">J${j+1}</th>`).join("")}</tr>${M.map((r,i)=>`<tr><td class="t"><b>W${i+1}</b></td>${r.map((v,j)=>{const z=Math.abs(v)<1e-9,pick=o.match&&o.match[i]===j,rc=o.rowsC&&o.rowsC[i],cc=o.colsC&&o.colsC[j];
+function stepTbl(M,o){o=o||{};return`<div class="scroll"><table><tr><th></th>${M[0].map((_,j)=>`<th class="r">${an("cn",j)}</th>`).join("")}</tr>${M.map((r,i)=>`<tr><td class="t"><b>${an("rn",i)}</b></td>${r.map((v,j)=>{const z=Math.abs(v)<1e-9,pick=o.match&&o.match[i]===j,rc=o.rowsC&&o.rowsC[i],cc=o.colsC&&o.colsC[j];
     return`<td class="r ${pick?"hl":rc||cc?"cv":""}" style="${z?"font-weight:800":""}${rc&&cc?";text-decoration:underline double":""}">${fmt(v)}${pick?" ✓":""}</td>`}).join("")}</tr>`).join("")}</table></div>`}
 function asRun(){const a=T.as,C=a.c.map(r=>r.map(num)),mx=a.goal==="max",h=hung(C,mx);
-  const names=h.match.map((j,i)=>`<tr><td class="t">W${i+1} → J${j+1}</td><td class="r">${fmt(C[i][j])}</td></tr>`).join("");
+  const names=h.match.map((j,i)=>`<tr><td class="t">${an("rn",i)} → ${an("cn",j)}</td><td class="r">${fmt(C[i][j])}</td></tr>`).join("");
   return box((mx?"Maximum profit: ":"Minimum cost: ")+fmt(h.cost),`<table><tr><th class="t">Assignment</th><th class="r">${mx?"Profit":"Cost"}</th></tr>${names}<tr class="hl"><td class="t">Total</td><td class="r">${fmt(h.cost)}</td></tr></table>`)+
    `<h2>Hungarian steps</h2>`+h.steps.map((st,k)=>`<div class="card"><div style="font-weight:700;margin-bottom:6px;font-size:13px">${st.t}</div>${stepTbl(st.M,st)}${st.dl!=null?`<div class="preview">Smallest uncovered value δ = ${fmt(st.dl)}: subtract it from uncovered cells, add it where two lines cross.</div>`:""}</div>`).join("")}
 function tsRun(){const N=T.ts.nodes,nb=N.map(x=>num(x.b)),nm=k=>N[k].nm||"N"+(k+1),raw=T.ts.arcs.map(a=>({f:a.f,t:a.t,c:num(a.c),u:num(a.u)})),arcs=raw.filter(a=>a.f!==a.t);
@@ -705,10 +744,10 @@ trv.addEventListener("click",e=>{const t=e.target.closest("button");if(!t)return
     if(T.sub==="tp"){T.tp.c=z(T.tp.c);T.tp.s=T.tp.s.map(()=>"0");T.tp.d=T.tp.d.map(()=>"0")}else if(T.sub==="as")T.as.c=z(T.as.c);
     else{T.ts.nodes.forEach(x=>x.b="0");T.ts.arcs.forEach(x=>{x.c="0";x.u="0"})}delete TRES[T.sub];trRender()}
   else if(a==="ex"){const k=T.sub,i=T.ex[k]++;let nme;
-    if(k==="tp"){const E=[["Balanced 3×4",[[19,30,50,10],[70,30,40,60],[40,8,70,20]],[7,9,18],[5,8,7,14]],["Supply > demand",[[8,6,10],[9,12,13],[14,9,16]],[30,40,30],[20,30,30]],["Demand > supply",[[4,6,8],[5,3,7]],[40,30],[25,30,35]]][i%3];
+    if(k==="tp"){const E=[["Balanced 3×4",[[19,30,50,10],[70,30,40,60],[40,8,70,20]],[7,9,18],[5,8,7,14]],["Supply > demand",[[8,6,10],[9,12,13],[14,9,16]],[30,40,30],[20,30,30]],["Demand > supply",[[4,6,8],[5,3,7]],[40,30],[25,30,35]],["Balanced 4×4",[[10,2,20,11],[12,7,9,20],[4,14,16,18],[8,6,5,9]],[15,25,10,20],[10,20,15,25]],["Degenerate 3×3",[[3,1,7],[2,6,5],[8,3,4]],[10,20,30],[10,20,30]]][i%5];
       nme=E[0];T.tp.m=E[2].length;T.tp.n=E[3].length;T.tp.c=E[1].map(r=>r.map(String));T.tp.s=E[2].map(String);T.tp.d=E[3].map(String)}
-    else if(k==="as"){const E=[["Min cost 4×4",[[9,2,7,8],[6,4,3,7],[5,8,1,8],[7,6,9,4]],"min"],["Max profit 3×3",[[7,5,8],[6,9,4],[5,6,9]],"max"]][i%2];nme=E[0];T.as.n=E[1].length;T.as.c=E[1].map(r=>r.map(String));T.as.goal=E[2]}
-    else{nme="2 sources, 2 hubs, 2 destinations";T.ts.nodes=[["S1",50],["S2",40],["T1",0],["T2",0],["D1",-45],["D2",-45]].map(x=>({nm:x[0],b:String(x[1])}));
+    else if(k==="as"){const E=[["Min cost 4×4",[[9,2,7,8],[6,4,3,7],[5,8,1,8],[7,6,9,4]],"min"],["Max profit 3×3",[[7,5,8],[6,9,4],[5,6,9]],"max"],["Min time 5×5",[[12,8,15,9,11],[7,14,10,13,9],[10,9,12,8,14],[15,11,7,12,10],[9,13,11,6,12]],"min"],["Max profit 4×4",[[20,28,19,13],[15,30,16,21],[23,24,22,18],[27,19,25,14]],"max"]][i%4];nme=E[0];T.as.n=E[1].length;T.as.c=E[1].map(r=>r.map(String));T.as.goal=E[2]}
+    else if(i%2){nme="Capacity-limited hubs";T.ts.nodes=[["F1",60],["F2",40],["W1",0],["W2",0],["C1",-30],["C2",-40],["C3",-30]].map(x=>({nm:x[0],b:String(x[1])}));T.ts.arcs=[[0,2,4,0],[0,3,6,40],[1,2,5,0],[1,3,3,0],[2,4,2,0],[2,5,5,0],[2,6,7,20],[3,4,6,0],[3,5,3,0],[3,6,4,0],[0,6,11,0]].map(x=>({f:x[0],t:x[1],c:String(x[2]),u:String(x[3])}))}else{nme="2 sources, 2 hubs, 2 destinations";T.ts.nodes=[["S1",50],["S2",40],["T1",0],["T2",0],["D1",-45],["D2",-45]].map(x=>({nm:x[0],b:String(x[1])}));
       T.ts.arcs=[[0,2,2,0],[0,3,3,0],[1,2,4,0],[1,3,1,0],[2,4,5,0],[2,5,6,0],[3,4,3,30],[3,5,4,0],[0,4,12,0]].map(x=>({f:x[0],t:x[1],c:String(x[2]),u:String(x[3])}))}
     delete TRES[k];trRender();toast("Example: "+nme)}
   else if(a==="solve"){const k=T.sub;
@@ -745,7 +784,7 @@ function maxflow(n,E,s,t){const to=[],res=[],adj=Array.from({length:n},()=>[]);
 const NW=S.nw=S.nw||{sub:"mst",n:5,edges:[{a:0,b:1,w:"0",d:0},{a:1,b:2,w:"0",d:0},{a:2,b:3,w:"0",d:0},{a:3,b:4,w:"0",d:0}],src:0,snk:4,ex:{mst:0,sp:0,mf:0}};
 NW.ex=NW.ex||{mst:0,sp:0,mf:0};
 const NWR={};let nwStep=0,nwTimer=0;
-const nl=k=>String.fromCharCode(65+k),nwE=()=>NW.edges.map(e=>({a:e.a,b:e.b,w:num(e.w),d:!!e.d})),el_=(E,i)=>nl(E[i].a)+(E[i].d?"→":"–")+nl(E[i].b);
+const nl=k=>(NW.nn&&NW.nn[k])||String.fromCharCode(65+k),nwE=()=>NW.edges.map(e=>({a:e.a,b:e.b,w:num(e.w),d:!!e.d})),el_=(E,i)=>nl(E[i].a)+(E[i].d?"→":"–")+nl(E[i].b);
 const NWEX={mst:[7,[[0,1,7],[0,3,5],[1,2,8],[1,3,9],[1,4,7],[2,4,5],[3,4,15],[3,5,6],[4,5,8],[4,6,9],[5,6,11]],0,6,"Classic 7-node MST"],
   sp:[6,[[0,1,7],[0,2,9],[0,5,14],[1,2,10],[1,3,15],[2,3,11],[2,5,2],[3,4,6],[4,5,9]],0,4,"Shortest path A→E"],
   mf:[6,[[0,1,16,1],[0,2,13,1],[1,2,10,1],[2,1,4,1],[1,3,12,1],[3,2,9,1],[2,4,14,1],[4,3,7,1],[3,5,20,1],[4,5,4,1]],0,5,"Max flow A→F"]};
@@ -755,6 +794,7 @@ function nwRender(){
     wl=sub==="mst"?"length":sub==="sp"?"distance":"capacity";
   NW.src=Math.min(NW.src,N-1);NW.snk=Math.min(NW.snk,N-1);
   $("#nwBody").innerHTML=`<div class="card">${stp("Nodes","nwn",N)}<div class="preview" style="font-family:inherit;font-size:13px">Nodes are named A, B, C… Tap the type button to switch an edge between <b>— undirected</b> and <b>→ directed</b> (A→B).${sub==="mst"?" MST ignores directions.":""}</div></div>
+   <details class="card"><summary style="font-weight:700">Node names</summary><div class="scroll" style="margin-top:8px"><div class="coefs">${Array.from({length:N},(_,k)=>`<div class="cell"><label>${String.fromCharCode(65+k)}</label>${hin("nwn",k,String.fromCharCode(65+k),NW.nn&&NW.nn[k])}</div>`).join("")}</div></div></details>
    <h2>Edges</h2>${NW.edges.map((e,i)=>`<div class="card"><div class="row" style="margin-bottom:6px"><span class="tag">E${i+1}</span><span class="sp"></span><button class="btn sm bad" data-ta="edel" data-ai="${i}">✕</button></div>
     <div class="scroll"><div class="coefs"><div class="cell"><label>node A</label><select class="sl" data-nsel="a" data-ai="${i}">${opt(e.a)}</select></div>
     <div class="cell"><label>type</label><button class="op" data-ta="edir" data-ai="${i}">${e.d?"→":"—"}</button></div>
@@ -831,7 +871,7 @@ nwv.addEventListener("click",e=>{const t=e.target.closest("button");if(!t)return
   else if(a==="edel"){NW.edges.splice(+d.ai,1);nwKill();cur=null;nwRender()}
   else if(a==="edir"){const e=NW.edges[+d.ai];e.d=e.d?0:1;nwKill();nwRender()}
   else if(a==="clr"){NW.edges.forEach(x=>x.w="0");nwKill();nwRender()}
-  else if(a==="ex"){const E=NWEX[NW.sub];NW.n=E[0];NW.edges=E[1].map(x=>({a:x[0],b:x[1],w:String(x[2]),d:x[3]?1:0}));NW.src=E[2];NW.snk=E[3];nwKill();nwRender();toast("Example: "+E[4])}
+  else if(a==="ex"){NW.exn=NW.exn||{};const E=[NWEX2,NWEX][(NW.exn[NW.sub]=(NW.exn[NW.sub]||0)+1)%2][NW.sub];NW.n=E[0];NW.edges=E[1].map(x=>({a:x[0],b:x[1],w:String(x[2]),d:x[3]?1:0}));NW.src=E[2];NW.snk=E[3];nwKill();nwRender();toast("Example: "+E[4])}
   else if(a==="solve")nwSolve()});
 nwv.addEventListener("input",e=>{if(e.target.id==="nwStep"){clearInterval(nwTimer);nwStep=+e.target.value;nwDraw(nwState())}});
 nwv.addEventListener("change",e=>{const el=e.target,k=el.dataset.nsel;if(!k)return;
@@ -915,7 +955,7 @@ pjv.addEventListener("click",e=>{const t=e.target.closest("button");if(!t)return
     PJ.acts.push({id:nm||"T"+(used.length+1),pred:"",d:"0",a:"0",m:"0",b:"0"});pjKill();pjRender();const l=at(6000+PJ.acts.length-1,0);if(l)go(l)}
   else if(a==="pdel"){PJ.acts.splice(+d.ai,1);pjKill();cur=null;pjRender()}
   else if(a==="clr"){PJ.acts.forEach(x=>{x.d=x.a=x.m=x.b="0"});PJ.target="0";pjKill();pjRender()}
-  else if(a==="ex"){const E=pjEX[PJ.mode];PJ.acts=E.map(x=>PJ.mode==="cpm"?{id:x[0],pred:x[1],d:String(x[2]),a:String(x[2]),m:String(x[2]),b:String(x[2])}:{id:x[0],pred:x[1],d:String(x[3]),a:String(x[2]),m:String(x[3]),b:String(x[4])});
+  else if(a==="ex"){PJ.exn=PJ.exn||{};const E=[pjEX2,pjEX][(PJ.exn[PJ.mode]=(PJ.exn[PJ.mode]||0)+1)%2][PJ.mode];PJ.acts=E.map(x=>PJ.mode==="cpm"?{id:x[0],pred:x[1],d:String(x[2]),a:String(x[2]),m:String(x[2]),b:String(x[2])}:{id:x[0],pred:x[1],d:String(x[3]),a:String(x[2]),m:String(x[3]),b:String(x[4])});
     PJ.target="0";pjKill();pjRender();toast(PJ.mode==="cpm"?"Example: 6-activity CPM":"Example: 5-activity PERT")}
   else if(a==="solve")pjSolve()});
 pjv.addEventListener("input",e=>{const k=e.target.dataset.pj;if(!k)return;PJ.acts[+e.target.dataset.ai][k]=e.target.value;save();pjKill()});
@@ -951,12 +991,12 @@ function gLP(A){const m=A.length,n=A[0].length,mn=Math.min(...A.flat()),k=mn<=0?
 /*ENDGMALG*/
 const GM=S.gm=S.gm||{m:3,n:3,A:mkM(3,3),ex:0};GM.ex=GM.ex||0;const GMR={};
 function gmFit(){GM.A.length=GM.m;for(let i=0;i<GM.m;i++){GM.A[i]=GM.A[i]||[];while(GM.A[i].length<GM.n)GM.A[i].push("0");GM.A[i].length=GM.n}}
-const GMEX=[["Saddle point 3×4",[[8,6,2,8],[8,9,4,5],[7,5,3,5]]],["2×2 mixed strategy",[[3,-1],[-2,4]]],["Dominance → 2×2",[[3,-1,4],[-2,4,2],[2,-2,3]]],["2×n graphical",[[2,-1,1,0],[-1,3,1,2]]],["m×2 graphical",[[2,-1],[-1,3],[0,1],[1,0]]],["3×3 LP (rock-paper-scissors)",[[0,-1,1],[1,0,-1],[-1,1,0]]]];
+const GMEX=[["Saddle point 3×4",[[8,6,2,8],[8,9,4,5],[7,5,3,5]]],["2×2 mixed strategy",[[3,-1],[-2,4]]],["Dominance → 2×2",[[3,-1,4],[-2,4,2],[2,-2,3]]],["2×n graphical",[[2,-1,1,0],[-1,3,1,2]]],["m×2 graphical",[[2,-1],[-1,3],[0,1],[1,0]]],["3×3 LP (rock-paper-scissors)",[[0,-1,1],[1,0,-1],[-1,1,0]]],["4×4 general",[[4,0,6,2],[2,3,1,5],[6,1,3,4],[3,2,5,1]]],["2×3 mixed",[[-3,2,4],[3,-4,5]]]];
 function gmRender(){gmFit();const{m,n}=GM;
   $("#gmBody").innerHTML=`<div class="card"><div class="row" style="flex-wrap:wrap;gap:14px">${stp("Row strategies","gmm",m)}${stp("Column strategies","gmn",n)}</div>
    <div class="preview" style="font-family:inherit;font-size:13px">Enter payoffs to the <b>row player</b> (maximizer). The column player minimizes.</div></div>
-   <h2>Payoff matrix</h2><div class="card scroll"><table class="tt"><tr><th></th>${GM.A[0].map((_,j)=>`<th class="r">C${j+1}</th>`).join("")}</tr>
-   ${GM.A.map((r,i)=>`<tr><td class="t"><b>R${i+1}</b></td>${r.map((v,j)=>`<td>${inp(7000+i,j,v,"m")}</td>`).join("")}</tr>`).join("")}</table></div>${acts("Solve game ▶")}<div id="gmRes">${GMR.html||""}</div>`;save();if(GMR.gr)gmDraw()}
+   <h2>Payoff matrix</h2><div class="card scroll"><table class="tt"><tr><th></th>${GM.A[0].map((_,j)=>`<th class="r">${hin("gmc",j,"C"+(j+1),GM.cn&&GM.cn[j])}</th>`).join("")}</tr>
+   ${GM.A.map((r,i)=>`<tr><td class="t">${hin("gmr",i,"R"+(i+1),GM.rn&&GM.rn[i])}</td>${r.map((v,j)=>`<td>${inp(7000+i,j,v,"m")}</td>`).join("")}</tr>`).join("")}</table></div>${acts("Solve game ▶")}<div id="gmRes">${GMR.html||""}</div>`;save();if(GMR.gr)gmDraw()}
 function gmSet(el){GM.A[+el.dataset.r-7000][+el.dataset.c]=el.value;save();GMR.html=null;GMR.gr=null;const e=$("#gmRes");if(e)e.innerHTML=""}
 const mTbl=(M,rl,cl,o)=>{o=o||{};return`<div class="scroll"><table><tr><th></th>${cl.map(c=>`<th class="r">${c}</th>`).join("")}${o.rmin?'<th class="r">Row min</th>':""}</tr>${M.map((r,i)=>`<tr><td class="t"><b>${rl[i]}</b></td>${r.map((v,j)=>`<td class="r ${o.sad&&o.sad.some(q=>q[0]===i&&q[1]===j)?"hl":""}">${fmt(v)}</td>`).join("")}${o.rmin?`<td class="r"><b>${fmt(o.rmin[i])}</b></td>`:""}</tr>`).join("")}${o.cmax?`<tr><td class="t"><b>Col max</b></td>${o.cmax.map(v=>`<td class="r"><b>${fmt(v)}</b></td>`).join("")}${o.rmin?"<td></td>":""}</tr>`:""}</table></div>`};
 const strat=(p,pre)=>p.map((x,i)=>x>1e-9?`<span class="badge b-ok">${pre}${i+1} = ${fmt(x)}</span>`:"").filter(Boolean).join(" ");
@@ -994,7 +1034,7 @@ function gmRun(){
    <div style="font-weight:600">Row player</div><div style="margin:4px 0 8px">${strat(fin.p,"R")}</div><div style="font-weight:600">Column player</div><div style="margin:4px 0">${strat(fin.q,"C")}</div>
    <div class="preview">${fin.v>1e-9?"Game favors the row player.":fin.v<-1e-9?"Game favors the column player.":"Fair game (v = 0)."} ${ok?"✓ Cross-checked with the LP formulation.":"LP value differs: "+fmt(lp.v)}${fin.why.startsWith("Mixed")?" Other optimal mixes may exist.":""}</div>
    <details><summary>Verification</summary>${tbl(["Column","C expected payoff vs row mix"],cl.map((c,j)=>({c:[c,fmt(Ej[j])]})))}<div style="height:6px"></div>${tbl(["Row","R expected payoff vs column mix"],rl.map((r,i)=>({c:[r,fmt(Ei[i])]})))}<div class="preview">Row mix guarantees ≥ v against every column; column mix holds the row player to ≤ v against every row.</div></details></div>`+h;
-  GMR.html=h;GMR.lp=lp;GMR.A=A;$("#gmRes").innerHTML=h;gmDraw();buzz();$("#gmRes").scrollIntoView({behavior:"smooth",block:"start"})}
+  h=gmNames(h);if(GMR.gr){GMR.gr.names=GMR.gr.names.map(gmNames);GMR.gr.xl=gmNames(GMR.gr.xl)}GMR.html=h;GMR.lp=lp;GMR.A=A;$("#gmRes").innerHTML=h;gmDraw();buzz();$("#gmRes").scrollIntoView({behavior:"smooth",block:"start"})}
 function gmDraw(){const o=GMR.gr,cv=$("#gmcv");if(!o||!cv||!cv.clientWidth)return;
   const w=cv.clientWidth,h=Math.round(w*(S.set.view==="desktop"?.55:.8)),dpr=devicePixelRatio||1;cv.width=w*dpr;cv.height=h*dpr;cv.style.height=h+"px";
   const x=cv.getContext("2d");x.setTransform(dpr,0,0,dpr,0,0);const cs=getComputedStyle(document.documentElement),css=k=>cs.getPropertyValue(k).trim(),tx=css("--tx"),mut=css("--mut"),bd=css("--bd"),bg=css("--card"),gold="#f59e0b";
@@ -1040,7 +1080,7 @@ const PRESETS={
    [1,0,0,0,0,0,0,0,"<=",700,"Q1 capacity"],[0,1,0,0,0,0,0,0,"<=",700,"Q2 capacity"],[0,0,1,0,0,0,0,0,"<=",700,"Q3 capacity"],[0,0,0,1,0,0,0,0,"<=",700,"Q4 capacity"],[0,0,0,0,0,0,0,1,">=",60,"Closing stock ≥ 60"]]}};
 const plabel=i=>{const P=S.preset&&PRESETS[S.preset];return P&&P.rows[i]?P.rows[i][P.rows[i].length-1]:""};
 function presetLoad(k){const P=PRESETS[k];if(!P)return;S.goal=P.goal;S.n=P.obj.length;S.m=P.rows.length;S.obj=P.obj.map(String);S.nonneg=true;
-  S.cons=P.rows.map(r=>({a:r.slice(0,S.n).map(String),op:r[S.n],b:String(r[S.n+1]),nm:r[r.length-1]}));S.vn=P.vars.slice();S.preset=k;lastRes=null;render();toast("Loaded: "+P.name)}
+  S.cons=P.rows.map(r=>({a:r.slice(0,S.n).map(String),op:r[S.n],b:String(r[S.n+1]),nm:r[r.length-1]}));S.vn=P.vars.slice();S.vt=P.obj.map(()=>"c");S.preset=k;lastRes=null;render();toast("Loaded: "+P.name)}
 function lpQuick(){const M={optimize:"z",opType:S.goal,constraints:{},variables:{}};
   S.cons.forEach((c,i)=>{const b=num(c.b);M.constraints["c"+i]=c.op==="<="?{max:b}:c.op===">="?{min:b}:{equal:b}});
   S.obj.forEach((o,j)=>{const v={z:num(o)};S.cons.forEach((c,i)=>{const a=num(c.a[j]);if(a)v["c"+i]=a});M.variables["x"+j]=v});return Solver.Solve(M)}
@@ -1078,17 +1118,23 @@ document.addEventListener("keydown",e=>{
   else return;
   e.preventDefault();if(t)go(t);else if(k==="Enter")el.blur()});
 /* names */
-function renderNames(){const e=$("#vnRow");if(e)e.innerHTML=S.vn.map((v,j)=>`<div class="cell"><label>x${j+1}</label><input class="tx" data-vn="${j}" value="${esc(v)}" placeholder="x${j+1}" maxlength="24"></div>`).join("")}
+function renderNames(){const e=$("#vnRow"),T3=[["c","Continuous"],["i","Integer"],["b","Binary"]];
+  if(e)e.innerHTML=S.vn.map((v,j)=>`<div class="cell"><label>${esc(sub(j))}</label><select class="sl" data-vt="${j}">${T3.map(o=>`<option value="${o[0]}" ${S.vt[j]===o[0]?"selected":""}>${o[1]}</option>`).join("")}</select></div>`).join("");
+  const ni=S.vt.filter(t=>t==="i").length,nb=S.vt.filter(t=>t==="b").length,tg=$("#ipTag");if(tg)tg.textContent=ni||nb?`Integer program: ${ni} integer and ${nb} binary variable${ni+nb>1?"s":""}. Solved by branch and bound.`:""}
+function rePrev(){$("#objPrev").textContent=(S.goal==="max"?"Max":"Min")+" Z = "+lhs(S.obj);$$("#cons>.card").forEach((c,i)=>{const p=c.querySelector(".preview"),k=S.cons[i];if(p&&k)p.textContent=`${lhs(k.a)} ${k.op==="=="?"=":k.op} ${fmt(num(k.b))}`})}
+function refreshView(){render();const f={"v-graph":gInputs,"v-tr":trRender,"v-nw":nwRender,"v-pj":pjRender,"v-gm":gmRender,"v-results":showResults,"v-reports":showReports}[($(".v.on")||{}).id];if(f)f()}
 document.addEventListener("input",e=>{const t=e.target,d=t.dataset||{};
-  if(d.vn!==undefined){S.vn[+d.vn]=t.value.trim();mpvUpdate();save()}else if(d.cn!==undefined){S.cons[+d.cn].nm=t.value.trim();mpvUpdate();save()}});
-document.addEventListener("change",e=>{const d=e.target.dataset||{};if(d.vn!==undefined||d.cn!==undefined)render()});
+  if(d.vn!==undefined){S.vn[+d.vn]=t.value.trim();$$('[data-vn="'+d.vn+'"]').forEach(x=>{if(x!==t)x.value=t.value});rePrev();renderNames();mpvUpdate();save()}else if(d.cn!==undefined){S.cons[+d.cn].nm=t.value.trim();mpvUpdate();save()}});
+document.addEventListener("change",e=>{const d=e.target.dataset||{};if(d.vt!==undefined){S.vt[+d.vt]=e.target.value;render()}});
+document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-vtall]");if(b){S.vt=S.vt.map(()=>b.dataset.vtall);render()}});
 /* live model preview */
 const exprTxt=a=>{const t=[];a.forEach((v,j)=>{v=num(v);if(!v)return;const m=Math.abs(v),nm=S.vn&&S.vn[j];
   t.push((t.length?(v<0?"− ":"+ "):(v<0?"−":""))+(nm?(m===1?nm:fmt(m)+"·"+nm):(m===1?"":fmt(m))+sub(j)))});return t.length?t.join(" "):"0"};
 function modelText(P){const L=[(P.goal==="max"?"Max":"Min")+" Z = "+exprTxt(P.obj),"s.t."],nm=P.obj.map((_,j)=>sub(j));
   P.cons.forEach((c,i)=>L.push("  "+(c.nm||"C"+(i+1))+":  "+exprTxt(c.a)+" "+({"<=":"≤",">=":"≥","==":"="}[c.op])+" "+fmt(num(c.b))));
-  L.push("  "+(nm.length>6?nm[0]+", …, "+nm[nm.length-1]:nm.join(", "))+(P.nonneg===false?"  free":" ≥ 0"));return L.join("\n")}
-const mdl=()=>({goal:S.goal,obj:S.obj,cons:S.cons,nonneg:S.nonneg});
+  L.push("  "+(nm.length>6?nm[0]+", …, "+nm[nm.length-1]:nm.join(", "))+(P.nonneg===false?"  free":" ≥ 0"));
+  const gv=t=>P.vt?nm.filter((_,j)=>P.vt[j]===t):[];if(gv("i").length)L.push("  "+gv("i").join(", ")+" integer");if(gv("b").length)L.push("  "+gv("b").join(", ")+" ∈ {0, 1}");return L.join("\n")}
+const mdl=()=>({goal:S.goal,obj:S.obj,cons:S.cons,nonneg:S.nonneg,vt:S.vt});
 function mpvUpdate(){const e=$("#mpv");if(e)e.textContent=modelText(mdl())}
 const copyTxt=t=>(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast("Copied"),()=>toast("Copy blocked by browser"));
 $("#mpvCopy").onclick=()=>copyTxt(modelText(mdl()));
@@ -1111,11 +1157,11 @@ document.addEventListener("change",()=>{H.t=0},true);
 /* migration */
 function goTab(v){const b=document.querySelector('nav button[data-v="'+v+'"]');if(b)b.click()}
 function setModel(P,msg){S.goal=P.goal;S.n=P.obj.length;S.m=P.cons.length;S.obj=P.obj.map(String);S.vn=P.vn.slice();
-  S.cons=P.cons.map(c=>({a:c.a.map(String),op:c.op,b:String(c.b),nm:c.nm||""}));S.nonneg=true;S.preset=null;lastRes=null;render();goTab("model");toast(msg)}
+  S.cons=P.cons.map(c=>({a:c.a.map(String),op:c.op,b:String(c.b),nm:c.nm||""}));S.nonneg=P.free?false:true;S.vt=(P.vt||P.obj.map(()=>"c")).slice();S.preset=null;lastRes=null;render();if(!P.stay)goTab("model");toast(msg)}
 function migItems(){const v=($(".v.on")||{}).id,out=[],add=(t,d,f)=>out.push({t,d,f});
-  const toGraph=()=>{if(S.n!==2)return toast("Model has "+S.n+" variables; the graph needs 2");G.goal=S.goal;G.obj=[S.obj[0],S.obj[1]];G.cons=S.cons.slice(0,5).map(c=>({a:[c.a[0],c.a[1]],op:c.op,b:c.b}));gInputs();goTab("graph");toast("Model sent to Graph")};
+  const toGraph=()=>{if(S.n!==2)return toast("Model has "+S.n+" variables; the graph needs 2");G.goal=S.goal;G.obj=[S.obj[0],S.obj[1]];G.cons=S.cons.slice(0,12).map(c=>({a:[c.a[0],c.a[1]],op:c.op,b:c.b}));gInputs();goTab("graph");toast("Model sent to Graph")};
   const fromGraph=()=>setModel({goal:G.goal,obj:G.obj,cons:G.cons,vn:["",""]},"Graph problem sent to Model");
-  if(v==="v-model")add("Model → Graph","Plot a 2-variable problem (first 5 constraints)",toGraph);
+  if(v==="v-model")add("Model → Graph","Plot a 2-variable problem (first 12 constraints)",toGraph);
   else if(v==="v-graph"){add("Graph → Model","Open this problem in the Model tab for solving and reports",fromGraph);add("Model → Graph","Replace the graph with the Model tab's problem",toGraph)}
   else if(v==="v-tr"){
     if(T.sub==="tp")add("Transportation → LP","Variables per route, supply and demand constraints (dummy added if unbalanced)",()=>{const q=tpData(),n=q.d.length,vn=[],obj=[];q.c.forEach((r,i)=>r.forEach((c,j)=>{obj.push(c);vn.push(q.rl[i]+"→"+q.cl[j])}));
@@ -1168,16 +1214,16 @@ function gPivotUI(){const el=$("#gPv");if(!el)return;const A=GB;GP.v0=null;
   if(!A||A.inf||A.unb||A.alt||!A.V.length){GP.mode="off";el.innerHTML=`<div class="preview" style="margin:0">Pivoting needs one optimal corner. ${!A||A.inf?"The problem is infeasible or empty.":A.unb?"The problem is unbounded.":"There are alternate optima, so the objective already sits on the edge of its range."}</div>`;return}
   const v=A.V[A.opt[0]],R=GP.R=gRanges(A),Lt=String.fromCharCode(65+A.opt[0]);GP.v0=v;
   if(GP.mode==="b"&&!R.rhs[GP.ci])GP.ci=Math.max(0,R.rhs.findIndex(x=>x));if(GP.mode!=="off")gPvSetup();
-  const opts=G.cons.map((k,i)=>R.rhs[i]?`<option value="${i}" ${i===GP.ci?"selected":""}>C${i+1}</option>`:"").join("");
+  const opts=G.cons.map((k,i)=>R.rhs[i]?`<option value="${i}" ${i===GP.ci?"selected":""}>${esc(gcn(i))}</option>`:"").join("");
   el.innerHTML=`<div style="font-size:13px;margin-bottom:8px">Optimal corner <b>${Lt}</b> (${fmt(v[0])}, ${fmt(v[1])}), Z* = <b>${fmt(A.best)}</b></div>
    <div class="seg" id="gPvSeg">${[["off","Off"],["c0","Pivot c₁"],["c1","Pivot c₂"],["b","Move RHS"]].map(x=>`<button data-pv="${x[0]}" class="${GP.mode===x[0]?"on":""}">${x[1]}</button>`).join("")}</div>
    ${GP.mode!=="off"?`<div class="row" style="margin-top:10px">${GP.mode==="b"?`<select class="sl" id="gPvC">${opts}</select>`:""}<input type="range" id="gPvS" min="0" max="1000" value="${Math.round((GP.cur-GP.vmin)/((GP.vmax-GP.vmin)||1)*1000)}" style="flex:1"><b id="gPvV" style="min-width:56px;text-align:right"></b></div><div class="preview" id="gPvT"></div>`:""}
    <div style="font-weight:600;margin:12px 0 4px">Range of optimality</div>${tbl(["Coefficient","Current","Lower","Upper"],R.c.map((r,j)=>({c:["c"+(j+1)+" ("+sub(j)+")",fmt(r.cur),rg(r.lo),rg(r.hi)]})))}
    <div class="preview">The corner stays optimal while the iso-line, pivoting about it, stays between the slopes of the two binding constraints.</div>
-   <div style="font-weight:600;margin:12px 0 4px">Range of feasibility (right-hand sides)</div>${tbl(["Constraint","RHS","Binding","Shadow price","Lower","Upper"],R.rhs.map((r,i)=>r?{c:["C"+(i+1),fmt(r.b),r.bind?"yes":"no",fmt(r.sp),rg(r.lo),rg(r.hi)]}:{c:["C"+(i+1),"—","—","—","—","—"]}))}
+   <div style="font-weight:600;margin:12px 0 4px">Range of feasibility (right-hand sides)</div>${tbl(["Constraint","RHS","Binding","Shadow price","Lower","Upper"],R.rhs.map((r,i)=>r?{c:[gcn(i),fmt(r.b),r.bind?"yes":"no",fmt(r.sp),rg(r.lo),rg(r.hi)]}:{c:[gcn(i),"—","—","—","—","—"]}))}
    <div class="preview">Inside these limits the same constraints stay binding, so the shadow price holds: ΔZ = shadow price × ΔRHS.</div>`;gPvStatus()}
 function gPvStatus(){const t=$("#gPvT");if(!t||GP.mode==="off"||!GP.v0)return;const A=GA,R=GP.R,v0=GP.v0,pt=p=>"("+fmt(p[0])+", "+fmt(p[1])+")",Lt=i=>String.fromCharCode(65+i);let val,head,rng,inside;
-  if(GP.mode==="b"){val=gOv.b[GP.ci]!=null?gOv.b[GP.ci]:GP.cur;rng=R.rhs[GP.ci];inside=val>=rng.lo-1e-9&&val<=rng.hi+1e-9;head=`RHS of C${GP.ci+1} = ${fmt(val)} (was ${fmt(GP.cur)}). Range of feasibility [${rg(rng.lo)}, ${rg(rng.hi)}]. `}
+  if(GP.mode==="b"){val=gOv.b[GP.ci]!=null?gOv.b[GP.ci]:GP.cur;rng=R.rhs[GP.ci];inside=val>=rng.lo-1e-9&&val<=rng.hi+1e-9;head=`RHS of ${gcn(GP.ci)} = ${fmt(val)} (was ${fmt(GP.cur)}). Range of feasibility [${rg(rng.lo)}, ${rg(rng.hi)}]. `}
   else{const j=GP.mode==="c0"?0:1;val=gOv.c&&gOv.c[j]!=null?gOv.c[j]:GP.cur;rng=R.c[j];inside=val>=rng.lo-1e-9&&val<=rng.hi+1e-9;head=`c${j+1} = ${fmt(val)} (was ${fmt(GP.cur)}). Range of optimality [${rg(rng.lo)}, ${rg(rng.hi)}]. `}
   $("#gPvV").textContent=fmt(val);let tail;
   if(A.inf)tail="No feasible region at this value.";else if(A.unb)tail="Z becomes unbounded.";
@@ -1191,6 +1237,232 @@ $("#v-graph").addEventListener("input",e=>{if(e.target.id!=="gPvS")return;const 
   if(GP.mode==="b")gOv={c:null,b:{[GP.ci]:val}};else{const c=[null,null];c[GP.mode==="c0"?0:1]=val;gOv={c,b:{}}}gRefresh()});
 $("#v-graph").addEventListener("change",e=>{if(e.target.id==="gPvC"){GP.ci=+e.target.value;gOv={c:null,b:{}};gPivotUI();gRefresh()}});
 histUI();
+
+/* ---------- Phase 10: raw input, model examples ---------- */
+/*RAW*/
+function parseRaw(txt){const errs=[],P={goal:null,obj:null,vn:null,vt:null,cons:[],free:false,ints:[],bins:[]};
+  const OP={"<=":"<=","≤":"<=","<":"<=",">=":">=","≥":">=",">":">=","=":"==","==":"=="};
+  const pn=(t,ln)=>{t=t.trim();if(t==="")return 0;let v;if(t[0]==="=")v=calc(t.slice(1));else if(/^[+-]?(\d+\.?\d*|\.\d+)(e[+-]?\d+)?$/i.test(t))v=parseFloat(t);else if(/^[+-]?\d+\.?\d*\/\d+\.?\d*$/.test(t)){const q=t.split("/");v=q[0]/q[1]}else v=calc(t);
+    if(v==null||!isFinite(v)){errs.push(`Line ${ln}: "${t}" is not a number`);return 0}return v};
+  const L=txt.split(/\r?\n|;/).map((l,i)=>({ln:i+1,t:l.trim()})).filter(l=>l.t&&l.t[0]!=="#").map(l=>({ln:l.ln,k:l.t.split(",").map(x=>x.trim())}));
+  L.forEach(l=>{const h=l.k[0].toLowerCase();if(/^(max|maximi[sz]e|min|minimi[sz]e)$/.test(h)){if(P.obj)errs.push(`Line ${l.ln}: a second objective line`);else{P.goal=h[1]==="a"?"max":"min";P.obj=l.k.slice(1).map(t=>pn(t,l.ln))}}});
+  if(!P.obj)return{errs:["The first line must start with max or min followed by the objective coefficients."]};
+  const n=P.obj.length;if(!n)errs.push("The objective has no coefficients.");
+  const idx=t=>{t=t.trim();const m=/^x?(\d+)$/i.exec(t);if(m&&+m[1]>=1&&+m[1]<=n)return +m[1]-1;const j=(P.vn||[]).findIndex(v=>v.toLowerCase()===t.toLowerCase());return j};
+  L.forEach(l=>{const h=l.k[0].toLowerCase();
+    if(/^(max|maximi[sz]e|min|minimi[sz]e)$/.test(h))return;
+    if(/^(names|vars|variables)$/.test(h)){P.vn=l.k.slice(1).slice(0,n);while(P.vn.length<n)P.vn.push("");return}
+    if(/^types?$/.test(h)){P.vt=l.k.slice(1).slice(0,n).map(t=>/^i/i.test(t)?"i":/^b/i.test(t)?"b":"c");while(P.vt.length<n)P.vt.push("c");return}
+    if(/^(int|integer|bin|binary)$/.test(h)){const key=/^i/.test(h)?"ints":"bins";l.k.slice(1).forEach(t=>{const j=idx(t);if(j<0)errs.push(`Line ${l.ln}: unknown variable "${t}"`);else P[key].push(j)});return}
+    if(h==="free"){P.free=true;return}
+    const k=l.k.findIndex(t=>OP[t]!==undefined);
+    if(k<0){errs.push(`Line ${l.ln}: no operator (<=, >= or =) found`);return}
+    if(l.k.length<k+2||l.k[k+1]===""){errs.push(`Line ${l.ln}: missing right-hand side`);return}
+    const pre=l.k.slice(0,k);let nm="",co;
+    if(pre.length===n+1&&!/^[+\-.\d=(]/.test(pre[0])){nm=pre[0];co=pre.slice(1)}else if(pre.length===n)co=pre;else{errs.push(`Line ${l.ln}: expected ${n} coefficients, found ${pre.length}`);return}
+    P.cons.push({a:co.map(t=>pn(t,l.ln)),op:OP[l.k[k]],b:pn(l.k[k+1],l.ln),nm})});
+  if(!P.cons.length)errs.push("No constraint lines found.");
+  P.vt=P.vt||P.obj.map(()=>"c");P.ints.forEach(j=>P.vt[j]="i");P.bins.forEach(j=>P.vt[j]="b");P.vn=P.vn||P.obj.map(()=>"");
+  return{errs,P}}
+function toRaw(){const q=v=>String(+num(v).toFixed(10)),L=[(S.goal==="max"?"max":"min")+","+S.obj.map(q).join(",")];
+  if(S.vn.some(Boolean))L.push("vars,"+S.vn.map((v,j)=>(v||dsub(j)).replace(/[,;]/g," ")).join(","));
+  if(S.vt.some(t=>t!=="c"))L.push("types,"+S.vt.map(t=>({c:"cont",i:"int",b:"bin"}[t])).join(","));
+  S.cons.forEach(c=>L.push((c.nm?c.nm.replace(/[,;]/g," ")+",":"")+c.a.map(q).join(",")+","+c.op+","+q(c.b)));if(!S.nonneg)L.push("free");return L.join("\n")}
+/*ENDRAW*/
+$("#rawLoad").onclick=()=>{const r=parseRaw($("#rawIn").value),m=$("#rawMsg");
+  if(r.errs.length){m.style.color="var(--bad)";m.innerHTML=r.errs.slice(0,6).map(esc).join("<br>");return}
+  const P=r.P;setModel({goal:P.goal,obj:P.obj,cons:P.cons,vn:P.vn,vt:P.vt,free:P.free,stay:true},"Problem loaded");m.style.color="var(--ok)";m.textContent=`Loaded ${P.obj.length} variables and ${P.cons.length} constraints.`};
+$("#rawFill").onclick=()=>{$("#rawIn").value=toRaw();$("#rawMsg").style.color="";$("#rawMsg").textContent="Current model written in this format."};
+$("#rawEx").onclick=()=>{$("#rawIn").value="max, 3, 5\nvars, Doors, Windows\ntypes, int, int\nPlant 1, 1, 0, <=, 4\nPlant 2, 0, 2, <=, 12\nPlant 3, 3, 2, <=, 18";$("#rawMsg").style.color="";$("#rawMsg").textContent="Example filled in. Press Load into model."};
+const MEX=[
+ {t:"Maximize profit (2 variables)",d:"Textbook product mix",goal:"max",vn:["Doors","Windows"],obj:[3,5],rows:[[1,0,"<=",4,"Plant 1 hours"],[0,2,"<=",12,"Plant 2 hours"],[3,2,"<=",18,"Plant 3 hours"]]},
+ {t:"Product mix (3 products)",d:"Machine, labour and material limits",goal:"max",vn:["Tables","Chairs","Desks"],obj:[60,40,50],rows:[[2,1,2,"<=",100,"Machine hours"],[1,2,1,"<=",80,"Labour hours"],[3,2,1,"<=",120,"Material"],[0,0,1,"<=",20,"Desk demand"]]},
+ {t:"Minimize cost (≥ constraints)",d:"Feed blend with nutrient minimums",goal:"min",vn:["Feed A","Feed B"],obj:[0.6,0.35],rows:[[5,7,">=",8,"Nutrient 1"],[4,2,">=",15,"Nutrient 2"],[2,1,">=",3,"Nutrient 3"]]},
+ {t:"Mixed ≤, ≥ and = constraints",d:"Allocation of 10 units",goal:"max",vn:["A","B","C"],obj:[2,3,1],rows:[[1,1,1,"==",10,"Total = 10"],[1,0,0,">=",2,"Min A"],[0,1,0,"<=",6,"Max B"],[0,0,1,">=",1,"Min C"]]},
+ {t:"Alternate optima",d:"Objective parallel to a constraint",goal:"max",vn:["x","y"],obj:[2,4],rows:[[1,2,"<=",8,"Edge"],[1,0,"<=",6,"x limit"],[0,1,"<=",3,"y limit"]]},
+ {t:"Unbounded",d:"Region open in the improving direction",goal:"max",vn:["x","y"],obj:[1,1],rows:[[1,-1,"<=",2,"A"],[-1,1,"<=",2,"B"]]},
+ {t:"Infeasible",d:"Constraints that cannot all hold",goal:"max",vn:["x","y"],obj:[1,1],rows:[[1,1,"<=",4,"Cap"],[1,0,">=",5,"Floor"]]},
+ {t:"Degenerate vertex",d:"Three constraints meet at one corner",goal:"max",vn:["x","y"],obj:[1,1],rows:[[1,0,"<=",2,"x cap"],[0,1,"<=",2,"y cap"],[1,1,"<=",4,"Total cap"]]},
+ {t:"Integer: rounding fails",d:"LP gives 41.25; integers give 40",goal:"max",vn:["x1","x2"],vt:["i","i"],obj:[5,8],rows:[[1,1,"<=",6,"Total"],[5,9,"<=",45,"Budget"]]},
+ {t:"Binary knapsack",d:"Pick items for a 14 kg bag",goal:"max",vn:["A","B","C","D","E"],vt:["b","b","b","b","b"],obj:[10,13,7,8,6],rows:[[5,6,4,5,3,"<=",14,"Weight limit"]]},
+ {t:"Capital budgeting (binary)",d:"Choose projects with exclusivity and dependency",goal:"max",vn:["P1","P2","P3","P4","P5"],vt:["b","b","b","b","b"],obj:[20,35,25,15,30],rows:[[10,15,12,8,14,"<=",40,"Year 1 capital"],[5,10,6,4,8,"<=",20,"Year 2 capital"],[1,1,0,0,0,"<=",1,"P1 or P2, not both"],[-1,0,1,0,0,"<=",0,"P3 requires P1"]]},
+ {t:"Mixed integer",d:"Some variables whole, one continuous",goal:"max",vn:["Trucks","Fuel","Vans"],vt:["i","c","i"],obj:[3,2,4],rows:[[1,1,1,"<=",10.5,"Capacity"],[2,0,1,"<=",8.3,"Budget"],[0,1,0,"<=",4.4,"Fuel limit"]]}];
+$("#exBtn").onclick=()=>sheet("Examples",MEX.map((e,i)=>`<button class="btn mig" data-mex="${i}"><b>${e.t}</b><small>${e.d}</small></button>`).join("")+'<div class="preview">Each example loads variable names and types too. Undo brings your previous model back.</div>');
+$("#shB").addEventListener("click",e=>{const b=e.target.closest("[data-mex]");if(!b)return;const E=MEX[+b.dataset.mex],n=E.obj.length;$("#sheet").classList.remove("on");
+  setModel({goal:E.goal,obj:E.obj,vn:E.vn,vt:E.vt,stay:true,cons:E.rows.map(r=>({a:r.slice(0,n),op:r[n],b:r[n+1],nm:r[n+2]}))},"Example: "+E.t)});
+
+/* ---------- Phase 10b: names everywhere, graph upgrades ---------- */
+const NWEX2={mst:[6,[[0,1,4],[0,2,3],[1,2,2],[1,3,5],[2,3,7],[2,4,8],[3,4,4],[3,5,6],[4,5,3]],0,5,"6-node MST"],
+  sp:[6,[[0,1,2,1],[0,2,5,1],[1,2,1,1],[1,3,4,1],[2,3,2,1],[2,4,6,1],[3,4,1,1],[3,5,7,1],[4,5,2,1]],0,5,"Directed shortest path"],
+  mf:[6,[[0,1,10,1],[0,2,10,1],[1,2,2,1],[1,3,4,1],[1,4,8,1],[2,4,9,1],[4,3,6,1],[3,5,10,1],[4,5,10,1]],0,5,"Max flow, 6 nodes"]};
+const pjEX2={cpm:[["A","",4],["B","",3],["C","A",5],["D","A",2],["E","B",6],["F","C,D",3],["G","E",4],["H","F,G",2]],
+  pert:[["A","",1,2,3],["B","",2,4,6],["C","A",3,5,13],["D","B",2,3,10],["E","C,D",4,6,8],["F","E",1,2,3]]};
+const gmNames=h=>h.replace(/(?<![A-Za-z0-9_"=\-])([RC])(\d+)(?![A-Za-z0-9])/g,(m,k,i)=>{const a=k==="R"?GM.rn:GM.cn,v=a&&a[+i-1];return v?esc(v):m});
+const NMK={tpr:()=>T.tp,tpc:()=>T.tp,asr:()=>T.as,asc:()=>T.as,gmr:()=>GM,gmc:()=>GM,nwn:()=>NW},NMF={tpr:"rn",tpc:"cn",asr:"rn",asc:"cn",gmr:"rn",gmc:"cn",nwn:"nn"};
+document.addEventListener("input",e=>{const t=e.target,d=t.dataset||{};
+  if(d.nm!==undefined){const q=d.nm.split(":"),o=NMK[q[0]](),f=NMF[q[0]];o[f]=o[f]||[];o[f][+q[1]]=t.value.trim();save()}
+  else if(d.gcn!==undefined){G.cons[+d.gcn].nm=t.value.trim();save();gRefresh();mpvUpdate()}});
+document.addEventListener("change",e=>{const d=e.target.dataset||{};if(d.nm===undefined)return;const k=d.nm.split(":")[0];
+  if(k.startsWith("tp"))delete TRES.tp;if(k.startsWith("as"))delete TRES.as;if(k==="nwn")nwKill();if(k.startsWith("gm")){GMR.html=null;GMR.gr=null}refreshView()});
+/* graph: integer lattice, plain-language explanation, tweak, drag, view chips */
+function gLattice(A,X,Y){const nx=Math.floor(X),ny=Math.floor(Y);if((nx+1)*(ny+1)>6000)return{pts:[],best:null,big:true};
+  const L=A.H.concat(H0),pts=[];let best=null,bz=-Infinity;
+  for(let i=0;i<=nx;i++)for(let j=0;j<=ny;j++)if(L.every(l=>l.n[0]*i+l.n[1]*j<=l.h+1e-9)){pts.push([i,j]);const z=A.sg*(A.c[0]*i+A.c[1]*j);if(z>bz+1e-9){bz=z;best=[i,j,A.c[0]*i+A.c[1]*j]}}
+  return{pts,best}}
+function gExplain(A){if(A.inf||A.unb||!A.opt)return"";const f=fmt,Lt=i=>String.fromCharCode(65+i),ln=[],o=A.V[A.opt[0]];
+  ln.push(`You want to <b>${G.goal==="max"?"maximize":"minimize"}</b> Z = ${lhs([G.obj[0],G.obj[1]])}, with ${G.cons.length} constraint${G.cons.length===1?"":"s"} and ${esc(sub(0))}, ${esc(sub(1))} ≥ 0.`);
+  if(A.alt)ln.push(`Several plans are equally good: every point on the optimal edge gives Z = <b>${f(A.best)}</b>. One of them is corner <b>${Lt(A.opt[0])}</b> at ${esc(sub(0))} = ${f(o[0])}, ${esc(sub(1))} = ${f(o[1])}.`);
+  else ln.push(`The best plan is corner <b>${Lt(A.opt[0])}</b>: ${esc(sub(0))} = <b>${f(o[0])}</b>, ${esc(sub(1))} = <b>${f(o[1])}</b>, giving Z = <b>${f(A.best)}</b>.`);
+  G.cons.forEach((k,i)=>{const en=A.H.filter(l=>l.ci===i);if(!en.length)return;const sl=Math.min(...en.map(l=>l.h-(l.n[0]*o[0]+l.n[1]*o[1])));
+    ln.push(sl<1e-6?`<b>${esc(gcn(i))}</b> is <b>binding</b>: it is used up completely, so it is what limits the result.`:`<b>${esc(gcn(i))}</b> is not binding: ${f(sl)} ${k.op===">="?"above its minimum":"unused"}.`)});
+  if(!A.alt&&GA===GB){const R=gRanges(A);R.rhs.forEach((r,i)=>{if(r&&r.bind&&Math.abs(r.sp)>1e-9)ln.push(`One more unit of <b>${esc(gcn(i))}</b>'s right-hand side changes Z by <b>${f(r.sp)}</b> (its shadow price). This holds while the right-hand side stays between ${rg(r.lo)} and ${rg(r.hi)}.`)});
+    ln.push(`The same corner stays optimal while c₁ is within [${rg(R.c[0].lo)}, ${rg(R.c[0].hi)}] and c₂ within [${rg(R.c[1].lo)}, ${rg(R.c[1].hi)}], changing one at a time.`)}
+  if(A.red.length)ln.push(`${A.red.map(q=>`<b>${esc(gcn(q.i))}</b>`).join(", ")} ${A.red.length>1?"are":"is"} redundant: removing ${A.red.length>1?"them":"it"} would not change the feasible region.`);
+  if(A.R.length)ln.push("The feasible region is open, but the objective cannot improve forever in that direction, so an optimum exists.");
+  return`<div class="card"><div style="font-family:var(--serif);font-weight:600;margin-bottom:6px">In plain words</div><ul class="how">${ln.map(t=>"<li>"+t+"</li>").join("")}</ul></div>`}
+function gParams(){const P=[];[0,1].forEach(j=>P.push({l:"Objective c"+(j+1)+" ("+sub(j)+")",g:()=>G.obj[j],s:v=>G.obj[j]=v,inp:[1000,j]}));
+  G.cons.forEach((k,i)=>{[0,1].forEach(j=>P.push({l:gcn(i)+": "+sub(j)+" coefficient",g:()=>G.cons[i].a[j],s:v=>G.cons[i].a[j]=v,inp:[1001+i,j]}));P.push({l:gcn(i)+": right-hand side",g:()=>G.cons[i].b,s:v=>G.cons[i].b=v,inp:[1001+i,2]})});return P}
+function gTweakUI(){const el=$("#gTw");if(!el)return;const P=gParams();if(GV.tw>=P.length)GV.tw=0;const v=num(P[GV.tw].g()),sp=Math.max(10,Math.abs(v)*1.5);
+  el.innerHTML=`<select class="sl" id="gTwSel" style="max-width:none;width:100%">${P.map((q,i)=>`<option value="${i}" ${i===GV.tw?"selected":""}>${esc(q.l)}</option>`).join("")}</select>
+   <div class="row" style="margin-top:10px"><button class="btn sm" data-tw="-1">−1</button><button class="btn sm" data-tw="-0.1">−0.1</button><input type="range" id="gTwS" min="${+(v-sp).toFixed(2)}" max="${+(v+sp).toFixed(2)}" step="0.1" value="${v}" style="flex:1"><button class="btn sm" data-tw="0.1">+0.1</button><button class="btn sm" data-tw="1">+1</button></div>
+   <div class="preview">Value: <b id="gTwV">${fmt(v)}</b>. The graph, interpretation and ranges update as you move it.</div>`}
+function gTwSet(v){const p=gParams()[GV.tw];v=+(+v).toFixed(4);p.s(String(v));const i=document.querySelector(`input[data-r="${p.inp[0]}"][data-c="${p.inp[1]}"]`);if(i)i.value=String(v);$("#gTwV").textContent=fmt(v);save();gUpdate();mpvUpdate()}
+const gv_=$("#v-graph");
+gv_.addEventListener("click",e=>{const b=e.target.closest("[data-tw],[data-gv]");if(!b)return;
+  if(b.dataset.tw){const v=num(gParams()[GV.tw].g())+ +b.dataset.tw;gTwSet(v);const sl=$("#gTwS");if(sl){sl.min=Math.min(+sl.min,v);sl.max=Math.max(+sl.max,v);sl.value=v}return}
+  const k=b.dataset.gv;if(k==="zin")GV.z=Math.max(.2,GV.z*.8);else if(k==="zout")GV.z=Math.min(8,GV.z*1.25);else if(k==="fit")GV.z=1;else{GV[k]=GV[k]?0:1;b.classList.toggle("on",!!GV[k])}
+  $("#gcv").style.touchAction=GV.drag?"none":"pan-y";gRefresh()});
+gv_.addEventListener("input",e=>{if(e.target.id==="gTwS")gTwSet(+e.target.value)});
+gv_.addEventListener("change",e=>{if(e.target.id==="gTwSel"){GV.tw=+e.target.value;gTweakUI()}});
+let gdr=null,gRaf=0;const gcv_=$("#gcv");
+const gW=e=>{const r=gcv_.getBoundingClientRect(),m=GV.map,px=(e.clientX-r.left)*(m.w/r.width),py=(e.clientY-r.top)*(m.h/r.height);return{px,py,x:(px-m.ml)/(m.w-m.ml-m.mr)*m.X,y:(m.h-m.mb-py)/(m.h-m.mt-m.mb)*m.Y}};
+gcv_.addEventListener("pointerdown",e=>{if(!GV.drag||!GV.map)return;const p=gW(e),m=GV.map;let best=null,bd=20;
+  G.cons.forEach((k,i)=>{const a=num(k.a[0]),b=num(k.a[1]);if(!a&&!b)return;const sg=clipLine(a,b,gb(i),m.X,m.Y);if(!sg)return;
+    const P=q=>[m.ml+q[0]/m.X*(m.w-m.ml-m.mr),m.h-m.mb-q[1]/m.Y*(m.h-m.mt-m.mb)],A1=P(sg[0]),B1=P(sg[1]),dx=B1[0]-A1[0],dy=B1[1]-A1[1],L2=dx*dx+dy*dy||1,t=Math.max(0,Math.min(1,((p.px-A1[0])*dx+(p.py-A1[1])*dy)/L2)),d=Math.hypot(p.px-A1[0]-t*dx,p.py-A1[1]-t*dy);if(d<bd){bd=d;best=i}});
+  if(best!=null){gdr=best;try{gcv_.setPointerCapture(e.pointerId)}catch(x){}e.preventDefault()}});
+gcv_.addEventListener("pointermove",e=>{if(gdr==null)return;const p=gW(e),k=G.cons[gdr];k.b=String(Math.round((num(k.a[0])*p.x+num(k.a[1])*p.y)*10)/10);
+  const i=document.querySelector('input[data-r="'+(1001+gdr)+'"][data-c="2"]');if(i)i.value=k.b;if(!gRaf)gRaf=requestAnimationFrame(()=>{gRaf=0;save();gUpdate();gTweakUI()})});
+gcv_.addEventListener("pointerup",()=>{gdr=null});gcv_.addEventListener("pointercancel",()=>{gdr=null});
+
+/* ---------- Phase 10c: export (PDF, PNG, JPG, HTML, Markdown) ---------- */
+const XP_CSS=`.xp{--bg:#fff;--card:#fff;--tx:#1f1d19;--mut:#6b665b;--bd:#d8d2c3;--pri:#9a3b16;--pri2:#f4e9df;--ok:#3d7a50;--bad:#b0372a;--warn:#946610;--inp:#faf8f3;width:820px;max-width:100%;box-sizing:border-box;background:#fff;color:#1f1d19;font:15px/1.5 "Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.xp *{box-sizing:border-box}.xp .xh{background:#9a3b16;color:#fff;padding:28px 34px 22px}
+.xp .xh .k{font:600 11px/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+.xp .xh h1{font:600 30px/1.2 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;margin:10px 0 4px;color:#fff}.xp .xh .d{font-size:13px;opacity:.85}
+.xp .xb{padding:6px 34px 18px}
+.xp h2{font:600 18px/1.3 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;margin:26px 0 10px;padding:0 0 6px;border-bottom:2px solid #9a3b16;color:#1f1d19;text-transform:none;letter-spacing:0}
+.xp .tiles{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 2px}
+.xp .tile{flex:1 1 150px;border:1px solid #d8d2c3;border-left:4px solid #9a3b16;border-radius:6px;padding:10px 14px;background:#f4e9df}
+.xp .tile b{display:block;font:600 24px/1.25 "Iowan Old Style",Palatino,Georgia,serif}.xp .tile span{font:600 10.5px/1 ui-monospace,Menlo,monospace;letter-spacing:.08em;text-transform:uppercase;color:#6b665b}
+.xp pre.pb{background:#faf8f3;border:1px solid #d8d2c3;border-radius:6px;padding:14px 18px;font:14px/1.7 ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap;margin:0;color:#1f1d19}
+.xp .card{border:1px solid #d8d2c3;border-radius:8px;padding:12px 14px;margin:0 0 12px;background:#fff}
+.xp table{width:100%;border-collapse:collapse;font-size:13.5px;margin:4px 0}
+.xp th{font:600 11px ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#6b665b;text-align:right;padding:7px 8px;border-bottom:2px solid #d8d2c3}
+.xp td{padding:7px 8px;border-bottom:1px solid #ebe6da;text-align:right;font-variant-numeric:tabular-nums;font-family:inherit}.xp th.t,.xp td.t{text-align:left}
+.xp tr.hl td,.xp td.hl{background:#f4e9df;font-weight:700}.xp tr.crit td{background:#f7e3df;font-weight:700}
+.xp .badge,.xp .tag{display:inline-block;font:600 11px ui-monospace,Menlo,monospace;padding:2px 8px;border-radius:3px;background:#f4e9df;color:#9a3b16}
+.xp .b-ok{background:#e1efe5;color:#3d7a50}.xp .b-bad{background:#f7e3df;color:#b0372a}.xp .b-warn{background:#f5ecd2;color:#946610}
+.xp .z{font:600 34px/1.2 "Iowan Old Style",Palatino,Georgia,serif;color:#1f1d19;margin-top:6px}
+.xp .preview,.xp small{font-size:12.5px;color:#6b665b;font-family:inherit}.xp ul.how,.xp ul.xi{margin:0;padding-left:20px}.xp ul.xi li,.xp ul.how li{margin:7px 0}
+.xp img.xc{max-width:100%;border:1px solid #d8d2c3;border-radius:6px;display:block}.xp .scroll{overflow:visible}.xp .cv{background:#f5ecd2}
+.xp .xf{border-top:1px solid #d8d2c3;margin:6px 34px 0;padding:12px 0 24px;font:11.5px ui-monospace,Menlo,monospace;color:#6b665b;display:flex;justify-content:space-between}`;
+const fR=v=>v>=1e29?"∞":v<=-1e29?"−∞":fmt(v);
+function xpClone(sel){const o=typeof sel==="string"?$(sel):sel;if(!o||!o.innerHTML.trim())return null;const c=o.cloneNode(true);
+  const oc=[...o.querySelectorAll("canvas")];[...c.querySelectorAll("canvas")].forEach((cv,i)=>{try{const im=document.createElement("img");im.className="xc";im.src=oc[i].toDataURL("image/png");cv.replaceWith(im)}catch(e){cv.remove()}});
+  const oi=[...o.querySelectorAll("input,select")];[...c.querySelectorAll("input,select")].forEach((el,i)=>{const src=oi[i];if(!src)return;if(el.type==="range"){el.remove();return}const b=document.createElement("b");b.textContent=src.tagName==="SELECT"?(src.options[src.selectedIndex]||{}).text:src.value;el.replaceWith(b)});
+  c.querySelectorAll("button,.noprint,.seg").forEach(b=>b.remove());c.querySelectorAll("details").forEach(x=>x.setAttribute("open",""));c.removeAttribute("id");return c.innerHTML}
+/* interpretations */
+function interpModel(){const R=lastRes,L=[],f=fmt,goal=S.goal==="max"?"maximum":"minimum";
+  if(R.status!=="optimal"){L.push(R.status==="infeasible"?"No plan satisfies every constraint at once, so the problem is infeasible. Check the direction of each inequality and the right-hand sides.":"The objective can keep improving without limit, so the problem is unbounded. A constraint is probably missing or points the wrong way.");return{tiles:[["Status",R.status.toUpperCase()]],lines:L}}
+  const T_=[[`Z* (${goal})`,f(R.Z)],["Variables",S.n],["Constraints",S.m]];if(R.ip)T_.push(["LP bound",f(R.relZ)],["Integrality gap",f(R.gap)]);
+  L.push(`The optimal plan is ${R.x.map((v,j)=>`<b>${esc(sub(j))} = ${f(v)}</b>`).join(", ")}, which gives Z* = <b>${f(R.Z)}</b> (the ${goal}).`);
+  if(R.ip)L.push(`Integer requirements make the best plan ${f(R.gap)} worse than the LP relaxation (${f(R.relZ)}). The sensitivity statements below describe the relaxed problem.`);
+  R.rows.forEach((w,i)=>{const nmx=esc(cname(i));L.push(Math.abs(w.val)<1e-7?`<b>${nmx}</b> is <b>binding</b>: it is used up completely, so it limits the result.`:w.kind==="Slack"?`<b>${nmx}</b> has ${f(w.val)} of slack: that much capacity is left unused.`:w.kind==="Surplus"?`<b>${nmx}</b> is exceeded by ${f(w.val)}: the minimum is met with room to spare.`:`<b>${nmx}</b> holds with equality.`)});
+  const sn=R.rep&&R.rep.sens;if(sn){sn.c.forEach(o=>{if(Math.abs(o.sp)>1e-9)L.push(`Shadow price of <b>${esc(o.name)}</b> = ${f(o.sp)}: one more unit of its right-hand side changes Z by ${f(o.sp)}, valid for right-hand sides from ${fR(o.b-o.dec)} to ${fR(o.b+o.inc)}.`)});
+    sn.v.forEach(o=>{if(o.basic)L.push(`<b>${esc(o.name)}</b> stays in the plan while its objective coefficient is between ${fR(o.c-o.dec)} and ${fR(o.c+o.inc)}.`);else L.push(`<b>${esc(o.name)}</b> is zero: forcing one unit into the plan would change Z by ${f(o.rc)} (reduced cost).`)})}
+  return{tiles:T_,lines:L}}
+function interpTp(){const q=tpData(),{c,s,d,rl,cl}=q,cost=A=>A.reduce((t,r,i)=>t+r.reduce((u,v,j)=>u+(v||0)*c[i][j],0),0),A1=nwc(c,s,d),V=vam(c,s,d).A,O=tpOpt(c,s,d),f=fmt;
+  if(!O.ok)return{tiles:[["Status","INFEASIBLE"]],lines:["No feasible shipping plan exists."]};const zo=cost(O.A),z1=cost(A1),z2=cost(V),L=[`The cheapest plan meets all demand at a total cost of <b>${f(zo)}</b>.`];
+  O.A.forEach((r,i)=>r.forEach((v,j)=>{if(v!==null&&v>1e-9){const dm=rl[i]==="Dummy"||cl[j]==="Dummy";L.push(dm?`${rl[i]} → ${cl[j]}: ${f(v)} units (${rl[i]==="Dummy"?"demand that cannot be met":"supply left unshipped"}).`:`${rl[i]} → ${cl[j]}: ${f(v)} units at ${f(c[i][j])} each = ${f(v*c[i][j])}.`)}}));
+  L.push(`Northwest Corner starts at ${f(z1)} (${z1-zo<1e-9?"already optimal":f(z1-zo)+" above the optimum"}); Vogel's method starts at ${f(z2)} (${z2-zo<1e-9?"already optimal":f(z2-zo)+" above the optimum"}).`);
+  if(q.dummy)L.push(`Supply and demand were unbalanced, so a dummy ${q.dummy==="col"?"destination":"source"} took up ${f(Math.abs(q.S-q.D))} units at zero cost.`);
+  return{tiles:[["Optimal cost",f(zo)],["Northwest Corner",f(z1)],["Vogel (VAM)",f(z2)],["Saved vs NWC",f(z1-zo)]],lines:L}}
+function interpAs(){const a=T.as,C=a.c.map(r=>r.map(num)),mx=a.goal==="max",h=hung(C,mx),f=fmt,L=h.match.map((j,i)=>`${esc(an("rn",i))} is assigned to ${esc(an("cn",j))} (${mx?"profit":"cost"} ${f(C[i][j])}).`);
+  L.push(`Total ${mx?"profit":"cost"}: <b>${f(h.cost)}</b>. Every worker gets exactly one job and every job exactly one worker.`);return{tiles:[[mx?"Max profit":"Min cost",f(h.cost)],["Assignments",h.match.length]],lines:L}}
+function interpTs(){const N=T.ts.nodes,nb=N.map(x=>num(x.b)),arcs=T.ts.arcs.map(a=>({f:a.f,t:a.t,c:num(a.c),u:num(a.u)})).filter(a=>a.f!==a.t),nm=k=>esc(N[k].nm||"N"+(k+1)),r=tsFlow(nb,arcs),f=fmt;
+  if(!r.ok)return{tiles:[["Status","INFEASIBLE"]],lines:["The routes and capacities cannot carry the required flow."]};const L=[`The cheapest way to move the goods costs <b>${f(r.cost)}</b>.`];
+  arcs.forEach((a,i)=>{if(r.fl[i]>1e-9)L.push(`${nm(a.f)} → ${nm(a.t)} carries ${f(r.fl[i])} units at ${f(a.c)} each${a.u>0&&r.fl[i]>=a.u-1e-9?" (this route is at full capacity)":""}.`)});
+  N.forEach((x,k)=>{if(nb[k]===0){const inn=arcs.reduce((t,a,i)=>t+(a.t===k?r.fl[i]:0),0);if(inn>1e-9)L.push(`Transshipment node ${nm(k)} passes on ${f(inn)} units.`)}});
+  if(Math.abs(r.Sx-r.Dx)>1e-9)L.push(r.Sx>r.Dx?`${f(r.Sx-r.Dx)} units of supply stay unshipped.`:`${f(r.Dx-r.Sx)} units of demand stay unmet.`);
+  return{tiles:[["Min cost",f(r.cost)],["Routes used",arcs.filter((a,i)=>r.fl[i]>1e-9).length]],lines:L}}
+function interpNw(){const E=nwE(),n=NW.n,f=fmt,k=NW.sub;
+  if(k==="mst"){const m=kruskal(n,E),L=[`The cheapest network connecting every node uses ${m.chosen.length} edges with total length <b>${f(m.tot)}</b>.`,...m.chosen.map(i=>`${esc(el_(E,i).replace("→","–"))}: ${f(E[i].w)}.`)];if(m.comps>1)L.push(`The graph is disconnected (${m.comps} parts), so this is a spanning forest.`);return{tiles:[["Total length",f(m.tot)],["Edges",m.chosen.length]],lines:L}}
+  if(k==="sp"){const d=dijkstra(n,E,NW.src,NW.snk);if(d.neg)return{tiles:[],lines:["Dijkstra's algorithm needs non-negative distances."]};if(d.dist===Infinity)return{tiles:[["Status","UNREACHABLE"]],lines:[`${esc(nl(NW.snk))} cannot be reached from ${esc(nl(NW.src))}.`]};
+    return{tiles:[["Shortest distance",f(d.dist)],["Nodes on route",d.path.length]],lines:[`The shortest route from ${esc(nl(NW.src))} to ${esc(nl(NW.snk))} is <b>${d.path.map(x=>esc(nl(x))).join(" → ")}</b>, total distance <b>${f(d.dist)}</b>.`,...d.pe.map(i=>`${esc(el_(E,i))}: ${f(E[i].w)}.`)]}}
+  const m=maxflow(n,E,NW.src,NW.snk);return{tiles:[["Max flow",f(m.flow)],["Min cut",f(m.cutCap)]],lines:[`The most that can flow from ${esc(nl(NW.src))} to ${esc(nl(NW.snk))} is <b>${f(m.flow)}</b> units, found with ${m.steps.length} augmenting path${m.steps.length===1?"":"s"}.`,`The bottleneck (minimum cut) is ${m.cut.map(i=>esc(el_(E,i))).join(", ")||"empty"}, total capacity ${f(m.cutCap)}. Only raising these capacities can increase the flow.`]}}
+function interpPj(){const pert=PJ.mode==="pert",L0=PJ.acts.map(x=>{const a=num(x.a),m=num(x.m),b=num(x.b);return{id:x.id.trim(),pred:pjParse(x.pred),d:pert?(a+4*m+b)/6:num(x.d)}}),r=cpm(L0),f=fmt;if(r.err)return{tiles:[],lines:[esc(r.err)]};
+  const L=[`The project takes <b>${f(r.T)}</b> time units${pert?" on expected durations":""}.`,`Critical path${r.paths.length>1?"s":""}: ${r.paths.map(p=>"<b>"+p.map(i=>esc(L0[i].id)).join(" → ")+"</b>").join("; ")}. A delay on any of these activities delays the whole project.`];
+  L0.forEach((x,i)=>{if(!r.crit[i])L.push(`${esc(x.id)} has ${f(r.TS[i])} of total slack (${f(r.FS[i])} free): it can slip that long without delaying the project.`)});
+  const tiles=[[pert?"Expected time":"Completion time",f(r.T)],["Critical activities",r.crit.filter(Boolean).length]];
+  if(pert&&PJR.o){const o=PJR.o,T_=num(PJ.target),p=o.sd<1e-12?(T_>=o.mu-1e-9?1:0):Phi((T_-o.mu)/o.sd);tiles.push(["Std deviation",f(o.sd)],["P(T ≤ "+f(T_)+")",(p*100).toFixed(1)+"%"]);L.push(`Project variance is ${f(o.V)} (σ = ${f(o.sd)}). The probability of finishing within ${f(T_)} is <b>${(p*100).toFixed(2)}%</b>.`)}
+  return{tiles,lines:L}}
+function interpGm(){const A=GM.A.map(r=>r.map(num)),pr=gPure(A),lp=gLP(A),f=fmt,rn=i=>esc((GM.rn&&GM.rn[i])||"R"+(i+1)),cn=j=>esc((GM.cn&&GM.cn[j])||"C"+(j+1));let v,p,q,why;
+  if(pr.sad.length){const[i,j]=pr.sad[0];v=pr.mm;p=A.map((_,t)=>+(t===i));q=A[0].map((_,t)=>+(t===j));why=`There is a saddle point at (${rn(i)}, ${cn(j)}): maximin = minimax = ${f(v)}, so each player has an optimal pure strategy.`}
+  else{v=lp.v;p=lp.p;q=lp.q;why=`There is no saddle point (maximin ${f(pr.mm)}, minimax ${f(pr.MM)}), so both players should mix their strategies.`}
+  const sp=(a,nm)=>a.map((x,i)=>x>1e-9?`${nm(i)} ${f(x)}`:null).filter(Boolean).join(", ");
+  return{tiles:[["Game value",f(v)],["Type",pr.sad.length?"Pure":"Mixed"]],lines:[why,`Row player: play ${sp(p,rn)}.`,`Column player: play ${sp(q,cn)}.`,`The value ${f(v)} is the row player's average payoff per play${v>1e-9?", so the game favours the row player":v<-1e-9?", so the game favours the column player":", so the game is fair"}.`]}}
+/* export content */
+function xpData(){const v=($(".v.on")||{}).id,D={sections:[]},need={err:"Solve the problem first, then export."};
+  const put=(mod,title,I,problem)=>{Object.assign(D,{mod,title,tiles:I.tiles,lines:I.lines,problem})};
+  if(v==="v-model"||v==="v-results"||v==="v-reports"){if(!lastRes)return need;put("Optimization model",lastRes.ip?"Integer programming problem":"Linear programming problem",interpModel(),`<pre class="pb">${esc(modelText(mdl()))}</pre>`);
+    const R=lastRes,f=fmt;D.sections.push(["Solution",R.status!=="optimal"?`<div class="card"><span class="badge b-bad">${R.status.toUpperCase()}</span></div>`:
+      `<div class="card"><span class="badge b-ok">${R.ip?"OPTIMAL (INTEGER)":"OPTIMAL"}</span><div class="z">Z* = ${f(R.Z)}</div></div>${R.ipHtml||""}`+tbl(["Variable","Type","Value"],R.x.map((x,j)=>({c:[esc(sub(j)),{c:"Continuous",i:"Integer",b:"Binary"}[S.vt[j]]||"Continuous",f(x)]})))+tbl(["Constraint","LHS","","RHS","Slack / surplus","State"],R.rows.map((w,i)=>({cls:Math.abs(w.val)<1e-7?"hl":"",c:[esc(cname(i)),f(w.l),w.op==="=="?"=":w.op,f(w.b),w.kind==="—"?"—":f(w.val),Math.abs(w.val)<1e-7?"binding":"loose"]})))]);
+    if(R.rep){const sv=rp,nmr={ans:"Answer report",sen:"Sensitivity report",lim:"Limits report"};R.rep.warn.forEach(w=>D.sections.push(["Note",`<div class="card">${w}</div>`]));
+      ["ans","sen","lim"].forEach(k=>{rp=k;try{secs().forEach(sc=>D.sections.push([nmr[k]+": "+sc.t,tbl(sc.h,sc.r.map(r=>({c:r})))]))}catch(e){}});rp=sv}
+    return D}
+  if(v==="v-graph"){if(!GA)return need;const cv=$("#gcv");let img="";try{img=`<img class="xc" src="${cv.toDataURL("image/png")}">`}catch(e){}
+    put("Graphical method","Two-variable graphical LP",{tiles:GA.inf?[["Status","INFEASIBLE"]]:GA.unb?[["Status","UNBOUNDED"]]:[["Z*",fmt(GA.best)],["Corner points",GA.V.length],["Constraints",G.cons.length]],lines:[]},`<pre class="pb">${esc(modelText({goal:G.goal,obj:G.obj,cons:G.cons}))}</pre>`);
+    D.sections.push(["Graph",img||"<div class='card'>Plot unavailable.</div>"],["Interpretation",xpClone("#gInfo")||""],["Corner points",xpClone("#gTbl")||""]);const pv=xpClone("#gPv");if(pv)D.sections.push(["Sensitivity: ranges of optimality and feasibility",pv]);return D}
+  if(v==="v-tr"){const sub_=T.sub,r=xpClone("#trRes");if(!r)return need;const f=fmt;
+    if(sub_==="tp"){const q=tpData();put("Transportation","Transportation problem",interpTp(),tbl(["",...q.cl,"Supply"],[...q.c.map((row,i)=>({c:[esc(q.rl[i]),...row.map(f),f(q.s[i])]})),{cls:"hl",c:["Demand",...q.d.map(f),""]}])+`<div class="preview">Unit costs; supply and demand totals ${f(q.S)} and ${f(q.D)}${q.dummy?" (a dummy "+(q.dummy==="col"?"destination":"source")+" balances them)":""}.</div>`)}
+    else if(sub_==="as"){const a=T.as;put("Assignment","Assignment problem (Hungarian method)",interpAs(),tbl([a.goal==="max"?"Profit":"Cost",...a.c.map((_,j)=>esc(an("cn",j)))],a.c.map((row,i)=>({c:[esc(an("rn",i)),...row.map(x=>f(num(x)))]}))))}
+    else{const N=T.ts.nodes,nm=k=>esc(N[k].nm||"N"+(k+1));put("Transshipment","Transshipment problem",interpTs(),tbl(["Node","Net supply","Role"],N.map((x,k)=>({c:[nm(k),f(num(x.b)),nodeType(num(x.b))]})))+tbl(["Route","Unit cost","Capacity"],T.ts.arcs.map(a=>({c:[nm(a.f)+" → "+nm(a.t),f(num(a.c)),num(a.u)>0?f(num(a.u)):"unlimited"]}))))}
+    D.sections.push(["Results",r]);return D}
+  if(v==="v-nw"){const r=xpClone("#nwRes");if(!r)return need;const E=nwE(),k=NW.sub,wl=k==="mst"?"Length":k==="sp"?"Distance":"Capacity";
+    put("Network model",k==="mst"?"Minimum spanning tree":k==="sp"?"Shortest path":"Maximum flow",interpNw(),tbl(["Edge","Type",wl],E.map((e,i)=>({c:[esc(nl(e.a))+" – "+esc(nl(e.b)),e.d?"directed":"undirected",fmt(e.w)]})))+(k==="mst"?"":`<div class="preview">${k==="sp"?"From":"Source"} ${esc(nl(NW.src))} to ${esc(nl(NW.snk))}.</div>`));D.sections.push(["Results",r]);return D}
+  if(v==="v-pj"){const r=xpClone("#pjRes");if(!r)return need;const pert=PJ.mode==="pert";
+    put("Project management",pert?"PERT analysis":"CPM analysis",interpPj(),tbl(pert?["Activity","Predecessors","a","m","b"]:["Activity","Predecessors","Duration"],PJ.acts.map(x=>({c:pert?[esc(x.id),esc(x.pred||"—"),fmt(num(x.a)),fmt(num(x.m)),fmt(num(x.b))]:[esc(x.id),esc(x.pred||"—"),fmt(num(x.d))]}))));D.sections.push(["Results",r]);return D}
+  if(v==="v-gm"){const r=xpClone("#gmRes");if(!r)return need;const rn=i=>esc((GM.rn&&GM.rn[i])||"R"+(i+1)),cn=j=>esc((GM.cn&&GM.cn[j])||"C"+(j+1));
+    put("Game theory","Two-person zero-sum game",interpGm(),tbl(["Row \\ Column",...GM.A[0].map((_,j)=>cn(j))],GM.A.map((row,i)=>({c:[rn(i),...row.map(x=>fmt(num(x)))]})))+'<div class="preview">Payoffs to the row player (maximizer).</div>');D.sections.push(["Results",r]);return D}
+  return{err:"Open a module (Model, Graph, Transport, Network, Project or Game) to export it."}}
+function xpBuild(){const D=xpData();if(D.err){toast(D.err);return null}
+  const date=new Date().toLocaleDateString(undefined,{year:"numeric",month:"long",day:"numeric"}),slug=D.title.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+  const xp=document.createElement("div");xp.className="xp";
+  xp.innerHTML=`<div class="xh"><div class="k">OR Solver · ${esc(D.mod)}</div><h1>${esc(D.title)}</h1><div class="d">${date}</div></div><div class="xb">${D.tiles&&D.tiles.length?`<div class="tiles">${D.tiles.map(t=>`<div class="tile"><b>${esc(String(t[1]))}</b><span>${esc(t[0])}</span></div>`).join("")}</div>`:""}
+   <h2>Problem</h2>${D.problem}${D.sections.filter(s=>s[1]).map(s=>`<h2>${s[0]}</h2>${s[1]}`).join("")}${D.lines.length?`<h2>Interpretation</h2><div class="card"><ul class="xi">${D.lines.map(l=>`<li>${l}</li>`).join("")}</ul></div>`:""}</div>
+   <div class="xf"><span>Generated by OR Solver · works offline</span><span>${date}</span></div>`;
+  return{xp,slug,date}}
+function xpMount(xp){const w=document.createElement("div");w.id="xpwrap";w.innerHTML=`<style>${XP_CSS}</style>`;w.appendChild(xp);document.body.appendChild(w);return w}
+function xpSave(blob,name){const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1500)}
+function xpMd(root){let o="";const walk=e=>{for(const c of e.childNodes){if(c.nodeType===3){const t=c.textContent.replace(/\s+/g," ");if(t.trim())o+=t;continue}if(c.nodeType!==1)continue;const g=c.tagName;
+  if(g==="H1")o+="\n\n# "+c.textContent.trim()+"\n\n";else if(g==="H2")o+="\n\n## "+c.textContent.trim()+"\n\n";else if(g==="PRE")o+="\n\n```\n"+c.textContent.trim()+"\n```\n\n";
+  else if(g==="TABLE"){const R=[...c.querySelectorAll("tr")].map(r=>[...r.children].map(x=>x.textContent.trim().replace(/\|/g,"/")));if(R.length){const w=Math.max(...R.map(r=>r.length)),pd=r=>r.concat(Array(w-r.length).fill(""));o+="\n\n| "+pd(R[0]).join(" | ")+" |\n|"+" --- |".repeat(w)+"\n"+R.slice(1).map(r=>"| "+pd(r).join(" | ")+" |").join("\n")+"\n\n"}}
+  else if(g==="LI")o+="\n- "+c.textContent.trim();else if(g==="IMG")o+="\n\n*(figure: see the image or PDF export)*\n\n";
+  else if(/^(B|SPAN|SMALL|CODE|I|SUMMARY|STRONG)$/.test(g))o+=c.textContent;else{const b=/^(DIV|UL|OL|DETAILS|P|LI)$/.test(g);if(b)o+="\n";walk(c);if(b)o+="\n"}}};walk(root);return o.replace(/\n{3,}/g,"\n\n").trim()+"\n"}
+function xpH2C(){return window.html2canvas?Promise.resolve():new Promise((ok,no)=>{const s=document.createElement("script");s.src="html2canvas.min.js";s.onload=ok;s.onerror=()=>no(new Error("Image library not found. Keep html2canvas.min.js next to index.html."));document.head.appendChild(s)})}
+async function xpRun(kind){const B=xpBuild();if(!B)return;const{xp,slug}=B,stamp=new Date().toISOString().slice(0,10),base=`or-solver-${slug}-${stamp}`;
+  if(kind==="md"||kind==="copy"){const t=xpMd(xp);if(kind==="copy")return copyTxt(t);xpSave(new Blob([t],{type:"text/markdown"}),base+".md");return toast("Saved "+base+".md")}
+  if(kind==="html"){xpSave(new Blob([`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(slug)}</title><style>body{margin:0;background:#ece8dd;padding:16px}.xp{margin:0 auto;box-shadow:0 2px 14px rgba(0,0,0,.15)}${XP_CSS}</style></head><body>${xp.outerHTML}</body></html>`],{type:"text/html"}),base+".html");return toast("Saved "+base+".html")}
+  const w=xpMount(xp);
+  try{
+    if(kind==="pdf"){const done=()=>{w.remove();removeEventListener("afterprint",done)};addEventListener("afterprint",done);setTimeout(()=>{if(w.isConnected)w.remove()},120000);setTimeout(()=>print(),150);return}
+    toast("Preparing image…");await xpH2C();await new Promise(r=>setTimeout(r,80));
+    const h=xp.offsetHeight||2000,scale=Math.max(1,Math.min(2,14000/h)),cv=await html2canvas(xp,{scale,backgroundColor:"#ffffff",useCORS:true,logging:false,windowWidth:860});
+    const mime=kind==="jpg"?"image/jpeg":"image/png";await new Promise(ok=>cv.toBlob(b=>{xpSave(b,base+(kind==="jpg"?".jpg":".png"));ok()},mime,.93));toast("Saved "+base+(kind==="jpg"?".jpg":".png"))
+  }catch(e){toast(e.message||"Export failed")}finally{if(kind!=="pdf")w.remove()}}
+$("#xpBtn").onclick=()=>sheet("Export report",`<div class="preview" style="margin:0 0 10px">Exports the problem, results, reports and a plain-language interpretation for the module you are viewing.</div>`+
+  [["pdf","PDF","Opens the print dialog: choose Save as PDF."],["png","PNG image","Sharp picture of the whole report."],["jpg","JPG image","Smaller file, good for chat apps."],["html","Web page (.html)","Opens in any browser with tables intact."],["md","Markdown (.md)","Plain text with tables for notes and docs."],["copy","Copy as text","Paste into a message or document."]].map(x=>`<button class="btn mig" data-xp="${x[0]}"><b>${x[1]}</b><small>${x[2]}</small></button>`).join(""));
+$("#shB").addEventListener("click",e=>{const b=e.target.closest("[data-xp]");if(!b)return;$("#sheet").classList.remove("on");xpRun(b.dataset.xp)});
 
 /* ---------- Phase 8: offline, install, connectivity ---------- */
 let dip=null;
@@ -1273,9 +1545,6 @@ $("#haptic").onchange=e=>{S.set.haptic=e.target.checked;save()};
 ["nIn","mIn"].forEach(id=>$("#"+id).addEventListener("change",e=>{const v=Math.max(id==="nIn"?1:0,parseInt(e.target.value)||0);if(id==="nIn")S.n=v;else S.m=v;
   if(v>300&&!confirm("That's a big model ("+v+"). Continue?")){return render()}render()}));
 $("#clrBtn").onclick=()=>{if(!confirm("Reset the whole model to zeros?"))return;S.obj=S.obj.map(()=>"0");S.cons=S.cons.map(c=>({a:c.a.map(()=>"0"),op:c.op,b:"0"}));lastRes=null;render()};
-$("#exBtn").onclick=()=>{ // classic textbook LP: Max 3x1+5x2, x1<=4, 2x2<=12, 3x1+2x2<=18  -> Z*=36 at (2,6)
-  S.goal="max";S.n=2;S.m=3;S.nonneg=true;S.obj=["3","5"];
-  S.cons=[{a:["1","0"],op:"<=",b:"4"},{a:["0","2"],op:"<=",b:"12"},{a:["3","2"],op:"<=",b:"18"}];render();toast("Example loaded: Z* should be 36")};
 matchMedia("(prefers-color-scheme:dark)").addEventListener("change",()=>{if(S.set.theme==="auto")applyLook()});
 addEventListener("resize",()=>{layoutPad();if($("#v-graph").classList.contains("on"))gDraw();if($("#v-nw").classList.contains("on"))nwRedraw();if($("#v-gm").classList.contains("on"))gmDraw()});
 if(!window.Solver)toast("Solver not loaded (check connection once to cache it)");
