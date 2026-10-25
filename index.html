@@ -115,10 +115,33 @@ code{font-family:var(--mono);font-size:12px;background:var(--pri2);padding:1px 4
 @media(max-width:400px){.tb button{font-size:11px;gap:3px}.tb button svg{width:14px;height:14px}}
 #xpwrap{position:fixed;left:-12000px;top:0;z-index:-1}
 @media print{body>*:not(#xpwrap){display:none!important}#xpwrap{position:static!important;left:auto!important}#xpwrap .xp{width:auto!important}@page{margin:12mm}}
+/* ---- Phase 11 UX pass ---- */
+#vnav{display:none!important}
+header>div{gap:8px}.mbtn{flex:none;width:38px;height:38px;border:1px solid var(--bd);background:var(--card);border-radius:6px;color:var(--tx);display:flex;align-items:center;justify-content:center;cursor:pointer}.mbtn svg{width:20px;height:20px}
+#app{padding-top:calc(var(--hh,104px) + 10px)}
+#drawer{position:fixed;inset:0;z-index:70;display:none;background:rgba(0,0,0,.4)}#drawer.on{display:block}
+#drawer .dp{position:absolute;left:0;top:0;bottom:0;width:min(86vw,330px);background:var(--card);border-right:1px solid var(--bd);padding:calc(14px + env(safe-area-inset-top)) 10px 14px;overflow:auto;animation:dsl .16s ease-out}@keyframes dsl{from{transform:translateX(-24px);opacity:0}to{transform:none;opacity:1}}
+.mi{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;padding:10px;border:0;border-left:3px solid transparent;background:none;color:var(--tx);font:inherit;border-radius:0 6px 6px 0;cursor:pointer}
+.mi svg{width:22px;height:22px;flex:none;margin-top:2px}.mi b{display:block;font-weight:600}.mi small{color:var(--mut);font-size:12.5px}.mi.on{border-left-color:var(--pri);background:var(--pri2)}
+.v.sub-res #trBody>*:not(#trRes),.v.sub-res #nwBody>*:not(#nwRes),.v.sub-res #pjBody>*:not(#pjRes),.v.sub-res #gmBody>*:not(#gmRes){display:none!important}
+#v-tr.sub-in #trRes,#v-nw.sub-in #nwRes,#v-pj.sub-in #pjRes,#v-gm.sub-in #gmRes{display:none}
+#v-tr.sub-res #trRes:empty::after,#v-nw.sub-res #nwRes:empty::after,#v-pj.sub-res #pjRes:empty::after,#v-gm.sub-res #gmRes:empty::after{content:"No results yet. Go to Setup, enter the problem and press Solve.";display:block;padding:48px 12px;text-align:center;color:var(--mut)}
+.gwrap,.gplot,.gcol{display:contents}
+.gstick{position:sticky;top:var(--hh,104px);z-index:6;padding:6px;margin-bottom:10px;box-shadow:0 8px 10px -9px rgba(0,0,0,.45)}.gstick.unpinned{position:static;box-shadow:none}
+.ctitle{font-family:var(--serif);font-weight:600;font-size:15px;margin-bottom:8px}.gtwv{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-top:8px;font-size:13px}.gtwv b{font:600 22px var(--serif);min-width:64px}
+body.desktop #app{max-width:1180px}body.desktop header>div,body.desktop header>.tb{max-width:1180px}
+body.desktop #v-graph.on .gwrap{display:grid;grid-template-columns:minmax(320px,.95fr) minmax(430px,1.05fr);gap:20px;align-items:start}
+body.desktop #v-graph.on .gcol{display:block;order:1}body.desktop #v-graph.on .gplot{display:block;order:2;position:sticky;top:calc(var(--hh,104px) + 10px)}body.desktop #v-graph.on .gstick{position:static;box-shadow:none}
+.seg{display:inline-flex;width:auto;max-width:100%;flex-wrap:wrap}.seg button{flex:none;padding:6px 15px}
+.btn{padding:7px 14px;min-height:34px}.btn.sm{padding:4px 10px;min-height:30px}.btn.sp,button.sp{flex:0 0 auto}.row{flex-wrap:wrap}
+.btn.pri{box-shadow:0 1px 0 rgba(0,0,0,.15)}
+@media(hover:hover){.btn:hover{background:var(--pri2)}.btn.pri:hover{background:var(--pri);filter:brightness(1.1)}.seg button:not(.on):hover{background:var(--pri2);color:var(--tx)}.chip:hover{border-color:var(--mut)}.mbtn:hover,.tb button:hover{background:var(--pri2)}.mi:hover{background:var(--pri2)}nav button:hover{color:var(--tx)}}
+#pad .g{grid-template-columns:repeat(4,1fr)}#pad .g i{display:block}#pad button{height:40px}#pad button.cl{color:var(--mut);font-size:16px}#pad button.d{font-size:17px}#pad button.x{display:none;height:34px}#pad.fx button.x{display:block}
 </style>
 </head>
 <body>
 <header><div>
+  <button class="mbtn" id="menuBtn" aria-label="Open modules menu" title="Modules"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   <h1>OR Solver<small id="hSub">Operations research toolkit</small></h1>
   <button class="btn sm" id="themeQ" title="Toggle light/dark">Theme</button>
   <button class="btn pri" id="solveBtn">Solve ▶</button>
@@ -145,6 +168,7 @@ code{font-family:var(--mono);font-size:12px;background:var(--pri2);padding:1px 4
       </div>
       <label class="row" style="margin-top:10px"><input type="checkbox" id="nonneg"> <span>Non-negativity (x ≥ 0)</span></label>
       <div class="preview" id="ipTag"></div>
+      <div class="preview" id="gHint"></div>
     </div>
     <h2>Objective function</h2>
     <div class="card"><div class="scroll"><div class="coefs" id="objRow"></div></div><div class="preview" id="objPrev"></div></div>
@@ -167,21 +191,27 @@ code{font-family:var(--mono);font-size:12px;background:var(--pri2);padding:1px 4
 
   <!-- GRAPH -->
   <section class="v" id="v-graph">
-    <div class="card"><div class="seg" id="gGoal"><button data-gg="max">Maximize</button><button data-gg="min">Minimize</button></div></div>
-    <h2>Objective · Z =</h2><div class="card"><div class="scroll"><div class="coefs" id="gObj"></div></div></div>
-    <h2>Constraints (up to 12, x ≥ 0 assumed)</h2><div id="gCons"></div>
-    <div class="row"><button class="btn sp" id="gAdd">+ Add</button><button class="btn sp" id="gEx">Examples ▸</button></div>
-    <div class="row" style="margin-top:8px"><button class="btn sm sp" id="gImp">From Model</button><button class="btn sm sp" id="gSend">To Model</button><button class="btn sm bad" id="gClr">Clear</button></div>
-    <h2>Graph</h2>
-    <div class="card" style="padding:8px"><canvas id="gcv" style="width:100%;display:block;border-radius:10px"></canvas>
-      <div class="row" style="margin-top:8px"><button class="btn sm" id="gPlay">▶ Play</button><input type="range" id="gIso" min="0" max="1000" value="1000" style="flex:1"><b id="gZ" style="min-width:64px;text-align:right"></b></div>
+   <div class="gwrap">
+    <div class="gplot">
+     <div class="card gstick"><canvas id="gcv" style="width:100%;display:block;border-radius:6px"></canvas>
+      <div class="row" style="margin-top:6px;flex-wrap:nowrap"><button class="btn sm" id="gPlay">▶ Play</button><input type="range" id="gIso" min="0" max="1000" value="1000" style="flex:1;min-width:60px"><b id="gZ" style="min-width:64px;text-align:right"></b></div></div>
+     <div class="card" id="gTwCard"><div class="ctitle">Tweak any number</div><div id="gTw"></div></div>
+    </div>
+    <div class="gcol">
+     <div class="card"><div class="seg" id="gGoal"><button data-gg="max">Maximize</button><button data-gg="min">Minimize</button></div><div class="preview">Linked to the Model tab: edits here update the model, and the other way round.</div></div>
+     <h2>Objective · Z =</h2><div class="card"><div class="scroll"><div class="coefs" id="gObj"></div></div></div>
+     <h2>Constraints (up to 12, x ≥ 0 assumed)</h2><div id="gCons"></div>
+     <div class="row"><button class="btn" id="gAdd">+ Add constraint</button><button class="btn" id="gEx">Examples ▸</button><button class="btn bad" id="gClr">Clear</button></div>
+     <div style="display:none"><button id="gImp"></button><button id="gSend"></button></div>
+     <details class="card" style="margin-top:12px" open><summary style="font-weight:700">Display options</summary>
       <div id="gLeg" style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap"></div>
-      <div id="gChips" class="noprint" style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap"><button class="chip on" data-gv="icp">Intercepts</button><button class="chip on" data-gv="cor">Corners</button><button class="chip on" data-gv="iso">Iso-line</button><button class="chip" data-gv="lat">Integer points</button><button class="chip" data-gv="drag">Drag lines</button><button class="chip" data-gv="zout">Zoom −</button><button class="chip" data-gv="zin">Zoom +</button><button class="chip" data-gv="fit">Fit</button></div>
-      <button class="btn sm noprint" id="gPng" style="margin-top:8px">Save image</button></div>
-    <h2>Tweak any number</h2><div class="card" id="gTw"></div>
-    <h2>Pivot and sensitivity</h2><div class="card" id="gPv"></div>
-    <h2>Analysis</h2><div id="gInfo"></div>
-    <h2>Corner points</h2><div class="card scroll" id="gTbl"></div>
+      <div id="gChips" class="noprint" style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap"><button class="chip on" data-gv="pin">Pin graph</button><button class="chip on" data-gv="icp">Intercepts</button><button class="chip on" data-gv="cor">Corners</button><button class="chip on" data-gv="iso">Iso-line</button><button class="chip" data-gv="lat">Integer points</button><button class="chip" data-gv="drag">Drag lines</button><button class="chip" data-gv="zout">Zoom −</button><button class="chip" data-gv="zin">Zoom +</button><button class="chip" data-gv="fit">Fit</button></div>
+      <button class="btn sm noprint" id="gPng" style="margin-top:8px">Save image</button></details>
+     <h2>Pivot and sensitivity</h2><div class="card" id="gPv"></div>
+     <h2>Analysis</h2><div id="gInfo"></div>
+     <h2>Corner points</h2><div class="card scroll" id="gTbl"></div>
+    </div>
+   </div>
   </section>
 
   <!-- TRANSPORT / ASSIGNMENT / TRANSSHIPMENT -->
@@ -225,15 +255,16 @@ code{font-family:var(--mono);font-size:12px;background:var(--pri2);padding:1px 4
 </main>
 
 <div id="pad"><div class="g">
-  <button class="d" data-k="L">←</button><button class="d" data-k="U">↑</button><button class="d" data-k="D">↓</button><button class="d" data-k="R">→</button>
-  <button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button><button data-k="B">⌫</button>
-  <button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button><button data-k="±">±</button>
+  <button class="cl" data-k="X" title="Close numpad (Esc)" aria-label="Close numpad">✕</button><i></i><button class="d" data-k="U" title="Up">↑</button><button data-k="B" title="Backspace">⌫</button>
+  <button data-k="±">±</button><button class="d" data-k="L" title="Left">←</button><button class="d" data-k="D" title="Down">↓</button><button class="d" data-k="R" title="Right">→</button>
+  <button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button><button data-k="C" title="Clear cell">C</button>
+  <button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button><button class="go" data-k="N">Next ›</button>
   <button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button><button data-k=".">.</button>
-  <button data-k="0">0</button><button data-k="/">/</button><button data-k="C">C</button><button class="go" data-k="N">Next ›</button>
-  <button class="sm" data-k="fx" style="grid-column:1/-1">Formula keys: = + − × ÷ ^ ( )</button><button class="x" data-k="=">=</button><button class="x" data-k="+">+</button><button class="x" data-k="-">−</button><button class="x" data-k="*">×</button><button class="x" data-k="^">^</button><button class="x" data-k="(">(</button><button class="x" data-k=")">)</button><button class="x" data-k="/">÷</button>
+  <button data-k="0" style="grid-column:span 2">0</button><button data-k="/">/</button><button data-k="fx" title="Formula keys">fx</button>
+  <button class="x" data-k="=">=</button><button class="x" data-k="+">+</button><button class="x" data-k="-">−</button><button class="x" data-k="*">×</button><button class="x" data-k="^">^</button><button class="x" data-k="(">(</button><button class="x" data-k=")">)</button><button class="x" data-k="/">÷</button>
 </div></div>
 
-<nav>
+<nav id="vnav">
   <button class="on" data-v="model"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h9M18 7h1M5 17h1M10 17h9"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg>Model</button>
   <button data-v="results"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>Results</button>
   <button data-v="reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg>Reports</button>
@@ -244,6 +275,8 @@ code{font-family:var(--mono);font-size:12px;background:var(--pri2);padding:1px 4
   <button data-v="gm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r=".6"/><circle cx="15" cy="15" r=".6"/><circle cx="15" cy="9" r=".6"/><circle cx="9" cy="15" r=".6"/></svg>Game</button>
   <button data-v="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg>Settings</button>
 </nav>
+<nav id="bnav"></nav>
+<div id="drawer"><aside class="dp"><div class="row" style="margin-bottom:8px"><b class="sp" style="font-family:var(--serif);font-size:18px">Modules</b><button class="btn sm" data-dx>Close</button></div><div id="dList"></div><div class="preview" style="padding:10px 4px 0">Choose a module. Its own tabs (setup, results, reports, graph) appear along the bottom.</div></aside></div>
 <div id="sheet"><div class="p"><div class="row" style="margin-bottom:10px"><b id="shT" class="sp" style="font-family:var(--serif);font-size:17px"></b><button class="btn sm" data-shx>Close</button></div><div id="shB"></div></div></div>
 <div class="toast" id="toast"></div>
 
@@ -302,7 +335,7 @@ function render(){
   $$("#themeSeg button").forEach(b=>b.classList.toggle("on",b.dataset.th===S.set.theme));
   $$("#viewSeg button").forEach(b=>b.classList.toggle("on",b.dataset.vw===S.set.view));
   $("#padOn").checked=S.set.pad;$("#haptic").checked=S.set.haptic;$("#dIn").value=S.set.dec;
-  applyLook();save();if(typeof presetShow==="function")presetShow();if(typeof mpvUpdate==="function")mpvUpdate();
+  applyLook();save();if(typeof presetShow==="function")presetShow();if(typeof mpvUpdate==="function")mpvUpdate();if(typeof drawBnav==="function")drawBnav();
 }
 function lhs(a){const t=a.map((v,j)=>[num(v),j]).filter(x=>x[0]!==0).map(([v,j],k)=>{const s=v<0?"− ":(k?"+ ":"");const m=Math.abs(v);return s+(m===1?"":fmt(m))+sub(j)});return t.length?t.join(" "):"0"}
 function applyLook(){
@@ -312,7 +345,7 @@ function applyLook(){
   layoutPad();
 }
 function layoutPad(){
-  const nav=$("nav").offsetHeight,on=S.set.pad&&cur&&($("#v-model").classList.contains("on")||$("#v-graph").classList.contains("on")||$("#v-tr").classList.contains("on")||$("#v-nw").classList.contains("on")||$("#v-pj").classList.contains("on")||$("#v-gm").classList.contains("on"));
+  const nav=$("#bnav").offsetHeight,on=S.set.pad&&cur&&($("#v-model").classList.contains("on")||$("#v-graph").classList.contains("on")||$("#v-tr").classList.contains("on")||$("#v-nw").classList.contains("on")||$("#v-pj").classList.contains("on")||$("#v-gm").classList.contains("on"));
   const p=$("#pad");p.classList.toggle("on",!!on);p.style.bottom=nav+"px";
   document.documentElement.style.setProperty("--pad",(nav+(on?p.offsetHeight:0))+"px");
 }
@@ -490,7 +523,7 @@ function gAnalyze(){
   return A}
 const nice=r=>{const p=10**Math.floor(Math.log10(r/5)),f=r/5/p;return(f<1.5?1:f<3.5?2:f<7.5?5:10)*p};
 const gcn=i=>(G.cons[i]&&G.cons[i].nm)||"C"+(i+1);
-var GV={z:1,icp:1,cor:1,iso:1,lat:0,drag:0,tw:0,map:null};
+var GV={z:1,icp:1,cor:1,iso:1,lat:0,drag:0,tw:0,map:null,pin:1,tw0:0,twZ:null};
 function gView(A){let X=0,Y=0;const up=(x,y)=>{if(x>X)X=x;if(y>Y)Y=y};
   G.cons.forEach(k=>{const[a,b]=icp(k);if(a>0)up(a,0);if(b>0)up(0,b)});(A.V||[]).forEach(v=>up(v[0],v[1]));
   return[(X>0?X*1.2:10)*GV.z,(Y>0?Y*1.2:10)*GV.z]}
@@ -502,7 +535,7 @@ function gIso(A){const lo=Math.min(...A.Z),hi=Math.max(...A.Z),sp=Math.max(hi-lo
   let st=A.sg>0?lo:hi,en=A.unb?(A.sg>0?hi+sp:lo-sp):(A.sg>0?hi:lo);if(Math.abs(en-st)<1e-9)st=en-A.sg*sp*.5;return st+(en-st)*gt}
 function gDraw(){
   const cv=$("#gcv");if(!cv||!cv.clientWidth||!GA)return;
-  const A=GA,w=cv.clientWidth,h=Math.round(w*(S.set.view==="desktop"?.62:.95)),dpr=devicePixelRatio||1;
+  const A=GA,w=cv.clientWidth,h=Math.round(Math.min(w*(S.set.view==="desktop"?.8:.95),Math.max(220,innerHeight*(S.set.view==="desktop"?.62:.4)))),dpr=devicePixelRatio||1;
   cv.width=w*dpr;cv.height=h*dpr;cv.style.height=h+"px";
   const x=cv.getContext("2d");x.setTransform(dpr,0,0,dpr,0,0);
   const cs=getComputedStyle(document.documentElement),css=n=>cs.getPropertyValue(n).trim(),tx=css("--tx"),mut=css("--mut"),bd=css("--bd"),pri=css("--pri"),bg=css("--card"),gold="#f59e0b";
@@ -576,13 +609,13 @@ function gPanels(){
   $("#gLeg").innerHTML=G.cons.map((k,i)=>`<span class="tag" style="background:${COL[i]}22;color:${COL[i]}">${esc(gcn(i))}</span>`).join("")+`<span class="tag">▭ feasible</span><span class="tag" style="background:#f59e0b33;color:#b45309">- - iso-line</span>`;
   G.cons.forEach((k,i)=>{const e=$("#gt"+i);if(e)e.innerHTML=A.red.some(o=>o.i===i)?'<span class="badge b-warn">Redundant</span>':A.zero.includes(i)?'<span class="badge b-warn">Ignored</span>':(A.H.some(l=>l.ci===i)?'<span class="badge b-ok">Shapes region</span>':"")});
 }
-function gUpdate(){gOv={c:null,b:{}};GP.mode="off";gRefresh();gPivotUI()}
+function gUpdate(){gToModel();gOv={c:null,b:{}};GP.mode="off";gRefresh();gPivotUI()}
 function gInputs(){
   $$("#gGoal button").forEach(b=>b.classList.toggle("on",b.dataset.gg===G.goal));
   $("#gObj").innerHTML=[0,1].map(j=>`<div class="cell">${vl(j)}${inp(1000,j,G.obj[j],"g")}</div>`).join("");
   $("#gCons").innerHTML=G.cons.map((k,i)=>`<div class="card"><div class="row" style="margin-bottom:8px"><span class="tag" style="background:${COL[i]}22;color:${COL[i]}">C${i+1}</span><span id="gt${i}"></span><input class="tx cnm" data-gcn="${i}" placeholder="name (optional)" value="${esc(k.nm||"")}" maxlength="28" style="flex:1;min-width:80px;width:auto"><button class="btn sm bad" data-gdel="${i}">✕</button></div>
     <div class="scroll"><div class="coefs">${[0,1].map(j=>`<div class="cell">${vl(j)}${inp(1001+i,j,k.a[j],"g")}</div>`).join("")}<div class="cell"><label>op</label><button class="op" data-gop="${i}">${k.op==="=="?"=":k.op}</button></div><div class="cell"><label>RHS</label>${inp(1001+i,2,k.b,"g")}</div></div></div></div>`).join("");
-  $("#gAdd").style.display=G.cons.length>=12?"none":"";save();gTweakUI();gUpdate()}
+  $("#gAdd").style.display=G.cons.length>=12?"none":"";save();gUpdate();gTweakUI()}
 function gSet(el){const r=+el.dataset.r,c=+el.dataset.c;if(r===1000)G.obj[c]=el.value;else{const k=G.cons[r-1001];if(!k)return;if(c<2)k.a[c]=el.value;else k.b=el.value}save();gUpdate()}
 $("#v-graph").addEventListener("click",e=>{const t=e.target.closest("button");if(!t)return;const d=t.dataset;
   if(d.gg){G.goal=d.gg;gInputs()}
@@ -1120,7 +1153,7 @@ document.addEventListener("keydown",e=>{
 /* names */
 function renderNames(){const e=$("#vnRow"),T3=[["c","Continuous"],["i","Integer"],["b","Binary"]];
   if(e)e.innerHTML=S.vn.map((v,j)=>`<div class="cell"><label>${esc(sub(j))}</label><select class="sl" data-vt="${j}">${T3.map(o=>`<option value="${o[0]}" ${S.vt[j]===o[0]?"selected":""}>${o[1]}</option>`).join("")}</select></div>`).join("");
-  const ni=S.vt.filter(t=>t==="i").length,nb=S.vt.filter(t=>t==="b").length,tg=$("#ipTag");if(tg)tg.textContent=ni||nb?`Integer program: ${ni} integer and ${nb} binary variable${ni+nb>1?"s":""}. Solved by branch and bound.`:""}
+  const ni=S.vt.filter(t=>t==="i").length,nb=S.vt.filter(t=>t==="b").length,tg=$("#ipTag");if(tg)tg.textContent=ni||nb?`Integer program: ${ni} integer and ${nb} binary variable${ni+nb>1?"s":""}. Solved by branch and bound.`:"";const gh=$("#gHint");if(gh)gh.textContent=S.n===2?"Two variables: the Graph tab is available in this module.":"Tip: use exactly 2 variables to unlock the Graph tab."}
 function rePrev(){$("#objPrev").textContent=(S.goal==="max"?"Max":"Min")+" Z = "+lhs(S.obj);$$("#cons>.card").forEach((c,i)=>{const p=c.querySelector(".preview"),k=S.cons[i];if(p&&k)p.textContent=`${lhs(k.a)} ${k.op==="=="?"=":k.op} ${fmt(num(k.b))}`})}
 function refreshView(){render();const f={"v-graph":gInputs,"v-tr":trRender,"v-nw":nwRender,"v-pj":pjRender,"v-gm":gmRender,"v-results":showResults,"v-reports":showReports}[($(".v.on")||{}).id];if(f)f()}
 document.addEventListener("input",e=>{const t=e.target,d=t.dataset||{};
@@ -1209,7 +1242,7 @@ function gRanges(A){const L=A.H.concat(H0),v=A.V[A.opt[0]],c=A.c,sg=A.sg,out={c:
 /*ENDRANGES*/
 const rg=x=>x>=1e29||x===Infinity?"∞":x<=-1e29||x===-Infinity?"−∞":fmt(x);
 function gPvSetup(){const R=GP.R;let cur,lo,hi;if(GP.mode==="b"){const r=R.rhs[GP.ci];cur=num(G.cons[GP.ci].b);lo=r?r.lo:-Infinity;hi=r?r.hi:Infinity}else{const j=GP.mode==="c0"?0:1;cur=R.c[j].cur;lo=R.c[j].lo;hi=R.c[j].hi}
-  const sp=Math.max(Math.abs(cur),1)*1.5;GP.cur=cur;GP.vmin=Math.min(cur-sp,isFinite(lo)?lo-sp*.4:Infinity);GP.vmax=Math.max(cur+sp,isFinite(hi)?hi+sp*.4:-Infinity)}
+  const sp=Math.max(Math.abs(cur),2)*3;GP.cur=cur;GP.vmin=Math.min(cur-sp,isFinite(lo)?lo-sp*.6:Infinity);GP.vmax=Math.max(cur+sp,isFinite(hi)?hi+sp*.6:-Infinity)}
 function gPivotUI(){const el=$("#gPv");if(!el)return;const A=GB;GP.v0=null;
   if(!A||A.inf||A.unb||A.alt||!A.V.length){GP.mode="off";el.innerHTML=`<div class="preview" style="margin:0">Pivoting needs one optimal corner. ${!A||A.inf?"The problem is infeasible or empty.":A.unb?"The problem is unbounded.":"There are alternate optima, so the objective already sits on the edge of its range."}</div>`;return}
   const v=A.V[A.opt[0]],R=GP.R=gRanges(A),Lt=String.fromCharCode(65+A.opt[0]);GP.v0=v;
@@ -1322,16 +1355,20 @@ function gExplain(A){if(A.inf||A.unb||!A.opt)return"";const f=fmt,Lt=i=>String.f
   return`<div class="card"><div style="font-family:var(--serif);font-weight:600;margin-bottom:6px">In plain words</div><ul class="how">${ln.map(t=>"<li>"+t+"</li>").join("")}</ul></div>`}
 function gParams(){const P=[];[0,1].forEach(j=>P.push({l:"Objective c"+(j+1)+" ("+sub(j)+")",g:()=>G.obj[j],s:v=>G.obj[j]=v,inp:[1000,j]}));
   G.cons.forEach((k,i)=>{[0,1].forEach(j=>P.push({l:gcn(i)+": "+sub(j)+" coefficient",g:()=>G.cons[i].a[j],s:v=>G.cons[i].a[j]=v,inp:[1001+i,j]}));P.push({l:gcn(i)+": right-hand side",g:()=>G.cons[i].b,s:v=>G.cons[i].b=v,inp:[1001+i,2]})});return P}
-function gTweakUI(){const el=$("#gTw");if(!el)return;const P=gParams();if(GV.tw>=P.length)GV.tw=0;const v=num(P[GV.tw].g()),sp=Math.max(10,Math.abs(v)*1.5);
+function gTweakUI(){const el=$("#gTw");if(!el)return;const P=gParams();if(GV.tw>=P.length)GV.tw=0;const v=num(P[GV.tw].g()),sp=Math.max(25,Math.abs(v)*3);GV.tw0=v;GV.twZ=GA&&!GA.inf&&!GA.unb&&GA.best!=null?GA.best:null;
   el.innerHTML=`<select class="sl" id="gTwSel" style="max-width:none;width:100%">${P.map((q,i)=>`<option value="${i}" ${i===GV.tw?"selected":""}>${esc(q.l)}</option>`).join("")}</select>
-   <div class="row" style="margin-top:10px"><button class="btn sm" data-tw="-1">−1</button><button class="btn sm" data-tw="-0.1">−0.1</button><input type="range" id="gTwS" min="${+(v-sp).toFixed(2)}" max="${+(v+sp).toFixed(2)}" step="0.1" value="${v}" style="flex:1"><button class="btn sm" data-tw="0.1">+0.1</button><button class="btn sm" data-tw="1">+1</button></div>
-   <div class="preview">Value: <b id="gTwV">${fmt(v)}</b>. The graph, interpretation and ranges update as you move it.</div>`}
-function gTwSet(v){const p=gParams()[GV.tw];v=+(+v).toFixed(4);p.s(String(v));const i=document.querySelector(`input[data-r="${p.inp[0]}"][data-c="${p.inp[1]}"]`);if(i)i.value=String(v);$("#gTwV").textContent=fmt(v);save();gUpdate();mpvUpdate()}
+   <div class="row" style="margin-top:8px;flex-wrap:nowrap"><button class="btn sm" data-tw="-1">−1</button><button class="btn sm" data-tw="-0.1">−.1</button><input type="range" id="gTwS" min="${+(v-sp).toFixed(2)}" max="${+(v+sp).toFixed(2)}" step="0.1" value="${v}" style="flex:1;min-width:80px"><button class="btn sm" data-tw="0.1">+.1</button><button class="btn sm" data-tw="1">+1</button></div>
+   <div class="gtwv"><b id="gTwV">${fmt(v)}</b><span id="gTwInfo"></span></div>`;gTwInfo()}
+function gTwInfo(){const e=$("#gTwInfo");if(!e||!GA)return;const A=GA,v=num(gParams()[GV.tw].g()),d=v-GV.tw0;let t;
+  if(A.inf)t="No feasible region at this value.";else if(A.unb)t="Unbounded: Z can improve without limit.";
+  else{const o=A.V[A.opt[0]];t=`Corner ${String.fromCharCode(65+A.opt[0])} (${fmt(o[0])}, ${fmt(o[1])}) · Z = <b>${fmt(A.best)}</b>`+(GV.twZ!=null&&Math.abs(A.best-GV.twZ)>1e-9?` (${A.best>=GV.twZ?"+":""}${fmt(A.best-GV.twZ)} vs start)`:"")+(A.alt?" · alternate optima":"")}
+  e.innerHTML=(d?`<small>${fmt(GV.tw0)} → ${fmt(v)} (${d>0?"+":""}${fmt(d)})</small> `:"")+t}
+function gTwSet(v){const p=gParams()[GV.tw];v=+(+v).toFixed(4);p.s(String(v));const i=document.querySelector(`input[data-r="${p.inp[0]}"][data-c="${p.inp[1]}"]`);if(i)i.value=String(v);$("#gTwV").textContent=fmt(v);save();gUpdate();mpvUpdate();gTwInfo()}
 const gv_=$("#v-graph");
 gv_.addEventListener("click",e=>{const b=e.target.closest("[data-tw],[data-gv]");if(!b)return;
   if(b.dataset.tw){const v=num(gParams()[GV.tw].g())+ +b.dataset.tw;gTwSet(v);const sl=$("#gTwS");if(sl){sl.min=Math.min(+sl.min,v);sl.max=Math.max(+sl.max,v);sl.value=v}return}
   const k=b.dataset.gv;if(k==="zin")GV.z=Math.max(.2,GV.z*.8);else if(k==="zout")GV.z=Math.min(8,GV.z*1.25);else if(k==="fit")GV.z=1;else{GV[k]=GV[k]?0:1;b.classList.toggle("on",!!GV[k])}
-  $("#gcv").style.touchAction=GV.drag?"none":"pan-y";gRefresh()});
+  if(k==="pin")document.querySelector(".gstick").classList.toggle("unpinned",!GV.pin);$("#gcv").style.touchAction=GV.drag?"none":"pan-y";gRefresh()});
 gv_.addEventListener("input",e=>{if(e.target.id==="gTwS")gTwSet(+e.target.value)});
 gv_.addEventListener("change",e=>{if(e.target.id==="gTwSel"){GV.tw=+e.target.value;gTweakUI()}});
 let gdr=null,gRaf=0;const gcv_=$("#gcv");
@@ -1464,10 +1501,47 @@ $("#xpBtn").onclick=()=>sheet("Export report",`<div class="preview" style="margi
   [["pdf","PDF","Opens the print dialog: choose Save as PDF."],["png","PNG image","Sharp picture of the whole report."],["jpg","JPG image","Smaller file, good for chat apps."],["html","Web page (.html)","Opens in any browser with tables intact."],["md","Markdown (.md)","Plain text with tables for notes and docs."],["copy","Copy as text","Paste into a message or document."]].map(x=>`<button class="btn mig" data-xp="${x[0]}"><b>${x[1]}</b><small>${x[2]}</small></button>`).join(""));
 $("#shB").addEventListener("click",e=>{const b=e.target.closest("[data-xp]");if(!b)return;$("#sheet").classList.remove("on");xpRun(b.dataset.xp)});
 
+/* ---------- Phase 11: modules menu, contextual tabs, graph link ---------- */
+const sv=p=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const ICN={model:'<path d="M5 7h9M18 7h1M5 17h1M10 17h9"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/>',results:'<path d="M5 20V10M12 20V4M19 20v-7"/>',reports:'<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/>',graph:'<path d="M4 4v16h16"/><path d="M8 15l4-5 3 3 4-6"/>',
+  tr:'<path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/>',nw:'<circle cx="6" cy="6" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="9" cy="18" r="2"/><path d="M8 6.3l8 1.4M7 8l2 8M16.6 9.7l-6 7"/>',pj:'<path d="M4 7h9M7 12h10M10 17h9"/>',
+  gm:'<rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r=".6"/><circle cx="15" cy="15" r=".6"/><circle cx="15" cy="9" r=".6"/><circle cx="9" cy="15" r=".6"/>',settings:'<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>'};
+const VM={"v-model":"lp","v-results":"lp","v-reports":"lp","v-graph":"lp","v-tr":"tr","v-nw":"nw","v-pj":"pj","v-gm":"gm","v-settings":"set"};
+const MODS=[{id:"lp",name:"Solver",desc:"Linear and integer programming",icon:ICN.model,tabs:[["model","Model",ICN.model],["results","Results",ICN.results],["reports","Reports",ICN.reports],["graph","Graph",ICN.graph,()=>S.n===2]]},
+  {id:"tr",name:"Transportation",desc:"Transport, assignment, transshipment",icon:ICN.tr,view:"tr",split:1},{id:"nw",name:"Network",desc:"Spanning tree, shortest path, max flow",icon:ICN.nw,view:"nw",split:1},
+  {id:"pj",name:"Project",desc:"CPM and PERT scheduling",icon:ICN.pj,view:"pj",split:1},{id:"gm",name:"Game theory",desc:"Zero-sum games and mixed strategies",icon:ICN.gm,view:"gm",split:1},
+  {id:"set",name:"Settings",desc:"Appearance, input, offline use",icon:ICN.settings,view:"settings"}];
+var SUBV={tr:"in",nw:"in",pj:"in",gm:"in"},LASTLP="model";
+const curView=()=>(($(".v.on")||{}).id||"v-model").slice(2),curMod=()=>VM[($(".v.on")||{}).id]||"lp",RESID={tr:"trRes",nw:"nwRes",pj:"pjRes",gm:"gmRes"};
+function drawBnav(){const nb=$("#bnav");if(!nb)return;const m=curMod(),M=MODS.find(x=>x.id===m);
+  if(m==="lp"&&curView()==="graph"&&S.n!==2){goTab("model");return}
+  let tabs=[];if(m==="lp"){tabs=M.tabs.filter(t=>!t[3]||t[3]()).map(t=>({k:"v:"+t[0],l:t[1],i:t[2],on:curView()===t[0]}));LASTLP=curView()}
+  else if(M.split)tabs=[{k:"s:in",l:"Setup",i:ICN.model,on:SUBV[m]==="in"},{k:"s:res",l:"Results",i:ICN.results,on:SUBV[m]==="res"}];
+  nb.style.display=tabs.length?"":"none";nb.innerHTML=tabs.map(t=>`<button data-m="${t.k}" class="${t.on?"on":""}">${sv(t.i)}${t.l}</button>`).join("");layoutPad()}
+function syncBar(){const m=MODS.find(x=>x.id===curMod()),h=$("#hSub");if(h)h.textContent=(m?m.name:"Solver")+(navigator.onLine?"":" · offline");
+  const sb=$("#solveBtn");if(sb)sb.style.display=(curMod()==="set"||curView()==="graph")?"none":"";drawBnav()}
+function setSub(m,v){SUBV[m]=v;const el=$("#v-"+m);el.classList.toggle("sub-res",v==="res");el.classList.toggle("sub-in",v==="in");drawBnav();scrollTo(0,0)}
+["tr","nw","pj","gm"].forEach(m=>{$("#v-"+m).classList.add("sub-in");$("#v-"+m).addEventListener("click",e=>{if(e.target.closest("[data-ta=solve]")){const r=$("#"+RESID[m]);if(r&&r.innerHTML.trim())setSub(m,"res")}})});
+$("#bnav").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const k=b.dataset.m;if(k.startsWith("v:"))goTab(k.slice(2));else setSub(curMod(),k.slice(2))});
+function headSolve(){const m=curMod();if(m==="lp")solve();else{const b=document.querySelector("#v-"+m+" [data-ta=solve]");if(b)b.click()}}
+function renderDrawer(){const cm=curMod();$("#dList").innerHTML=MODS.map(m=>`<button class="mi ${m.id===cm?"on":""}" data-mod="${m.id}">${sv(m.icon)}<span><b>${m.name}</b><small>${m.desc}</small></span></button>`).join("")}
+function goMod(id){const M=MODS.find(x=>x.id===id);goTab(id==="lp"?(LASTLP==="graph"&&S.n!==2?"model":LASTLP):M.view)}
+$("#menuBtn").onclick=()=>{renderDrawer();$("#drawer").classList.add("on")};
+$("#drawer").addEventListener("click",e=>{if(e.target.id==="drawer"||e.target.closest("[data-dx]")){$("#drawer").classList.remove("on");return}const b=e.target.closest("[data-mod]");if(!b)return;$("#drawer").classList.remove("on");goMod(b.dataset.mod)});
+function closePad(){const a=document.activeElement;if(a&&a.matches&&a.matches("input.n"))a.blur();cur=null;layoutPad()}
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){closePad();$("#sheet").classList.remove("on");$("#drawer").classList.remove("on")}});
+function setHH(){document.documentElement.style.setProperty("--hh",($("header").offsetHeight)+"px")}
+addEventListener("resize",setHH);addEventListener("load",setHH);setHH();
+/* graph <-> model link: with exactly two variables the Graph tab edits the model itself */
+function gLinkIn(){if(S.n!==2)return;G.goal=S.goal;G.obj=[S.obj[0],S.obj[1]];G.cons=S.cons.slice(0,12).map(c=>({a:[c.a[0],c.a[1]],op:c.op,b:c.b,nm:c.nm||""}))}
+function gToModel(){if(S.n!==2)return;const nj=JSON.stringify([G.goal,G.obj,G.cons.map(c=>[[c.a[0],c.a[1]],c.op,c.b,c.nm||""])]),oj=JSON.stringify([S.goal,[S.obj[0],S.obj[1]],S.cons.map(c=>[[c.a[0],c.a[1]],c.op,c.b,c.nm||""])]);if(nj===oj)return;
+  S.goal=G.goal;S.obj=[G.obj[0],G.obj[1]];S.cons=G.cons.map(c=>({a:[c.a[0],c.a[1]],op:c.op,b:c.b,nm:c.nm||""}));S.m=S.cons.length;S.preset=null;lastRes=null}
+syncBar();
+
 /* ---------- Phase 8: offline, install, connectivity ---------- */
 let dip=null;
 function offStatus(msg){$("#offSt").textContent=msg}
-function netLabel(){$("#hSub").textContent=navigator.onLine?"Operations research toolkit":"Offline mode"}
+function netLabel(){syncBar()}
 addEventListener("online",netLabel);addEventListener("offline",netLabel);netLabel();
 addEventListener("beforeinstallprompt",e=>{e.preventDefault();dip=e;$("#instBtn").style.display=""});
 addEventListener("appinstalled",()=>{$("#instBtn").style.display="none";toast("Installed")});
@@ -1485,7 +1559,7 @@ if("serviceWorker" in navigator&&location.protocol!=="file:"){
 function at(r,c){return document.querySelector(`input[data-r="${r}"][data-c="${c}"]`)}
 function go(el){if(el){el.focus();el.select&&el.select()}}
 function pad(k){
-  buzz();if(k==="fx"){$("#pad").classList.toggle("fx");layoutPad();return}if(!cur)return;
+  buzz();if(k==="X"){closePad();return}if(k==="fx"){$("#pad").classList.toggle("fx");layoutPad();return}if(!cur)return;
   const r=+cur.dataset.r,c=+cur.dataset.c,rows=S.m,nn=cur.dataset.t==="g"?2:S.n;
   if(k==="L")return go(at(r,c-1)||(r>0&&lastCol(r-1))||null);
   if(k==="R"||k==="N")return go(at(r,c+1)||at(r+1,0)||(k==="N"&&(cur.blur(),cur=null,layoutPad(),null)));
@@ -1534,9 +1608,9 @@ document.addEventListener("click",e=>{
   else if(d.rp){rp=d.rp;showReports()}
   else if(d.th){S.set.theme=d.th;render()}
   else if(d.vw){S.set.view=d.vw;render()}
-  else if(d.v){$$(".v").forEach(v=>v.classList.toggle("on",v.id==="v-"+d.v));$$("nav button").forEach(b=>b.classList.toggle("on",b===t));if(d.v==="results")showResults();if(d.v==="reports")showReports();if(d.v==="graph")gInputs();if(d.v==="tr")trRender();if(d.v==="nw")nwRender();if(d.v==="pj")pjRender();if(d.v==="gm")gmRender();layoutPad();scrollTo(0,0)}
+  else if(d.v){$$(".v").forEach(v=>v.classList.toggle("on",v.id==="v-"+d.v));$$("nav button").forEach(b=>b.classList.toggle("on",b===t));if(d.v==="results")showResults();if(d.v==="reports")showReports();if(d.v==="model")render();if(d.v==="graph"){gLinkIn();gInputs()}if(d.v==="tr")trRender();if(d.v==="nw")nwRender();if(d.v==="pj")pjRender();if(d.v==="gm")gmRender();layoutPad();scrollTo(0,0)}
 });
-$("#solveBtn").onclick=solve;
+$("#solveBtn").onclick=()=>headSolve();
 $("#addC").onclick=()=>{S.m++;render();const l=at(S.m,0);if(l)go(l)};
 $("#themeQ").onclick=()=>{const dark=document.documentElement.dataset.theme==="dark";S.set.theme=dark?"light":"dark";render()};
 $("#nonneg").onchange=e=>{S.nonneg=e.target.checked;save();toast(S.nonneg?"x ≥ 0":"Variables are free (±)")};
@@ -1548,6 +1622,7 @@ $("#clrBtn").onclick=()=>{if(!confirm("Reset the whole model to zeros?"))return;
 matchMedia("(prefers-color-scheme:dark)").addEventListener("change",()=>{if(S.set.theme==="auto")applyLook()});
 addEventListener("resize",()=>{layoutPad();if($("#v-graph").classList.contains("on"))gDraw();if($("#v-nw").classList.contains("on"))nwRedraw();if($("#v-gm").classList.contains("on"))gmDraw()});
 if(!window.Solver)toast("Solver not loaded (check connection once to cache it)");
+document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#vnav button"))syncBar()});
 render();
 })();
 </script>
