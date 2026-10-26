@@ -48,3 +48,11 @@ UPDATING
 
 
 
+NEW IN THIS VERSION
+
+&#x20; Natural-language input, saved problems (kept on the device), PDF file export,
+
+&#x20; colour palettes, hover and long-press tips. Settings moved next to Solve.
+
+
+

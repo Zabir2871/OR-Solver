@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-pal="rust">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -137,6 +137,34 @@ body.desktop #v-graph.on .gcol{display:block;order:1}body.desktop #v-graph.on .g
 .btn.pri{box-shadow:0 1px 0 rgba(0,0,0,.15)}
 @media(hover:hover){.btn:hover{background:var(--pri2)}.btn.pri:hover{background:var(--pri);filter:brightness(1.1)}.seg button:not(.on):hover{background:var(--pri2);color:var(--tx)}.chip:hover{border-color:var(--mut)}.mbtn:hover,.tb button:hover{background:var(--pri2)}.mi:hover{background:var(--pri2)}nav button:hover{color:var(--tx)}}
 #pad .g{grid-template-columns:repeat(4,1fr)}#pad .g i{display:block}#pad button{height:40px}#pad button.cl{color:var(--mut);font-size:16px}#pad button.d{font-size:17px}#pad button.x{display:none;height:34px}#pad.fx button.x{display:block}
+html[data-pal=rust][data-theme=light]{color-scheme:light;--bg:#f3f0e8;--card:#fbfaf6;--tx:#1f1d19;--mut:#5c574d;--bd:#d8d2c3;--bs:#857d6b;--pri:#9a3b16;--pri2:#f1e4d8;--onpri:#ffffff;--ok:#2a6b3f;--bad:#a3301f;--warn:#7f5806;--inp:#fffefa}
+html[data-pal=rust][data-theme=dark]{color-scheme:dark;--bg:#141517;--card:#1d1f22;--tx:#e9e6df;--mut:#a8a398;--bd:#32353a;--bs:#6b707a;--pri:#e0a14b;--pri2:#2b2519;--onpri:#1c1508;--ok:#7bb58a;--bad:#ee8a7a;--warn:#dcae55;--inp:#16171a}
+html[data-pal=ocean][data-theme=light]{color-scheme:light;--bg:#e8f0f6;--card:#f7fbfd;--tx:#12202c;--mut:#465a69;--bd:#c3d3de;--bs:#6a8496;--pri:#0b6a8f;--pri2:#d9ebf3;--onpri:#ffffff;--ok:#1b7248;--bad:#a82f28;--warn:#7f5806;--inp:#fcfeff}
+html[data-pal=ocean][data-theme=dark]{color-scheme:dark;--bg:#0c1520;--card:#132230;--tx:#e4eef6;--mut:#9db3c4;--bd:#27415a;--bs:#5a7a95;--pri:#5cc0e8;--pri2:#11303f;--onpri:#04202c;--ok:#72d09a;--bad:#f2907f;--warn:#e3b45c;--inp:#0e1a26}
+html[data-pal=forest][data-theme=light]{color-scheme:light;--bg:#ebf1e7;--card:#f8fbf6;--tx:#15221a;--mut:#475a4c;--bd:#c8d6c4;--bs:#72886c;--pri:#276f2c;--pri2:#dcecd9;--onpri:#ffffff;--ok:#2b7a30;--bad:#a82f28;--warn:#7f5806;--inp:#fcfefb}
+html[data-pal=forest][data-theme=dark]{color-scheme:dark;--bg:#0e1911;--card:#162418;--tx:#e3efe5;--mut:#9fb5a3;--bd:#2a4030;--bs:#5c7e64;--pri:#7ad08a;--pri2:#17301d;--onpri:#052008;--ok:#7ad08a;--bad:#f2907f;--warn:#e3b45c;--inp:#101c13}
+html[data-pal=berry][data-theme=light]{color-scheme:light;--bg:#f4eaf0;--card:#fcf7fa;--tx:#251720;--mut:#62505a;--bd:#dcc6d2;--bs:#8e7185;--pri:#a3245f;--pri2:#f6dde8;--onpri:#ffffff;--ok:#2a6b3f;--bad:#a3301f;--warn:#7f5806;--inp:#fffdfe}
+html[data-pal=berry][data-theme=dark]{color-scheme:dark;--bg:#190f14;--card:#241920;--tx:#f1e6ec;--mut:#bba5b0;--bd:#43303a;--bs:#86687a;--pri:#f27aa8;--pri2:#3a1a2a;--onpri:#2a0716;--ok:#7bb58a;--bad:#f2907f;--warn:#e3b45c;--inp:#1b1217}
+html[data-pal=sunset][data-theme=light]{color-scheme:light;--bg:#f7eee0;--card:#fffaf1;--tx:#2a1d0e;--mut:#65543e;--bd:#e1d0b4;--bs:#977f5a;--pri:#b04400;--pri2:#fae3cb;--onpri:#ffffff;--ok:#2a6b3f;--bad:#a3301f;--warn:#7a5504;--inp:#fffdf8}
+html[data-pal=sunset][data-theme=dark]{color-scheme:dark;--bg:#19120a;--card:#251b10;--tx:#f4e8d6;--mut:#bda98a;--bd:#47381f;--bs:#8a7248;--pri:#ffb454;--pri2:#3a2810;--onpri:#2a1700;--ok:#7bb58a;--bad:#f2907f;--warn:#e3b45c;--inp:#1c140b}
+html[data-pal=graphite][data-theme=light]{color-scheme:light;--bg:#eaecf0;--card:#f9fafb;--tx:#14171c;--mut:#4b535e;--bd:#cbd0d8;--bs:#767f8c;--pri:#2b4c8c;--pri2:#dce4f2;--onpri:#ffffff;--ok:#1f6c42;--bad:#a82f28;--warn:#7f5806;--inp:#fdfdfe}
+html[data-pal=graphite][data-theme=dark]{color-scheme:dark;--bg:#0f1115;--card:#191c22;--tx:#e8eaee;--mut:#a3abb7;--bd:#2d333c;--bs:#646e7d;--pri:#8fb0f5;--pri2:#1b2540;--onpri:#0a1430;--ok:#7bb58a;--bad:#f2907f;--warn:#e3b45c;--inp:#13161b}
+/* ---- Phase 12 ---- */
+:root{--bs:#857d6b}
+.btn{border:1.5px solid var(--bs);color:var(--tx);font-weight:600;background:var(--card)}.btn.pri{background:var(--pri);border-color:var(--pri);color:var(--onpri)}.btn.bad{color:var(--bad);border-color:var(--bad)}
+.seg{border:1.5px solid var(--bs);background:var(--card)}.seg button{color:var(--tx);font-weight:600}.seg button.on{background:var(--tx);color:var(--bg)}
+.stepper button,.op,.mbtn,.chip{border:1.5px solid var(--bs);color:var(--tx);background:var(--card)}.chip.on{background:var(--tx);color:var(--bg);border-color:var(--tx)}.mbtn.on{background:var(--tx);color:var(--bg)}
+.tb button{font-weight:600;color:var(--tx)}@media(max-width:470px){.tb button .lb{display:none}.tb button svg{width:19px;height:19px}}
+nav button{font-weight:600}nav button:not(.on){color:var(--mut)}
+.vl{font:700 13.5px var(--mono);color:var(--tx);width:86px;border-bottom:1.5px dashed var(--bs)}.cell label{font-size:12.5px;font-weight:600;color:var(--tx)}
+.cnm{font:600 14.5px "Segoe UI",Roboto,Arial,sans-serif}.tag{font-size:13.5px}.hn{font-size:14px;width:76px;font-weight:700}td.t{font-size:14.5px}
+h2.sec{display:flex;align-items:center;gap:9px;font-size:18px;border-bottom:2px solid var(--pri);margin-top:26px}h2.sec .num{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:4px;background:var(--pri);color:var(--onpri);font:700 13px var(--mono)}
+.card.focus{border:1.5px solid var(--pri);box-shadow:0 0 0 3px var(--pri2)}
+.state{display:inline-block;border:1.5px solid var(--ok);color:var(--ok);border-radius:4px;padding:1px 9px;font:600 12.5px var(--mono);background:transparent}.state.loose{border-color:var(--warn);color:var(--warn)}.state.viol{border-color:var(--bad);color:var(--bad)}
+.pal{display:flex;align-items:center;gap:8px;padding:6px 12px;border:1.5px solid var(--bs);border-radius:6px;background:var(--card);color:var(--tx);font:600 13px "Segoe UI",Roboto,Arial,sans-serif;cursor:pointer}.pal i{width:18px;height:18px;border-radius:50%;background:linear-gradient(90deg,var(--a) 50%,var(--b) 50%);border:1px solid var(--bs)}.pal.on{outline:2px solid var(--pri);outline-offset:2px}
+.narr ul.how li{margin:9px 0;font-size:14px;line-height:1.5}.narr summary{margin-top:6px}
+#tip{position:fixed;z-index:200;max-width:270px;background:var(--tx);color:var(--bg);padding:7px 11px;border-radius:6px;font:500 12.5px/1.4 "Segoe UI",Roboto,Arial,sans-serif;pointer-events:none;opacity:0;transition:opacity .12s;box-shadow:0 4px 16px rgba(0,0,0,.3)}#tip.on{opacity:1}
+button,summary,.chip,.pal{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
 </style>
 </head>
 <body>
@@ -145,8 +173,9 @@ body.desktop #v-graph.on .gcol{display:block;order:1}body.desktop #v-graph.on .g
   <h1>OR Solver<small id="hSub">Operations research toolkit</small></h1>
   <button class="btn sm" id="themeQ" title="Toggle light/dark">Theme</button>
   <button class="btn pri" id="solveBtn">Solve ▶</button>
+  <button class="mbtn" id="setBtn" aria-label="Settings" title="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></button>
 </div>
-<div class="tb"><button id="undoBtn" disabled title="Undo (Ctrl+Z)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 010 12h-3"/></svg>Undo</button><button id="redoBtn" disabled title="Redo (Ctrl+Y)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14l5-5-5-5"/><path d="M20 9H10a6 6 0 000 12h3"/></svg>Redo</button><button id="pvBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h13"/></svg>Preview</button><button id="migBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg>Migrate</button><button id="xpBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>Export</button></div></header>
+<div class="tb"><button id="undoBtn" disabled aria-label="Undo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 010 12h-3"/></svg><span class="lb">Undo</span></button><button id="redoBtn" disabled aria-label="Redo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14l5-5-5-5"/><path d="M20 9H10a6 6 0 000 12h3"/></svg><span class="lb">Redo</span></button><button id="svBtn" aria-label="Save and open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11l3 3v13H5z"/><path d="M8 4v5h7V4M8 20v-6h8v6"/></svg><span class="lb">Save</span></button><button id="pvBtn" aria-label="Preview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h13"/></svg><span class="lb">Preview</span></button><button id="migBtn" aria-label="Migrate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg><span class="lb">Migrate</span></button><button id="xpBtn" aria-label="Export"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg><span class="lb">Export</span></button></div></header>
 
 <main id="app">
   <!-- MODEL -->
@@ -155,11 +184,16 @@ body.desktop #v-graph.on .gcol{display:block;order:1}body.desktop #v-graph.on .g
       <select id="presetSel" class="sl" style="max-width:none;width:100%"><option value="">Load a verified sample problem…</option><option value="media">Media selection (advertising reach)</option><option value="diet">Diet / blending (nutrient minimums)</option><option value="make">Make-or-buy decision</option><option value="prod">Multi-period production scheduling</option></select></div>
     <div id="presetInfo"></div>
     <details class="card" id="mpvBox" open><summary style="font-weight:700">Live model preview</summary><pre id="mpv" class="mpv"></pre><button class="btn sm" id="mpvCopy">Copy</button>
-      <div style="font-weight:700;margin:14px 0 6px;border-top:1px solid var(--bd);padding-top:10px">Paste a problem (comma separated)</div>
-      <textarea id="rawIn" rows="6" spellcheck="false" placeholder="max, 3, 5&#10;vars, Doors, Windows&#10;Plant 1, 1, 0, &lt;=, 4&#10;Plant 2, 0, 2, &lt;=, 12&#10;Plant 3, 3, 2, &lt;=, 18"></textarea>
-      <div class="row" style="margin-top:6px;flex-wrap:wrap"><button class="btn sm pri" id="rawLoad">Load into model</button><button class="btn sm" id="rawFill">From current model</button><button class="btn sm" id="rawEx">Example</button></div>
-      <div class="preview" id="rawMsg"></div>
-      <details><summary>Format</summary><div style="font-size:13px;line-height:1.6;margin-top:6px"><b>First line:</b> <code>max</code> or <code>min</code>, then the objective coefficients.<br><b>Constraints:</b> optional name, coefficients, operator (<code>&lt;=</code> <code>&gt;=</code> <code>=</code>), right-hand side.<br><b>Optional lines:</b> <code>vars, name1, name2…</code> · <code>types, cont, int, bin…</code> · <code>int, x1, x3</code> · <code>binary, 2</code> · <code>free</code>.<br>Separate lines with new lines or semicolons. Numbers may be formulas such as <code>=3*4</code> or fractions like <code>1/3</code>. Lines starting with # are ignored.</div></details></details>
+      <div style="font-weight:700;margin:14px 0 8px;border-top:1px solid var(--bd);padding-top:10px">Write the problem as text</div>
+      <div class="seg" id="rawSeg"><button data-rm="nat">Natural</button><button data-rm="csv">Table (CSV)</button></div>
+      <textarea id="rawIn" rows="6" spellcheck="false" autocapitalize="off" autocomplete="off" style="margin-top:8px"></textarea>
+      <div id="rawSug" class="noprint" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;min-height:28px;align-items:center"></div>
+      <div class="row" style="margin-top:6px"><button class="btn sm pri" id="rawLoad">Load into model</button><button class="btn sm" id="rawFill">From current model</button><button class="btn sm" id="rawEx">Example</button></div>
+      <div id="rawLive" class="preview"></div><div class="preview" id="rawMsg"></div>
+      <details><summary>Format help</summary><div style="font-size:13px;line-height:1.65;margin-top:6px">
+       <b>Natural mode.</b> Write numbers with the variable right after them: <code>max, 3U, 8H</code>. Constraints are <code>name, terms, operator, right-hand side</code>, for example <code>Limit, 50U, 80H, &lt;=, 80000</code>. Anything written after the right-hand side becomes an extra constraint with the same operator and 0 on the right, so <code>Limit, 50U, 80H, &lt;=, 80000, -10U+0.5H</code> adds <code>−10U + 0.5H ≤ 0</code>. Terms can also be joined in one piece, like <code>50U+80H&lt;=80000</code>. Variables are found from the letters after numbers (or names already in the model). Use <code>int, U</code>, <code>bin, H</code> or <code>free</code> for types.<br>
+       <b>CSV mode.</b> First line <code>max, 3, 5</code>; constraint lines <code>name, 1, 0, &lt;=, 4</code>; optional <code>vars, A, B</code>, <code>types, int, cont</code>, <code>free</code>.<br>
+       Separate statements with new lines or semicolons. Lines starting with # are ignored.</div></details></details>
     <div class="card">
       <div class="seg" id="goalSeg"><button data-g="max">Maximize</button><button data-g="min">Minimize</button></div>
       <div class="row" style="margin-top:10px;flex-wrap:wrap">
@@ -170,12 +204,12 @@ body.desktop #v-graph.on .gcol{display:block;order:1}body.desktop #v-graph.on .g
       <div class="preview" id="ipTag"></div>
       <div class="preview" id="gHint"></div>
     </div>
-    <h2>Objective function</h2>
-    <div class="card"><div class="scroll"><div class="coefs" id="objRow"></div></div><div class="preview" id="objPrev"></div></div>
+    <h2 class="sec"><span class="num">1</span>Objective function</h2>
+    <div class="card focus"><div class="scroll"><div class="coefs" id="objRow"></div></div><div class="preview" id="objPrev"></div></div>
     <details class="card" id="vnBox"><summary style="font-weight:700">Variable types (continuous, integer, binary)</summary><div class="scroll" style="margin-top:8px"><div class="coefs" id="vnRow"></div></div>
       <div class="row" style="margin-top:8px;flex-wrap:wrap"><button class="btn sm" data-vtall="i">All integer</button><button class="btn sm" data-vtall="b">All binary</button><button class="btn sm" data-vtall="c">All continuous</button></div>
       <div class="preview">Tip: click a variable name above any column to rename it. Integer and binary variables are solved by branch and bound.</div></details>
-    <h2>Constraints</h2>
+    <h2 class="sec"><span class="num">2</span>Constraints</h2>
     <div id="cons"></div>
     <div class="row"><button class="btn sp" id="addC">+ Add constraint</button><button class="btn" id="exBtn">Example</button><button class="btn bad" id="clrBtn">Clear</button></div>
   </section>
@@ -194,7 +228,7 @@ body.desktop #v-graph.on .gcol{display:block;order:1}body.desktop #v-graph.on .g
    <div class="gwrap">
     <div class="gplot">
      <div class="card gstick"><canvas id="gcv" style="width:100%;display:block;border-radius:6px"></canvas>
-      <div class="row" style="margin-top:6px;flex-wrap:nowrap"><button class="btn sm" id="gPlay">▶ Play</button><input type="range" id="gIso" min="0" max="1000" value="1000" style="flex:1;min-width:60px"><b id="gZ" style="min-width:64px;text-align:right"></b></div></div>
+      <div class="row" style="margin-top:6px;flex-wrap:nowrap"><button class="btn sm" id="gPlay">▶ Play</button><input type="range" id="gIso" min="0" max="1200" value="1000" style="flex:1;min-width:60px"><b id="gZ" style="min-width:64px;text-align:right"></b></div><div id="gIsoNote" class="preview" style="margin:4px 0 0"></div></div>
      <div class="card" id="gTwCard"><div class="ctitle">Tweak any number</div><div id="gTw"></div></div>
     </div>
     <div class="gcol">
@@ -242,6 +276,8 @@ body.desktop #v-graph.on .gcol{display:block;order:1}body.desktop #v-graph.on .g
       <div class="seg" id="themeSeg"><button data-th="light">Light</button><button data-th="dark">Dark</button><button data-th="auto">Auto</button></div>
       <div style="font-weight:600;margin:14px 0 6px">Layout</div>
       <div class="seg" id="viewSeg"><button data-vw="mobile">Mobile</button><button data-vw="desktop">Desktop</button></div></div>
+    <h2>Colour theme</h2>
+    <div class="card"><div id="palRow" style="display:flex;flex-wrap:wrap;gap:8px"></div><div class="preview">Every palette has a light and a dark version. The Theme switch above chooses which one you see.</div></div>
     <h2>Input</h2>
     <div class="card"><label class="row"><input type="checkbox" id="padOn"> <span>Custom numpad (replaces system keyboard)</span></label>
       <label class="row" style="margin-top:10px"><input type="checkbox" id="haptic"> <span>Haptic feedback</span></label>
@@ -323,7 +359,7 @@ function render(){
   $("#nIn").value=S.n;$("#mIn").value=S.m;$("#nonneg").checked=S.nonneg;
   $$("#goalSeg button").forEach(b=>b.classList.toggle("on",b.dataset.g===S.goal));
   $("#objRow").innerHTML=S.obj.map((v,j)=>`<div class="cell">${vl(j)}${inp(0,j,v,"o")}</div>`).join("");
-  $("#cons").innerHTML=S.cons.map((c,i)=>`<div class="card"><div class="row" style="margin-bottom:8px"><span class="tag">C${i+1}</span><input class="tx cnm" data-cn="${i}" placeholder="name (optional)" value="${esc(c.nm||"")}" maxlength="28" style="flex:1;min-width:90px;width:auto"><span class="sp"></span>
+  $("#cons").innerHTML=S.cons.map((c,i)=>`<div class="card focus"><div class="row" style="margin-bottom:8px"><span class="tag">C${i+1}</span><input class="tx cnm" data-cn="${i}" placeholder="name (optional)" value="${esc(c.nm||"")}" maxlength="28" style="flex:1;min-width:90px;width:auto"><span class="sp"></span>
     <button class="btn sm" data-dup="${i}">Copy</button><button class="btn sm bad" data-del="${i}">✕</button></div>
     <div class="scroll"><div class="coefs">${c.a.map((v,j)=>`<div class="cell">${vl(j)}${inp(i+1,j,v,"a")}</div>`).join("")}
     <div class="cell"><label>op</label><button class="op" data-op="${i}">${c.op==="=="?"=":c.op}</button></div>
@@ -340,8 +376,8 @@ function render(){
 function lhs(a){const t=a.map((v,j)=>[num(v),j]).filter(x=>x[0]!==0).map(([v,j],k)=>{const s=v<0?"− ":(k?"+ ":"");const m=Math.abs(v);return s+(m===1?"":fmt(m))+sub(j)});return t.length?t.join(" "):"0"}
 function applyLook(){
   const t=S.set.theme==="auto"?(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"):S.set.theme;
-  document.documentElement.dataset.theme=t;document.body.classList.toggle("desktop",S.set.view==="desktop");if(typeof gDraw==="function"&&$("#v-graph").classList.contains("on"))gDraw();if(typeof nwRedraw==="function"&&$("#v-nw").classList.contains("on"))nwRedraw();if(typeof gmDraw==="function"&&$("#v-gm").classList.contains("on"))gmDraw();
-  $("meta[name=theme-color]").content=t==="dark"?"#1d1f22":"#fbfaf6";
+  document.documentElement.dataset.theme=t;document.documentElement.dataset.pal=S.set.pal||"rust";document.body.classList.toggle("desktop",S.set.view==="desktop");if(typeof gDraw==="function"&&$("#v-graph").classList.contains("on"))gDraw();if(typeof nwRedraw==="function"&&$("#v-nw").classList.contains("on"))nwRedraw();if(typeof gmDraw==="function"&&$("#v-gm").classList.contains("on"))gmDraw();
+  $("meta[name=theme-color]").content=getComputedStyle(document.documentElement).getPropertyValue("--card").trim()||"#fbfaf6";
   layoutPad();
 }
 function layoutPad(){
@@ -384,11 +420,13 @@ function showResults(){
   if(R.status!=="optimal"){
     el.innerHTML=`<div class="card"><span class="badge b-bad">${R.status.toUpperCase()}</span><p style="margin:12px 0 0">${R.status==="infeasible"?(R.ip&&R.rx&&R.rx.status==="optimal"?"The LP relaxation is feasible, but no integer point satisfies every constraint. Loosen a constraint or relax an integer requirement.":"No point satisfies all constraints at once. Check the operators and RHS values, or non-negativity."):"The objective can improve forever. A constraint is probably missing or has the wrong direction."}</p></div>`;return}
   const z=fmt(R.Z);
-  el.innerHTML=`<div class="card"><div class="row"><span class="badge b-ok">${R.ip?"OPTIMAL (INTEGER)":"OPTIMAL"}</span><span class="sp"></span><button class="btn sm" id="cpy">Copy</button></div>
+  el.innerHTML=`<div class="card"><div class="row"><span class="badge b-ok">${R.ip?"OPTIMAL (INTEGER)":"OPTIMAL"}</span><span class="sp"></span><button class="btn sm" id="cpy">Copy</button><button class="btn sm" id="pdfR">Save PDF</button><button class="btn sm" id="prtR">Print</button></div>
    <div style="color:var(--mut);margin-top:10px;font-weight:600">Z* (${S.goal==="max"?"maximum":"minimum"})</div><div class="z">${z}</div></div>${R.ipHtml||""}
    <h2>Decision variables</h2><div class="card"><table><tr><th>Var</th><th class="r">Value</th></tr>${R.x.map((v,j)=>`<tr><td>${sub(j)}</td><td class="r">${fmt(v)}</td></tr>`).join("")}</table></div>
-   ${R.rows.length?`<h2>Slack / surplus</h2><div class="card scroll"><table><tr><th>Constraint</th><th class="r">LHS</th><th class="r">RHS</th><th class="r">Slack/Surplus</th><th>State</th></tr>
-   ${R.rows.map(w=>{const bind=Math.abs(w.val)<1e-7;return`<tr><td>${cname(w.r)} (${w.op==="=="?"=":w.op})</td><td class="r">${fmt(w.l)}</td><td class="r">${fmt(w.b)}</td><td class="r">${w.kind==="—"?"—":fmt(w.val)+" <small style='color:var(--mut)'>"+(w.kind==="Slack"?"s":"e")+(w.r+1)+"</small>"}</td><td>${bind?'<span class="tag">Binding</span>':'<span style="color:var(--mut)">Loose</span>'}</td></tr>`}).join("")}</table></div>`:""}`;
+   ${R.rows.length?`<h2>Slack / surplus</h2><div class="card scroll"><table><tr><th>Constraint</th><th class="r">LHS</th><th class="r">RHS</th><th class="r">Slack/Surplus</th><th class="r">State</th></tr>
+   ${R.rows.map(w=>{const bind=Math.abs(w.val)<1e-7;return`<tr><td>${cname(w.r)} (${w.op==="=="?"=":w.op})</td><td class="r">${fmt(w.l)}</td><td class="r">${fmt(w.b)}</td><td class="r">${w.kind==="—"?"—":fmt(w.val)+" <small style='color:var(--mut)'>"+(w.kind==="Slack"?"s":"e")+(w.r+1)+"</small>"}</td><td class="r">${stBadge(bind)}</td></tr>`}).join("")}</table></div>`:""}
+   <h2>What this means</h2>${lpNarrHTML()}${wiShell(R)}`;
+  wiUpdate();$("#pdfR").onclick=()=>xpRun("pdf");$("#prtR").onclick=()=>xpRun("print");
   const c=$("#cpy");if(c)c.onclick=()=>{const t=`Z* = ${z}\n`+R.x.map((v,j)=>`x${j+1} = ${fmt(v)}`).join("\n")+"\n"+R.rows.map(w=>w.kind==="—"?"":`${w.kind==="Slack"?"s":"e"}${w.r+1} = ${fmt(w.val)}`).filter(Boolean).join("\n");
     (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast("Copied ✓"),()=>toast("Copy blocked by browser"))};
 }
@@ -459,25 +497,19 @@ function secs(){
     {t:"Variable Limits",h:["Variable","Value","Lower Limit","Target Result","Upper Limit","Target Result"],
      r:a.lim.map((o,j)=>[vn(j),fmt(x[j]),fx(o.lo),fx(o.zl),fx(o.hi),fx(o.zh)])}];
 }
-function howto(a){
-  if(!a.sens)return"";const L=[];
-  a.sens.c.forEach(o=>L.push(Math.abs(o.sp)<1e-9?`<b>${o.name}</b> has no effect on Z right now (shadow price 0): extra resource is not needed.`
-    :`<b>${o.name}</b>: each extra unit of R.H.S. changes Z by <b>${fmt(o.sp)}</b>, valid while R.H.S. stays in [${fmt(o.b-o.dec)}, ${fx(o.inc>=1e29?o.inc:o.b+o.inc)}].`));
-  a.sens.v.forEach(o=>L.push(o.basic?`<b>${o.name}</b>: the solution stays optimal while its coefficient is in [${fx(o.dec>=1e29?-BIG:o.c-o.dec)}, ${fx(o.inc>=1e29?BIG:o.c+o.inc)}].`
-    :`<b>${o.name}</b> is 0: forcing one unit in changes Z by <b>${fmt(o.rc)}</b> (reduced cost).`));
-  return`<h2>How to read this</h2><div class="card noprint"><ul class="how">${L.map(t=>"<li>"+t+"</li>").join("")}</ul></div>`}
+function howto(a){if(!a.sens)return"";const N=lpLines();return`<h2>How to read this</h2><div class="card noprint"><ul class="how">${[...N.sens].map(t=>"<li>"+t+"</li>").join("")}</ul><details><summary>Technical notes</summary><ul class="how">${N.tech.map(t=>"<li>"+t+"</li>").join("")}</ul></details></div>`}
 function showReports(){
   const el=$("#rpBody");$$("#rpSeg button").forEach(b=>b.classList.toggle("on",b.dataset.rp===rp));
   if(!lastRes||lastRes.status!=="optimal"||!lastRes.rep){el.className="empty";el.innerHTML=lastRes?"Reports need an optimal solution.":"Press <b>Solve ▶</b> first.";return}
   el.className="";const a=lastRes.rep,sc=secs();
   el.innerHTML=a.warn.map(w=>`<div class="card note" style="margin-top:10px">${w}</div>`).join("")
    +sc.map(s=>`<h2>${s.t}</h2><div class="card scroll"><table><tr>${s.h.map((h,i)=>`<th class="${i?"r":"t"}">${h}</th>`).join("")}</tr>
-     ${s.r.map(r=>"<tr>"+r.map((v,i)=>`<td class="${i?"r":"t"}">${v==="Binding"?'<span class="badge b-warn">Binding</span>':v==="Not Binding"?'<span class="badge b-ok">Not Binding</span>':v}</td>`).join("")+"</tr>").join("")}</table></div>`).join("")
+     ${s.r.map(r=>"<tr>"+r.map((v,i)=>`<td class="${i?"r":"t"}">${v==="Binding"?stBadge(true,"Binding"):v==="Not Binding"?stBadge(false,"Not binding"):v}</td>`).join("")+"</tr>").join("")}</table></div>`).join("")
    +(rp==="sen"?howto(a):"")
-   +`<div class="row noprint"><button class="btn sp" id="cpT">Copy for Excel</button><button class="btn sp" id="prt">Print / PDF</button></div>`;
+   +`<div class="row noprint"><button class="btn sp" id="cpT">Copy for Excel</button><button class="btn sp" id="pdfT">Save PDF</button><button class="btn sp" id="prt">Print</button></div>`;
   $("#cpT").onclick=()=>{const t=sc.map(s=>[s.t,s.h.join("\t"),...s.r.map(r=>r.join("\t"))].join("\n")).join("\n\n");
     (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast("Copied: paste into Excel ✓"),()=>toast("Copy blocked by browser"))};
-  $("#prt").onclick=()=>print();
+  $("#pdfT").onclick=()=>xpRun("pdf");$("#prt").onclick=()=>xpRun("print");
 }
 
 /* ---------- Phase 3: 2-variable graphical method ---------- */
@@ -523,7 +555,7 @@ function gAnalyze(){
   return A}
 const nice=r=>{const p=10**Math.floor(Math.log10(r/5)),f=r/5/p;return(f<1.5?1:f<3.5?2:f<7.5?5:10)*p};
 const gcn=i=>(G.cons[i]&&G.cons[i].nm)||"C"+(i+1);
-var GV={z:1,icp:1,cor:1,iso:1,lat:0,drag:0,tw:0,map:null,pin:1,tw0:0,twZ:null};
+var GV={z:1,icp:1,cor:1,iso:1,lat:0,drag:0,tw:0,map:null,pin:1,tw0:0,twZ:null,bey:0};
 function gView(A){let X=0,Y=0;const up=(x,y)=>{if(x>X)X=x;if(y>Y)Y=y};
   G.cons.forEach(k=>{const[a,b]=icp(k);if(a>0)up(a,0);if(b>0)up(0,b)});(A.V||[]).forEach(v=>up(v[0],v[1]));
   return[(X>0?X*1.2:10)*GV.z,(Y>0?Y*1.2:10)*GV.z]}
@@ -531,8 +563,9 @@ function clipLine(a,b,h,X,Y){const P=[],add=(x,y)=>{if(x>=-1e-9&&x<=X+1e-9&&y>=-
   if(Math.abs(b)>1e-12){add(0,h/b);add(X,(h-a*X)/b)}if(Math.abs(a)>1e-12){add(h/a,0);add((h-b*Y)/a,Y)}
   let best=null,bd=1e-9;for(let i=0;i<P.length;i++)for(let j=i+1;j<P.length;j++){const d=Math.hypot(P[i][0]-P[j][0],P[i][1]-P[j][1]);if(d>bd){bd=d;best=[P[i],P[j]]}}
   return best}
-function gIso(A){const lo=Math.min(...A.Z),hi=Math.max(...A.Z),sp=Math.max(hi-lo,Math.abs(hi)*.2,1);
-  let st=A.sg>0?lo:hi,en=A.unb?(A.sg>0?hi+sp:lo-sp):(A.sg>0?hi:lo);if(Math.abs(en-st)<1e-9)st=en-A.sg*sp*.5;return st+(en-st)*gt}
+function gIso(A){const lo=Math.min(...A.Z),hi=Math.max(...A.Z),sp=Math.max(hi-lo,Math.abs(hi)*.2,1),mg=sp*.3,sg=A.sg,worst=sg>0?lo:hi,st=worst-sg*mg;
+  if(A.unb){const en=sg>0?hi+sp:lo-sp;return st+(en-st)*gt}
+  const best=sg>0?hi:lo;return gt<=1?st+(best-st)*gt:best+sg*mg*(gt-1)/.2}
 function gDraw(){
   const cv=$("#gcv");if(!cv||!cv.clientWidth||!GA)return;
   const A=GA,w=cv.clientWidth,h=Math.round(Math.min(w*(S.set.view==="desktop"?.8:.95),Math.max(220,innerHeight*(S.set.view==="desktop"?.62:.4)))),dpr=devicePixelRatio||1;
@@ -540,8 +573,12 @@ function gDraw(){
   const x=cv.getContext("2d");x.setTransform(dpr,0,0,dpr,0,0);
   const cs=getComputedStyle(document.documentElement),css=n=>cs.getPropertyValue(n).trim(),tx=css("--tx"),mut=css("--mut"),bd=css("--bd"),pri=css("--pri"),bg=css("--card"),gold="#f59e0b";
   const[X,Y]=gView(A),ml=42,mr=14,mt=14,mb=30,sx=v=>ml+v/X*(w-ml-mr),sy=v=>h-mb-v/Y*(h-mt-mb);GV.map={ml,mr,mt,mb,X,Y,w,h};
-  const lab=(t,px,py,col,b)=>{x.font=(b?"700 ":"600 ")+"11px system-ui";x.textAlign="center";const tw=x.measureText(t).width/2+3;px=Math.min(Math.max(px,tw),w-tw);
-    x.lineWidth=3;x.strokeStyle=bg;x.strokeText(t,px,py);x.fillStyle=col;x.fillText(t,px,py)};
+  const placed=[];
+  const lab=(t,px,py,col,b,mv)=>{x.font=(b?"700 ":"600 ")+"11px system-ui";x.textAlign="center";const tw=x.measureText(t).width/2+3,th=7;let ax=px,ay=py;
+    if(mv){const C=[[0,0],[0,-14],[0,14],[18,0],[-18,0],[16,-14],[-16,-14],[16,14],[-16,14],[0,-28],[0,28],[30,0],[-30,0],[24,-26],[-24,-26],[24,26],[-24,26]];let pick=null,first=null;
+      for(const c of C){const cx=Math.min(Math.max(px+c[0],tw),w-tw),cy=Math.min(Math.max(py+c[1],th+3),h-4),r=[cx-tw,cy-th-3,cx+tw,cy+3];if(!first)first=[cx,cy,r];if(!placed.some(q=>r[0]<q[2]&&r[2]>q[0]&&r[1]<q[3]&&r[3]>q[1])){pick=[cx,cy,r];break}}
+      if(!pick&&mv===2)pick=first;if(!pick)return;ax=pick[0];ay=pick[1];placed.push(pick[2])}else ax=Math.min(Math.max(px,tw),w-tw);
+    x.lineWidth=3;x.strokeStyle=bg;x.strokeText(t,ax,ay);x.fillStyle=col;x.fillText(t,ax,ay)};
   x.fillStyle=bg;x.fillRect(0,0,w,h);x.lineWidth=1;
   const stx=nice(X),sty=nice(Y);
   for(let v=0;v<=X+1e-9;v+=stx){x.strokeStyle=bd;x.beginPath();x.moveTo(sx(v),mt);x.lineTo(sx(v),h-mb);x.stroke();lab(String(+v.toFixed(6)),sx(v),h-mb+14,mut)}
@@ -559,12 +596,13 @@ function gDraw(){
     const red=A.red.some(o=>o.i===i);x.strokeStyle=red?mut:COL[i];x.lineWidth=2;x.setLineDash(red?[6,5]:[]);
     x.beginPath();x.moveTo(sx(sg[0][0]),sy(sg[0][1]));x.lineTo(sx(sg[1][0]),sy(sg[1][1]));x.stroke();x.setLineDash([]);
     labs.push([gcn(i)+(red?" (redundant)":""),sx(sg[1][0])-(sg[1][0]>X*.8?24:0),sy(sg[1][1])+(sg[1][1]<Y*.1?-8:12),red?mut:COL[i]])});
-  let k=null;
+  let k=null;GV.bey=0;
   if(!A.inf){
     const sgn=A.sg,cx=A.c[0],cy=A.c[1],mx=A.V.reduce((s,v)=>s+v[0],0)/A.V.length,my=A.V.reduce((s,v)=>s+v[1],0)/A.V.length;
     k=(GP.v0&&GP.mode!=="off"&&GP.mode!=="b")?A.c[0]*GP.v0[0]+A.c[1]*GP.v0[1]:gIso(A);
-    if(GV.iso&&(cx||cy)){const seg=clipLine(cx,cy,k,X,Y);if(seg){x.strokeStyle=gold;x.lineWidth=2.5;x.setLineDash([8,5]);x.beginPath();x.moveTo(sx(seg[0][0]),sy(seg[0][1]));x.lineTo(sx(seg[1][0]),sy(seg[1][1]));x.stroke();x.setLineDash([]);
-        labs.push(["Z = "+fmt(k),(sx(seg[0][0])+sx(seg[1][0]))/2+(sgn>0?-4:4),(sy(seg[0][1])+sy(seg[1][1]))/2-8,gold])}
+    GV.bey=(!A.unb&&A.opt&&A.sg*(k-A.best)>1e-9)?1:(A.Z&&A.sg*(k-(A.sg>0?Math.min(...A.Z):Math.max(...A.Z)))<-1e-9)?2:0;
+    if(GV.iso&&(cx||cy)){const seg=clipLine(cx,cy,k,X,Y);if(seg){x.strokeStyle=GV.bey?css("--bad"):gold;x.lineWidth=2.5;x.setLineDash([8,5]);x.beginPath();x.moveTo(sx(seg[0][0]),sy(seg[0][1]));x.lineTo(sx(seg[1][0]),sy(seg[1][1]));x.stroke();x.setLineDash([]);
+        labs.push(["Z = "+fmt(k)+(GV.bey===1?" · beyond optimum":GV.bey===2?" · below lowest corner":""),(sx(seg[0][0])+sx(seg[1][0]))/2+(sgn>0?-4:4),(sy(seg[0][1])+sy(seg[1][1]))/2-8,GV.bey?css("--bad"):gold])}
       let dx=cx*(sx(1)-sx(0))*sgn,dy=cy*(sy(1)-sy(0))*sgn;const m=Math.hypot(dx,dy)||1;dx=dx/m*38;dy=dy/m*38;const ax=sx(mx),ay=sy(my);
       x.strokeStyle=gold;x.fillStyle=gold;x.lineWidth=3;x.beginPath();x.moveTo(ax,ay);x.lineTo(ax+dx,ay+dy);x.stroke();
       const an=Math.atan2(dy,dx);x.beginPath();x.moveTo(ax+dx,ay+dy);x.lineTo(ax+dx-9*Math.cos(an-.5),ay+dy-9*Math.sin(an-.5));x.lineTo(ax+dx-9*Math.cos(an+.5),ay+dy-9*Math.sin(an+.5));x.fill()}
@@ -573,15 +611,15 @@ function gDraw(){
       A.zr.forEach(r=>A.opt.forEach(i=>{const v=A.V[i];x.beginPath();x.moveTo(sx(v[0]),sy(v[1]));x.lineTo(sx(v[0]+r[0]*(X+Y)),sy(v[1]+r[1]*(X+Y)));x.stroke()}));x.lineCap="butt"}
   }
   x.restore();
-  labs.forEach(l=>lab(l[0],l[1],l[2],l[3],1));
+  if(!A.inf)A.V.forEach((v,i)=>{const o=!A.unb&&A.opt.includes(i);x.beginPath();x.arc(sx(v[0]),sy(v[1]),o?7:5,0,7);x.fillStyle=o?gold:tx;x.fill();x.strokeStyle=bg;x.lineWidth=2;x.stroke();
+    if(GV.cor||o)lab(String.fromCharCode(65+i)+(o?" ★":""),sx(v[0])+10,sy(v[1])-9,o?gold:tx,1,o?2:1)});
+  labs.forEach(l=>lab(l[0],l[1],l[2],l[3],1,1));
   if(GV.icp)G.cons.forEach((kk,i)=>{const[a,b]=icp(kk),pts=[];if(a!=null&&a>=0&&a<=X)pts.push([a,0]);if(b!=null&&b>=0&&b<=Y)pts.push([0,b]);
     pts.forEach(p=>{x.beginPath();x.arc(sx(p[0]),sy(p[1]),3.5,0,7);x.fillStyle=bg;x.fill();x.strokeStyle=COL[i];x.lineWidth=2;x.stroke();
-      lab("("+fmt(p[0])+","+fmt(p[1])+")",sx(p[0])+(p[1]===0?0:30),sy(p[1])+(p[1]===0?-8:-6),COL[i])})});
-  if(!A.inf)A.V.forEach((v,i)=>{const o=!A.unb&&A.opt.includes(i);x.beginPath();x.arc(sx(v[0]),sy(v[1]),o?7:5,0,7);x.fillStyle=o?gold:tx;x.fill();x.strokeStyle=bg;x.lineWidth=2;x.stroke();
-    if(GV.cor||o)lab(String.fromCharCode(65+i)+(o?" ★":""),sx(v[0])+10,sy(v[1])-9,o?gold:tx,1)});
+      lab("("+fmt(p[0])+","+fmt(p[1])+")",sx(p[0])+(p[1]===0?0:30),sy(p[1])+(p[1]===0?-8:-6),COL[i],0,1)})});
   if(GV.lat&&!A.inf){const Q=gLattice(A,X,Y);if(Q.best){x.beginPath();x.arc(sx(Q.best[0]),sy(Q.best[1]),9,0,7);x.strokeStyle=css("--ok");x.lineWidth=3;x.stroke()}}
   if(GP.v0&&GP.mode!=="off"){x.beginPath();x.arc(sx(GP.v0[0]),sy(GP.v0[1]),11,0,7);x.setLineDash([3,3]);x.strokeStyle=gold;x.lineWidth=2;x.stroke();x.setLineDash([])}
-  $("#gZ").textContent=k==null?"":fmt(k);
+  $("#gZ").textContent=k==null?"":fmt(k)+(GV.bey?" ✖":"");$("#gZ").style.color=GV.bey?css("--bad"):"";const gn=$("#gIsoNote");if(gn)gn.textContent=GV.bey===1?"Beyond the optimum: this iso-line touches no feasible point, so nothing on it is attainable.":GV.bey===2?"Below the lowest corner: no feasible point lies on this iso-line.":"";
 }
 function gPanels(){
   const A=GA,f=fmt,pt=v=>`(${f(v[0])}, ${f(v[1])})`,L=i=>String.fromCharCode(65+i),out=[];
@@ -1161,10 +1199,10 @@ document.addEventListener("input",e=>{const t=e.target,d=t.dataset||{};
 document.addEventListener("change",e=>{const d=e.target.dataset||{};if(d.vt!==undefined){S.vt[+d.vt]=e.target.value;render()}});
 document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-vtall]");if(b){S.vt=S.vt.map(()=>b.dataset.vtall);render()}});
 /* live model preview */
-const exprTxt=a=>{const t=[];a.forEach((v,j)=>{v=num(v);if(!v)return;const m=Math.abs(v),nm=S.vn&&S.vn[j];
-  t.push((t.length?(v<0?"− ":"+ "):(v<0?"−":""))+(nm?(m===1?nm:fmt(m)+"·"+nm):(m===1?"":fmt(m))+sub(j)))});return t.length?t.join(" "):"0"};
-function modelText(P){const L=[(P.goal==="max"?"Max":"Min")+" Z = "+exprTxt(P.obj),"s.t."],nm=P.obj.map((_,j)=>sub(j));
-  P.cons.forEach((c,i)=>L.push("  "+(c.nm||"C"+(i+1))+":  "+exprTxt(c.a)+" "+({"<=":"≤",">=":"≥","==":"="}[c.op])+" "+fmt(num(c.b))));
+const exprTxt=(a,vn)=>{vn=vn||S.vn;const t=[];a.forEach((v,j)=>{v=num(v);if(!v)return;const m=Math.abs(v),nm=vn&&vn[j];
+  t.push((t.length?(v<0?"− ":"+ "):(v<0?"−":""))+(nm?(m===1?nm:fmt(m)+"·"+nm):(m===1?"":fmt(m))+(vn===S.vn?sub(j):dsub(j))))});return t.length?t.join(" "):"0"};
+function modelText(P){const L=[(P.goal==="max"?"Max":"Min")+" Z = "+exprTxt(P.obj,P.vn),"s.t."],nm=P.obj.map((_,j)=>P.vn?(P.vn[j]||dsub(j)):sub(j));
+  P.cons.forEach((c,i)=>L.push("  "+(c.nm||"C"+(i+1))+":  "+exprTxt(c.a,P.vn)+" "+({"<=":"≤",">=":"≥","==":"="}[c.op])+" "+fmt(num(c.b))));
   L.push("  "+(nm.length>6?nm[0]+", …, "+nm[nm.length-1]:nm.join(", "))+(P.nonneg===false?"  free":" ≥ 0"));
   const gv=t=>P.vt?nm.filter((_,j)=>P.vt[j]===t):[];if(gv("i").length)L.push("  "+gv("i").join(", ")+" integer");if(gv("b").length)L.push("  "+gv("b").join(", ")+" ∈ {0, 1}");return L.join("\n")}
 const mdl=()=>({goal:S.goal,obj:S.obj,cons:S.cons,nonneg:S.nonneg,vt:S.vt});
@@ -1302,11 +1340,6 @@ function toRaw(){const q=v=>String(+num(v).toFixed(10)),L=[(S.goal==="max"?"max"
   if(S.vt.some(t=>t!=="c"))L.push("types,"+S.vt.map(t=>({c:"cont",i:"int",b:"bin"}[t])).join(","));
   S.cons.forEach(c=>L.push((c.nm?c.nm.replace(/[,;]/g," ")+",":"")+c.a.map(q).join(",")+","+c.op+","+q(c.b)));if(!S.nonneg)L.push("free");return L.join("\n")}
 /*ENDRAW*/
-$("#rawLoad").onclick=()=>{const r=parseRaw($("#rawIn").value),m=$("#rawMsg");
-  if(r.errs.length){m.style.color="var(--bad)";m.innerHTML=r.errs.slice(0,6).map(esc).join("<br>");return}
-  const P=r.P;setModel({goal:P.goal,obj:P.obj,cons:P.cons,vn:P.vn,vt:P.vt,free:P.free,stay:true},"Problem loaded");m.style.color="var(--ok)";m.textContent=`Loaded ${P.obj.length} variables and ${P.cons.length} constraints.`};
-$("#rawFill").onclick=()=>{$("#rawIn").value=toRaw();$("#rawMsg").style.color="";$("#rawMsg").textContent="Current model written in this format."};
-$("#rawEx").onclick=()=>{$("#rawIn").value="max, 3, 5\nvars, Doors, Windows\ntypes, int, int\nPlant 1, 1, 0, <=, 4\nPlant 2, 0, 2, <=, 12\nPlant 3, 3, 2, <=, 18";$("#rawMsg").style.color="";$("#rawMsg").textContent="Example filled in. Press Load into model."};
 const MEX=[
  {t:"Maximize profit (2 variables)",d:"Textbook product mix",goal:"max",vn:["Doors","Windows"],obj:[3,5],rows:[[1,0,"<=",4,"Plant 1 hours"],[0,2,"<=",12,"Plant 2 hours"],[3,2,"<=",18,"Plant 3 hours"]]},
  {t:"Product mix (3 products)",d:"Machine, labour and material limits",goal:"max",vn:["Tables","Chairs","Desks"],obj:[60,40,50],rows:[[2,1,2,"<=",100,"Machine hours"],[1,2,1,"<=",80,"Labour hours"],[3,2,1,"<=",120,"Material"],[0,0,1,"<=",20,"Desk demand"]]},
@@ -1398,7 +1431,7 @@ const XP_CSS=`.xp{--bg:#fff;--card:#fff;--tx:#1f1d19;--mut:#6b665b;--bd:#d8d2c3;
 .xp td{padding:7px 8px;border-bottom:1px solid #ebe6da;text-align:right;font-variant-numeric:tabular-nums;font-family:inherit}.xp th.t,.xp td.t{text-align:left}
 .xp tr.hl td,.xp td.hl{background:#f4e9df;font-weight:700}.xp tr.crit td{background:#f7e3df;font-weight:700}
 .xp .badge,.xp .tag{display:inline-block;font:600 11px ui-monospace,Menlo,monospace;padding:2px 8px;border-radius:3px;background:#f4e9df;color:#9a3b16}
-.xp .b-ok{background:#e1efe5;color:#3d7a50}.xp .b-bad{background:#f7e3df;color:#b0372a}.xp .b-warn{background:#f5ecd2;color:#946610}
+.xp .state{display:inline-block;border:1.5px solid;border-radius:4px;padding:1px 8px;font:600 12px ui-monospace,Menlo,monospace}.xp .state.bind{border-color:#2a6b3f;color:#2a6b3f}.xp .state.loose{border-color:#7f5806;color:#7f5806}.xp .state.viol{border-color:#a3301f;color:#a3301f}.xp .b-ok{background:#e1efe5;color:#3d7a50}.xp .b-bad{background:#f7e3df;color:#b0372a}.xp .b-warn{background:#f5ecd2;color:#946610}
 .xp .z{font:600 34px/1.2 "Iowan Old Style",Palatino,Georgia,serif;color:#1f1d19;margin-top:6px}
 .xp .preview,.xp small{font-size:12.5px;color:#6b665b;font-family:inherit}.xp ul.how,.xp ul.xi{margin:0;padding-left:20px}.xp ul.xi li,.xp ul.how li{margin:7px 0}
 .xp img.xc{max-width:100%;border:1px solid #d8d2c3;border-radius:6px;display:block}.xp .scroll{overflow:visible}.xp .cv{background:#f5ecd2}
@@ -1409,15 +1442,10 @@ function xpClone(sel){const o=typeof sel==="string"?$(sel):sel;if(!o||!o.innerHT
   const oi=[...o.querySelectorAll("input,select")];[...c.querySelectorAll("input,select")].forEach((el,i)=>{const src=oi[i];if(!src)return;if(el.type==="range"){el.remove();return}const b=document.createElement("b");b.textContent=src.tagName==="SELECT"?(src.options[src.selectedIndex]||{}).text:src.value;el.replaceWith(b)});
   c.querySelectorAll("button,.noprint,.seg").forEach(b=>b.remove());c.querySelectorAll("details").forEach(x=>x.setAttribute("open",""));c.removeAttribute("id");return c.innerHTML}
 /* interpretations */
-function interpModel(){const R=lastRes,L=[],f=fmt,goal=S.goal==="max"?"maximum":"minimum";
-  if(R.status!=="optimal"){L.push(R.status==="infeasible"?"No plan satisfies every constraint at once, so the problem is infeasible. Check the direction of each inequality and the right-hand sides.":"The objective can keep improving without limit, so the problem is unbounded. A constraint is probably missing or points the wrong way.");return{tiles:[["Status",R.status.toUpperCase()]],lines:L}}
+function interpModel(){const R=lastRes,f=fmt,goal=S.goal==="max"?"maximum":"minimum";const N=lpLines();
+  if(R.status!=="optimal")return{tiles:[["Status",R.status.toUpperCase()]],lines:N.plan,tech:[]};
   const T_=[[`Z* (${goal})`,f(R.Z)],["Variables",S.n],["Constraints",S.m]];if(R.ip)T_.push(["LP bound",f(R.relZ)],["Integrality gap",f(R.gap)]);
-  L.push(`The optimal plan is ${R.x.map((v,j)=>`<b>${esc(sub(j))} = ${f(v)}</b>`).join(", ")}, which gives Z* = <b>${f(R.Z)}</b> (the ${goal}).`);
-  if(R.ip)L.push(`Integer requirements make the best plan ${f(R.gap)} worse than the LP relaxation (${f(R.relZ)}). The sensitivity statements below describe the relaxed problem.`);
-  R.rows.forEach((w,i)=>{const nmx=esc(cname(i));L.push(Math.abs(w.val)<1e-7?`<b>${nmx}</b> is <b>binding</b>: it is used up completely, so it limits the result.`:w.kind==="Slack"?`<b>${nmx}</b> has ${f(w.val)} of slack: that much capacity is left unused.`:w.kind==="Surplus"?`<b>${nmx}</b> is exceeded by ${f(w.val)}: the minimum is met with room to spare.`:`<b>${nmx}</b> holds with equality.`)});
-  const sn=R.rep&&R.rep.sens;if(sn){sn.c.forEach(o=>{if(Math.abs(o.sp)>1e-9)L.push(`Shadow price of <b>${esc(o.name)}</b> = ${f(o.sp)}: one more unit of its right-hand side changes Z by ${f(o.sp)}, valid for right-hand sides from ${fR(o.b-o.dec)} to ${fR(o.b+o.inc)}.`)});
-    sn.v.forEach(o=>{if(o.basic)L.push(`<b>${esc(o.name)}</b> stays in the plan while its objective coefficient is between ${fR(o.c-o.dec)} and ${fR(o.c+o.inc)}.`);else L.push(`<b>${esc(o.name)}</b> is zero: forcing one unit into the plan would change Z by ${f(o.rc)} (reduced cost).`)})}
-  return{tiles:T_,lines:L}}
+  return{tiles:T_,lines:[...N.plan,...N.sens],tech:N.tech}}
 function interpTp(){const q=tpData(),{c,s,d,rl,cl}=q,cost=A=>A.reduce((t,r,i)=>t+r.reduce((u,v,j)=>u+(v||0)*c[i][j],0),0),A1=nwc(c,s,d),V=vam(c,s,d).A,O=tpOpt(c,s,d),f=fmt;
   if(!O.ok)return{tiles:[["Status","INFEASIBLE"]],lines:["No feasible shipping plan exists."]};const zo=cost(O.A),z1=cost(A1),z2=cost(V),L=[`The cheapest plan meets all demand at a total cost of <b>${f(zo)}</b>.`];
   O.A.forEach((r,i)=>r.forEach((v,j)=>{if(v!==null&&v>1e-9){const dm=rl[i]==="Dummy"||cl[j]==="Dummy";L.push(dm?`${rl[i]} → ${cl[j]}: ${f(v)} units (${rl[i]==="Dummy"?"demand that cannot be met":"supply left unshipped"}).`:`${rl[i]} → ${cl[j]}: ${f(v)} units at ${f(c[i][j])} each = ${f(v*c[i][j])}.`)}}));
@@ -1451,9 +1479,10 @@ function interpGm(){const A=GM.A.map(r=>r.map(num)),pr=gPure(A),lp=gLP(A),f=fmt,
 /* export content */
 function xpData(){const v=($(".v.on")||{}).id,D={sections:[]},need={err:"Solve the problem first, then export."};
   const put=(mod,title,I,problem)=>{Object.assign(D,{mod,title,tiles:I.tiles,lines:I.lines,problem})};
-  if(v==="v-model"||v==="v-results"||v==="v-reports"){if(!lastRes)return need;put("Optimization model",lastRes.ip?"Integer programming problem":"Linear programming problem",interpModel(),`<pre class="pb">${esc(modelText(mdl()))}</pre>`);
+  if(v==="v-model"||v==="v-results"||v==="v-reports"){if(!lastRes)return need;const IM=interpModel();put("Optimization model",lastRes.ip?"Integer programming problem":"Linear programming problem",IM,`<pre class="pb">${esc(modelText(mdl()))}</pre>`);
     const R=lastRes,f=fmt;D.sections.push(["Solution",R.status!=="optimal"?`<div class="card"><span class="badge b-bad">${R.status.toUpperCase()}</span></div>`:
-      `<div class="card"><span class="badge b-ok">${R.ip?"OPTIMAL (INTEGER)":"OPTIMAL"}</span><div class="z">Z* = ${f(R.Z)}</div></div>${R.ipHtml||""}`+tbl(["Variable","Type","Value"],R.x.map((x,j)=>({c:[esc(sub(j)),{c:"Continuous",i:"Integer",b:"Binary"}[S.vt[j]]||"Continuous",f(x)]})))+tbl(["Constraint","LHS","","RHS","Slack / surplus","State"],R.rows.map((w,i)=>({cls:Math.abs(w.val)<1e-7?"hl":"",c:[esc(cname(i)),f(w.l),w.op==="=="?"=":w.op,f(w.b),w.kind==="—"?"—":f(w.val),Math.abs(w.val)<1e-7?"binding":"loose"]})))]);
+      `<div class="card"><span class="badge b-ok">${R.ip?"OPTIMAL (INTEGER)":"OPTIMAL"}</span><div class="z">Z* = ${f(R.Z)}</div></div>${R.ipHtml||""}`+tbl(["Variable","Type","Value"],R.x.map((x,j)=>({c:[esc(sub(j)),{c:"Continuous",i:"Integer",b:"Binary"}[S.vt[j]]||"Continuous",f(x)]})))+tbl(["Constraint","LHS","","RHS","Slack / surplus","State"],R.rows.map((w,i)=>({cls:Math.abs(w.val)<1e-7?"hl":"",c:[esc(cname(i)),f(w.l),w.op==="=="?"=":w.op,f(w.b),w.kind==="—"?"—":f(w.val),stBadge(Math.abs(w.val)<1e-7)]})))]);
+    if(IM.tech&&IM.tech.length)D.after=["Technical notes",`<div class="card"><ul class="xi">${IM.tech.map(t=>"<li>"+t+"</li>").join("")}</ul></div>`];
     if(R.rep){const sv=rp,nmr={ans:"Answer report",sen:"Sensitivity report",lim:"Limits report"};R.rep.warn.forEach(w=>D.sections.push(["Note",`<div class="card">${w}</div>`]));
       ["ans","sen","lim"].forEach(k=>{rp=k;try{secs().forEach(sc=>D.sections.push([nmr[k]+": "+sc.t,tbl(sc.h,sc.r.map(r=>({c:r})))]))}catch(e){}});rp=sv}
     return D}
@@ -1476,7 +1505,7 @@ function xpBuild(){const D=xpData();if(D.err){toast(D.err);return null}
   const date=new Date().toLocaleDateString(undefined,{year:"numeric",month:"long",day:"numeric"}),slug=D.title.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
   const xp=document.createElement("div");xp.className="xp";
   xp.innerHTML=`<div class="xh"><div class="k">OR Solver · ${esc(D.mod)}</div><h1>${esc(D.title)}</h1><div class="d">${date}</div></div><div class="xb">${D.tiles&&D.tiles.length?`<div class="tiles">${D.tiles.map(t=>`<div class="tile"><b>${esc(String(t[1]))}</b><span>${esc(t[0])}</span></div>`).join("")}</div>`:""}
-   <h2>Problem</h2>${D.problem}${D.sections.filter(s=>s[1]).map(s=>`<h2>${s[0]}</h2>${s[1]}`).join("")}${D.lines.length?`<h2>Interpretation</h2><div class="card"><ul class="xi">${D.lines.map(l=>`<li>${l}</li>`).join("")}</ul></div>`:""}</div>
+   <h2>Problem</h2>${D.problem}${D.sections.filter(s=>s[1]).map(s=>`<h2>${s[0]}</h2>${s[1]}`).join("")}${D.lines.length?`<h2>Interpretation</h2><div class="card"><ul class="xi">${D.lines.map(l=>`<li>${l}</li>`).join("")}</ul></div>`:""}${D.after?`<h2>${D.after[0]}</h2>${D.after[1]}`:""}</div>
    <div class="xf"><span>Generated by OR Solver · works offline</span><span>${date}</span></div>`;
   return{xp,slug,date}}
 function xpMount(xp){const w=document.createElement("div");w.id="xpwrap";w.innerHTML=`<style>${XP_CSS}</style>`;w.appendChild(xp);document.body.appendChild(w);return w}
@@ -1487,18 +1516,36 @@ function xpMd(root){let o="";const walk=e=>{for(const c of e.childNodes){if(c.no
   else if(g==="LI")o+="\n- "+c.textContent.trim();else if(g==="IMG")o+="\n\n*(figure: see the image or PDF export)*\n\n";
   else if(/^(B|SPAN|SMALL|CODE|I|SUMMARY|STRONG)$/.test(g))o+=c.textContent;else{const b=/^(DIV|UL|OL|DETAILS|P|LI)$/.test(g);if(b)o+="\n";walk(c);if(b)o+="\n"}}};walk(root);return o.replace(/\n{3,}/g,"\n\n").trim()+"\n"}
 function xpH2C(){return window.html2canvas?Promise.resolve():new Promise((ok,no)=>{const s=document.createElement("script");s.src="html2canvas.min.js";s.onload=ok;s.onerror=()=>no(new Error("Image library not found. Keep html2canvas.min.js next to index.html."));document.head.appendChild(s)})}
+/*PDF*/
+function pdfBuild(pages,PW,PH,M){const cw=PW-2*M,enc=new TextEncoder(),parts=[],off=[];let len=0;const put=x=>{const b=typeof x==="string"?enc.encode(x):x;parts.push(b);len+=b.length};
+  const n=pages.length,tot=3+3*n;put("%PDF-1.4\n");
+  off[1]=len;put("1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n");
+  off[2]=len;put(`2 0 obj\n<< /Type /Pages /Kids [${pages.map((_,i)=>`${3+3*i} 0 R`).join(" ")}] /Count ${n} >>\nendobj\n`);
+  pages.forEach((p,i)=>{const po=3+3*i,co=po+1,io=po+2,cs=`q ${cw} 0 0 ${p.ph.toFixed(2)} ${M} ${(PH-M-p.ph).toFixed(2)} cm /Im0 Do Q`;
+    off[po]=len;put(`${po} 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${PW} ${PH}] /Resources << /XObject << /Im0 ${io} 0 R >> >> /Contents ${co} 0 R >>\nendobj\n`);
+    off[co]=len;put(`${co} 0 obj\n<< /Length ${cs.length} >>\nstream\n${cs}\nendstream\nendobj\n`);
+    off[io]=len;put(`${io} 0 obj\n<< /Type /XObject /Subtype /Image /Width ${p.w} /Height ${p.h} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${p.u.length} >>\nstream\n`);put(p.u);put("\nendstream\nendobj\n")});
+  const xr=len;put(`xref\n0 ${tot}\n0000000000 65535 f \n`+off.slice(1,tot).map(o=>String(o).padStart(10,"0")+" 00000 n \n").join("")+`trailer\n<< /Size ${tot} /Root 1 0 R >>\nstartxref\n${xr}\n%%EOF`);
+  return new Blob(parts,{type:"application/pdf"})}
+/*ENDPDF*/
+function pdfFromCanvas(cv){const PW=595,PH=842,M=28,sc=(PW-2*M)/cv.width,sh=Math.floor((PH-2*M)/sc),pages=[];
+  for(let y=0;y<cv.height;y+=sh){const h=Math.min(sh,cv.height-y),t=document.createElement("canvas");t.width=cv.width;t.height=h;const c=t.getContext("2d");c.fillStyle="#fff";c.fillRect(0,0,t.width,h);c.drawImage(cv,0,y,cv.width,h,0,0,cv.width,h);
+    const bin=atob(t.toDataURL("image/jpeg",.9).split(",")[1]),u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);pages.push({u,w:t.width,h,ph:h*sc})}
+  return pdfBuild(pages,PW,PH,M)}
 async function xpRun(kind){const B=xpBuild();if(!B)return;const{xp,slug}=B,stamp=new Date().toISOString().slice(0,10),base=`or-solver-${slug}-${stamp}`;
   if(kind==="md"||kind==="copy"){const t=xpMd(xp);if(kind==="copy")return copyTxt(t);xpSave(new Blob([t],{type:"text/markdown"}),base+".md");return toast("Saved "+base+".md")}
   if(kind==="html"){xpSave(new Blob([`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(slug)}</title><style>body{margin:0;background:#ece8dd;padding:16px}.xp{margin:0 auto;box-shadow:0 2px 14px rgba(0,0,0,.15)}${XP_CSS}</style></head><body>${xp.outerHTML}</body></html>`],{type:"text/html"}),base+".html");return toast("Saved "+base+".html")}
-  const w=xpMount(xp);
-  try{
-    if(kind==="pdf"){const done=()=>{w.remove();removeEventListener("afterprint",done)};addEventListener("afterprint",done);setTimeout(()=>{if(w.isConnected)w.remove()},120000);setTimeout(()=>print(),150);return}
-    toast("Preparing image…");await xpH2C();await new Promise(r=>setTimeout(r,80));
-    const h=xp.offsetHeight||2000,scale=Math.max(1,Math.min(2,14000/h)),cv=await html2canvas(xp,{scale,backgroundColor:"#ffffff",useCORS:true,logging:false,windowWidth:860});
-    const mime=kind==="jpg"?"image/jpeg":"image/png";await new Promise(ok=>cv.toBlob(b=>{xpSave(b,base+(kind==="jpg"?".jpg":".png"));ok()},mime,.93));toast("Saved "+base+(kind==="jpg"?".jpg":".png"))
-  }catch(e){toast(e.message||"Export failed")}finally{if(kind!=="pdf")w.remove()}}
+  if(kind==="print"){const f=document.createElement("iframe");f.setAttribute("aria-hidden","true");f.style.cssText="position:fixed;right:0;bottom:0;width:1px;height:1px;border:0;opacity:0";document.body.appendChild(f);const d=f.contentDocument;d.open();
+    d.write(`<!doctype html><html lang="en"><head><meta charset="utf-8"><title>${esc(base)}</title><style>body{margin:0}${XP_CSS}.xp{width:auto!important;max-width:none!important}@page{margin:12mm}</style></head><body>${xp.outerHTML}</body></html>`);d.close();
+    setTimeout(()=>{try{f.contentWindow.focus();f.contentWindow.print()}catch(e){toast("Printing is not available here. Use Save PDF instead.")}},400);setTimeout(()=>f.remove(),180000);return}
+  const w=xpMount(xp),pdf=kind==="pdf";
+  try{toast(pdf?"Building the PDF…":"Preparing image…");await xpH2C();await new Promise(r=>setTimeout(r,80));
+    const h=xp.offsetHeight||2000,scale=Math.max(1,Math.min(pdf?1.6:2,14000/h)),cv=await html2canvas(xp,{scale,backgroundColor:"#ffffff",useCORS:true,logging:false,windowWidth:860});
+    if(pdf){xpSave(pdfFromCanvas(cv),base+".pdf");toast("Saved "+base+".pdf")}
+    else{const mime=kind==="jpg"?"image/jpeg":"image/png";await new Promise(ok=>cv.toBlob(b=>{xpSave(b,base+(kind==="jpg"?".jpg":".png"));ok()},mime,.93));toast("Saved "+base+(kind==="jpg"?".jpg":".png"))}
+  }catch(e){toast(e.message||"Export failed")}finally{w.remove()}}
 $("#xpBtn").onclick=()=>sheet("Export report",`<div class="preview" style="margin:0 0 10px">Exports the problem, results, reports and a plain-language interpretation for the module you are viewing.</div>`+
-  [["pdf","PDF","Opens the print dialog: choose Save as PDF."],["png","PNG image","Sharp picture of the whole report."],["jpg","JPG image","Smaller file, good for chat apps."],["html","Web page (.html)","Opens in any browser with tables intact."],["md","Markdown (.md)","Plain text with tables for notes and docs."],["copy","Copy as text","Paste into a message or document."]].map(x=>`<button class="btn mig" data-xp="${x[0]}"><b>${x[1]}</b><small>${x[2]}</small></button>`).join(""));
+  [["pdf","PDF file","Builds a PDF and downloads it straight to your device."],["print","Print…","Opens the print dialog if your browser allows it."],["png","PNG image","Sharp picture of the whole report."],["jpg","JPG image","Smaller file, good for chat apps."],["html","Web page (.html)","Opens in any browser with tables intact."],["md","Markdown (.md)","Plain text with tables for notes and docs."],["copy","Copy as text","Paste into a message or document."]].map(x=>`<button class="btn mig" data-xp="${x[0]}"><b>${x[1]}</b><small>${x[2]}</small></button>`).join(""));
 $("#shB").addEventListener("click",e=>{const b=e.target.closest("[data-xp]");if(!b)return;$("#sheet").classList.remove("on");xpRun(b.dataset.xp)});
 
 /* ---------- Phase 11: modules menu, contextual tabs, graph link ---------- */
@@ -1519,12 +1566,12 @@ function drawBnav(){const nb=$("#bnav");if(!nb)return;const m=curMod(),M=MODS.fi
   else if(M.split)tabs=[{k:"s:in",l:"Setup",i:ICN.model,on:SUBV[m]==="in"},{k:"s:res",l:"Results",i:ICN.results,on:SUBV[m]==="res"}];
   nb.style.display=tabs.length?"":"none";nb.innerHTML=tabs.map(t=>`<button data-m="${t.k}" class="${t.on?"on":""}">${sv(t.i)}${t.l}</button>`).join("");layoutPad()}
 function syncBar(){const m=MODS.find(x=>x.id===curMod()),h=$("#hSub");if(h)h.textContent=(m?m.name:"Solver")+(navigator.onLine?"":" · offline");
-  const sb=$("#solveBtn");if(sb)sb.style.display=(curMod()==="set"||curView()==="graph")?"none":"";drawBnav()}
+  const sbt=$("#setBtn");if(sbt)sbt.classList.toggle("on",curMod()==="set");const sb=$("#solveBtn");if(sb)sb.style.display=(curMod()==="set"||curView()==="graph")?"none":"";drawBnav()}
 function setSub(m,v){SUBV[m]=v;const el=$("#v-"+m);el.classList.toggle("sub-res",v==="res");el.classList.toggle("sub-in",v==="in");drawBnav();scrollTo(0,0)}
 ["tr","nw","pj","gm"].forEach(m=>{$("#v-"+m).classList.add("sub-in");$("#v-"+m).addEventListener("click",e=>{if(e.target.closest("[data-ta=solve]")){const r=$("#"+RESID[m]);if(r&&r.innerHTML.trim())setSub(m,"res")}})});
 $("#bnav").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const k=b.dataset.m;if(k.startsWith("v:"))goTab(k.slice(2));else setSub(curMod(),k.slice(2))});
 function headSolve(){const m=curMod();if(m==="lp")solve();else{const b=document.querySelector("#v-"+m+" [data-ta=solve]");if(b)b.click()}}
-function renderDrawer(){const cm=curMod();$("#dList").innerHTML=MODS.map(m=>`<button class="mi ${m.id===cm?"on":""}" data-mod="${m.id}">${sv(m.icon)}<span><b>${m.name}</b><small>${m.desc}</small></span></button>`).join("")}
+function renderDrawer(){const cm=curMod();$("#dList").innerHTML=MODS.filter(m=>m.id!=="set").map(m=>`<button class="mi ${m.id===cm?"on":""}" data-mod="${m.id}">${sv(m.icon)}<span><b>${m.name}</b><small>${m.desc}</small></span></button>`).join("")}
 function goMod(id){const M=MODS.find(x=>x.id===id);goTab(id==="lp"?(LASTLP==="graph"&&S.n!==2?"model":LASTLP):M.view)}
 $("#menuBtn").onclick=()=>{renderDrawer();$("#drawer").classList.add("on")};
 $("#drawer").addEventListener("click",e=>{if(e.target.id==="drawer"||e.target.closest("[data-dx]")){$("#drawer").classList.remove("on");return}const b=e.target.closest("[data-mod]");if(!b)return;$("#drawer").classList.remove("on");goMod(b.dataset.mod)});
@@ -1537,6 +1584,170 @@ function gLinkIn(){if(S.n!==2)return;G.goal=S.goal;G.obj=[S.obj[0],S.obj[1]];G.c
 function gToModel(){if(S.n!==2)return;const nj=JSON.stringify([G.goal,G.obj,G.cons.map(c=>[[c.a[0],c.a[1]],c.op,c.b,c.nm||""])]),oj=JSON.stringify([S.goal,[S.obj[0],S.obj[1]],S.cons.map(c=>[[c.a[0],c.a[1]],c.op,c.b,c.nm||""])]);if(nj===oj)return;
   S.goal=G.goal;S.obj=[G.obj[0],G.obj[1]];S.cons=G.cons.map(c=>({a:[c.a[0],c.a[1]],op:c.op,b:c.b,nm:c.nm||""}));S.m=S.cons.length;S.preset=null;lastRes=null}
 syncBar();
+
+/* ---------- Phase 12: narrative, what-if, palettes, states ---------- */
+const stBadge=(b,t)=>`<span class="state ${b==="viol"?"viol":b?"bind":"loose"}">${t||(b==="viol"?"Violated":b?"Binding":"Loose")}</span>`;
+function lpLines(){const R=lastRes,sn=R.rep&&R.rep.sens,f=fmt,max=S.goal==="max",unit=max?"profit":"cost",plan=[],sens=[],tech=[];
+  if(R.status!=="optimal"){plan.push(R.status==="infeasible"?"No plan satisfies every constraint at once, so the problem is infeasible. Check the direction of each inequality and the right-hand sides.":"The objective can keep improving without limit, so the problem is unbounded. A constraint is probably missing or points the wrong way.");return{plan,sens,tech}}
+  const nm=j=>`<b>${esc(sub(j))}</b>`,used=R.x.map((v,j)=>v>1e-9?`${nm(j)} = <b>${f(v)}</b>`:null).filter(Boolean),zero=R.x.map((v,j)=>v<=1e-9?j:-1).filter(j=>j>=0);
+  plan.push(`The best plan is ${used.join(", ")||"to do nothing"}. That gives the ${max?"highest":"lowest"} ${unit} you can reach: <b>Z* = ${f(R.Z)}</b>.`);
+  if(zero.length&&used.length)plan.push(`${zero.map(nm).join(", ")} ${zero.length>1?"stay":"stays"} at zero: at today's numbers ${zero.length>1?"they don't":"it doesn't"} earn a place in the plan.`);
+  if(R.ip)plan.push(`Some variables must be whole numbers, so this plan is ${f(R.gap)} ${max?"lower in profit":"higher in cost"} than the unrestricted LP answer (${f(R.relZ)}). That gap is the price of integrality.`);
+  R.rows.forEach((w,i)=>{const n=`<b>${esc(cname(i))}</b>`,b=Math.abs(w.val)<1e-7;
+    plan.push(w.op==="=="?`${n} is an exact requirement and it is met.`:b?`${n} is a <b>bottleneck</b>: ${w.op==="<="?"its limit is used up completely":"its minimum is met exactly, with nothing to spare"}.`:`${n} is <b>loose</b>: ${w.op==="<="?`${f(w.val)} of its limit stays unused`:`the minimum is exceeded by ${f(w.val)}`}, so small changes to it won't change the plan.`)});
+  if(sn){
+    sn.c.forEach((o,i)=>{const n=`<b>${esc(o.name)}</b>`,lo=o.b-o.dec,rt=`while its right-hand side stays between ${f(lo)} and ${o.inc>=1e29?"any higher value":f(o.b+o.inc)}`,op=S.cons[i].op;
+      if(Math.abs(o.sp)<1e-9){if(Math.abs(R.rows[i].val)>=1e-7)sens.push(`<b>Shadow price of ${n} is 0.</b> Extra units of it are worth nothing right now, so don't pay anything for more.`);return}
+      if(max&&op==="<=")sens.push(`<b>Shadow price of ${n} = ${f(o.sp)}.</b> One more unit of this limit adds ${f(o.sp)} to ${unit}. If the current cost of the resource is a <i>sunk cost</i> (you pay it whatever you do), ${f(o.sp)} per unit is the <b>most you should be willing to pay</b> for extra. If it is a <i>relevant cost</i> (you pay per unit you use), ${f(o.sp)} is the <b>premium above the current price</b> you could justify. This holds ${rt}.`);
+      else if(!max&&op===">=")sens.push(`<b>Shadow price of ${n} = ${f(o.sp)}.</b> Each extra unit you must deliver adds ${f(o.sp)} to total cost, and each unit of relief saves ${f(o.sp)}. So ${f(o.sp)} is the most it is worth paying to relax this requirement by one unit, ${rt}.`);
+      else sens.push(`<b>Shadow price of ${n} = ${f(o.sp)}.</b> Each unit added to its right-hand side changes Z by ${f(o.sp)} (${rt}).`)});
+    sn.v.forEach(o=>{const n=`<b>${esc(o.name)}</b>`;
+      if(!o.basic){const rc=Math.abs(o.rc);
+        if(rc<1e-9)sens.push(`<b>Reduced cost of ${n} is 0</b> while it sits at zero: it could join the plan at no loss, so there are alternate optimal plans.`);
+        else sens.push(max?`<b>Reduced cost of ${n} = ${f(o.rc)}.</b> Forcing in one unit would cut profit by ${f(rc)}. Its profit per unit would have to <b>rise by at least ${f(rc)}</b> (from ${f(o.c)} to ${f(o.c+rc)}) before it is worth making.`:`<b>Reduced cost of ${n} = ${f(o.rc)}.</b> Forcing in one unit would add ${f(rc)} to cost. Its cost per unit would have to <b>fall by at least ${f(rc)}</b> (from ${f(o.c)} to ${f(o.c-rc)}) before it is worth using.`)}
+      else sens.push(`${n} stays in the plan while its ${unit} per unit is between ${o.dec>=1e29?"any lower value":f(o.c-o.dec)} and ${o.inc>=1e29?"any higher value":f(o.c+o.inc)}. Outside that range the plan must be redone.`)})}
+  tech.push("Shadow price (dual value) = change in Z* per one-unit change of a right-hand side. It is only valid inside the allowable increase and decrease shown in the Sensitivity report.");
+  tech.push("Reduced cost = how much a zero-valued variable's objective coefficient must improve before it enters the optimal basis. Variables already in the plan have reduced cost 0.");
+  tech.push("Complementary slackness: a constraint with slack or surplus always has shadow price 0, and a variable with a positive value always has reduced cost 0.");
+  tech.push("Sunk versus relevant cost: if the resource is already paid for, the shadow price is the ceiling on what extra is worth. If it is bought per unit, it is the premium over the current price that still pays off.");
+  if(R.ip)tech.push("Because integer restrictions apply, the sensitivity figures describe the LP relaxation and are only a guide.");
+  return{plan,sens,tech}}
+function lpNarrHTML(){const N=lpLines();return`<div class="card narr"><ul class="how">${[...N.plan,...N.sens].map(t=>"<li>"+t+"</li>").join("")}</ul><details><summary>Technical notes</summary><ul class="how">${N.tech.map(t=>"<li>"+t+"</li>").join("")}</ul></details></div>`}
+/* what-if panel */
+function wiShell(R){return`<h2>Try your own plan</h2><div class="card"><div class="preview" style="margin:0 0 8px">Type your own values to see Z and whether every constraint still holds. Formulas such as =3*4 work.</div>
+  <table class="tt">${R.x.map((v,j)=>`<tr><td class="t">${esc(sub(j))}${S.vt[j]!=="c"?` <small>(${S.vt[j]==="b"?"0 or 1":"integer"})</small>`:""}</td><td>${inp(8000+j,0,String(+v.toFixed(6)),"wi")}</td></tr>`).join("")}</table>
+  <div class="row" style="margin-top:8px"><button class="btn sm" data-wi="opt">Reset to optimum</button><button class="btn sm" data-wi="zero">All zero</button>${S.vt.some(t=>t!=="c")?'<button class="btn sm" data-wi="round">Round</button>':""}</div><div id="wiOut" style="margin-top:12px"></div></div>`}
+function wiUpdate(){const box=$("#wiOut");if(!box||!lastRes)return;const R=lastRes,f=fmt,max=S.goal==="max",x=R.x.map((_,j)=>{const e=document.querySelector(`input[data-r="${8000+j}"]`);return e?num(e.value):0});
+  const Z=S.obj.reduce((t,o,j)=>t+num(o)*x[j],0),rows=S.cons.map((k,i)=>{const l=k.a.reduce((t,a,j)=>t+num(a)*x[j],0),b=num(k.b),sl=k.op==="<="?b-l:k.op===">="?l-b:l-b,ok=k.op==="=="?Math.abs(l-b)<1e-6:sl>=-1e-6;return{i,l,b,op:k.op,sl,ok,bind:ok&&Math.abs(sl)<1e-6}});
+  const bad=rows.filter(r=>!r.ok),vio=x.map((v,j)=>(S.nonneg&&v<-1e-9)||(S.vt[j]==="i"&&Math.abs(v-Math.round(v))>1e-6)||(S.vt[j]==="b"&&!(Math.abs(v)<1e-6||Math.abs(v-1)<1e-6))?j:-1).filter(j=>j>=0),feas=!bad.length&&!vio.length,d=Z-R.Z;
+  const verdict=feas?`<span class="state bind">Feasible</span> Z = <b>${f(Z)}</b>. ${Math.abs(d)<1e-6?"This matches the optimum.":`That is ${f(Math.abs(d))} ${(max?d<0:d>0)?"worse than":"better than"} the optimum (${f(R.Z)}).`}`:`<span class="state viol">Not feasible</span> Z would be <b>${f(Z)}</b>, but ${[...bad.map(r=>`<b>${esc(cname(r.i))}</b> is broken by ${f(Math.abs(r.sl))}`),...vio.map(j=>`<b>${esc(sub(j))}</b> breaks its ${S.vt[j]==="c"?"non-negativity":S.vt[j]==="b"?"0/1":"whole-number"} rule`)].join("; ")}.`;
+  box.innerHTML=`<div style="margin-bottom:8px">${verdict}</div>`+tbl(["Constraint","Plan LHS","","RHS","Slack / surplus","State"],rows.map(r=>({c:[esc(cname(r.i)),f(r.l),r.op==="=="?"=":r.op,f(r.b),r.op==="=="?f(r.sl):f(r.sl),stBadge(r.ok?r.bind:"viol",r.ok?(r.bind?"Binding":"Loose"):"Violated")]})))}
+$("#res").addEventListener("click",e=>{const b=e.target.closest("[data-wi]");if(!b||!lastRes)return;const k=b.dataset.wi;
+  lastRes.x.forEach((v,j)=>{const el=document.querySelector(`input[data-r="${8000+j}"]`);if(!el)return;const cur_=num(el.value);el.value=String(k==="opt"?+v.toFixed(6):k==="zero"?0:Math.round(cur_))});wiUpdate()});
+/* colour palettes */
+const PALS=[["rust","Rust"],["ocean","Ocean"],["forest","Forest"],["berry","Berry"],["sunset","Sunset"],["graphite","Graphite"]],PAL_A={rust:["#9a3b16","#e0a14b"],ocean:["#0b6a8f","#5cc0e8"],forest:["#276f2c","#7ad08a"],berry:["#a3245f","#f27aa8"],sunset:["#b04400","#ffb454"],graphite:["#2b4c8c","#8fb0f5"]};
+function renderPal(){const e=$("#palRow");if(!e)return;e.innerHTML=PALS.map(p=>`<button class="pal ${(S.set.pal||"rust")===p[0]?"on":""}" data-pal="${p[0]}" style="--a:${PAL_A[p[0]][0]};--b:${PAL_A[p[0]][1]}"><i></i>${p[1]}</button>`).join("")}
+document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-pal]");if(!b)return;S.set.pal=b.dataset.pal;applyLook();save();renderPal()});
+$("#setBtn").onclick=()=>goTab("settings");renderPal();
+
+/* ---------- Phase 13: natural-language input, saved problems, tooltips ---------- */
+/*NAT*/
+function natTerms(str,ln,errs){const co={};let k=0;const q=str.replace(/\s+/g,"").replace(/−/g,"-").replace(/×/g,"*");let i=0;
+  while(i<q.length){let sg=1;while(q[i]==="+"||q[i]==="-"){if(q[i]==="-")sg=-sg;i++}
+    if(i>=q.length){errs.push(`Line ${ln}: an expression ends with + or −`);break}
+    const mn=/^(\d+\.?\d*|\.\d+)(?:\/(\d+\.?\d*))?/.exec(q.slice(i));let nv=null;if(mn){nv=mn[2]?parseFloat(mn[1])/parseFloat(mn[2]):parseFloat(mn[1]);i+=mn[0].length;if(q[i]==="*")i++}
+    const mi=/^[A-Za-z_][A-Za-z_0-9]*/.exec(q.slice(i));
+    if(mi){i+=mi[0].length;co[mi[0]]=(co[mi[0]]||0)+sg*(nv==null?1:nv)}else if(nv!=null)k+=sg*nv;else{errs.push(`Line ${ln}: cannot read "${q.slice(i,i+6)}"`);break}}
+  return{co,k}}
+function parseNat(txt,known0){const errs=[],OPR=/^(<=|=<|≤|<|>=|=>|≥|>|==|=)$/,OPX=/(<=|=<|≤|>=|=>|≥|==|<|>|=)/,om=o=>/[<≤]/.test(o)?"<=":/[>≥]/.test(o)?">=":"==";
+  const stm=txt.split(/\r?\n|;/).map((t,i)=>({ln:i+1,t:t.trim()})).filter(x=>x.t&&x.t[0]!=="#"),known=[...(known0||[])];
+  [...txt.matchAll(/(\d)\s*\*?\s*([A-Za-z_][A-Za-z_0-9]*)/g)].forEach(m=>{if(!known.includes(m[2]))known.push(m[2])});
+  const order=[],touch=n=>{if(!order.includes(n))order.push(n)};let goal=null,obj=null,free=false;const cons=[],ints=[],bins=[];
+  stm.forEach(({ln,t})=>{const tk=t.split(",").map(x=>x.trim()).filter(x=>x!=="");if(!tk.length)return;const h=tk[0].toLowerCase();
+    if(/^(max|maximi[sz]e|min|minimi[sz]e)$/.test(h)){if(obj){errs.push(`Line ${ln}: a second objective`);return}goal=h[1]==="a"?"max":"min";const E=natTerms(tk.slice(1).join("+").replace(/^z=/i,""),ln,errs);obj=E.co;Object.keys(E.co).forEach(touch);return}
+    if(/^(int|integer)$/.test(h)){tk.slice(1).forEach(n=>ints.push(n));return}if(/^(bin|binary)$/.test(h)){tk.slice(1).forEach(n=>bins.push(n));return}if(h==="free"){free=true;return}
+    let st=0,nm="";if(tk.length>1&&/^[A-Za-z][A-Za-z _0-9]*$/.test(tk[0])&&!OPR.test(tk[0])&&!known.includes(tk[0])&&!known.includes(tk[0].replace(/\s+/g,"_"))){nm=tk[0];st=1}
+    const k=tk.findIndex((x,i)=>i>=st&&OPR.test(x));let L,op,R,ex;
+    if(k>=0){L=tk.slice(st,k).join("+");op=om(tk[k]);R=tk[k+1];ex=tk.slice(k+2)}
+    else{const e=tk.findIndex((x,i)=>i>=st&&OPX.test(x));if(e<0){errs.push(`Line ${ln}: no operator (<=, >= or =) found`);return}
+      const mm=OPX.exec(tk[e]),pre=tk[e].slice(0,mm.index),post=tk[e].slice(mm.index+mm[0].length);L=[...tk.slice(st,e),pre].filter(Boolean).join("+");op=om(mm[0]);if(post){R=post;ex=tk.slice(e+1)}else{R=tk[e+1];ex=tk.slice(e+2)}}
+    if(R==null||R===""){errs.push(`Line ${ln}: missing right-hand side`);return}
+    const A=natTerms(L,ln,errs),B=natTerms(R,ln,errs),co={};Object.keys(A.co).forEach(n=>co[n]=(co[n]||0)+A.co[n]);Object.keys(B.co).forEach(n=>co[n]=(co[n]||0)-B.co[n]);Object.keys(co).forEach(touch);
+    cons.push({co,op,b:B.k-A.k,nm});
+    ex.forEach((e2,q)=>{const X=natTerms(e2,ln,errs);Object.keys(X.co).forEach(touch);cons.push({co:X.co,op,b:-X.k,nm:nm?`${nm} (${q+2})`:""})})});
+  if(!obj)errs.push("Start with max or min and the objective, for example: max, 3U, 8H");
+  if(!order.length&&!errs.length)errs.push("No variables found. Put the variable right after a number, like 3U.");if(!cons.length&&!errs.length)errs.push("No constraint found.");
+  const P={goal,obj:order.map(n=>(obj&&obj[n])||0),vn:order.map(n=>n.replace(/_/g," ")),vt:order.map(()=>"c"),free,cons:cons.map(c=>({a:order.map(n=>c.co[n]||0),op:c.op,b:c.b,nm:c.nm}))};
+  const find=n=>{const j=order.indexOf(n);return j>=0?j:order.indexOf(n.replace(/\s+/g,"_"))};
+  ints.forEach(n=>{const j=find(n);if(j>=0)P.vt[j]="i";else errs.push(`Unknown variable "${n}" in the int line`)});bins.forEach(n=>{const j=find(n);if(j>=0)P.vt[j]="b";else errs.push(`Unknown variable "${n}" in the bin line`)});
+  return{errs,P}}
+function toNat(){const q=v=>String(+num(v).toFixed(10)),vn=S.vn.map((v,j)=>(v||dsub(j)).replace(/[,;]/g," ").trim().replace(/\s+/g,"_")),
+    term=(c,j)=>{c=num(c);return c===0?"":c===1?vn[j]:c===-1?"-"+vn[j]:q(c)+vn[j]},expr=a=>a.map(term).filter(Boolean),L=[(S.goal==="max"?"max":"min")+", "+(expr(S.obj).join(", ")||"0"+vn[0])];
+  S.cons.forEach(c=>{const t=expr(c.a);L.push((c.nm?c.nm.replace(/[,;]/g," ")+", ":"")+(t.join(", ")||"0"+vn[0])+", "+c.op+", "+q(c.b))});
+  const I=vn.filter((_,j)=>S.vt[j]==="i"),B=vn.filter((_,j)=>S.vt[j]==="b");if(I.length)L.push("int, "+I.join(", "));if(B.length)L.push("bin, "+B.join(", "));if(!S.nonneg)L.push("free");return L.join(";\n")}
+/*ENDNAT*/
+const rawMode=()=>S.set.rawMode||"nat",RAWPH={nat:"max, 3U, 8H;\nLimit, 50U, 80H, <=, 80000, -10U+0.5H",csv:"max, 3, 5\nvars, Doors, Windows\nPlant 1, 1, 0, <=, 4\nPlant 2, 0, 2, <=, 12"};
+const RAWEX={nat:["max, 3Doors, 5Windows;\nPlant 1, 1Doors, <=, 4;\nPlant 2, 2Windows, <=, 12;\nPlant 3, 3Doors, 2Windows, <=, 18","max, 3U, 8H;\nLimit, 50U, 80H, <=, 80000, -10U+0.5H;\nint, U"],csv:["max, 3, 5\nvars, Doors, Windows\ntypes, int, int\nPlant 1, 1, 0, <=, 4\nPlant 2, 0, 2, <=, 12\nPlant 3, 3, 2, <=, 18"]};
+var rawExN=0;
+const rawParse=()=>rawMode()==="nat"?parseNat($("#rawIn").value,(S.vn||[]).filter(Boolean).map(n=>n.replace(/\s+/g,"_"))):parseRaw($("#rawIn").value);
+function rawLiveUpd(){const el=$("#rawLive"),t=$("#rawIn").value;if(!t.trim()){el.innerHTML="";return}const r=rawParse();
+  if(r.errs.length){el.style.color="var(--bad)";el.innerHTML=r.errs.slice(0,4).map(esc).join("<br>");return}el.style.color="";const P=r.P;
+  el.innerHTML=`<pre class="mpv" style="max-height:150px">${esc(modelText({goal:P.goal,obj:P.obj,cons:P.cons,vn:P.vn,vt:P.vt,nonneg:!P.free}))}</pre>`}
+function rawSugUpd(){const el=$("#rawSug"),ta=$("#rawIn");if(rawMode()!=="nat"){el.innerHTML="";return}
+  const pos=ta.selectionStart,before=ta.value.slice(0,pos),m=/(\d[\d.]*)\s*\*?\s*([A-Za-z_][A-Za-z_0-9]*)?$/.exec(before);
+  if(!m){el.innerHTML='<small style="color:var(--mut)">After a number, tap a variable name here to insert it.</small>';return}
+  const pre=m[2]||"",names=[];[...ta.value.matchAll(/(\d)\s*\*?\s*([A-Za-z_][A-Za-z_0-9]*)/g)].forEach(x=>names.push(x[2]));(S.vn||[]).filter(Boolean).forEach(n=>names.push(n.replace(/\s+/g,"_")));if(!names.length)names.push("x","y","z");
+  const list=[...new Set(names)].filter(n=>n.toLowerCase().startsWith(pre.toLowerCase())&&n!==pre).slice(0,8);
+  el.innerHTML=list.length?'<small style="color:var(--mut)">Variable:</small>'+list.map(n=>`<button class="chip" data-sug="${esc(n)}">${esc(n)}</button>`).join(""):'<small style="color:var(--mut)">Type the variable name after the number.</small>'}
+function rawModeSet(m){S.set.rawMode=m;$$("#rawSeg button").forEach(b=>b.classList.toggle("on",b.dataset.rm===m));$("#rawIn").placeholder=RAWPH[m];rawLiveUpd();rawSugUpd();save()}
+$("#rawSeg").addEventListener("click",e=>{const b=e.target.closest("[data-rm]");if(b)rawModeSet(b.dataset.rm)});
+["input","keyup","click","focus"].forEach(ev=>$("#rawIn").addEventListener(ev,()=>{if(ev==="input")rawLiveUpd();rawSugUpd()}));
+$("#rawSug").addEventListener("pointerdown",e=>{if(e.target.closest("[data-sug]"))e.preventDefault()});
+$("#rawSug").addEventListener("click",e=>{const b=e.target.closest("[data-sug]");if(!b)return;const ta=$("#rawIn"),pos=ta.selectionStart,before=ta.value.slice(0,pos),m=/([A-Za-z_][A-Za-z_0-9]*)?$/.exec(before),pre=m&&m[1]?m[1]:"",nm=b.dataset.sug;
+  ta.value=before.slice(0,before.length-pre.length)+nm+ta.value.slice(pos);const np=before.length-pre.length+nm.length;ta.focus();ta.setSelectionRange(np,np);rawLiveUpd();rawSugUpd()});
+$("#rawLoad").onclick=()=>{const r=rawParse(),m=$("#rawMsg");if(r.errs.length){m.style.color="var(--bad)";m.innerHTML=r.errs.slice(0,6).map(esc).join("<br>");return}
+  const P=r.P;setModel({goal:P.goal,obj:P.obj,cons:P.cons,vn:P.vn,vt:P.vt,free:P.free,stay:true},"Problem loaded");m.style.color="var(--ok)";m.textContent=`Loaded ${P.obj.length} variables and ${P.cons.length} constraints.`};
+$("#rawFill").onclick=()=>{$("#rawIn").value=rawMode()==="nat"?toNat():toRaw();$("#rawMsg").style.color="";$("#rawMsg").textContent="Current model written in this format.";rawLiveUpd()};
+$("#rawEx").onclick=()=>{const L=RAWEX[rawMode()];$("#rawIn").value=L[rawExN++%L.length];$("#rawMsg").style.color="";$("#rawMsg").textContent="Example filled in. Press Load into model.";rawLiveUpd();rawSugUpd()};
+rawModeSet(rawMode());
+/* saved problems */
+const SAVEKEY="or-solver-saves-v1",getSaves=()=>{try{return JSON.parse(localStorage.getItem(SAVEKEY)||"[]")}catch(e){return[]}},putSaves=a=>{try{localStorage.setItem(SAVEKEY,JSON.stringify(a));return true}catch(e){toast("Could not store the file: storage is full or blocked");return false}};
+const sumSave=st=>`${st.goal==="max"?"Maximize":"Minimize"} · ${st.n} variable${st.n===1?"":"s"} · ${(st.cons||[]).length} constraint${(st.cons||[]).length===1?"":"s"}`;
+function openSaves(){const L=getSaves().sort((a,b)=>b.t-a.t);
+  sheet("Save and open",`<div class="row" style="flex-wrap:nowrap"><input id="svName" class="tx" style="flex:1;width:auto;font-family:inherit;font-size:15px;text-align:left" placeholder="Name this problem" maxlength="40" value="${esc(S.title||"")}"><button class="btn pri" id="svDo">Save</button></div>
+   <div class="preview">Saves every module's data on this device, so it opens again later even without internet.</div>
+   <h2>Saved on this device</h2>${L.length?L.map(x=>`<div class="card"><div class="row"><b class="sp">${esc(x.name)}</b><small>${new Date(x.t).toLocaleDateString(undefined,{day:"numeric",month:"short",year:"numeric"})}</small></div><div class="preview" style="margin:2px 0 8px">${esc(sumSave(x.state))}</div>
+   <div class="row"><button class="btn sm pri" data-sl="${x.id}">Open</button><button class="btn sm" data-sd="${x.id}">Download</button><button class="btn sm bad" data-sx="${x.id}">Delete</button></div></div>`).join(""):'<div class="preview">Nothing saved yet.</div>'}
+   <div class="row" style="margin-top:6px"><button class="btn sm" id="svImp">Import a file…</button><input type="file" id="svFile" accept=".json,application/json" style="display:none"></div>`)}
+function saveNow(){const name=($("#svName").value||"").trim();if(!name){toast("Give the problem a name first");return}
+  const A=getSaves(),old=A.find(x=>x.name.toLowerCase()===name.toLowerCase()),rec={id:old?old.id:Date.now().toString(36)+Math.random().toString(36).slice(2,5),name,t:Date.now(),mod:curMod(),state:JSON.parse(snap())};
+  S.title=name;rec.state.title=name;const out=old?A.map(x=>x.id===old.id?rec:x):[...A,rec];if(putSaves(out)){save();toast(old?"Updated “"+name+"”":"Saved “"+name+"”");openSaves()}}
+function openSave(rec){H.u.push(H.prev);H.r.length=0;restoreS(JSON.stringify(rec.state));S.title=rec.name;afterRestore();$("#sheet").classList.remove("on");goMod(rec.mod&&rec.mod!=="set"?rec.mod:"lp");toast("Opened “"+rec.name+"”")}
+$("#svBtn").onclick=openSaves;
+$("#shB").addEventListener("click",e=>{const g=id=>getSaves().find(x=>x.id===id);let b;
+  if(e.target.closest("#svDo"))saveNow();
+  else if(b=e.target.closest("[data-sl]")){const r=g(b.dataset.sl);if(r)openSave(r)}
+  else if(b=e.target.closest("[data-sd]")){const r=g(b.dataset.sd);if(r)xpSave(new Blob([JSON.stringify({app:"or-solver",v:1,name:r.name,saved:r.t,mod:r.mod,state:r.state},null,1)],{type:"application/json"}),r.name.replace(/[^a-z0-9]+/gi,"-").toLowerCase()+".json")}
+  else if(b=e.target.closest("[data-sx]")){const r=g(b.dataset.sx);if(r&&confirm("Delete “"+r.name+"”?")){putSaves(getSaves().filter(x=>x.id!==r.id));openSaves()}}
+  else if(e.target.closest("#svImp"))$("#svFile").click()});
+$("#shB").addEventListener("change",e=>{if(e.target.id!=="svFile"||!e.target.files[0])return;const f=e.target.files[0],rd=new FileReader();
+  rd.onload=()=>{try{const o=JSON.parse(rd.result);if(!o||!o.state||!o.state.obj||!o.state.cons)throw 0;const A=getSaves();A.push({id:Date.now().toString(36),name:o.name||f.name.replace(/\.json$/,""),t:o.saved||Date.now(),mod:o.mod||"lp",state:o.state});if(putSaves(A)){toast("Imported");openSaves()}}catch(x){toast("That file is not an OR Solver problem")}};rd.readAsText(f)});
+/* tooltips: hover (desktop) and long-press (touch) */
+const TIP_ID={menuBtn:"Modules menu: switch between Solver, Transportation, Network, Project and Game theory.",setBtn:"Settings: theme, colour palette, layout, numpad and offline options.",themeQ:"Flip between light and dark mode.",solveBtn:"Solve the problem in the current module.",undoBtn:"Undo the last change (Ctrl+Z). Works across every module.",redoBtn:"Redo what you just undid (Ctrl+Y).",svBtn:"Save this problem under a name, open a saved one, or import and download a file.",pvBtn:"Show the problem written out as maximise / subject-to text.",migBtn:"Turn this module's data into another module's input, for example a transportation problem into an LP.",xpBtn:"Export the problem, results and interpretation as PDF, picture, web page or text.",
+  presetSel:"Load a ready-made textbook problem with names and constraints filled in.",exBtn:"Pick an example: maximise, minimise, integer, unbounded, infeasible and more.",clrBtn:"Set every number in the model back to zero.",addC:"Add one more constraint row.",nonneg:"Variables must be zero or more. Untick to allow negative values.",mpvCopy:"Copy the model text to the clipboard.",rawIn:"Type or paste the problem. Natural mode reads things like 3U, 8H; CSV mode reads a comma-separated table.",rawLoad:"Read the text and put every number and name into the model.",rawFill:"Write the current model out in this text format.",rawEx:"Fill in a sample problem in this format.",
+  cpy:"Copy the optimal values as plain text.",pdfR:"Save results, reports and interpretation as a PDF file.",prtR:"Open the print dialog for the results.",pdfT:"Save the reports as a PDF file.",prt:"Open the print dialog for the reports.",cpT:"Copy the report tables so they paste straight into Excel.",
+  gPlay:"Sweep the iso-line from the worst corner up to the optimum.",gIso:"Move the iso-line by hand. Past the optimum it turns red because no feasible point is left on it.",gPng:"Save the graph as a picture.",gAdd:"Add a constraint (up to 12).",gEx:"Load an example graph problem.",gClr:"Reset the graph numbers to zero.",gTwSel:"Choose which number to tweak: an objective coefficient, a constraint coefficient or a right-hand side.",gTwS:"Drag to change the chosen number. The graph and answer update live.",gPvS:"Drag to pivot the iso-line, or move the constraint, and watch the optimum.",gPvC:"Choose which constraint's right-hand side to move.",instBtn:"Install this app on your device.",updBtn:"Check whether a newer version is available.",padOn:"Use the built-in numpad instead of the phone keyboard.",haptic:"Short vibration when you tap keys and buttons.",svDo:"Save under the name above.",svImp:"Load a problem from a .json file."};
+const TIP_D={ta:{solve:"Solve this problem.",ex:"Load an example problem.",clr:"Clear all numbers.",padd:"Add an activity.",pdel:"Remove this activity.","arc+":"Add a route.",arcdel:"Remove this route.",eadd:"Add an edge.",edel:"Remove this edge.",edir:"Switch between undirected (—) and directed (→).",goal:"Choose to minimise cost or maximise profit.",gmlp1:"Load the column player's LP into the Solver.",gmlp2:"Load the row player's LP into the Solver.","tpm+":"Add a source.","tpm-":"Remove the last source.","tpn+":"Add a destination.","tpn-":"Remove the last destination.","asn+":"Add a worker and a job.","asn-":"Remove the last worker and job.","tsn+":"Add a node.","tsn-":"Remove the last node.","nwn+":"Add a node.","nwn-":"Remove the last node."},
+  st:{"n+":"Add a variable.","n-":"Remove the last variable.","m+":"Add a constraint.","m-":"Remove the last constraint.","d+":"Show more decimals.","d-":"Show fewer decimals."},g:{max:"Maximise the objective (profit, revenue).",min:"Minimise the objective (cost, time)."},gg:{max:"Maximise the objective.",min:"Minimise the objective."},
+  rp:{ans:"Answer report: final values, binding and not-binding constraints.",sen:"Sensitivity report: shadow prices, reduced costs and allowable ranges.",lim:"Limits report: the range each variable can take."},tr:{tp:"Transportation: ship from sources to destinations at least cost.",as:"Assignment: match workers to jobs (Hungarian method).",ts:"Transshipment: flows through intermediate nodes with capacities."},
+  nw:{mst:"Minimum spanning tree: cheapest way to connect every node.",sp:"Shortest path between two nodes.",mf:"Maximum flow from a source to a sink."},pjm:{cpm:"CPM: fixed durations and the critical path.",pert:"PERT: optimistic, likely and pessimistic times, with probabilities."},rm:{nat:"Natural mode: write 3U, 8H with the variable after the number.",csv:"Table mode: comma-separated rows."},
+  gv:{pin:"Keep the graph pinned while you scroll.",icp:"Show the axis intercepts of each constraint.",cor:"Label every corner point.",iso:"Show the iso-profit or iso-cost line.",lat:"Show whole-number points and the best integer point.",drag:"Drag a constraint line on the graph to change its right-hand side.",zin:"Zoom in.",zout:"Zoom out.",fit:"Fit the view to the feasible region."},
+  pv:{off:"Switch pivoting off.",c0:"Rotate the iso-line by changing the first objective coefficient.",c1:"Rotate the iso-line by changing the second objective coefficient.",b:"Slide one constraint's right-hand side."},tw:{"-1":"Decrease by 1.","-0.1":"Decrease by 0.1.","0.1":"Increase by 0.1.","1":"Increase by 1."},
+  k:{X:"Close the numpad (Esc).",U:"Move to the cell above.",D:"Move to the cell below.",L:"Move one cell left.",R:"Move one cell right.",B:"Delete the last character.","±":"Change the sign.",C:"Clear this cell.",N:"Move to the next cell.",".":"Decimal point.","/":"Fraction or divide.",fx:"Show or hide the formula keys.","=":"Start a formula, like =3*4.","+":"Add.","-":"Subtract.","*":"Multiply.","^":"Power.","(":"Open bracket.",")":"Close bracket."},
+  wi:{opt:"Put the optimal values back.",zero:"Set every variable to zero.",round:"Round every value to a whole number."},vtall:{i:"Make every variable an integer.",b:"Make every variable binary (0 or 1).",c:"Make every variable continuous."},
+  m:{"v:model":"Model: enter the objective, constraints and variable types.","v:results":"Results: the optimal plan, interpretation and a what-if panel.","v:reports":"Reports: Excel-style Answer, Sensitivity and Limits.","v:graph":"Graph: plot this two-variable problem and explore it.","s:in":"Setup: enter the problem.","s:res":"Results: see the solution."},
+  th:{light:"Light mode.",dark:"Dark mode.",auto:"Follow the device setting."},vw:{mobile:"Single-column layout for phones.",desktop:"Wide layout with side-by-side panels."},pal:{rust:"Rust palette.",ocean:"Ocean palette.",forest:"Forest palette.",berry:"Berry palette.",sunset:"Sunset palette.",graphite:"Graphite palette."}};
+const TIP_K0={op:"Tap to cycle the constraint type: ≤, ≥, =.",dup:"Duplicate this constraint.",del:"Delete this constraint.",gop:"Tap to cycle the constraint type: ≤, ≥, =.",gdel:"Delete this constraint.",pclose:"Hide this panel.",dx:"Close the menu.",shx:"Close this panel.",mig:"Convert and open in the Solver.",mex:"Load this example.",xp:"Export in this format.",mod:"Open this module.",sl:"Open this saved problem.",sd:"Download this problem as a file.",sx:"Delete this saved problem.",sug:"Insert this variable name.",vt:"Variable type: continuous, integer or binary.",vn:"Variable name. Click to rename; it is used in results, reports and the preview.",cn:"Constraint name (optional). Used in results and reports.",gcn:"Constraint name (optional).",nm:"Click to rename."};
+function tipText(el){const d=el.dataset||{};if(d.tip)return d.tip;if(el.id&&TIP_ID[el.id])return TIP_ID[el.id];
+  for(const k in TIP_D)if(d[k]!==undefined&&TIP_D[k][d[k]])return TIP_D[k][d[k]];for(const k in TIP_K0)if(d[k]!==undefined)return TIP_K0[k];
+  if(el.matches&&el.matches("input.n")){const t=d.t,r=+d.r,c=+d.c;
+    if(t==="o")return`Objective coefficient: the profit or cost per unit of ${sub(c)}.`;if(t==="a")return`How much of ${cname(r-1)} one unit of ${sub(c)} uses.`;if(t==="b")return`Right-hand side of ${cname(r-1)}: its limit or requirement.`;
+    if(t==="g")return r===1000?`Objective coefficient of ${sub(c)}.`:c<2?`Coefficient of ${sub(c)} in ${gcn(r-1001)}.`:`Right-hand side of ${gcn(r-1001)}.`;if(t==="wi")return`Your own value for ${sub(c===0?r-8000:0)}. Z and the constraints update as you type.`;
+    return"Number cell. Arrow keys move between cells; start with = to enter a formula."}
+  if(el.classList.contains("vl"))return TIP_K0.vn;if(el.classList.contains("cnm"))return TIP_K0.cn;if(el.classList.contains("hn"))return TIP_K0.nm;
+  const a=el.getAttribute("aria-label")||el.title;if(a)return a;if(el.placeholder)return"Hint: "+el.placeholder.replace(/\n/g," ");return null}
+const tipEl=document.createElement("div");tipEl.id="tip";tipEl.setAttribute("role","tooltip");document.body.appendChild(tipEl);
+const TIPSEL="button,select,input,textarea,summary,[data-tip],.pal,.chip";let tipT=0,tipH=0,lpFired=false,lpPos=null,lpEl=null;
+function showTip(el){const t=tipText(el);if(!t)return false;tipEl.textContent=t;tipEl.classList.add("on");const r=el.getBoundingClientRect(),tw=tipEl.offsetWidth,th=tipEl.offsetHeight,hb=($("header")||{offsetHeight:0}).offsetHeight;
+  let x=r.left+r.width/2-tw/2,y=r.top-th-8;if(y<hb+4)y=r.bottom+8;x=Math.max(8,Math.min(innerWidth-tw-8,x));tipEl.style.left=x+"px";tipEl.style.top=y+"px";return true}
+function hideTip(){tipEl.classList.remove("on");clearTimeout(tipT)}
+document.addEventListener("mouseover",e=>{if(!matchMedia("(hover:hover)").matches)return;const el=e.target.closest(TIPSEL);if(!el)return;clearTimeout(tipT);tipT=setTimeout(()=>showTip(el),650)});
+document.addEventListener("mouseout",e=>{if(e.target.closest(TIPSEL))hideTip()});document.addEventListener("mousedown",hideTip);addEventListener("scroll",hideTip,true);
+document.addEventListener("touchstart",e=>{hideTip();const el=e.target.closest(TIPSEL);if(!el)return;lpEl=el;const t0=e.touches[0];lpPos=[t0.clientX,t0.clientY];tipT=setTimeout(()=>{if(showTip(el)){lpFired=true;clearTimeout(tipH);tipH=setTimeout(hideTip,3600)}},550)},{passive:true});
+document.addEventListener("touchmove",e=>{if(!lpPos)return;const t0=e.touches[0];if(Math.hypot(t0.clientX-lpPos[0],t0.clientY-lpPos[1])>10)clearTimeout(tipT)},{passive:true});
+document.addEventListener("touchend",()=>{clearTimeout(tipT);setTimeout(()=>{lpFired=false},400)},{passive:true});
+document.addEventListener("click",e=>{if(lpFired){e.stopPropagation();e.preventDefault();lpFired=false}},true);
+document.addEventListener("contextmenu",e=>{if(lpEl&&e.target.closest(TIPSEL)&&!e.target.closest("input,textarea"))e.preventDefault()});
 
 /* ---------- Phase 8: offline, install, connectivity ---------- */
 let dip=null;
@@ -1581,7 +1792,7 @@ function pad(k){
   fresh=false;cur.value=v;commit(cur);
 }
 function commit(el){
-  const{t,r,c}=el.dataset,v=el.value;if(t==="g"){gSet(el);return}if(t==="w"){nwSet(el);return}if(t==="p"){pjSet(el);return}if(t==="m"){gmSet(el);return}
+  const{t,r,c}=el.dataset,v=el.value;if(t==="g"){gSet(el);return}if(t==="w"){nwSet(el);return}if(t==="p"){pjSet(el);return}if(t==="m"){gmSet(el);return}if(t==="wi"){wiUpdate();return}
   if(t==="o")S.obj[c]=v;else if(t==="a")S.cons[r-1].a[c]=v;else S.cons[r-1].b=v;
   $("#objPrev").textContent=(S.goal==="max"?"Max":"Min")+" Z = "+lhs(S.obj);
   if(typeof mpvUpdate==="function")mpvUpdate();if(t!=="o"){const k=S.cons[r-1],pv=el.closest(".card").querySelector(".preview");pv.textContent=`${lhs(k.a)} ${k.op==="=="?"=":k.op} ${fmt(num(k.b))}`}
