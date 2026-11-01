@@ -165,6 +165,77 @@ h2.sec{display:flex;align-items:center;gap:9px;font-size:18px;border-bottom:2px 
 .narr ul.how li{margin:9px 0;font-size:14px;line-height:1.5}.narr summary{margin-top:6px}
 #tip{position:fixed;z-index:200;max-width:270px;background:var(--tx);color:var(--bg);padding:7px 11px;border-radius:6px;font:500 12.5px/1.4 "Segoe UI",Roboto,Arial,sans-serif;pointer-events:none;opacity:0;transition:opacity .12s;box-shadow:0 4px 16px rgba(0,0,0,.3)}#tip.on{opacity:1}
 button,summary,.chip,.pal{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+/* ---- Phase 14 design system ---- */
+html[data-pal=mint][data-theme=light]{color-scheme:light;--bg:#e9f4f0;--card:#f6fbf9;--tx:#12231e;--mut:#41594f;--bd:#c3dbd3;--bs:#6b8f86;--pri:#0b705d;--pri2:#d6efe8;--onpri:#ffffff;--ok:#1f7a45;--bad:#a82f28;--warn:#7f5806;--inp:#fbfefd}
+html[data-pal=mint][data-theme=dark]{color-scheme:dark;--bg:#0b1613;--card:#11221d;--tx:#e2f2ed;--mut:#9bbab1;--bd:#234038;--bs:#54796f;--pri:#5fd6b8;--pri2:#0f3029;--onpri:#03211a;--ok:#72d09a;--bad:#f2907f;--warn:#e3b45c;--inp:#0d1b17}
+html[data-pal=coral][data-theme=light]{color-scheme:light;--bg:#f8ece8;--card:#fffaf8;--tx:#2a1a16;--mut:#664b44;--bd:#e6cfc8;--bs:#9c7b72;--pri:#b53a0a;--pri2:#fbe1d6;--onpri:#ffffff;--ok:#2a6b3f;--bad:#a3301f;--warn:#7f5806;--inp:#fffdfc}
+html[data-pal=coral][data-theme=dark]{color-scheme:dark;--bg:#1b1210;--card:#281a17;--tx:#f6e8e3;--mut:#c4a79f;--bd:#48302b;--bs:#8c6a62;--pri:#ff8f70;--pri2:#3d201a;--onpri:#2b0c04;--ok:#7bb58a;--bad:#f2907f;--warn:#e3b45c;--inp:#1e1412}
+html[data-pal=lavender][data-theme=light]{color-scheme:light;--bg:#eeeaf6;--card:#faf8fe;--tx:#1c1830;--mut:#524d77;--bd:#d3cde6;--bs:#8279a8;--pri:#5b3fb0;--pri2:#e4defa;--onpri:#ffffff;--ok:#2a6b3f;--bad:#a3301f;--warn:#7f5806;--inp:#fdfcff}
+html[data-pal=lavender][data-theme=dark]{color-scheme:dark;--bg:#12101e;--card:#1b1830;--tx:#ece8fa;--mut:#aaa3d0;--bd:#322c54;--bs:#6f679c;--pri:#b9a4ff;--pri2:#2a2350;--onpri:#1a1040;--ok:#7bb58a;--bad:#f2907f;--warn:#e3b45c;--inp:#151225}
+html[data-pal=mocha][data-theme=light]{color-scheme:light;--bg:#efe8df;--card:#faf6f0;--tx:#231a14;--mut:#5f5043;--bd:#d9cbbb;--bs:#8f7c68;--pri:#7a4a2a;--pri2:#f0e0d0;--onpri:#ffffff;--ok:#2a6b3f;--bad:#a3301f;--warn:#7f5806;--inp:#fffdfa}
+html[data-pal=mocha][data-theme=dark]{color-scheme:dark;--bg:#17110d;--card:#221a14;--tx:#f0e6db;--mut:#bba998;--bd:#3f3126;--bs:#7e6a58;--pri:#e0b080;--pri2:#33261b;--onpri:#2a1708;--ok:#7bb58a;--bad:#f2907f;--warn:#e3b45c;--inp:#1a130f}
+html[data-pal=midnight][data-theme=light]{color-scheme:light;--bg:#e6ebf5;--card:#f6f8fd;--tx:#0f1930;--mut:#3f4f72;--bd:#c2cce4;--bs:#6e7fa8;--pri:#2447b8;--pri2:#dbe3fa;--onpri:#ffffff;--ok:#1f6c42;--bad:#a82f28;--warn:#7f5806;--inp:#fbfcff}
+html[data-pal=midnight][data-theme=dark]{color-scheme:dark;--bg:#070b18;--card:#0f1730;--tx:#e4eafc;--mut:#98a8d2;--bd:#1f2d55;--bs:#4f64a0;--pri:#7fa2ff;--pri2:#15224a;--onpri:#07122e;--ok:#72d09a;--bad:#f2907f;--warn:#e3b45c;--inp:#0a1124}
+
+:root{--sh1:0 1px 2px rgba(0,0,0,.14);--sh2:0 8px 22px -8px rgba(0,0,0,.4)}
+.card{border-radius:10px;box-shadow:var(--sh1)}.card.focus{box-shadow:0 0 0 3px var(--pri2),var(--sh1)}
+.btn{border-radius:8px;box-shadow:var(--sh1);transition:transform .08s,background .12s,box-shadow .12s}.btn:active{transform:translateY(1px) scale(.985);box-shadow:none}
+.btn.pri{box-shadow:0 2px 0 color-mix(in srgb,var(--pri) 55%,#000),var(--sh1)}
+.seg{border-radius:9px;padding:3px;gap:2px}.seg button{border-radius:7px;transition:background .15s,color .15s}
+input[type=checkbox]{-webkit-appearance:none;appearance:none;width:44px;height:26px;border-radius:99px;background:var(--bd);border:1.5px solid var(--bs);position:relative;cursor:pointer;transition:background .16s,border-color .16s;flex:none;margin:0;vertical-align:middle}
+input[type=checkbox]::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:var(--card);border:1.5px solid var(--bs);transition:transform .16s,border-color .16s;box-shadow:var(--sh1)}
+input[type=checkbox]:checked{background:var(--pri);border-color:var(--pri)}input[type=checkbox]:checked::after{transform:translateX(18px);border-color:var(--pri)}
+input[type=checkbox]:focus-visible{outline:2px solid var(--pri);outline-offset:3px}label.row{cursor:pointer;gap:12px}
+::placeholder{color:var(--mut);opacity:.8;font-weight:400}input.n::placeholder{opacity:.5}
+ul.how{list-style:none;padding-left:0}ul.how li{position:relative;padding-left:22px}ul.how li::before{content:"";position:absolute;left:4px;top:.62em;width:7px;height:7px;border-radius:2px;background:var(--pri);transform:rotate(45deg)}
+ol.how{counter-reset:c;list-style:none;padding-left:0}ol.how li{counter-increment:c;position:relative;padding-left:30px}ol.how li::before{content:counter(c);position:absolute;left:0;top:.1em;width:20px;height:20px;border-radius:5px;background:var(--pri2);color:var(--pri);font:700 12px var(--mono);display:flex;align-items:center;justify-content:center}
+input.n{font-size:17px;font-weight:600;width:84px;height:46px;border-radius:9px}
+.coefs{display:flex;flex-wrap:wrap;gap:10px 8px;width:auto;align-items:flex-end}.cell{min-width:92px;max-width:150px;align-items:stretch}.vl{width:100%;max-width:150px;text-overflow:ellipsis}
+.vrow{display:grid;grid-template-columns:48px 1fr 128px;gap:8px;align-items:center;margin:7px 0}.vwide{font:600 15px "Segoe UI",Roboto,Arial,sans-serif!important;text-align:left!important;width:100%!important}
+.actrow{margin:2px 0 4px;position:static}
+input[type=range]{-webkit-appearance:none;appearance:none;height:30px;background:transparent;margin:0;cursor:pointer;--p:50%;min-width:60px;touch-action:pan-y}
+input[type=range]:focus{outline:none}
+input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:99px;background:linear-gradient(90deg,var(--pri) var(--p),transparent var(--p)),var(--bd);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--bs) 55%,transparent)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;margin-top:-8px;border-radius:50%;background:var(--card);border:3px solid var(--pri);box-shadow:0 2px 6px rgba(0,0,0,.35);transition:transform .12s,box-shadow .12s}
+input[type=range]:hover::-webkit-slider-thumb{transform:scale(1.1)}
+input[type=range]:active::-webkit-slider-thumb{transform:scale(1.22);box-shadow:0 0 0 7px color-mix(in srgb,var(--pri) 22%,transparent),0 2px 6px rgba(0,0,0,.35)}
+input[type=range]:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 5px color-mix(in srgb,var(--pri) 35%,transparent)}
+input[type=range]::-moz-range-track{height:8px;border-radius:99px;background:var(--bd)}input[type=range]::-moz-range-progress{height:8px;border-radius:99px;background:var(--pri)}
+input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--card);border:3px solid var(--pri)}
+.valbox{display:inline-block;width:92px;text-align:right;font:600 16px var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.setgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px 16px;align-items:end}.setgrid label{display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:600}.setgrid label.row{flex-direction:row}.sxl{font-size:13px;font-weight:600;margin-bottom:5px}.setgrid select,.setgrid .tx{max-width:none;width:100%;font-family:inherit;text-align:left}.setgrid .preview,.setgrid .row{grid-column:1/-1}
+.ccrow{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;align-items:flex-end}.ccl{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600}.ccl input[type=color]{width:64px;height:40px;border:1.5px solid var(--bs);border-radius:8px;background:var(--card);padding:2px;cursor:pointer}.ccl input[type=range]{width:180px}
+#helpBar{position:fixed;left:50%;transform:translateX(-50%);top:calc(var(--hh,104px) + 6px);z-index:90;background:var(--pri);color:var(--onpri);padding:7px 14px;border-radius:99px;font:600 13px "Segoe UI",Roboto,Arial,sans-serif;box-shadow:var(--sh2);display:none;max-width:92vw;text-align:center}body.help #helpBar{display:block}body.help{cursor:help}body.help #helpBtn{background:var(--pri);color:var(--onpri);border-color:var(--pri)}
+body.compact .card{padding:8px 10px}body.compact .btn{min-height:30px;padding:5px 11px}body.compact input.n{height:40px}body.compact .vrow{margin:4px 0}
+.narr .how li{font-size:14.5px}
+/* ---- Phase 15 graph layout ---- */
+.gcvwrap{position:relative}#gcv{display:block;width:100%;border-radius:8px;touch-action:none;cursor:crosshair}
+.ghover{position:absolute;display:none;pointer-events:none;z-index:8;background:var(--tx);color:var(--bg);padding:6px 10px;border-radius:8px;font:500 12px/1.35 "Segoe UI",Roboto,Arial,sans-serif;box-shadow:var(--sh2);white-space:nowrap}.ghover b{display:block;font:700 14px var(--mono)}.ghover span{display:block;opacity:.85}.ghover small{opacity:.7}
+.isorow{display:grid;grid-template-columns:auto auto 1fr 92px;gap:8px;align-items:center;margin-top:6px}.isol{font:600 12px var(--mono);color:var(--mut)}
+.gwrap,.gplot,.gcol,.gctlw{display:contents}
+.gctl summary{padding:2px 0}.gctl .sbody{max-height:44vh;overflow:auto;padding-right:2px;margin-top:4px}
+.sgrp{border:1px solid var(--bd);border-radius:9px;padding:6px 8px 4px;margin-bottom:8px;background:var(--inp)}.sgt{font:700 13px "Segoe UI",Roboto,Arial,sans-serif;margin-bottom:2px;display:flex;align-items:center;gap:7px}.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.srow{display:grid;grid-template-columns:96px 1fr 88px 26px;gap:8px;align-items:center;min-height:36px}.srow.chg .vb{border-color:var(--warn);color:var(--warn)}
+.sl-l{font:600 13px var(--mono);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vb{width:88px;height:34px;text-align:right;font:600 16px var(--mono);font-variant-numeric:tabular-nums;border:1.5px solid var(--bs);border-radius:8px;background:var(--card);color:var(--tx);padding:0 8px}.vb:focus{outline:2px solid var(--pri);outline-offset:-1px}
+.rx{width:26px;height:26px;border:0;background:transparent;color:var(--mut);font-size:16px;cursor:pointer;border-radius:6px;visibility:hidden}.sbody.whatif .srow.chg .rx{visibility:visible}.rx:hover{background:var(--pri2);color:var(--pri)}
+.rw{position:relative;min-width:0}.rw input{width:100%}
+.rw::after{content:"";display:none;position:absolute;left:calc(11px + (100% - 22px)*var(--b0n,0));width:calc((100% - 22px)*(var(--b1n,0) - var(--b0n,0)));bottom:1px;height:4px;border-radius:99px;background:var(--ok);opacity:.9;pointer-events:none}.rw.hasb::after{display:block}
+.rw::before{content:"";display:none;position:absolute;left:calc(11px + (100% - 22px)*var(--mn,0) - 1px);top:2px;width:2px;height:8px;background:var(--tx);border-radius:1px;pointer-events:none;opacity:.8}.rw.hasm::before{display:block}
+.gstick.unpinned{position:static}
+@media(max-width:899px){.gctl .sbody{max-height:34vh}}
+body.desktop #app{max-width:1360px}body.desktop header>div,body.desktop header>.tb{max-width:1360px}
+body.desktop #v-graph.on .gwrap{display:grid;grid-template-columns:minmax(300px,.8fr) minmax(430px,1.25fr);gap:20px;align-items:start}
+body.desktop #v-graph.on .gcol{display:block;grid-column:1;grid-row:1/span 3}body.desktop #v-graph.on .gplot{display:block;grid-column:2;grid-row:1;position:sticky;top:calc(var(--hh,104px) + 10px)}
+body.desktop #v-graph.on .gctlw{display:block;grid-column:2;grid-row:2}body.desktop #v-graph.on .gstick{position:static;box-shadow:var(--sh1)}
+body.desktop #v-graph.on .gctl .sbody{max-height:50vh}
+@media(min-width:1260px){body.desktop #v-graph.on .gwrap{grid-template-columns:minmax(280px,.7fr) minmax(430px,1.2fr) minmax(320px,.85fr)}
+ body.desktop #v-graph.on .gcol{grid-column:1;grid-row:1}body.desktop #v-graph.on .gplot{grid-column:2;grid-row:1}
+ body.desktop #v-graph.on .gctlw{grid-column:3;grid-row:1;position:sticky;top:calc(var(--hh,104px) + 10px)}body.desktop #v-graph.on .gctl .sbody{max-height:calc(100vh - var(--hh,104px) - 150px)}}
+/* ---- Phase 16 explorer ---- */
+.e3wrap,.e3plot,.e3col{display:contents}.e3chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.e3axes{display:flex;gap:10px;flex-wrap:wrap}.e3axes label{display:flex;flex-direction:column;gap:4px;font:600 13px var(--mono);flex:1;min-width:96px}.e3axes select{max-width:none;width:100%}
+#c3d{display:block;width:100%;border-radius:8px;touch-action:none;cursor:grab}#c3d:active{cursor:grabbing}.e3stick{position:sticky;top:var(--hh,104px);z-index:6}
+body.desktop #v-3d.on .e3wrap{display:grid;grid-template-columns:minmax(420px,1.3fr) minmax(300px,.8fr);gap:20px;align-items:start}body.desktop #v-3d.on .e3plot{display:block;position:sticky;top:calc(var(--hh,104px) + 10px)}body.desktop #v-3d.on .e3col{display:block}body.desktop #v-3d.on .e3stick{position:static}
 </style>
 </head>
 <body>
@@ -173,6 +244,7 @@ button,summary,.chip,.pal{-webkit-touch-callout:none;-webkit-user-select:none;us
   <h1>OR Solver<small id="hSub">Operations research toolkit</small></h1>
   <button class="btn sm" id="themeQ" title="Toggle light/dark">Theme</button>
   <button class="btn pri" id="solveBtn">Solve ▶</button>
+  <button class="mbtn" id="helpBtn" aria-label="Help mode" title="Help mode" style="font:700 17px var(--serif)">?</button>
   <button class="mbtn" id="setBtn" aria-label="Settings" title="Settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></button>
 </div>
 <div class="tb"><button id="undoBtn" disabled aria-label="Undo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 010 12h-3"/></svg><span class="lb">Undo</span></button><button id="redoBtn" disabled aria-label="Redo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14l5-5-5-5"/><path d="M20 9H10a6 6 0 000 12h3"/></svg><span class="lb">Redo</span></button><button id="svBtn" aria-label="Save and open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h11l3 3v13H5z"/><path d="M8 4v5h7V4M8 20v-6h8v6"/></svg><span class="lb">Save</span></button><button id="pvBtn" aria-label="Preview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h13"/></svg><span class="lb">Preview</span></button><button id="migBtn" aria-label="Migrate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg><span class="lb">Migrate</span></button><button id="xpBtn" aria-label="Export"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg><span class="lb">Export</span></button></div></header>
@@ -204,14 +276,14 @@ button,summary,.chip,.pal{-webkit-touch-callout:none;-webkit-user-select:none;us
       <div class="preview" id="ipTag"></div>
       <div class="preview" id="gHint"></div>
     </div>
+    <div class="row actrow"><button class="btn" id="addC">+ Add constraint</button><button class="btn" id="exBtn">Examples ▸</button><button class="btn bad" id="clrBtn">Clear</button></div>
     <h2 class="sec"><span class="num">1</span>Objective function</h2>
     <div class="card focus"><div class="scroll"><div class="coefs" id="objRow"></div></div><div class="preview" id="objPrev"></div></div>
-    <details class="card" id="vnBox"><summary style="font-weight:700">Variable types (continuous, integer, binary)</summary><div class="scroll" style="margin-top:8px"><div class="coefs" id="vnRow"></div></div>
+    <details class="card" id="vnBox"><summary style="font-weight:700">Variables: names and types</summary><div style="margin-top:8px" id="vnRow"></div>
       <div class="row" style="margin-top:8px;flex-wrap:wrap"><button class="btn sm" data-vtall="i">All integer</button><button class="btn sm" data-vtall="b">All binary</button><button class="btn sm" data-vtall="c">All continuous</button></div>
-      <div class="preview">Tip: click a variable name above any column to rename it. Integer and binary variables are solved by branch and bound.</div></details>
+      <div class="preview">Long names are fine: the boxes above the columns show the start of the name, and this list shows all of it.</div></details>
     <h2 class="sec"><span class="num">2</span>Constraints</h2>
     <div id="cons"></div>
-    <div class="row"><button class="btn sp" id="addC">+ Add constraint</button><button class="btn" id="exBtn">Example</button><button class="btn bad" id="clrBtn">Clear</button></div>
   </section>
 
   <!-- RESULTS -->
@@ -227,21 +299,23 @@ button,summary,.chip,.pal{-webkit-touch-callout:none;-webkit-user-select:none;us
   <section class="v" id="v-graph">
    <div class="gwrap">
     <div class="gplot">
-     <div class="card gstick"><canvas id="gcv" style="width:100%;display:block;border-radius:6px"></canvas>
-      <div class="row" style="margin-top:6px;flex-wrap:nowrap"><button class="btn sm" id="gPlay">▶ Play</button><input type="range" id="gIso" min="0" max="1200" value="1000" style="flex:1;min-width:60px"><b id="gZ" style="min-width:64px;text-align:right"></b></div><div id="gIsoNote" class="preview" style="margin:4px 0 0"></div></div>
-     <div class="card" id="gTwCard"><div class="ctitle">Tweak any number</div><div id="gTw"></div></div>
+     <div class="card gstick"><div class="gcvwrap"><canvas id="gcv" aria-label="Graph of the feasible region"></canvas><div id="gHover" class="ghover"></div></div>
+      <div class="isorow"><button class="btn sm" id="gPlay" title="Sweep the iso-line toward the optimum">▶ Play</button><span class="isol">Iso-line</span><input type="range" id="gIso" min="0" max="1200" value="1000" aria-label="Iso-line position"><output id="gZ" class="valbox"></output></div>
+      <div id="gIsoNote" class="preview" style="margin:2px 0 0;min-height:18px"></div></div>
+     <details class="card gopt" id="gOpt"><summary style="font-weight:700">Display options</summary>
+      <div id="gLeg" style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap"></div>
+      <div id="gChips" class="noprint" style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap"><button class="chip on" data-gv="pin">Pin graph</button><button class="chip on" data-gv="icp">Intercepts</button><button class="chip on" data-gv="cor">Corners</button><button class="chip on" data-gv="iso">Iso-line</button><button class="chip" data-gv="lat">Integer points</button><button class="chip" data-gv="drag">Drag lines</button><button class="chip" data-gv="eq">Equal scale</button><button class="chip" data-gv="zout">Zoom −</button><button class="chip" data-gv="zin">Zoom +</button><button class="chip" data-gv="fit">Fit</button><button class="chip" data-gv="unlock">Unlock points</button></div>
+      <div class="preview">Drag the graph to move around, scroll or pinch to zoom. Hover a crossing to read its coordinates; click it to lock the label, click again to unlock.</div>
+      <div class="row noprint" style="margin-top:8px"><button class="btn sm" id="gPng">Save whole graph</button><button class="btn sm" id="gPngV">Save current view</button></div></details>
     </div>
+    <div class="gctlw"><details class="card gctl" id="gCtlBox" open><summary style="font-weight:700">Controls: every number as a slider</summary><div id="gCtl"></div></details></div>
     <div class="gcol">
      <div class="card"><div class="seg" id="gGoal"><button data-gg="max">Maximize</button><button data-gg="min">Minimize</button></div><div class="preview">Linked to the Model tab: edits here update the model, and the other way round.</div></div>
-     <h2>Objective · Z =</h2><div class="card"><div class="scroll"><div class="coefs" id="gObj"></div></div></div>
-     <h2>Constraints (up to 12, x ≥ 0 assumed)</h2><div id="gCons"></div>
-     <div class="row"><button class="btn" id="gAdd">+ Add constraint</button><button class="btn" id="gEx">Examples ▸</button><button class="btn bad" id="gClr">Clear</button></div>
+     <div class="row actrow"><button class="btn" id="gAdd">+ Add constraint</button><button class="btn" id="gEx">Examples ▸</button><button class="btn bad" id="gClr">Clear</button></div>
      <div style="display:none"><button id="gImp"></button><button id="gSend"></button></div>
-     <details class="card" style="margin-top:12px" open><summary style="font-weight:700">Display options</summary>
-      <div id="gLeg" style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap"></div>
-      <div id="gChips" class="noprint" style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap"><button class="chip on" data-gv="pin">Pin graph</button><button class="chip on" data-gv="icp">Intercepts</button><button class="chip on" data-gv="cor">Corners</button><button class="chip on" data-gv="iso">Iso-line</button><button class="chip" data-gv="lat">Integer points</button><button class="chip" data-gv="drag">Drag lines</button><button class="chip" data-gv="zout">Zoom −</button><button class="chip" data-gv="zin">Zoom +</button><button class="chip" data-gv="fit">Fit</button></div>
-      <button class="btn sm noprint" id="gPng" style="margin-top:8px">Save image</button></details>
-     <h2>Pivot and sensitivity</h2><div class="card" id="gPv"></div>
+     <h2 class="sec"><span class="num">1</span>Objective · Z =</h2><div class="card focus"><div class="coefs" id="gObj"></div></div>
+     <h2 class="sec"><span class="num">2</span>Constraints (up to 12, x ≥ 0 assumed)</h2><div id="gCons"></div>
+     <h2>Ranges and sensitivity</h2><div class="card" id="gPv"></div>
      <h2>Analysis</h2><div id="gInfo"></div>
      <h2>Corner points</h2><div class="card scroll" id="gTbl"></div>
     </div>
@@ -266,6 +340,16 @@ button,summary,.chip,.pal{-webkit-touch-callout:none;-webkit-user-select:none;us
     <div id="pjBody"></div>
   </section>
 
+  <!-- 3D EXPLORER -->
+  <section class="v" id="v-3d">
+   <div class="e3wrap"><div class="e3plot">
+    <div class="card gstick e3stick"><div class="gcvwrap"><canvas id="c3d" aria-label="Rotatable 3D view of the feasible region"></canvas><div id="c3Hover" class="ghover"></div></div>
+     <div class="e3chips noprint"><button class="chip" data-e3v="front">Front</button><button class="chip" data-e3v="top">Top</button><button class="chip" data-e3v="side">Side</button><button class="chip" data-e3v="iso">Corner view</button><button class="chip" data-e3t="auto">Auto-rotate</button><button class="chip" data-e3v="reset">Reset view</button></div>
+     <div class="preview" style="margin:6px 0 0">Drag to rotate, scroll or pinch to zoom, hover a corner for its coordinates.</div></div>
+    <details class="card gopt" open><summary style="font-weight:700">Display options</summary><div class="e3chips" style="margin-top:8px"><button class="chip on" data-e3t="faces">Faces</button><button class="chip on" data-e3t="edges">Edges</button><button class="chip on" data-e3t="axes">Axes</button><button class="chip on" data-e3t="box">View box</button><button class="chip on" data-e3t="verts">Corners</button><button class="chip on" data-e3t="arrow">Objective arrow</button></div><div class="row noprint" style="margin-top:8px"><button class="btn sm" id="e3Png">Save picture</button></div></details>
+   </div><div class="e3col"><div id="e3Ctl"></div><h2>What you are looking at</h2><div id="e3Info"></div></div></div>
+  </section>
+
   <!-- GAME THEORY -->
   <section class="v" id="v-gm"><div id="gmBody"></div></section>
 
@@ -277,12 +361,13 @@ button,summary,.chip,.pal{-webkit-touch-callout:none;-webkit-user-select:none;us
       <div style="font-weight:600;margin:14px 0 6px">Layout</div>
       <div class="seg" id="viewSeg"><button data-vw="mobile">Mobile</button><button data-vw="desktop">Desktop</button></div></div>
     <h2>Colour theme</h2>
-    <div class="card"><div id="palRow" style="display:flex;flex-wrap:wrap;gap:8px"></div><div class="preview">Every palette has a light and a dark version. The Theme switch above chooses which one you see.</div></div>
+    <div class="card"><div id="palRow" style="display:flex;flex-wrap:wrap;gap:8px"></div><div id="ccBox"></div><div class="preview">Every palette has a light and a dark version. The Theme switch above chooses which one you see.</div></div>
     <h2>Input</h2>
     <div class="card"><label class="row"><input type="checkbox" id="padOn"> <span>Custom numpad (replaces system keyboard)</span></label>
       <label class="row" style="margin-top:10px"><input type="checkbox" id="haptic"> <span>Haptic feedback</span></label>
       <div class="row" style="margin-top:12px"><span style="font-weight:600">Decimals in results</span><span class="sp"></span>
       <div class="stepper"><button data-st="d-">−</button><input id="dIn" readonly><button data-st="d+">+</button></div></div></div>
+    <div id="setX"></div>
     <h2>Offline and install</h2>
     <div class="card"><div id="offSt" style="font-size:13px">Checking…</div><button class="btn" id="instBtn" style="display:none;margin-top:10px">Install app</button><button class="btn" id="updBtn" style="margin-top:10px">Check for update</button></div>
     <h2>About</h2>
@@ -301,6 +386,7 @@ button,summary,.chip,.pal{-webkit-touch-callout:none;-webkit-user-select:none;us
 </div></div>
 
 <nav id="vnav">
+  <button data-v="3d">3D</button>
   <button class="on" data-v="model"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 7h9M18 7h1M5 17h1M10 17h9"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg>Model</button>
   <button data-v="results"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>Results</button>
   <button data-v="reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg>Reports</button>
@@ -313,6 +399,7 @@ button,summary,.chip,.pal{-webkit-touch-callout:none;-webkit-user-select:none;us
 </nav>
 <nav id="bnav"></nav>
 <div id="drawer"><aside class="dp"><div class="row" style="margin-bottom:8px"><b class="sp" style="font-family:var(--serif);font-size:18px">Modules</b><button class="btn sm" data-dx>Close</button></div><div id="dList"></div><div class="preview" style="padding:10px 4px 0">Choose a module. Its own tabs (setup, results, reports, graph) appear along the bottom.</div></aside></div>
+<div id="helpBar" role="status">Help mode is on: tap anything to see what it does. Tap ? again to leave.</div>
 <div id="sheet"><div class="p"><div class="row" style="margin-bottom:10px"><b id="shT" class="sp" style="font-family:var(--serif);font-size:17px"></b><button class="btn sm" data-shx>Close</button></div><div id="shB"></div></div></div>
 <div class="toast" id="toast"></div>
 
@@ -335,7 +422,10 @@ const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}hist()
 
 /* ---------- helpers ---------- */
 function num(s){s=String(s).trim();if(s.includes("/")){const[a,b]=s.split("/");const x=parseFloat(a),y=parseFloat(b);return y?x/y:0}const v=parseFloat(s);return isFinite(v)?v:0}
-const fmt=v=>{const r=Math.abs(v)<1e-9?0:v;return String(+r.toFixed(S.set.dec))};
+const fmtSep=t=>{const th=S.set.thou||"",dm=S.set.decm||".";let[i,f]=t.split(".");const neg=i[0]==="-";if(neg)i=i.slice(1);if(th)i=i.replace(/\B(?=(\d{3})+(?!\d))/g,th);return(neg?"-":"")+i+(f?dm+f:"")};
+const fmt=v=>{const r=Math.abs(v)<1e-9?0:v,t=String(+r.toFixed(S.set.dec));return S.set.thou||(S.set.decm&&S.set.decm!==".")?fmtSep(t):t};
+const fmtZ=v=>{const t=fmt(v),c=S.set.cur||"";if(!c)return t;if(S.set.curPos==="suf")return t+" "+c;return t[0]==="-"?"-"+c+t.slice(1):c+t};
+const zl=()=>S.set.zlab||"Z";
 const buzz=()=>{if(S.set.haptic&&navigator.vibrate)navigator.vibrate(8)};
 function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("on"),1600)}
 const dsub=i=>"x"+String(i+1).replace(/\d/g,d=>"₀₁₂₃₄₅₆₇₈₉"[d]);
@@ -376,7 +466,7 @@ function render(){
 function lhs(a){const t=a.map((v,j)=>[num(v),j]).filter(x=>x[0]!==0).map(([v,j],k)=>{const s=v<0?"− ":(k?"+ ":"");const m=Math.abs(v);return s+(m===1?"":fmt(m))+sub(j)});return t.length?t.join(" "):"0"}
 function applyLook(){
   const t=S.set.theme==="auto"?(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"):S.set.theme;
-  document.documentElement.dataset.theme=t;document.documentElement.dataset.pal=S.set.pal||"rust";document.body.classList.toggle("desktop",S.set.view==="desktop");if(typeof gDraw==="function"&&$("#v-graph").classList.contains("on"))gDraw();if(typeof nwRedraw==="function"&&$("#v-nw").classList.contains("on"))nwRedraw();if(typeof gmDraw==="function"&&$("#v-gm").classList.contains("on"))gmDraw();
+  document.documentElement.dataset.theme=t;document.documentElement.dataset.pal=S.set.pal||"rust";if(typeof applyCustom==="function")applyCustom(t);document.body.classList.toggle("compact",S.set.density==="compact");document.body.classList.toggle("desktop",S.set.view==="desktop");if(typeof gDraw==="function"&&$("#v-graph").classList.contains("on"))gDraw();if(typeof nwRedraw==="function"&&$("#v-nw").classList.contains("on"))nwRedraw();if(typeof gmDraw==="function"&&$("#v-gm").classList.contains("on"))gmDraw();
   $("meta[name=theme-color]").content=getComputedStyle(document.documentElement).getPropertyValue("--card").trim()||"#fbfaf6";
   layoutPad();
 }
@@ -419,7 +509,7 @@ function showResults(){
   el.className="";
   if(R.status!=="optimal"){
     el.innerHTML=`<div class="card"><span class="badge b-bad">${R.status.toUpperCase()}</span><p style="margin:12px 0 0">${R.status==="infeasible"?(R.ip&&R.rx&&R.rx.status==="optimal"?"The LP relaxation is feasible, but no integer point satisfies every constraint. Loosen a constraint or relax an integer requirement.":"No point satisfies all constraints at once. Check the operators and RHS values, or non-negativity."):"The objective can improve forever. A constraint is probably missing or has the wrong direction."}</p></div>`;return}
-  const z=fmt(R.Z);
+  const z=fmtZ(R.Z);
   el.innerHTML=`<div class="card"><div class="row"><span class="badge b-ok">${R.ip?"OPTIMAL (INTEGER)":"OPTIMAL"}</span><span class="sp"></span><button class="btn sm" id="cpy">Copy</button><button class="btn sm" id="pdfR">Save PDF</button><button class="btn sm" id="prtR">Print</button></div>
    <div style="color:var(--mut);margin-top:10px;font-weight:600">Z* (${S.goal==="max"?"maximum":"minimum"})</div><div class="z">${z}</div></div>${R.ipHtml||""}
    <h2>Decision variables</h2><div class="card"><table><tr><th>Var</th><th class="r">Value</th></tr>${R.x.map((v,j)=>`<tr><td>${sub(j)}</td><td class="r">${fmt(v)}</td></tr>`).join("")}</table></div>
@@ -484,7 +574,7 @@ function analyze(x,Z){
 function secs(){
   const a=lastRes.rep,RR=lastRes.ip?lastRes.rx:lastRes,x=RR.x,Z=RR.Z,K=S.cons,vn=sub,goal=S.goal==="max"?"Max":"Min";
   if(rp==="ans")return[
-    {t:"Objective Cell ("+goal+")",h:["Name","Original Value","Final Value"],r:[["Z","0",fmt(Z)]]},
+    {t:"Objective Cell ("+goal+")",h:["Name","Original Value","Final Value"],r:[[zl(),fmtZ(0),fmtZ(Z)]]},
     {t:"Variable Cells",h:["Name","Original Value","Final Value","Reduced Cost"],r:x.map((v,j)=>[vn(j),"0",fmt(v),a.sens?fx(a.sens.v[j].rc):"n/a"])},
     {t:"Constraints",h:["Name","Cell Value","Formula","Status","Slack/Surplus"],r:K.map((k,i)=>{const w=RR.rows[i];
       return[cname(i),fmt(w.l),lhs(k.a)+" "+(k.op==="=="?"=":k.op)+" "+fmt(num(k.b)),Math.abs(w.val)<1e-7?"Binding":"Not Binding",w.kind==="—"?"0":fmt(w.val)]})}];
@@ -505,7 +595,7 @@ function showReports(){
   el.innerHTML=a.warn.map(w=>`<div class="card note" style="margin-top:10px">${w}</div>`).join("")
    +sc.map(s=>`<h2>${s.t}</h2><div class="card scroll"><table><tr>${s.h.map((h,i)=>`<th class="${i?"r":"t"}">${h}</th>`).join("")}</tr>
      ${s.r.map(r=>"<tr>"+r.map((v,i)=>`<td class="${i?"r":"t"}">${v==="Binding"?stBadge(true,"Binding"):v==="Not Binding"?stBadge(false,"Not binding"):v}</td>`).join("")+"</tr>").join("")}</table></div>`).join("")
-   +(rp==="sen"?howto(a):"")
+   +(rp==="sen"?howto(a):rp==="lim"?limNarr(a):"")
    +`<div class="row noprint"><button class="btn sp" id="cpT">Copy for Excel</button><button class="btn sp" id="pdfT">Save PDF</button><button class="btn sp" id="prt">Print</button></div>`;
   $("#cpT").onclick=()=>{const t=sc.map(s=>[s.t,s.h.join("\t"),...s.r.map(r=>r.join("\t"))].join("\n")).join("\n\n");
     (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast("Copied: paste into Excel ✓"),()=>toast("Copy blocked by browser"))};
@@ -524,7 +614,7 @@ const EX=[["Standard optimum","max",[3,5],[[1,0,"<=",4],[0,2,"<=",12],[3,2,"<=",
  ["Minimize (open region)","min",[2,3],[[1,1,">=",4],[1,3,">=",6]]],["Equality line","max",[2,3],[[1,1,"==",6],[1,0,"<=",4],[0,1,"<=",5]]],["Diet minimum","min",[3,2],[[2,1,">=",8],[1,3,">=",9],[1,1,">=",5]]],["Six constraints","max",[4,3],[[1,1,"<=",10],[2,1,"<=",16],[1,0,"<=",7],[0,1,"<=",8],[1,2,"<=",14],[1,-1,"<=",5]]]];
 let GA=null,gt=1,gAnim=0;
 function halves(){const H=[],zero=[];let bad=false;
-  G.cons.forEach((k,i)=>{const a=num(k.a[0]),b2=num(k.a[1]),b=gb(i),nm=gcn(i);
+  G.cons.forEach((k,i)=>{const a=ga(i,0),b2=ga(i,1),b=gb(i),nm=gcn(i);
     if(!a&&!b2){zero.push(i);if(k.op==="<="?b<0:k.op===">="?b>0:b!==0)bad=true;return}
     if(k.op!==">=")H.push({n:[a,b2],h:b,ci:i,eq:k.op==="==",nm});
     if(k.op!=="<=")H.push({n:[-a,-b2],h:-b,ci:i,eq:k.op==="==",nm})});
@@ -537,7 +627,7 @@ function reg(L){const V=[],R=[];
   if(V.length)L.forEach(l=>[[-l.n[1],l.n[0]],[l.n[1],-l.n[0]]].forEach(d=>{const m=Math.hypot(...d);if(m<1e-12)return;const u=[d[0]/m,d[1]/m];
     if(L.every(q=>q.n[0]*u[0]+q.n[1]*u[1]<=1e-9)&&!R.some(r=>Math.hypot(r[0]-u[0],r[1]-u[1])<1e-6))R.push(u)}));
   return{V,R}}
-const icp=k=>{const a=num(k.a[0]),b=num(k.a[1]),r=gb(G.cons.indexOf(k));return[a?r/a:null,b?r/b:null]};
+const icp=k=>{const i_=G.cons.indexOf(k),a=ga(i_,0),b=ga(i_,1),r=gb(i_);return[a?r/a:null,b?r/b:null]};
 function gAnalyze(){
   const{H,zero,bad}=halves(),L=H.concat(H0),c=[gc(0),gc(1)],sg=G.goal==="max"?1:-1,{V,R}=reg(L),A={H,zero,c,sg,V,R,red:[],bad};
   if(bad||!V.length){A.inf=true;return A}
@@ -555,10 +645,10 @@ function gAnalyze(){
   return A}
 const nice=r=>{const p=10**Math.floor(Math.log10(r/5)),f=r/5/p;return(f<1.5?1:f<3.5?2:f<7.5?5:10)*p};
 const gcn=i=>(G.cons[i]&&G.cons[i].nm)||"C"+(i+1);
-var GV={z:1,icp:1,cor:1,iso:1,lat:0,drag:0,tw:0,map:null,pin:1,tw0:0,twZ:null,bey:0};
-function gView(A){let X=0,Y=0;const up=(x,y)=>{if(x>X)X=x;if(y>Y)Y=y};
-  G.cons.forEach(k=>{const[a,b]=icp(k);if(a>0)up(a,0);if(b>0)up(0,b)});(A.V||[]).forEach(v=>up(v[0],v[1]));
-  return[(X>0?X*1.2:10)*GV.z,(Y>0?Y*1.2:10)*GV.z]}
+var GV={z:1,icp:1,cor:1,iso:1,lat:0,drag:0,map:null,pin:1,bey:0,off:[0,0],eq:0,locks:[],hov:null,cands:[],isoSeg:null};
+function gBase(A){let X=0,Y=0;const up=(x,y)=>{if(x>X)X=x;if(y>Y)Y=y};
+  G.cons.forEach(k=>{const[a,b]=icp(k);if(a>0)up(a,0);if(b>0)up(0,b)});(A.V||[]).forEach(v=>up(v[0],v[1]));return[X>0?X*1.2:10,Y>0?Y*1.2:10]}
+function gView(A){const b=gBase(A);return[b[0]*GV.z,b[1]*GV.z]}
 function clipLine(a,b,h,X,Y){const P=[],add=(x,y)=>{if(x>=-1e-9&&x<=X+1e-9&&y>=-1e-9&&y<=Y+1e-9)P.push([x,y])};
   if(Math.abs(b)>1e-12){add(0,h/b);add(X,(h-a*X)/b)}if(Math.abs(a)>1e-12){add(h/a,0);add((h-b*Y)/a,Y)}
   let best=null,bd=1e-9;for(let i=0;i<P.length;i++)for(let j=i+1;j<P.length;j++){const d=Math.hypot(P[i][0]-P[j][0],P[i][1]-P[j][1]);if(d>bd){bd=d;best=[P[i],P[j]]}}
@@ -566,61 +656,6 @@ function clipLine(a,b,h,X,Y){const P=[],add=(x,y)=>{if(x>=-1e-9&&x<=X+1e-9&&y>=-
 function gIso(A){const lo=Math.min(...A.Z),hi=Math.max(...A.Z),sp=Math.max(hi-lo,Math.abs(hi)*.2,1),mg=sp*.3,sg=A.sg,worst=sg>0?lo:hi,st=worst-sg*mg;
   if(A.unb){const en=sg>0?hi+sp:lo-sp;return st+(en-st)*gt}
   const best=sg>0?hi:lo;return gt<=1?st+(best-st)*gt:best+sg*mg*(gt-1)/.2}
-function gDraw(){
-  const cv=$("#gcv");if(!cv||!cv.clientWidth||!GA)return;
-  const A=GA,w=cv.clientWidth,h=Math.round(Math.min(w*(S.set.view==="desktop"?.8:.95),Math.max(220,innerHeight*(S.set.view==="desktop"?.62:.4)))),dpr=devicePixelRatio||1;
-  cv.width=w*dpr;cv.height=h*dpr;cv.style.height=h+"px";
-  const x=cv.getContext("2d");x.setTransform(dpr,0,0,dpr,0,0);
-  const cs=getComputedStyle(document.documentElement),css=n=>cs.getPropertyValue(n).trim(),tx=css("--tx"),mut=css("--mut"),bd=css("--bd"),pri=css("--pri"),bg=css("--card"),gold="#f59e0b";
-  const[X,Y]=gView(A),ml=42,mr=14,mt=14,mb=30,sx=v=>ml+v/X*(w-ml-mr),sy=v=>h-mb-v/Y*(h-mt-mb);GV.map={ml,mr,mt,mb,X,Y,w,h};
-  const placed=[];
-  const lab=(t,px,py,col,b,mv)=>{x.font=(b?"700 ":"600 ")+"11px system-ui";x.textAlign="center";const tw=x.measureText(t).width/2+3,th=7;let ax=px,ay=py;
-    if(mv){const C=[[0,0],[0,-14],[0,14],[18,0],[-18,0],[16,-14],[-16,-14],[16,14],[-16,14],[0,-28],[0,28],[30,0],[-30,0],[24,-26],[-24,-26],[24,26],[-24,26]];let pick=null,first=null;
-      for(const c of C){const cx=Math.min(Math.max(px+c[0],tw),w-tw),cy=Math.min(Math.max(py+c[1],th+3),h-4),r=[cx-tw,cy-th-3,cx+tw,cy+3];if(!first)first=[cx,cy,r];if(!placed.some(q=>r[0]<q[2]&&r[2]>q[0]&&r[1]<q[3]&&r[3]>q[1])){pick=[cx,cy,r];break}}
-      if(!pick&&mv===2)pick=first;if(!pick)return;ax=pick[0];ay=pick[1];placed.push(pick[2])}else ax=Math.min(Math.max(px,tw),w-tw);
-    x.lineWidth=3;x.strokeStyle=bg;x.strokeText(t,ax,ay);x.fillStyle=col;x.fillText(t,ax,ay)};
-  x.fillStyle=bg;x.fillRect(0,0,w,h);x.lineWidth=1;
-  const stx=nice(X),sty=nice(Y);
-  for(let v=0;v<=X+1e-9;v+=stx){x.strokeStyle=bd;x.beginPath();x.moveTo(sx(v),mt);x.lineTo(sx(v),h-mb);x.stroke();lab(String(+v.toFixed(6)),sx(v),h-mb+14,mut)}
-  for(let v=0;v<=Y+1e-9;v+=sty){x.strokeStyle=bd;x.beginPath();x.moveTo(ml,sy(v));x.lineTo(w-mr,sy(v));x.stroke();lab(String(+v.toFixed(6)),ml-14,sy(v)+4,mut)}
-  lab("x₁",w-mr-8,h-mb-6,tx,1);lab("x₂",ml+14,mt+12,tx,1);
-  x.save();x.beginPath();x.rect(ml,mt,w-ml-mr,h-mt-mb);x.clip();
-  if(!A.inf){ // feasible region, clipped to the view box so open regions can be shaded
-    const q=reg(A.H.concat(H0,[{n:[1,0],h:X},{n:[0,1],h:Y}])).V;
-    if(q.length){const a=q.reduce((s,v)=>s+v[0],0)/q.length,b=q.reduce((s,v)=>s+v[1],0)/q.length;
-      q.sort((p,r)=>Math.atan2(p[1]-b,p[0]-a)-Math.atan2(r[1]-b,r[0]-a));
-      x.beginPath();q.forEach((v,i)=>i?x.lineTo(sx(v[0]),sy(v[1])):x.moveTo(sx(v[0]),sy(v[1])));x.closePath();x.fillStyle=pri+"3a";x.fill();x.strokeStyle=pri;x.lineWidth=2;x.stroke()}}
-  if(GV.lat&&!A.inf){const Q=gLattice(A,X,Y);x.fillStyle=mut;Q.pts.forEach(p=>{x.beginPath();x.arc(sx(p[0]),sy(p[1]),2.3,0,7);x.fill()})}
-  const labs=[];
-  G.cons.forEach((k,i)=>{const a=num(k.a[0]),b=num(k.a[1]),r=gb(i);if(!a&&!b)return;const sg=clipLine(a,b,r,X,Y);if(!sg)return;
-    const red=A.red.some(o=>o.i===i);x.strokeStyle=red?mut:COL[i];x.lineWidth=2;x.setLineDash(red?[6,5]:[]);
-    x.beginPath();x.moveTo(sx(sg[0][0]),sy(sg[0][1]));x.lineTo(sx(sg[1][0]),sy(sg[1][1]));x.stroke();x.setLineDash([]);
-    labs.push([gcn(i)+(red?" (redundant)":""),sx(sg[1][0])-(sg[1][0]>X*.8?24:0),sy(sg[1][1])+(sg[1][1]<Y*.1?-8:12),red?mut:COL[i]])});
-  let k=null;GV.bey=0;
-  if(!A.inf){
-    const sgn=A.sg,cx=A.c[0],cy=A.c[1],mx=A.V.reduce((s,v)=>s+v[0],0)/A.V.length,my=A.V.reduce((s,v)=>s+v[1],0)/A.V.length;
-    k=(GP.v0&&GP.mode!=="off"&&GP.mode!=="b")?A.c[0]*GP.v0[0]+A.c[1]*GP.v0[1]:gIso(A);
-    GV.bey=(!A.unb&&A.opt&&A.sg*(k-A.best)>1e-9)?1:(A.Z&&A.sg*(k-(A.sg>0?Math.min(...A.Z):Math.max(...A.Z)))<-1e-9)?2:0;
-    if(GV.iso&&(cx||cy)){const seg=clipLine(cx,cy,k,X,Y);if(seg){x.strokeStyle=GV.bey?css("--bad"):gold;x.lineWidth=2.5;x.setLineDash([8,5]);x.beginPath();x.moveTo(sx(seg[0][0]),sy(seg[0][1]));x.lineTo(sx(seg[1][0]),sy(seg[1][1]));x.stroke();x.setLineDash([]);
-        labs.push(["Z = "+fmt(k)+(GV.bey===1?" · beyond optimum":GV.bey===2?" · below lowest corner":""),(sx(seg[0][0])+sx(seg[1][0]))/2+(sgn>0?-4:4),(sy(seg[0][1])+sy(seg[1][1]))/2-8,GV.bey?css("--bad"):gold])}
-      let dx=cx*(sx(1)-sx(0))*sgn,dy=cy*(sy(1)-sy(0))*sgn;const m=Math.hypot(dx,dy)||1;dx=dx/m*38;dy=dy/m*38;const ax=sx(mx),ay=sy(my);
-      x.strokeStyle=gold;x.fillStyle=gold;x.lineWidth=3;x.beginPath();x.moveTo(ax,ay);x.lineTo(ax+dx,ay+dy);x.stroke();
-      const an=Math.atan2(dy,dx);x.beginPath();x.moveTo(ax+dx,ay+dy);x.lineTo(ax+dx-9*Math.cos(an-.5),ay+dy-9*Math.sin(an-.5));x.lineTo(ax+dx-9*Math.cos(an+.5),ay+dy-9*Math.sin(an+.5));x.fill()}
-    if(!A.unb&&A.alt){x.strokeStyle=gold;x.lineWidth=7;x.lineCap="round";const o=A.opt.map(i=>A.V[i]).sort((p,q)=>p[0]-q[0]||p[1]-q[1]);
-      x.beginPath();x.moveTo(sx(o[0][0]),sy(o[0][1]));x.lineTo(sx(o[o.length-1][0]),sy(o[o.length-1][1]));x.stroke();
-      A.zr.forEach(r=>A.opt.forEach(i=>{const v=A.V[i];x.beginPath();x.moveTo(sx(v[0]),sy(v[1]));x.lineTo(sx(v[0]+r[0]*(X+Y)),sy(v[1]+r[1]*(X+Y)));x.stroke()}));x.lineCap="butt"}
-  }
-  x.restore();
-  if(!A.inf)A.V.forEach((v,i)=>{const o=!A.unb&&A.opt.includes(i);x.beginPath();x.arc(sx(v[0]),sy(v[1]),o?7:5,0,7);x.fillStyle=o?gold:tx;x.fill();x.strokeStyle=bg;x.lineWidth=2;x.stroke();
-    if(GV.cor||o)lab(String.fromCharCode(65+i)+(o?" ★":""),sx(v[0])+10,sy(v[1])-9,o?gold:tx,1,o?2:1)});
-  labs.forEach(l=>lab(l[0],l[1],l[2],l[3],1,1));
-  if(GV.icp)G.cons.forEach((kk,i)=>{const[a,b]=icp(kk),pts=[];if(a!=null&&a>=0&&a<=X)pts.push([a,0]);if(b!=null&&b>=0&&b<=Y)pts.push([0,b]);
-    pts.forEach(p=>{x.beginPath();x.arc(sx(p[0]),sy(p[1]),3.5,0,7);x.fillStyle=bg;x.fill();x.strokeStyle=COL[i];x.lineWidth=2;x.stroke();
-      lab("("+fmt(p[0])+","+fmt(p[1])+")",sx(p[0])+(p[1]===0?0:30),sy(p[1])+(p[1]===0?-8:-6),COL[i],0,1)})});
-  if(GV.lat&&!A.inf){const Q=gLattice(A,X,Y);if(Q.best){x.beginPath();x.arc(sx(Q.best[0]),sy(Q.best[1]),9,0,7);x.strokeStyle=css("--ok");x.lineWidth=3;x.stroke()}}
-  if(GP.v0&&GP.mode!=="off"){x.beginPath();x.arc(sx(GP.v0[0]),sy(GP.v0[1]),11,0,7);x.setLineDash([3,3]);x.strokeStyle=gold;x.lineWidth=2;x.stroke();x.setLineDash([])}
-  $("#gZ").textContent=k==null?"":fmt(k)+(GV.bey?" ✖":"");$("#gZ").style.color=GV.bey?css("--bad"):"";const gn=$("#gIsoNote");if(gn)gn.textContent=GV.bey===1?"Beyond the optimum: this iso-line touches no feasible point, so nothing on it is attainable.":GV.bey===2?"Below the lowest corner: no feasible point lies on this iso-line.":"";
-}
 function gPanels(){
   const A=GA,f=fmt,pt=v=>`(${f(v[0])}, ${f(v[1])})`,L=i=>String.fromCharCode(65+i),out=[];
   const card=(kind,t,txt)=>`<div class="card" style="border-color:var(--${kind==="ok"?"ok":kind==="warn"?"warn":"bad"})"><span class="badge ${kind==="ok"?"b-ok":kind==="warn"?"b-warn":"b-bad"}">${t}</span><div style="margin-top:8px;font-size:13px">${txt}</div></div>`;
@@ -653,7 +688,7 @@ function gInputs(){
   $("#gObj").innerHTML=[0,1].map(j=>`<div class="cell">${vl(j)}${inp(1000,j,G.obj[j],"g")}</div>`).join("");
   $("#gCons").innerHTML=G.cons.map((k,i)=>`<div class="card"><div class="row" style="margin-bottom:8px"><span class="tag" style="background:${COL[i]}22;color:${COL[i]}">C${i+1}</span><span id="gt${i}"></span><input class="tx cnm" data-gcn="${i}" placeholder="name (optional)" value="${esc(k.nm||"")}" maxlength="28" style="flex:1;min-width:80px;width:auto"><button class="btn sm bad" data-gdel="${i}">✕</button></div>
     <div class="scroll"><div class="coefs">${[0,1].map(j=>`<div class="cell">${vl(j)}${inp(1001+i,j,k.a[j],"g")}</div>`).join("")}<div class="cell"><label>op</label><button class="op" data-gop="${i}">${k.op==="=="?"=":k.op}</button></div><div class="cell"><label>RHS</label>${inp(1001+i,2,k.b,"g")}</div></div></div></div>`).join("");
-  $("#gAdd").style.display=G.cons.length>=12?"none":"";save();gUpdate();gTweakUI()}
+  $("#gAdd").style.display=G.cons.length>=12?"none":"";save();gUpdate();gCtlBuild()}
 function gSet(el){const r=+el.dataset.r,c=+el.dataset.c;if(r===1000)G.obj[c]=el.value;else{const k=G.cons[r-1001];if(!k)return;if(c<2)k.a[c]=el.value;else k.b=el.value}save();gUpdate()}
 $("#v-graph").addEventListener("click",e=>{const t=e.target.closest("button");if(!t)return;const d=t.dataset;
   if(d.gg){G.goal=d.gg;gInputs()}
@@ -668,7 +703,7 @@ $("#gImp").onclick=()=>{if(S.n!==2)return toast("Model has "+S.n+" variables; gr
 $("#gSend").onclick=()=>{S.goal=G.goal;S.n=2;S.m=G.cons.length;S.obj=[...G.obj];S.cons=G.cons.map(c=>({a:[...c.a],op:c.op,b:c.b}));S.nonneg=true;render();toast("Sent to Model tab")};
 $("#gIso").oninput=e=>{cancelAnimationFrame(gAnim);gt=e.target.value/1000;gDraw()};
 $("#gPlay").onclick=()=>{cancelAnimationFrame(gAnim);const t0=performance.now(),st=ts=>{gt=Math.min(1,(ts-t0)/3000);$("#gIso").value=gt*1000;gDraw();if(gt<1)gAnim=requestAnimationFrame(st)};gt=0;gAnim=requestAnimationFrame(st)};
-$("#gPng").onclick=()=>$("#gcv").toBlob(b=>{const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="graphical-lp.png";a.click()});
+
 
 /* ---------- Phase 4: Transportation, Assignment, Transshipment ---------- */
 /*ALG*/
@@ -745,21 +780,21 @@ function balHtml(){const q=tpData(),ok=!q.dummy;
   return`Total supply <b>${fmt(q.S)}</b> · Total demand <b>${fmt(q.D)}</b> → `+(ok?'<span class="badge b-ok">Balanced</span>':`<span class="badge b-warn">Unbalanced</span> a <b>dummy ${q.dummy==="col"?"destination":"source"}</b> with ${q.dummy==="col"?"demand":"supply"} ${fmt(Math.abs(q.S-q.D))} and zero costs is added automatically.`)}
 function tpIn(){const{m,n}=T.tp,H=`<th></th>${T.tp.d.map((_,j)=>`<th class="r">${hin("tpc",j,"D"+(j+1),T.tp.cn&&T.tp.cn[j])}</th>`).join("")}<th class="r">Supply</th>`;
   return`<div class="card"><div class="row" style="flex-wrap:wrap;gap:14px">${stp("Sources","tpm",m)}${stp("Destinations","tpn",n)}</div><div class="preview" id="tpBal" style="font-family:inherit;font-size:13px">${balHtml()}</div></div>
-  <h2>Unit costs, supply (right) and demand (bottom)</h2><div class="card scroll"><table class="tt"><tr>${H}</tr>
+  ${acts("Solve: NWC · VAM · Optimal ▶")}<h2>Unit costs, supply (right) and demand (bottom)</h2><div class="card scroll"><table class="tt"><tr>${H}</tr>
   ${T.tp.c.map((r,i)=>`<tr><td class="t">${hin("tpr",i,"S"+(i+1),T.tp.rn&&T.tp.rn[i])}</td>${r.map((v,j)=>`<td>${inp(2000+i,j,v,"t")}</td>`).join("")}<td>${inp(2000+i,n,T.tp.s[i],"t")}</td></tr>`).join("")}
-  <tr><td class="t"><b>Demand</b></td>${T.tp.d.map((v,j)=>`<td>${inp(2000+m,j,v,"t")}</td>`).join("")}<td></td></tr></table></div>${acts("Solve: NWC · VAM · Optimal ▶")}`}
+  <tr><td class="t"><b>Demand</b></td>${T.tp.d.map((v,j)=>`<td>${inp(2000+m,j,v,"t")}</td>`).join("")}<td></td></tr></table></div>`}
 function asIn(){const n=T.as.n;
   return`<div class="card"><div class="seg" style="margin-bottom:10px"><button data-ta="goal" data-val="min" class="${T.as.goal==="min"?"on":""}">Minimize cost/time</button><button data-ta="goal" data-val="max" class="${T.as.goal==="max"?"on":""}">Maximize profit</button></div>${stp("Workers = Jobs","asn",n)}</div>
-  <h2>Cost matrix (workers × jobs)</h2><div class="card scroll"><table class="tt"><tr><th></th>${T.as.c.map((_,j)=>`<th class="r">${hin("asc",j,"J"+(j+1),T.as.cn&&T.as.cn[j])}</th>`).join("")}</tr>
-  ${T.as.c.map((r,i)=>`<tr><td class="t">${hin("asr",i,"W"+(i+1),T.as.rn&&T.as.rn[i])}</td>${r.map((v,j)=>`<td>${inp(3000+i,j,v,"t")}</td>`).join("")}</tr>`).join("")}</table></div>${acts("Solve (Hungarian) ▶")}`}
+  ${acts("Solve (Hungarian) ▶")}<h2>Cost matrix (workers × jobs)</h2><div class="card scroll"><table class="tt"><tr><th></th>${T.as.c.map((_,j)=>`<th class="r">${hin("asc",j,"J"+(j+1),T.as.cn&&T.as.cn[j])}</th>`).join("")}</tr>
+  ${T.as.c.map((r,i)=>`<tr><td class="t">${hin("asr",i,"W"+(i+1),T.as.rn&&T.as.rn[i])}</td>${r.map((v,j)=>`<td>${inp(3000+i,j,v,"t")}</td>`).join("")}</tr>`).join("")}</table></div>`}
 function tsIn(){const N=T.ts.nodes,opts=(sel)=>N.map((x,k)=>`<option value="${k}" ${k===sel?"selected":""}>${x.nm||"N"+(k+1)}</option>`).join("");
   return`<div class="card"><div class="row" style="flex-wrap:wrap;gap:14px">${stp("Nodes","tsn",N.length)}</div>
   <div class="preview" style="font-family:inherit;font-size:13px">Net supply: <b>+</b> = source, <b>−</b> = destination (demand), <b>0</b> = transshipment node. Unbalanced totals are handled automatically.</div></div>
-  <h2>Nodes</h2>${N.map((x,k)=>`<div class="card"><div class="row"><input class="tx" data-nm="${k}" value="${x.nm}" maxlength="8"><div class="cell"><label>Net supply</label>${inp(4500+k,0,x.b,"t")}</div><span class="tag" id="nt${k}">${nodeType(num(x.b))}</span></div></div>`).join("")}
+  ${acts("Solve min-cost flow ▶")}<h2>Nodes</h2>${N.map((x,k)=>`<div class="card"><div class="row"><input class="tx" data-nm="${k}" value="${x.nm}" maxlength="8"><div class="cell"><label>Net supply</label>${inp(4500+k,0,x.b,"t")}</div><span class="tag" id="nt${k}">${nodeType(num(x.b))}</span></div></div>`).join("")}
   <h2>Routes (arcs)</h2>${T.ts.arcs.map((a,i)=>`<div class="card"><div class="row" style="margin-bottom:8px"><span class="tag">R${i+1}</span><span class="sp"></span><button class="btn sm bad" data-ta="arcdel" data-ai="${i}">✕</button></div>
    <div class="scroll"><div class="coefs"><div class="cell"><label>from</label><select class="sl" data-sel="f" data-ai="${i}">${opts(a.f)}</select></div><div class="cell"><label>to</label><select class="sl" data-sel="t" data-ai="${i}">${opts(a.t)}</select></div>
    <div class="cell"><label>unit cost</label>${inp(4000+i,0,a.c,"t")}</div><div class="cell"><label>cap (0 = ∞)</label>${inp(4000+i,1,a.u,"t")}</div></div></div></div>`).join("")}
-  <button class="btn" data-ta="arc+" style="width:100%">+ Add route</button>${acts("Solve min-cost flow ▶")}`}
+  <button class="btn" data-ta="arc+">+ Add route</button>`}
 const nodeType=b=>b>0?"Source":b<0?"Destination":"Transship";
 function trRender(){
   $$("#trSeg button").forEach(b=>b.classList.toggle("on",b.dataset.tr===T.sub));tFit();
@@ -775,19 +810,19 @@ const allocTbl=(A,C,rl,cl)=>`<div class="scroll"><table><tr><th></th>${cl.map(x=
 function tpRun(){
   const q=tpData(),{c,s,d,rl,cl}=q,cost=A=>A.reduce((t,r,i)=>t+r.reduce((u,v,j)=>u+(v||0)*c[i][j],0),0);
   if(q.S+q.D===0)return'<div class="card empty">Enter supplies and demands first.</div>';
-  const A1=nwc(c,s,d),V=vam(c,s,d),O=tpOpt(c,s,d),z1=cost(A1),z2=cost(V.A),zo=O.ok?cost(O.A):null,gap=z=>zo==null?"":zo===0?"":z-zo<1e-9?'<span class="badge b-ok">optimal</span>':`+${fmt(z-zo)} (${fmt((z-zo)/zo*100)}%)`;
+  const A1=nwc(c,s,d),V=vam(c,s,d),O=tpOpt(c,s,d),z1=cost(A1),z2=cost(V.A),zo=O.ok?cost(O.A):null,gap=z=>zo==null?"":zo===0?"":z-zo<1e-9?'<span class="badge b-ok">optimal</span>':`+${fmtZ(z-zo)} (${fmt((z-zo)/zo*100)}%)`;
   const lg=V.log.map((g,k)=>`<li>Iter ${k+1}: row penalties [${g.rp.map((x,i)=>x==null?null:rl[i]+"="+fmt(x)).filter(Boolean).join(", ")}], column penalties [${g.cp.map((x,j)=>x==null?null:cl[j]+"="+fmt(x)).filter(Boolean).join(", ")}] → largest penalty ${fmt(g.p)}; cheapest cell ${rl[g.i]}–${cl[g.j]}; allocate <b>${fmt(g.q)}</b>.</li>`).join("");
   const nb=A=>A.flat().filter(v=>v!==null).length;
   return(q.dummy?`<div class="card note" style="margin-top:10px">${balHtml()}</div>`:"")+
-   box("Summary",`<table><tr><th class="t">Method</th><th class="r">Total cost</th><th class="r">vs optimal</th></tr><tr><td class="t">Northwest Corner</td><td class="r">${fmt(z1)}</td><td class="r">${gap(z1)}</td></tr><tr><td class="t">Vogel (VAM)</td><td class="r">${fmt(z2)}</td><td class="r">${gap(z2)}</td></tr><tr class="hl"><td class="t">Optimal (simplex)</td><td class="r">${zo==null?"infeasible":fmt(zo)}</td><td class="r"></td></tr></table>`)+
-   box("Northwest Corner · cost "+fmt(z1),allocTbl(A1,c,rl,cl)+`<div class="preview">${nb(A1)} basic cells${nb(A1)<rl.length+cl.length-1?" (fewer than m+n−1: degenerate)":""}. Cells show allocation ×unit cost.</div>`)+
-   box("Vogel's Approximation · cost "+fmt(z2),allocTbl(V.A,c,rl,cl)+`<details><summary>Penalty steps</summary><ol class="how">${lg}</ol></details>`)+
-   box("Optimal (simplex LP) · cost "+fmt(zo),O.ok?allocTbl(O.A,c,rl,cl)+(q.dummy?`<div class="preview">Units shipped from/to the Dummy ${q.dummy==="col"?"destination are unshipped supply":"source are unmet demand"}.</div>`:""):"No feasible solution.")}
+   box("Summary",`<table><tr><th class="t">Method</th><th class="r">Total cost</th><th class="r">vs optimal</th></tr><tr><td class="t">Northwest Corner</td><td class="r">${fmtZ(z1)}</td><td class="r">${gap(z1)}</td></tr><tr><td class="t">Vogel (VAM)</td><td class="r">${fmtZ(z2)}</td><td class="r">${gap(z2)}</td></tr><tr class="hl"><td class="t">Optimal (simplex)</td><td class="r">${zo==null?"infeasible":fmtZ(zo)}</td><td class="r"></td></tr></table>`)+
+   box("Northwest Corner · cost "+fmtZ(z1),allocTbl(A1,c,rl,cl)+`<div class="preview">${nb(A1)} basic cells${nb(A1)<rl.length+cl.length-1?" (fewer than m+n−1: degenerate)":""}. Cells show allocation ×unit cost.</div>`)+
+   box("Vogel's Approximation · cost "+fmtZ(z2),allocTbl(V.A,c,rl,cl)+`<details><summary>Penalty steps</summary><ol class="how">${lg}</ol></details>`)+
+   box("Optimal (simplex LP) · cost "+fmtZ(zo),O.ok?allocTbl(O.A,c,rl,cl)+(q.dummy?`<div class="preview">Units shipped from/to the Dummy ${q.dummy==="col"?"destination are unshipped supply":"source are unmet demand"}.</div>`:""):"No feasible solution.")}
 function stepTbl(M,o){o=o||{};return`<div class="scroll"><table><tr><th></th>${M[0].map((_,j)=>`<th class="r">${an("cn",j)}</th>`).join("")}</tr>${M.map((r,i)=>`<tr><td class="t"><b>${an("rn",i)}</b></td>${r.map((v,j)=>{const z=Math.abs(v)<1e-9,pick=o.match&&o.match[i]===j,rc=o.rowsC&&o.rowsC[i],cc=o.colsC&&o.colsC[j];
     return`<td class="r ${pick?"hl":rc||cc?"cv":""}" style="${z?"font-weight:800":""}${rc&&cc?";text-decoration:underline double":""}">${fmt(v)}${pick?" ✓":""}</td>`}).join("")}</tr>`).join("")}</table></div>`}
 function asRun(){const a=T.as,C=a.c.map(r=>r.map(num)),mx=a.goal==="max",h=hung(C,mx);
   const names=h.match.map((j,i)=>`<tr><td class="t">${an("rn",i)} → ${an("cn",j)}</td><td class="r">${fmt(C[i][j])}</td></tr>`).join("");
-  return box((mx?"Maximum profit: ":"Minimum cost: ")+fmt(h.cost),`<table><tr><th class="t">Assignment</th><th class="r">${mx?"Profit":"Cost"}</th></tr>${names}<tr class="hl"><td class="t">Total</td><td class="r">${fmt(h.cost)}</td></tr></table>`)+
+  return box((mx?"Maximum profit: ":"Minimum cost: ")+fmtZ(h.cost),`<table><tr><th class="t">Assignment</th><th class="r">${mx?"Profit":"Cost"}</th></tr>${names}<tr class="hl"><td class="t">Total</td><td class="r">${fmtZ(h.cost)}</td></tr></table>`)+
    `<h2>Hungarian steps</h2>`+h.steps.map((st,k)=>`<div class="card"><div style="font-weight:700;margin-bottom:6px;font-size:13px">${st.t}</div>${stepTbl(st.M,st)}${st.dl!=null?`<div class="preview">Smallest uncovered value δ = ${fmt(st.dl)}: subtract it from uncovered cells, add it where two lines cross.</div>`:""}</div>`).join("")}
 function tsRun(){const N=T.ts.nodes,nb=N.map(x=>num(x.b)),nm=k=>N[k].nm||"N"+(k+1),raw=T.ts.arcs.map(a=>({f:a.f,t:a.t,c:num(a.c),u:num(a.u)})),arcs=raw.filter(a=>a.f!==a.t);
   if(!nb.some(b=>b))return'<div class="card empty">Give at least one node a non-zero net supply.</div>';
@@ -797,7 +832,7 @@ function tsRun(){const N=T.ts.nodes,nb=N.map(x=>num(x.b)),nm=k=>N[k].nm||"N"+(k+
   const rows=arcs.map((a,i)=>r.fl[i]>1e-9?`<tr><td class="t">${nm(a.f)} → ${nm(a.t)}</td><td class="r">${fmt(r.fl[i])}</td><td class="r">${fmt(a.c)}</td><td class="r">${fmt(r.fl[i]*a.c)}</td><td class="r">${a.u>0?(r.fl[i]>=a.u-1e-9?'<span class="badge b-warn">full</span> ':"")+fmt(r.fl[i])+"/"+fmt(a.u):"∞"}</td></tr>`:"").join("");
   const unb=Math.abs(r.Sx-r.Dx)>1e-9;
   return(unb?`<div class="card note" style="margin-top:10px">Total supply ${fmt(r.Sx)} ≠ total demand ${fmt(r.Dx)}: ${r.Sx>r.Dx?fmt(r.Sx-r.Dx)+" units of supply stay unshipped.":fmt(r.Dx-r.Sx)+" units of demand stay unmet."}</div>`:"")+
-   box("Minimum total cost: "+fmt(r.cost),`<table><tr><th class="t">Route</th><th class="r">Flow</th><th class="r">Unit</th><th class="r">Cost</th><th class="r">Flow/cap</th></tr>${rows||'<tr><td colspan="5">No flow.</td></tr>'}</table>`)+
+   box("Minimum total cost: "+fmtZ(r.cost),`<table><tr><th class="t">Route</th><th class="r">Flow</th><th class="r">Unit</th><th class="r">Cost</th><th class="r">Flow/cap</th></tr>${rows||'<tr><td colspan="5">No flow.</td></tr>'}</table>`)+
    box("Node balance",`<div class="scroll"><table><tr><th class="t">Node</th><th class="t">Type</th><th class="r">Net supply</th><th class="r">Shipped out−in</th><th class="r">Passes through</th></tr>${N.map((x,k)=>`<tr><td class="t">${nm(k)}</td><td class="t">${nodeType(nb[k])}</td><td class="r">${fmt(nb[k])}</td><td class="r">${fmt(net[k])}</td><td class="r">${nb[k]===0?fmt(inn[k]):"—"}</td></tr>`).join("")}</table></div>`)}
 /* ---- events ---- */
 const trv=$("#v-tr"),clampN=(v,a,b)=>Math.max(a,Math.min(b,v));
@@ -822,7 +857,7 @@ trv.addEventListener("click",e=>{const t=e.target.closest("button");if(!t)return
       T.ts.arcs=[[0,2,2,0],[0,3,3,0],[1,2,4,0],[1,3,1,0],[2,4,5,0],[2,5,6,0],[3,4,3,30],[3,5,4,0],[0,4,12,0]].map(x=>({f:x[0],t:x[1],c:String(x[2]),u:String(x[3])}))}
     delete TRES[k];trRender();toast("Example: "+nme)}
   else if(a==="solve"){const k=T.sub;
-    try{TRES[k]=k==="tp"?tpRun():k==="as"?asRun():tsRun()}catch(err){TRES[k]='<div class="card note">Could not solve: '+err.message+"</div>"}
+    try{TRES[k]=(k==="tp"?tpRun():k==="as"?asRun():tsRun())+modInterpHTML(k)}catch(err){TRES[k]='<div class="card note">Could not solve: '+err.message+"</div>"}
     $("#trRes").innerHTML=TRES[k];buzz();$("#trRes").scrollIntoView({behavior:"smooth",block:"start"})}});
 trv.addEventListener("input",e=>{if(e.target.dataset.nm!==undefined){T.ts.nodes[+e.target.dataset.nm].nm=e.target.value;save();delete TRES.ts}});
 trv.addEventListener("change",e=>{const el=e.target;
@@ -865,20 +900,20 @@ function nwRender(){
     wl=sub==="mst"?"length":sub==="sp"?"distance":"capacity";
   NW.src=Math.min(NW.src,N-1);NW.snk=Math.min(NW.snk,N-1);
   $("#nwBody").innerHTML=`<div class="card">${stp("Nodes","nwn",N)}<div class="preview" style="font-family:inherit;font-size:13px">Nodes are named A, B, C… Tap the type button to switch an edge between <b>— undirected</b> and <b>→ directed</b> (A→B).${sub==="mst"?" MST ignores directions.":""}</div></div>
+   ${acts(sub==="mst"?"Solve (Kruskal) ▶":sub==="sp"?"Solve (Dijkstra) ▶":"Solve (Edmonds–Karp) ▶")}
    <details class="card"><summary style="font-weight:700">Node names</summary><div class="scroll" style="margin-top:8px"><div class="coefs">${Array.from({length:N},(_,k)=>`<div class="cell"><label>${String.fromCharCode(65+k)}</label>${hin("nwn",k,String.fromCharCode(65+k),NW.nn&&NW.nn[k])}</div>`).join("")}</div></div></details>
    <h2>Edges</h2>${NW.edges.map((e,i)=>`<div class="card"><div class="row" style="margin-bottom:6px"><span class="tag">E${i+1}</span><span class="sp"></span><button class="btn sm bad" data-ta="edel" data-ai="${i}">✕</button></div>
     <div class="scroll"><div class="coefs"><div class="cell"><label>node A</label><select class="sl" data-nsel="a" data-ai="${i}">${opt(e.a)}</select></div>
     <div class="cell"><label>type</label><button class="op" data-ta="edir" data-ai="${i}">${e.d?"→":"—"}</button></div>
     <div class="cell"><label>node B</label><select class="sl" data-nsel="b" data-ai="${i}">${opt(e.b)}</select></div>
     <div class="cell"><label>${wl}</label>${inp(5000+i,0,e.w,"w")}</div></div></div></div>`).join("")}
-   <button class="btn" data-ta="eadd" style="width:100%">+ Add edge</button>
+   <button class="btn" data-ta="eadd">+ Add edge</button>
    ${sub!=="mst"?`<h2>${sub==="sp"?"Route":"Flow"}</h2><div class="card"><div class="row"><div class="cell"><label>${sub==="sp"?"source":"source (s)"}</label><select class="sl" data-nsel="src">${opt(NW.src)}</select></div><span style="padding-top:16px;font-weight:700">→</span><div class="cell"><label>${sub==="sp"?"target":"sink (t)"}</label><select class="sl" data-nsel="snk">${opt(NW.snk)}</select></div></div></div>`:""}
-   ${acts(sub==="mst"?"Solve (Kruskal) ▶":sub==="sp"?"Solve (Dijkstra) ▶":"Solve (Edmonds–Karp) ▶")}
    <div id="nwRes">${NWR[sub]?NWR[sub].html:""}</div>`;save();nwRedraw(true)}
 function nwSet(el){const i=+el.dataset.r-5000;if(NW.edges[i])NW.edges[i].w=el.value;save();delete NWR[NW.sub];const e=$("#nwRes");if(e)e.innerHTML=""}
 const nwKill=()=>{delete NWR.mst;delete NWR.sp;delete NWR.mf};
 const tbl=(h,rows)=>`<div class="scroll"><table><tr>${h.map((x,i)=>`<th class="${i?"r":"t"}">${x}</th>`).join("")}</tr>${rows.map(r=>`<tr class="${r.cls||""}">${r.c.map((x,i)=>`<td class="${i?"r":"t"}">${x}</td>`).join("")}</tr>`).join("")}</table></div>`;
-const cvCard=mx=>`<h2>Network</h2><div class="card" style="padding:8px"><canvas id="nwcv" style="width:100%;display:block"></canvas><div class="row" style="margin-top:8px"><button class="btn sm" id="nwPlay">▶ Step through</button><input type="range" id="nwStep" min="0" max="${mx}" value="${mx}" style="flex:1"><b id="nwStepL" style="min-width:52px;text-align:right"></b></div></div>`;
+const cvCard=mx=>`<h2>Network</h2><div class="card" style="padding:8px"><canvas id="nwcv" style="width:100%;display:block"></canvas><div class="isorow" style="grid-template-columns:auto 1fr 84px"><button class="btn sm" id="nwPlay">▶ Step through</button><input type="range" id="nwStep" min="0" max="${mx}" value="${mx}" aria-label="Algorithm step"><output id="nwStepL" class="valbox" style="width:84px"></output></div><div class="row noprint" style="margin-top:6px"><button class="btn sm" data-savepic="nwcv">Save picture</button></div></div>`;
 const errCard=t=>`<div class="card" style="border-color:var(--bad);margin-top:10px"><span class="badge b-bad">CANNOT SOLVE</span><div style="margin-top:8px;font-size:13px">${t}</div></div>`;
 function nwSolve(){
   const E=nwE(),n=NW.n,sub=NW.sub,s=NW.src,t=NW.snk;let r=null,html="",mx=0;
@@ -902,7 +937,7 @@ function nwSolve(){
         `<div class="preview">Source side {${f.S.map((v,k)=>v?nl(k):"").join("")}} | sink side {${f.S.map((v,k)=>v?"":nl(k)).join("")}}</div>`)+cvCard(mx)+
         box("Augmenting paths (shortest first)",tbl(["Path","Bottleneck","Total flow"],f.steps.map((p,k)=>{const nodes=[nl(s),...p.arcs.map(a=>nl(E[a>>1][a%2?"a":"b"]))];return{c:[(k+1)+". "+nodes.join("→"),fmt(p.b),fmt(p.flow)]}})))+
         box("Flow on each edge",tbl(["Edge","Flow / capacity","Status"],E.map((e,i)=>({c:[el_(E,i),fmt(Math.abs(f.net[i]))+(f.net[i]<-1e-9?" (reverse)":"")+" / "+fmt(e.w),f.cut.includes(i)?'<span class="badge b-bad">min cut</span>':sat(i)?'<span class="badge b-warn">saturated</span>':Math.abs(f.net[i])>1e-9?"in use":"unused"]}))))}}
-  NWR[sub]={r,html,mx};$("#nwRes").innerHTML=html;buzz();nwStep=mx;nwRedraw(true);$("#nwRes").scrollIntoView({behavior:"smooth",block:"start"})}
+  if(r)html+=modInterpHTML(sub);NWR[sub]={r,html,mx};$("#nwRes").innerHTML=html;buzz();nwStep=mx;nwRedraw(true);$("#nwRes").scrollIntoView({behavior:"smooth",block:"start"})}
 function nwState(){const o=NWR[NW.sub],st={e:{},n:{},t:{}};if(!o||!o.r)return st;const r=o.r,E=r.E,s=nwStep,sub=NW.sub,full=s===o.mx;
   if(sub==="mst"){for(let k=0;k<s;k++){const p=r.steps[k];if(p.ok){st.e[p.i]={c:"ok",w:4};st.n[E[p.i].a]={c:"pri"};st.n[E[p.i].b]={c:"pri"}}else if(k===s-1)st.e[p.i]={c:"bad",dash:1,w:2.5}}}
   else if(sub==="sp"){const sn=s>0?r.steps[s-1]:{D:E.length?Array(NW.n).fill(Infinity).map((v,k)=>k===NW.src?0:v):[],done:[],u:-1};
@@ -982,16 +1017,17 @@ function pjKill(){PJR.cpm=PJR.pert=PJR.o=null;const e=$("#pjRes");if(e)e.innerHT
 function pjRender(){
   const pert=PJ.mode==="pert";$$("#pjSeg button").forEach(b=>b.classList.toggle("on",b.dataset.pjm===PJ.mode));
   $("#pjBody").innerHTML=`<div class="card" style="font-size:13px;color:var(--mut)">Predecessors: activity names separated by commas (e.g. <b>B,C</b>); leave empty for start activities.${pert?" Expected time μ = (a+4m+b)/6, variance σ² = ((b−a)/6)².":""}</div>
+   ${acts(pert?"Solve PERT ▶":"Solve CPM ▶")}
    <div class="card scroll" style="margin-top:10px"><table class="tt"><tr><th class="t">Activity</th><th class="t">Predecessors</th>${pert?'<th class="r">a</th><th class="r">m</th><th class="r">b</th>':'<th class="r">Duration</th>'}<th></th></tr>
    ${PJ.acts.map((x,i)=>`<tr><td><input class="tx" style="width:64px" data-pj="id" data-ai="${i}" value="${x.id}" maxlength="10"></td><td><input class="tx" style="width:104px" data-pj="pred" data-ai="${i}" value="${x.pred}" placeholder="—"></td>
      ${(pert?["a","m","b"]:["d"]).map((k,c)=>`<td>${inp(6000+i,c,x[k],"p")}</td>`).join("")}<td><button class="btn sm bad" data-ta="pdel" data-ai="${i}">✕</button></td></tr>`).join("")}</table></div>
-   <button class="btn" data-ta="padd" style="width:100%;margin-top:8px">+ Add activity</button>${acts(pert?"Solve PERT ▶":"Solve CPM ▶")}<div id="pjRes">${PJR[PJ.mode]||""}</div>`;
+   <button class="btn" data-ta="padd" style="margin-top:8px">+ Add activity</button><div id="pjRes">${PJR[PJ.mode]||""}</div>`;
   save();if(pert&&PJR.pert)pjCalc()}
 function pjSet(el){const r=+el.dataset.r,c=+el.dataset.c;
   if(r>=6100){if(r===6100)PJ.target=el.value;else PJ.prob=el.value;save();pjCalc();return}
   const x=PJ.acts[r-6000];if(x)x[PJ.mode==="pert"?["a","m","b"][c]:"d"]=el.value;save();pjKill()}
 function gantt(r,L){const T=r.T||1;return`<h2>Gantt chart</h2><div class="card"><div class="row" style="font-size:11px;color:var(--mut);margin-left:42px;justify-content:space-between"><span>0</span><span>${fmt(r.T/2)}</span><span>${fmt(r.T)}</span></div>`+
-  L.map((x,i)=>`<div class="row" style="margin:4px 0;gap:6px"><b style="width:36px;font-size:12px;overflow:hidden">${x.id}</b><div style="flex:1;position:relative;height:20px;background:var(--inp);border-radius:6px;overflow:hidden"><div style="position:absolute;left:${r.EF[i]/T*100}%;width:${(r.LF[i]-r.EF[i])/T*100}%;height:100%;background:repeating-linear-gradient(45deg,var(--bd),var(--bd) 4px,transparent 4px,transparent 8px)"></div><div style="position:absolute;left:${r.ES[i]/T*100}%;width:${Math.max(.8,x.d/T*100)}%;height:100%;border-radius:6px;background:${r.crit[i]?"var(--bad)":"var(--pri)"}"></div></div></div>`).join("")+
+  L.map((x,i)=>`<div class="row" data-tip="${esc(x.id)}: starts at ${fmt(r.ES[i])}, finishes at ${fmt(r.EF[i])}, latest start ${fmt(r.LS[i])}, total slack ${fmt(r.TS[i])}${r.crit[i]?" (critical: any delay delays the project)":""}." style="margin:4px 0;gap:6px"><b style="width:36px;font-size:12px;overflow:hidden">${x.id}</b><div style="flex:1;position:relative;height:20px;background:var(--inp);border-radius:6px;overflow:hidden"><div style="position:absolute;left:${r.EF[i]/T*100}%;width:${(r.LF[i]-r.EF[i])/T*100}%;height:100%;background:repeating-linear-gradient(45deg,var(--bd),var(--bd) 4px,transparent 4px,transparent 8px)"></div><div style="position:absolute;left:${r.ES[i]/T*100}%;width:${Math.max(.8,x.d/T*100)}%;height:100%;border-radius:6px;background:${r.crit[i]?"var(--bad)":"var(--pri)"}"></div></div></div>`).join("")+
   `<div class="preview">Solid bar = ES→EF (red = critical). Hatched = total slack available.</div></div>`}
 function schedTbl(r,L){return tbl(["Act","Dur","ES","EF","LS","LF","Total slack","Free slack","Critical"],L.map((x,i)=>({cls:r.crit[i]?"crit":"",c:[x.id,fmt(x.d),fmt(r.ES[i]),fmt(r.EF[i]),fmt(r.LS[i]),fmt(r.LF[i]),fmt(r.TS[i]),fmt(r.FS[i]),r.crit[i]?"YES":"no"]})))}
 const chips=(r,L)=>r.paths.map(p=>`<div style="margin:4px 0"><span class="badge b-bad">${p.map(i=>L[i].id).join(" → ")}</span></div>`).join("");
@@ -1011,7 +1047,7 @@ function pjSolve(){
        box("Project time distribution",`<div style="font-weight:600;margin-bottom:6px">Critical path${r.paths.length>1?"s":""}</div>`+(r.paths.length>1?tbl(["Path","Σ variance"],r.paths.map((p,k)=>({cls:k===bi?"hl":"",c:[p.map(i=>L[i].id).join(" → "),fmt(pv[k])]})))+`<div class="preview">Several critical paths: the one with the largest variance is used (conservative).</div>`:`<div class="badge b-bad">${PJR.o.path}</div>`)+
         `<table style="margin-top:10px"><tr><td class="t">Expected project duration μ</td><td class="r">${fmt(r.T)}</td></tr><tr><td class="t">Project variance σ² (sum on critical path)</td><td class="r">${fmt(V)}</td></tr><tr class="hl"><td class="t">Standard deviation σ</td><td class="r">${fmt(sd)}</td></tr></table>`)+
        `<h2>Probability calculator</h2><div class="card"><div class="row" style="flex-wrap:wrap;gap:14px"><div class="cell"><label>Target date T</label>${inp(6100,0,PJ.target,"p")}</div><div class="cell"><label>Desired probability %</label>${inp(6101,0,PJ.prob,"p")}</div></div><div id="pjProb" style="margin-top:12px"></div></div>`+gantt(r,L)}}
-  PJR[PJ.mode]=html;$("#pjRes").innerHTML=html;if(PJR.o&&pert)pjCalc();save();buzz();$("#pjRes").scrollIntoView({behavior:"smooth",block:"start"})}
+  if(!/CANNOT SOLVE/.test(html))html+=modInterpHTML("pj");PJR[PJ.mode]=html;$("#pjRes").innerHTML=html;if(PJR.o&&pert)pjCalc();save();buzz();$("#pjRes").scrollIntoView({behavior:"smooth",block:"start"})}
 function pjCalc(){const o=PJR.o,el=$("#pjProb");if(!el||!o)return;
   const T=num(PJ.target),pp=Math.min(99.99,Math.max(.01,num(PJ.prob)))/100,P=x=>o.sd<1e-12?(x>=o.mu-1e-9?1:0):Phi((x-o.mu)/o.sd),pc=v=>(v*100).toFixed(2)+"%";
   const z=o.sd<1e-12?null:(T-o.mu)/o.sd,tp=o.sd<1e-12?o.mu:o.mu+o.sd*zInv(pp);
@@ -1066,8 +1102,8 @@ const GMEX=[["Saddle point 3×4",[[8,6,2,8],[8,9,4,5],[7,5,3,5]]],["2×2 mixed s
 function gmRender(){gmFit();const{m,n}=GM;
   $("#gmBody").innerHTML=`<div class="card"><div class="row" style="flex-wrap:wrap;gap:14px">${stp("Row strategies","gmm",m)}${stp("Column strategies","gmn",n)}</div>
    <div class="preview" style="font-family:inherit;font-size:13px">Enter payoffs to the <b>row player</b> (maximizer). The column player minimizes.</div></div>
-   <h2>Payoff matrix</h2><div class="card scroll"><table class="tt"><tr><th></th>${GM.A[0].map((_,j)=>`<th class="r">${hin("gmc",j,"C"+(j+1),GM.cn&&GM.cn[j])}</th>`).join("")}</tr>
-   ${GM.A.map((r,i)=>`<tr><td class="t">${hin("gmr",i,"R"+(i+1),GM.rn&&GM.rn[i])}</td>${r.map((v,j)=>`<td>${inp(7000+i,j,v,"m")}</td>`).join("")}</tr>`).join("")}</table></div>${acts("Solve game ▶")}<div id="gmRes">${GMR.html||""}</div>`;save();if(GMR.gr)gmDraw()}
+   ${acts("Solve game ▶")}<h2>Payoff matrix</h2><div class="card scroll"><table class="tt"><tr><th></th>${GM.A[0].map((_,j)=>`<th class="r">${hin("gmc",j,"C"+(j+1),GM.cn&&GM.cn[j])}</th>`).join("")}</tr>
+   ${GM.A.map((r,i)=>`<tr><td class="t">${hin("gmr",i,"R"+(i+1),GM.rn&&GM.rn[i])}</td>${r.map((v,j)=>`<td>${inp(7000+i,j,v,"m")}</td>`).join("")}</tr>`).join("")}</table></div><div id="gmRes">${GMR.html||""}</div>`;save();if(GMR.gr)gmDraw()}
 function gmSet(el){GM.A[+el.dataset.r-7000][+el.dataset.c]=el.value;save();GMR.html=null;GMR.gr=null;const e=$("#gmRes");if(e)e.innerHTML=""}
 const mTbl=(M,rl,cl,o)=>{o=o||{};return`<div class="scroll"><table><tr><th></th>${cl.map(c=>`<th class="r">${c}</th>`).join("")}${o.rmin?'<th class="r">Row min</th>':""}</tr>${M.map((r,i)=>`<tr><td class="t"><b>${rl[i]}</b></td>${r.map((v,j)=>`<td class="r ${o.sad&&o.sad.some(q=>q[0]===i&&q[1]===j)?"hl":""}">${fmt(v)}</td>`).join("")}${o.rmin?`<td class="r"><b>${fmt(o.rmin[i])}</b></td>`:""}</tr>`).join("")}${o.cmax?`<tr><td class="t"><b>Col max</b></td>${o.cmax.map(v=>`<td class="r"><b>${fmt(v)}</b></td>`).join("")}${o.rmin?"<td></td>":""}</tr>`:""}</table></div>`};
 const strat=(p,pre)=>p.map((x,i)=>x>1e-9?`<span class="badge b-ok">${pre}${i+1} = ${fmt(x)}</span>`:"").filter(Boolean).join(" ");
@@ -1095,7 +1131,7 @@ function gmRun(){
         if(r&&Math.abs(r.v-g.v)<1e-9)exact=row?{v:r.v,p:pair2(dm.R,m,r.p),q:pair2([dm.C[a],dm.C[b]],n,r.q)}:{v:r.v,p:pair2([dm.R[a],dm.R[b]],m,r.p),q:pair2(dm.C,n,r.q)};
         sub=`<div style="margin-top:8px;font-size:13px"><b>Sub-game</b> from the two lines meeting at the optimum (${nm(a)}, ${nm(b)}):</div>`+mTbl(Q,row?rr:[nm(a),nm(b)],row?[nm(a),nm(b)]:rc)+(r?`<div class="preview">Solved algebraically: v = <b>${fmt(r.v)}</b>; ${row?`P(${rr[0]}) = ${fmt(r.p)}; P(${nm(a)}) = ${fmt(r.q)}, P(${nm(b)}) = ${fmt(1-r.q)}`:`P(${nm(a)}) = ${fmt(r.p)}, P(${nm(b)}) = ${fmt(1-r.p)}; P(${rc[0]}) = ${fmt(r.q)}`}.</div>`:'<div class="preview">The sub-game has a saddle point; see the LP result below.</div>')}
       GMR.gr={lines:g.lines,mode:g.mode,t:g.t,v:g.v,names:g.lines.map((_,i)=>nm(i)),xl:row?`p = P(${rr[0]})  (row player mixes ${rr[0]} and ${rr[1]})`:`q = P(${rc[0]})  (column player mixes ${rc[0]} and ${rc[1]})`};
-      sec=box(`3b · ${row?"2×n":"m×2"} graphical method`,`<canvas id="gmcv" style="width:100%;display:block"></canvas><div class="preview">${row?"Each column gives a line of the row player's expected payoff. The optimum is the highest point of the <b>lower</b> envelope.":"Each row gives a line of the column player's expected loss. The optimum is the lowest point of the <b>upper</b> envelope."} Optimum at ${row?"p":"q"} = <b>${fmt(g.t)}</b>, v = <b>${fmt(g.v)}</b>, active lines: ${g.act.map(nm).join(", ")}.</div>${sub}`)}
+      sec=box(`3b · ${row?"2×n":"m×2"} graphical method`,`<canvas id="gmcv" style="width:100%;display:block"></canvas><div class="row noprint" style="margin:6px 0"><button class="btn sm" data-savepic="gmcv">Save picture</button></div><div class="preview">${row?"Each column gives a line of the row player's expected payoff. The optimum is the highest point of the <b>lower</b> envelope.":"Each row gives a line of the column player's expected loss. The optimum is the lowest point of the <b>upper</b> envelope."} Optimum at ${row?"p":"q"} = <b>${fmt(g.t)}</b>, v = <b>${fmt(g.v)}</b>, active lines: ${g.act.map(nm).join(", ")}.</div>${sub}`)}
     if(exact){fin.v=exact.v;fin.p=exact.p;fin.q=exact.q}
     h+=sec+box("3c · General m×n: linear programming",`<div style="font-size:13px;line-height:1.6">${lp.k?`Shift payoffs by +${fmt(lp.k)} so every entry is positive. `:""}Column player: <b>max y₁+…+y<sub>n</sub></b> s.t. Σ<sub>j</sub> a′<sub>ij</sub>·y<sub>j</sub> ≤ 1 (each row i), y ≥ 0. Then v′ = 1/Σy = ${fmt(lp.vp)}, v = v′ − ${fmt(lp.k)} = <b>${fmt(lp.v)}</b>, and q<sub>j</sub> = y<sub>j</sub>·v′. The dual (row player) gives p<sub>i</sub> = x<sub>i</sub>·v′.</div>
       <div class="row noprint" style="margin-top:8px"><button class="btn sm sp" data-ta="gmlp1">Load column LP in Model tab</button><button class="btn sm sp" data-ta="gmlp2">Load row LP</button></div>`)}
@@ -1105,7 +1141,7 @@ function gmRun(){
    <div style="font-weight:600">Row player</div><div style="margin:4px 0 8px">${strat(fin.p,"R")}</div><div style="font-weight:600">Column player</div><div style="margin:4px 0">${strat(fin.q,"C")}</div>
    <div class="preview">${fin.v>1e-9?"Game favors the row player.":fin.v<-1e-9?"Game favors the column player.":"Fair game (v = 0)."} ${ok?"✓ Cross-checked with the LP formulation.":"LP value differs: "+fmt(lp.v)}${fin.why.startsWith("Mixed")?" Other optimal mixes may exist.":""}</div>
    <details><summary>Verification</summary>${tbl(["Column","C expected payoff vs row mix"],cl.map((c,j)=>({c:[c,fmt(Ej[j])]})))}<div style="height:6px"></div>${tbl(["Row","R expected payoff vs column mix"],rl.map((r,i)=>({c:[r,fmt(Ei[i])]})))}<div class="preview">Row mix guarantees ≥ v against every column; column mix holds the row player to ≤ v against every row.</div></details></div>`+h;
-  h=gmNames(h);if(GMR.gr){GMR.gr.names=GMR.gr.names.map(gmNames);GMR.gr.xl=gmNames(GMR.gr.xl)}GMR.html=h;GMR.lp=lp;GMR.A=A;$("#gmRes").innerHTML=h;gmDraw();buzz();$("#gmRes").scrollIntoView({behavior:"smooth",block:"start"})}
+  h=gmNames(h);h+=modInterpHTML("gm");if(GMR.gr){GMR.gr.names=GMR.gr.names.map(gmNames);GMR.gr.xl=gmNames(GMR.gr.xl)}GMR.html=h;GMR.lp=lp;GMR.A=A;$("#gmRes").innerHTML=h;gmDraw();buzz();$("#gmRes").scrollIntoView({behavior:"smooth",block:"start"})}
 function gmDraw(){const o=GMR.gr,cv=$("#gmcv");if(!o||!cv||!cv.clientWidth)return;
   const w=cv.clientWidth,h=Math.round(w*(S.set.view==="desktop"?.55:.8)),dpr=devicePixelRatio||1;cv.width=w*dpr;cv.height=h*dpr;cv.style.height=h+"px";
   const x=cv.getContext("2d");x.setTransform(dpr,0,0,dpr,0,0);const cs=getComputedStyle(document.documentElement),css=k=>cs.getPropertyValue(k).trim(),tx=css("--tx"),mut=css("--mut"),bd=css("--bd"),bg=css("--card"),gold="#f59e0b";
@@ -1190,8 +1226,8 @@ document.addEventListener("keydown",e=>{
   e.preventDefault();if(t)go(t);else if(k==="Enter")el.blur()});
 /* names */
 function renderNames(){const e=$("#vnRow"),T3=[["c","Continuous"],["i","Integer"],["b","Binary"]];
-  if(e)e.innerHTML=S.vn.map((v,j)=>`<div class="cell"><label>${esc(sub(j))}</label><select class="sl" data-vt="${j}">${T3.map(o=>`<option value="${o[0]}" ${S.vt[j]===o[0]?"selected":""}>${o[1]}</option>`).join("")}</select></div>`).join("");
-  const ni=S.vt.filter(t=>t==="i").length,nb=S.vt.filter(t=>t==="b").length,tg=$("#ipTag");if(tg)tg.textContent=ni||nb?`Integer program: ${ni} integer and ${nb} binary variable${ni+nb>1?"s":""}. Solved by branch and bound.`:"";const gh=$("#gHint");if(gh)gh.textContent=S.n===2?"Two variables: the Graph tab is available in this module.":"Tip: use exactly 2 variables to unlock the Graph tab."}
+  if(e)e.innerHTML=S.vn.map((v,j)=>`<div class="vrow"><span class="tag">${dsub(j)}</span><input class="tx vwide" data-vn="${j}" value="${esc(v)}" placeholder="${dsub(j)}" maxlength="40" aria-label="Variable name"><select class="sl" data-vt="${j}">${T3.map(o=>`<option value="${o[0]}" ${S.vt[j]===o[0]?"selected":""}>${o[1]}</option>`).join("")}</select></div>`).join("");
+  const ni=S.vt.filter(t=>t==="i").length,nb=S.vt.filter(t=>t==="b").length,tg=$("#ipTag");if(tg)tg.textContent=ni||nb?`Integer program: ${ni} integer and ${nb} binary variable${ni+nb>1?"s":""}. Solved by branch and bound.`:"";const gh=$("#gHint");if(gh)gh.textContent=S.n===2?"Two variables: the Graph tab is available in this module.":S.n===3?"Three variables: the Explore tab shows a 3D view you can rotate.":"Tip: with 2 variables you get the Graph tab, with 3 or more the Explore tab."}
 function rePrev(){$("#objPrev").textContent=(S.goal==="max"?"Max":"Min")+" Z = "+lhs(S.obj);$$("#cons>.card").forEach((c,i)=>{const p=c.querySelector(".preview"),k=S.cons[i];if(p&&k)p.textContent=`${lhs(k.a)} ${k.op==="=="?"=":k.op} ${fmt(num(k.b))}`})}
 function refreshView(){render();const f={"v-graph":gInputs,"v-tr":trRender,"v-nw":nwRender,"v-pj":pjRender,"v-gm":gmRender,"v-results":showResults,"v-reports":showReports}[($(".v.on")||{}).id];if(f)f()}
 document.addEventListener("input",e=>{const t=e.target,d=t.dataset||{};
@@ -1201,7 +1237,7 @@ document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest
 /* live model preview */
 const exprTxt=(a,vn)=>{vn=vn||S.vn;const t=[];a.forEach((v,j)=>{v=num(v);if(!v)return;const m=Math.abs(v),nm=vn&&vn[j];
   t.push((t.length?(v<0?"− ":"+ "):(v<0?"−":""))+(nm?(m===1?nm:fmt(m)+"·"+nm):(m===1?"":fmt(m))+(vn===S.vn?sub(j):dsub(j))))});return t.length?t.join(" "):"0"};
-function modelText(P){const L=[(P.goal==="max"?"Max":"Min")+" Z = "+exprTxt(P.obj,P.vn),"s.t."],nm=P.obj.map((_,j)=>P.vn?(P.vn[j]||dsub(j)):sub(j));
+function modelText(P){const L=[(P.goal==="max"?"Max":"Min")+" "+zl()+" = "+exprTxt(P.obj,P.vn),"s.t."],nm=P.obj.map((_,j)=>P.vn?(P.vn[j]||dsub(j)):sub(j));
   P.cons.forEach((c,i)=>L.push("  "+(c.nm||"C"+(i+1))+":  "+exprTxt(c.a,P.vn)+" "+({"<=":"≤",">=":"≥","==":"="}[c.op])+" "+fmt(num(c.b))));
   L.push("  "+(nm.length>6?nm[0]+", …, "+nm[nm.length-1]:nm.join(", "))+(P.nonneg===false?"  free":" ≥ 0"));
   const gv=t=>P.vt?nm.filter((_,j)=>P.vt[j]===t):[];if(gv("i").length)L.push("  "+gv("i").join(", ")+" integer");if(gv("b").length)L.push("  "+gv("b").join(", ")+" ∈ {0, 1}");return L.join("\n")}
@@ -1279,34 +1315,7 @@ function gRanges(A){const L=A.H.concat(H0),v=A.V[A.opt[0]],c=A.c,sg=A.sg,out={c:
   return out}
 /*ENDRANGES*/
 const rg=x=>x>=1e29||x===Infinity?"∞":x<=-1e29||x===-Infinity?"−∞":fmt(x);
-function gPvSetup(){const R=GP.R;let cur,lo,hi;if(GP.mode==="b"){const r=R.rhs[GP.ci];cur=num(G.cons[GP.ci].b);lo=r?r.lo:-Infinity;hi=r?r.hi:Infinity}else{const j=GP.mode==="c0"?0:1;cur=R.c[j].cur;lo=R.c[j].lo;hi=R.c[j].hi}
-  const sp=Math.max(Math.abs(cur),2)*3;GP.cur=cur;GP.vmin=Math.min(cur-sp,isFinite(lo)?lo-sp*.6:Infinity);GP.vmax=Math.max(cur+sp,isFinite(hi)?hi+sp*.6:-Infinity)}
-function gPivotUI(){const el=$("#gPv");if(!el)return;const A=GB;GP.v0=null;
-  if(!A||A.inf||A.unb||A.alt||!A.V.length){GP.mode="off";el.innerHTML=`<div class="preview" style="margin:0">Pivoting needs one optimal corner. ${!A||A.inf?"The problem is infeasible or empty.":A.unb?"The problem is unbounded.":"There are alternate optima, so the objective already sits on the edge of its range."}</div>`;return}
-  const v=A.V[A.opt[0]],R=GP.R=gRanges(A),Lt=String.fromCharCode(65+A.opt[0]);GP.v0=v;
-  if(GP.mode==="b"&&!R.rhs[GP.ci])GP.ci=Math.max(0,R.rhs.findIndex(x=>x));if(GP.mode!=="off")gPvSetup();
-  const opts=G.cons.map((k,i)=>R.rhs[i]?`<option value="${i}" ${i===GP.ci?"selected":""}>${esc(gcn(i))}</option>`:"").join("");
-  el.innerHTML=`<div style="font-size:13px;margin-bottom:8px">Optimal corner <b>${Lt}</b> (${fmt(v[0])}, ${fmt(v[1])}), Z* = <b>${fmt(A.best)}</b></div>
-   <div class="seg" id="gPvSeg">${[["off","Off"],["c0","Pivot c₁"],["c1","Pivot c₂"],["b","Move RHS"]].map(x=>`<button data-pv="${x[0]}" class="${GP.mode===x[0]?"on":""}">${x[1]}</button>`).join("")}</div>
-   ${GP.mode!=="off"?`<div class="row" style="margin-top:10px">${GP.mode==="b"?`<select class="sl" id="gPvC">${opts}</select>`:""}<input type="range" id="gPvS" min="0" max="1000" value="${Math.round((GP.cur-GP.vmin)/((GP.vmax-GP.vmin)||1)*1000)}" style="flex:1"><b id="gPvV" style="min-width:56px;text-align:right"></b></div><div class="preview" id="gPvT"></div>`:""}
-   <div style="font-weight:600;margin:12px 0 4px">Range of optimality</div>${tbl(["Coefficient","Current","Lower","Upper"],R.c.map((r,j)=>({c:["c"+(j+1)+" ("+sub(j)+")",fmt(r.cur),rg(r.lo),rg(r.hi)]})))}
-   <div class="preview">The corner stays optimal while the iso-line, pivoting about it, stays between the slopes of the two binding constraints.</div>
-   <div style="font-weight:600;margin:12px 0 4px">Range of feasibility (right-hand sides)</div>${tbl(["Constraint","RHS","Binding","Shadow price","Lower","Upper"],R.rhs.map((r,i)=>r?{c:[gcn(i),fmt(r.b),r.bind?"yes":"no",fmt(r.sp),rg(r.lo),rg(r.hi)]}:{c:[gcn(i),"—","—","—","—","—"]}))}
-   <div class="preview">Inside these limits the same constraints stay binding, so the shadow price holds: ΔZ = shadow price × ΔRHS.</div>`;gPvStatus()}
-function gPvStatus(){const t=$("#gPvT");if(!t||GP.mode==="off"||!GP.v0)return;const A=GA,R=GP.R,v0=GP.v0,pt=p=>"("+fmt(p[0])+", "+fmt(p[1])+")",Lt=i=>String.fromCharCode(65+i);let val,head,rng,inside;
-  if(GP.mode==="b"){val=gOv.b[GP.ci]!=null?gOv.b[GP.ci]:GP.cur;rng=R.rhs[GP.ci];inside=val>=rng.lo-1e-9&&val<=rng.hi+1e-9;head=`RHS of ${gcn(GP.ci)} = ${fmt(val)} (was ${fmt(GP.cur)}). Range of feasibility [${rg(rng.lo)}, ${rg(rng.hi)}]. `}
-  else{const j=GP.mode==="c0"?0:1;val=gOv.c&&gOv.c[j]!=null?gOv.c[j]:GP.cur;rng=R.c[j];inside=val>=rng.lo-1e-9&&val<=rng.hi+1e-9;head=`c${j+1} = ${fmt(val)} (was ${fmt(GP.cur)}). Range of optimality [${rg(rng.lo)}, ${rg(rng.hi)}]. `}
-  $("#gPvV").textContent=fmt(val);let tail;
-  if(A.inf)tail="No feasible region at this value.";else if(A.unb)tail="Z becomes unbounded.";
-  else{const o=A.V[A.opt[0]],same=Math.hypot(o[0]-v0[0],o[1]-v0[1])<1e-6&&!A.alt;
-    if(GP.mode==="b"){const r=R.rhs[GP.ci];tail=(inside?"Inside the range: the same constraints bind. ":"Outside the range: a different set of constraints binds, so the shadow price no longer applies. ")+`New optimum ${pt(o)}, Z = ${fmt(A.best)}${inside&&r.bind?` (ΔZ = ${fmt(r.sp)} × ${fmt(val-GP.cur)} = ${fmt(r.sp*(val-GP.cur))})`:""}.`}
-    else tail=same?`Corner ${Lt(A.opt[0])} ${pt(o)} stays optimal.`:A.alt?"On the boundary: alternate optima along an edge.":`The optimum jumps to corner ${Lt(A.opt[0])} ${pt(o)}, Z = ${fmt(A.best)}.`}
-  t.textContent=head+tail}
-function gRefresh(){const sv=gOv;gOv={c:null,b:{}};GB=gAnalyze();gOv=sv;GA=(sv.c||Object.keys(sv.b).length)?gAnalyze():GB;gPanels();gDraw();gPvStatus()}
-$("#v-graph").addEventListener("click",e=>{const b=e.target.closest("[data-pv]");if(!b)return;GP.mode=b.dataset.pv;gOv={c:null,b:{}};gPivotUI();gRefresh()});
-$("#v-graph").addEventListener("input",e=>{if(e.target.id!=="gPvS")return;const val=+(GP.vmin+e.target.value/1000*(GP.vmax-GP.vmin)).toFixed(3);
-  if(GP.mode==="b")gOv={c:null,b:{[GP.ci]:val}};else{const c=[null,null];c[GP.mode==="c0"?0:1]=val;gOv={c,b:{}}}gRefresh()});
-$("#v-graph").addEventListener("change",e=>{if(e.target.id==="gPvC"){GP.ci=+e.target.value;gOv={c:null,b:{}};gPivotUI();gRefresh()}});
+
 histUI();
 
 /* ---------- Phase 10: raw input, model examples ---------- */
@@ -1371,9 +1380,9 @@ document.addEventListener("input",e=>{const t=e.target,d=t.dataset||{};
 document.addEventListener("change",e=>{const d=e.target.dataset||{};if(d.nm===undefined)return;const k=d.nm.split(":")[0];
   if(k.startsWith("tp"))delete TRES.tp;if(k.startsWith("as"))delete TRES.as;if(k==="nwn")nwKill();if(k.startsWith("gm")){GMR.html=null;GMR.gr=null}refreshView()});
 /* graph: integer lattice, plain-language explanation, tweak, drag, view chips */
-function gLattice(A,X,Y){const nx=Math.floor(X),ny=Math.floor(Y);if((nx+1)*(ny+1)>6000)return{pts:[],best:null,big:true};
-  const L=A.H.concat(H0),pts=[];let best=null,bz=-Infinity;
-  for(let i=0;i<=nx;i++)for(let j=0;j<=ny;j++)if(L.every(l=>l.n[0]*i+l.n[1]*j<=l.h+1e-9)){pts.push([i,j]);const z=A.sg*(A.c[0]*i+A.c[1]*j);if(z>bz+1e-9){bz=z;best=[i,j,A.c[0]*i+A.c[1]*j]}}
+function gLattice(A,X,Y,x0,y0){x0=x0||0;y0=y0||0;const ax=Math.max(0,Math.ceil(x0)),ay=Math.max(0,Math.ceil(y0)),bx=Math.floor(x0+X),by=Math.floor(y0+Y);
+  if((bx-ax+1)*(by-ay+1)>6000)return{pts:[],best:null,big:true};const L=A.H.concat(H0),pts=[];let best=null,bz=-Infinity;
+  for(let i=ax;i<=bx;i++)for(let j=ay;j<=by;j++)if(L.every(l=>l.n[0]*i+l.n[1]*j<=l.h+1e-9)){pts.push([i,j]);const z=A.sg*(A.c[0]*i+A.c[1]*j);if(z>bz+1e-9){bz=z;best=[i,j,A.c[0]*i+A.c[1]*j]}}
   return{pts,best}}
 function gExplain(A){if(A.inf||A.unb||!A.opt)return"";const f=fmt,Lt=i=>String.fromCharCode(65+i),ln=[],o=A.V[A.opt[0]];
   ln.push(`You want to <b>${G.goal==="max"?"maximize":"minimize"}</b> Z = ${lhs([G.obj[0],G.obj[1]])}, with ${G.cons.length} constraint${G.cons.length===1?"":"s"} and ${esc(sub(0))}, ${esc(sub(1))} ≥ 0.`);
@@ -1386,33 +1395,149 @@ function gExplain(A){if(A.inf||A.unb||!A.opt)return"";const f=fmt,Lt=i=>String.f
   if(A.red.length)ln.push(`${A.red.map(q=>`<b>${esc(gcn(q.i))}</b>`).join(", ")} ${A.red.length>1?"are":"is"} redundant: removing ${A.red.length>1?"them":"it"} would not change the feasible region.`);
   if(A.R.length)ln.push("The feasible region is open, but the objective cannot improve forever in that direction, so an optimum exists.");
   return`<div class="card"><div style="font-family:var(--serif);font-weight:600;margin-bottom:6px">In plain words</div><ul class="how">${ln.map(t=>"<li>"+t+"</li>").join("")}</ul></div>`}
-function gParams(){const P=[];[0,1].forEach(j=>P.push({l:"Objective c"+(j+1)+" ("+sub(j)+")",g:()=>G.obj[j],s:v=>G.obj[j]=v,inp:[1000,j]}));
-  G.cons.forEach((k,i)=>{[0,1].forEach(j=>P.push({l:gcn(i)+": "+sub(j)+" coefficient",g:()=>G.cons[i].a[j],s:v=>G.cons[i].a[j]=v,inp:[1001+i,j]}));P.push({l:gcn(i)+": right-hand side",g:()=>G.cons[i].b,s:v=>G.cons[i].b=v,inp:[1001+i,2]})});return P}
-function gTweakUI(){const el=$("#gTw");if(!el)return;const P=gParams();if(GV.tw>=P.length)GV.tw=0;const v=num(P[GV.tw].g()),sp=Math.max(25,Math.abs(v)*3);GV.tw0=v;GV.twZ=GA&&!GA.inf&&!GA.unb&&GA.best!=null?GA.best:null;
-  el.innerHTML=`<select class="sl" id="gTwSel" style="max-width:none;width:100%">${P.map((q,i)=>`<option value="${i}" ${i===GV.tw?"selected":""}>${esc(q.l)}</option>`).join("")}</select>
-   <div class="row" style="margin-top:8px;flex-wrap:nowrap"><button class="btn sm" data-tw="-1">−1</button><button class="btn sm" data-tw="-0.1">−.1</button><input type="range" id="gTwS" min="${+(v-sp).toFixed(2)}" max="${+(v+sp).toFixed(2)}" step="0.1" value="${v}" style="flex:1;min-width:80px"><button class="btn sm" data-tw="0.1">+.1</button><button class="btn sm" data-tw="1">+1</button></div>
-   <div class="gtwv"><b id="gTwV">${fmt(v)}</b><span id="gTwInfo"></span></div>`;gTwInfo()}
-function gTwInfo(){const e=$("#gTwInfo");if(!e||!GA)return;const A=GA,v=num(gParams()[GV.tw].g()),d=v-GV.tw0;let t;
-  if(A.inf)t="No feasible region at this value.";else if(A.unb)t="Unbounded: Z can improve without limit.";
-  else{const o=A.V[A.opt[0]];t=`Corner ${String.fromCharCode(65+A.opt[0])} (${fmt(o[0])}, ${fmt(o[1])}) · Z = <b>${fmt(A.best)}</b>`+(GV.twZ!=null&&Math.abs(A.best-GV.twZ)>1e-9?` (${A.best>=GV.twZ?"+":""}${fmt(A.best-GV.twZ)} vs start)`:"")+(A.alt?" · alternate optima":"")}
-  e.innerHTML=(d?`<small>${fmt(GV.tw0)} → ${fmt(v)} (${d>0?"+":""}${fmt(d)})</small> `:"")+t}
-function gTwSet(v){const p=gParams()[GV.tw];v=+(+v).toFixed(4);p.s(String(v));const i=document.querySelector(`input[data-r="${p.inp[0]}"][data-c="${p.inp[1]}"]`);if(i)i.value=String(v);$("#gTwV").textContent=fmt(v);save();gUpdate();mpvUpdate();gTwInfo()}
-const gv_=$("#v-graph");
-gv_.addEventListener("click",e=>{const b=e.target.closest("[data-tw],[data-gv]");if(!b)return;
-  if(b.dataset.tw){const v=num(gParams()[GV.tw].g())+ +b.dataset.tw;gTwSet(v);const sl=$("#gTwS");if(sl){sl.min=Math.min(+sl.min,v);sl.max=Math.max(+sl.max,v);sl.value=v}return}
-  const k=b.dataset.gv;if(k==="zin")GV.z=Math.max(.2,GV.z*.8);else if(k==="zout")GV.z=Math.min(8,GV.z*1.25);else if(k==="fit")GV.z=1;else{GV[k]=GV[k]?0:1;b.classList.toggle("on",!!GV[k])}
-  if(k==="pin")document.querySelector(".gstick").classList.toggle("unpinned",!GV.pin);$("#gcv").style.touchAction=GV.drag?"none":"pan-y";gRefresh()});
-gv_.addEventListener("input",e=>{if(e.target.id==="gTwS")gTwSet(+e.target.value)});
-gv_.addEventListener("change",e=>{if(e.target.id==="gTwSel"){GV.tw=+e.target.value;gTweakUI()}});
-let gdr=null,gRaf=0;const gcv_=$("#gcv");
-const gW=e=>{const r=gcv_.getBoundingClientRect(),m=GV.map,px=(e.clientX-r.left)*(m.w/r.width),py=(e.clientY-r.top)*(m.h/r.height);return{px,py,x:(px-m.ml)/(m.w-m.ml-m.mr)*m.X,y:(m.h-m.mb-py)/(m.h-m.mt-m.mb)*m.Y}};
-gcv_.addEventListener("pointerdown",e=>{if(!GV.drag||!GV.map)return;const p=gW(e),m=GV.map;let best=null,bd=20;
-  G.cons.forEach((k,i)=>{const a=num(k.a[0]),b=num(k.a[1]);if(!a&&!b)return;const sg=clipLine(a,b,gb(i),m.X,m.Y);if(!sg)return;
-    const P=q=>[m.ml+q[0]/m.X*(m.w-m.ml-m.mr),m.h-m.mb-q[1]/m.Y*(m.h-m.mt-m.mb)],A1=P(sg[0]),B1=P(sg[1]),dx=B1[0]-A1[0],dy=B1[1]-A1[1],L2=dx*dx+dy*dy||1,t=Math.max(0,Math.min(1,((p.px-A1[0])*dx+(p.py-A1[1])*dy)/L2)),d=Math.hypot(p.px-A1[0]-t*dx,p.py-A1[1]-t*dy);if(d<bd){bd=d;best=i}});
-  if(best!=null){gdr=best;try{gcv_.setPointerCapture(e.pointerId)}catch(x){}e.preventDefault()}});
-gcv_.addEventListener("pointermove",e=>{if(gdr==null)return;const p=gW(e),k=G.cons[gdr];k.b=String(Math.round((num(k.a[0])*p.x+num(k.a[1])*p.y)*10)/10);
-  const i=document.querySelector('input[data-r="'+(1001+gdr)+'"][data-c="2"]');if(i)i.value=k.b;if(!gRaf)gRaf=requestAnimationFrame(()=>{gRaf=0;save();gUpdate();gTweakUI()})});
-gcv_.addEventListener("pointerup",()=>{gdr=null});gcv_.addEventListener("pointercancel",()=>{gdr=null});
+/* ---------- Phase 15: graph rebuilt: view, hover, locks, controls ---------- */
+const ga=(i,j)=>gOv.a&&gOv.a[i]&&gOv.a[i][j]!=null?gOv.a[i][j]:num(G.cons[i].a[j]);
+const gOvOn=()=>!!(gOv.c&&(gOv.c[0]!=null||gOv.c[1]!=null))||Object.keys(gOv.b||{}).length>0||Object.keys(gOv.a||{}).length>0;
+const gNoOv=()=>({c:null,b:{},a:{}});
+function gIsoLevel(A){const kb=gIso(GB||A),anch=GP.v0&&gOv.c&&(gOv.c[0]!=null||gOv.c[1]!=null);return anch?A.c[0]*GP.v0[0]+A.c[1]*GP.v0[1]+(GB&&!GB.unb&&GB.best!=null?kb-GB.best:0):gIso(A)}
+let gqf=0;const gQ=()=>{if(!gqf)gqf=requestAnimationFrame(()=>{gqf=0;gDraw()})};
+function gDraw(o){o=o||{};const ex=!!o.cv,cv=o.cv||$("#gcv");if(!cv||!GA)return;if(!ex&&!cv.clientWidth)return;
+  const A=GA,desk=S.set.view==="desktop",w=ex?o.w:cv.clientWidth,h=ex?o.h:Math.round(Math.min(w*(desk?.8:.95),Math.max(220,innerHeight*(desk?.62:.4)))),dpr=ex?1:(devicePixelRatio||1);
+  cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);if(!ex)cv.style.height=h+"px";
+  const x=cv.getContext("2d");x.setTransform(dpr,0,0,dpr,0,0);
+  const cs=getComputedStyle(document.documentElement),css=k=>cs.getPropertyValue(k).trim(),tx=css("--tx"),mut=css("--mut"),bd=css("--bd"),pri=css("--pri"),bg=css("--card"),okc=css("--ok"),badc=css("--bad"),gold="#f59e0b";
+  const ml=ex?60:46,mr=18,mt=ex?36:16,mb=ex?42:32,pw=w-ml-mr,ph=h-mt-mb,bs=gBase(A),z=ex?1:GV.z;let X=bs[0]*z,Y=bs[1]*z;
+  if(GV.eq){const sc=Math.max(X/pw,Y/ph);X=sc*pw;Y=sc*ph}
+  const x0=ex?0:GV.off[0],y0=ex?0:GV.off[1],sx=v=>ml+(v-x0)/X*pw,sy=v=>h-mb-(v-y0)/Y*ph;if(!ex)GV.map={ml,mr,mt,mb,pw,ph,X,Y,x0,y0,w,h};
+  const placed=[];
+  const lab=(t,px,py,col,b,mv)=>{x.font=(b?"700 ":"600 ")+(ex?"13":"11")+"px system-ui";x.textAlign="center";const tw=x.measureText(t).width/2+3,th=7;let ax=px,ay=py;
+    if(mv){const C=[[0,0],[0,-14],[0,14],[18,0],[-18,0],[16,-14],[-16,-14],[16,14],[-16,14],[0,-28],[0,28],[30,0],[-30,0],[24,-26],[-24,-26],[24,26],[-24,26]];let pick=null,first=null;
+      for(const c of C){const cx=Math.min(Math.max(px+c[0],tw),w-tw),cy=Math.min(Math.max(py+c[1],th+3),h-4),r=[cx-tw,cy-th-3,cx+tw,cy+3];if(!first)first=[cx,cy,r];if(!placed.some(q=>r[0]<q[2]&&r[2]>q[0]&&r[1]<q[3]&&r[3]>q[1])){pick=[cx,cy,r];break}}
+      if(!pick&&mv===2)pick=first;if(!pick)return;ax=pick[0];ay=pick[1];placed.push(pick[2])}else ax=Math.min(Math.max(px,tw),w-tw);
+    x.lineWidth=3;x.strokeStyle=bg;x.strokeText(t,ax,ay);x.fillStyle=col;x.fillText(t,ax,ay)};
+  x.fillStyle=bg;x.fillRect(0,0,w,h);x.lineWidth=1;
+  const stx=nice(X),sty=nice(Y);
+  for(let v=Math.ceil(x0/stx)*stx;v<=x0+X+1e-9;v+=stx){const px=sx(v);x.lineWidth=1;x.strokeStyle=Math.abs(v)<1e-9?mut:bd;x.beginPath();x.moveTo(px,mt);x.lineTo(px,h-mb);x.stroke();lab(String(+v.toFixed(6)),px,h-mb+15,mut)}
+  for(let v=Math.ceil(y0/sty)*sty;v<=y0+Y+1e-9;v+=sty){const py=sy(v);x.lineWidth=1;x.strokeStyle=Math.abs(v)<1e-9?mut:bd;x.beginPath();x.moveTo(ml,py);x.lineTo(w-mr,py);x.stroke();lab(String(+v.toFixed(6)),ml-17,py+4,mut)}
+  lab(sub(0),w-mr-10,h-mb-8,tx,1);lab(sub(1),ml+16,mt+12,tx,1);
+  if(ex){x.font="700 14px system-ui";x.textAlign="left";x.fillStyle=tx;x.fillText(modelText({goal:G.goal,obj:G.obj,cons:G.cons}).split("\n")[0],ml,22)}
+  x.save();x.beginPath();x.rect(ml,mt,pw,ph);x.clip();
+  const clipV=(a,b,hh)=>{const sg=clipLine(a,b,hh-a*x0-b*y0,X,Y);return sg&&sg.map(p=>[p[0]+x0,p[1]+y0])};
+  if(!A.inf){const q=reg(A.H.concat(H0,[{n:[1,0],h:x0+X},{n:[0,1],h:y0+Y},{n:[-1,0],h:-x0},{n:[0,-1],h:-y0}])).V;
+    if(q.length){const a=q.reduce((t,v)=>t+v[0],0)/q.length,b=q.reduce((t,v)=>t+v[1],0)/q.length;q.sort((p,r)=>Math.atan2(p[1]-b,p[0]-a)-Math.atan2(r[1]-b,r[0]-a));
+      x.beginPath();q.forEach((v,i)=>i?x.lineTo(sx(v[0]),sy(v[1])):x.moveTo(sx(v[0]),sy(v[1])));x.closePath();x.fillStyle=pri+"3a";x.fill();x.strokeStyle=pri;x.lineWidth=2;x.stroke()}}
+  if(GV.lat&&!A.inf){const Q=gLattice(A,X,Y,x0,y0);x.fillStyle=mut;Q.pts.forEach(p=>{x.beginPath();x.arc(sx(p[0]),sy(p[1]),2.3,0,7);x.fill()})}
+  const labs=[];
+  G.cons.forEach((k,i)=>{const a=ga(i,0),b=ga(i,1),r=gb(i);if(!a&&!b)return;const sg=clipV(a,b,r);if(!sg)return;const red=A.red.some(q=>q.i===i),col=red?mut:COL[i%12];
+    x.strokeStyle=col;x.lineWidth=2.2;x.setLineDash(red?[6,5]:[]);x.beginPath();x.moveTo(sx(sg[0][0]),sy(sg[0][1]));x.lineTo(sx(sg[1][0]),sy(sg[1][1]));x.stroke();x.setLineDash([]);
+    labs.push([gcn(i)+(red?" (redundant)":""),sx(sg[1][0])-(sg[1][0]>x0+X*.8?24:0),sy(sg[1][1])+(sg[1][1]<y0+Y*.1?-8:12),col])});
+  let k=null;GV.bey=0;GV.isoSeg=null;
+  if(!A.inf){const cx=A.c[0],cy=A.c[1],sgn=A.sg;k=gIsoLevel(A);
+    GV.bey=(!A.unb&&A.opt&&sgn*(k-A.best)>1e-9)?1:(A.Z&&sgn*(k-(sgn>0?Math.min(...A.Z):Math.max(...A.Z)))<-1e-9)?2:0;
+    if(GV.iso&&(cx||cy)){const seg=clipV(cx,cy,k);if(seg){const col=GV.bey?badc:gold;x.strokeStyle=col;x.lineWidth=2.6;x.setLineDash([8,5]);x.beginPath();x.moveTo(sx(seg[0][0]),sy(seg[0][1]));x.lineTo(sx(seg[1][0]),sy(seg[1][1]));x.stroke();x.setLineDash([]);GV.isoSeg=seg;
+        const mid=[(sx(seg[0][0])+sx(seg[1][0]))/2,(sy(seg[0][1])+sy(seg[1][1]))/2],kx=pw/X,ky=ph/Y;let nx=sgn*cx/kx,ny=-sgn*cy/ky;const nm=Math.hypot(nx,ny)||1;nx/=nm;ny/=nm;
+        const L=44,tipx=mid[0]+nx*L,tipy=mid[1]+ny*L,an=Math.atan2(ny,nx);x.strokeStyle=col;x.fillStyle=col;x.lineWidth=3;x.lineCap="round";x.beginPath();x.moveTo(mid[0],mid[1]);x.lineTo(tipx,tipy);x.stroke();
+        x.beginPath();x.moveTo(tipx+nx*3,tipy+ny*3);x.lineTo(tipx-11*Math.cos(an-.45),tipy-11*Math.sin(an-.45));x.lineTo(tipx-11*Math.cos(an+.45),tipy-11*Math.sin(an+.45));x.closePath();x.fill();x.lineCap="butt";
+        labs.push(["Z = "+fmt(k)+(GV.bey===1?" · beyond optimum":GV.bey===2?" · below lowest corner":""),mid[0]-ny*30,mid[1]+nx*30,col])}}
+    if(!A.unb&&A.alt){x.strokeStyle=gold;x.lineWidth=7;x.lineCap="round";const oo=A.opt.map(i=>A.V[i]).sort((p,q)=>p[0]-q[0]||p[1]-q[1]);
+      x.beginPath();x.moveTo(sx(oo[0][0]),sy(oo[0][1]));x.lineTo(sx(oo[oo.length-1][0]),sy(oo[oo.length-1][1]));x.stroke();
+      A.zr.forEach(r=>A.opt.forEach(i=>{const v=A.V[i];x.beginPath();x.moveTo(sx(v[0]),sy(v[1]));x.lineTo(sx(v[0]+r[0]*(X+Y)),sy(v[1]+r[1]*(X+Y)));x.stroke()}));x.lineCap="butt"}}
+  x.restore();
+  if(!A.inf)A.V.forEach((v,i)=>{const o2=!A.unb&&A.opt.includes(i);x.beginPath();x.arc(sx(v[0]),sy(v[1]),o2?7:5,0,7);x.fillStyle=o2?gold:tx;x.fill();x.strokeStyle=bg;x.lineWidth=2;x.stroke();
+    if(GV.cor||o2)lab(String.fromCharCode(65+i)+(o2?" ★":""),sx(v[0])+10,sy(v[1])-9,o2?gold:tx,1,o2?2:1)});
+  if(GV.lat&&!A.inf){const Q=gLattice(A,X,Y,x0,y0);if(Q.best){x.beginPath();x.arc(sx(Q.best[0]),sy(Q.best[1]),9,0,7);x.strokeStyle=okc;x.lineWidth=3;x.stroke()}}
+  /* intersections: hover and lock */
+  const LN=[];G.cons.forEach((kk,i)=>{const a=ga(i,0),b=ga(i,1);if(a||b)LN.push({id:"c"+i,n:[a,b],h:gb(i),nm:gcn(i)})});LN.push({id:"x1",n:[1,0],h:0,nm:sub(0)+" = 0"},{id:"x2",n:[0,1],h:0,nm:sub(1)+" = 0"});if(GV.isoSeg)LN.push({id:"iso",n:[A.c[0],A.c[1]],h:k,nm:"iso-line"});
+  const cand=[],HL=A.inf?[]:A.H.concat(H0);
+  for(let i=0;i<LN.length;i++)for(let j=i+1;j<LN.length;j++){const p=LN[i],q=LN[j],det=p.n[0]*q.n[1]-p.n[1]*q.n[0];if(Math.abs(det)<1e-12)continue;const cx_=(p.h*q.n[1]-p.n[1]*q.h)/det,cy_=(p.n[0]*q.h-p.h*q.n[0])/det;
+    if(cx_<x0-1e-9||cx_>x0+X+1e-9||cy_<y0-1e-9||cy_>y0+Y+1e-9)continue;cand.push({x:cx_,y:cy_,key:p.id+"|"+q.id,names:p.nm+" ∩ "+q.nm,feas:HL.length?HL.every(l=>l.n[0]*cx_+l.n[1]*cy_<=l.h+1e-7):false})}
+  if(!ex)GV.cands=cand;
+  cand.forEach(c=>{const lk=GV.locks.includes(c.key),hv=!ex&&GV.hov===c.key;if(!lk&&!hv)return;const px=sx(c.x),py=sy(c.y);x.beginPath();x.arc(px,py,lk?7:9,0,7);x.lineWidth=2.5;x.strokeStyle=lk?pri:mut;if(lk){x.fillStyle=pri+"55";x.fill()}x.stroke();if(lk)lab("("+fmt(c.x)+", "+fmt(c.y)+")",px,py-14,tx,1,2)});
+  labs.forEach(l=>lab(l[0],l[1],l[2],l[3],1,1));
+  if(GV.icp)G.cons.forEach((kk,i)=>{const[a,b]=icp(kk),pts=[];if(a!=null&&a>=x0&&a<=x0+X&&y0<=0&&y0+Y>=0)pts.push([a,0]);if(b!=null&&b>=y0&&b<=y0+Y&&x0<=0&&x0+X>=0)pts.push([0,b]);
+    pts.forEach(p=>{x.beginPath();x.arc(sx(p[0]),sy(p[1]),3.5,0,7);x.fillStyle=bg;x.fill();x.strokeStyle=COL[i%12];x.lineWidth=2;x.stroke();lab("("+fmt(p[0])+","+fmt(p[1])+")",sx(p[0])+(p[1]===0?0:30),sy(p[1])+(p[1]===0?-8:-6),COL[i%12],0,1)})});
+  if(GP.v0&&gOv.c&&(gOv.c[0]!=null||gOv.c[1]!=null)){x.beginPath();x.arc(sx(GP.v0[0]),sy(GP.v0[1]),11,0,7);x.setLineDash([3,3]);x.strokeStyle=gold;x.lineWidth=2;x.stroke();x.setLineDash([])}
+  if(!ex&&gOvOn()){x.font="700 11px system-ui";x.textAlign="left";const t="WHAT-IF VIEW",tw2=x.measureText(t).width+14;x.fillStyle=gold;x.fillRect(ml+6,mt+6,tw2,18);x.fillStyle="#1b1408";x.fillText(t,ml+13,mt+19)}
+  if(ex)return;
+  const zo=$("#gZ");if(zo){zo.textContent=k==null?"":fmt(k);zo.style.color=GV.bey?badc:""}
+  const gn=$("#gIsoNote");if(gn)gn.textContent=GV.bey===1?"Beyond the optimum: this iso-line touches no feasible point, so nothing on it is attainable.":GV.bey===2?"Below the lowest corner: no feasible point lies on this iso-line.":""}
+function gSavePic(whole){if(!GA){toast("Nothing to save yet");return}let cv;if(whole){cv=document.createElement("canvas");gDraw({cv,w:1500,h:1050})}else{gDraw();cv=$("#gcv")}
+  cv.toBlob(b=>{xpSave(b,`graph-${whole?"whole":"view"}-${new Date().toISOString().slice(0,10)}.png`);toast(whole?"Saved the whole graph":"Saved the current view")},"image/png")}
+$("#gPng").onclick=()=>gSavePic(true);$("#gPngV").onclick=()=>gSavePic(false);
+/* view: pan, pinch, wheel, hover, lock */
+const gcv_=$("#gcv"),gptr=new Map();let gst=null;
+const gPt=e=>{const r=gcv_.getBoundingClientRect(),m=GV.map;return{px:(e.clientX-r.left)*(m.w/(r.width||m.w)),py:(e.clientY-r.top)*(m.h/(r.height||m.h))}};
+const g2w=(px,py)=>{const m=GV.map;return[m.x0+(px-m.ml)/m.pw*m.X,m.y0+(m.h-m.mb-py)/m.ph*m.Y]},w2p=(x,y)=>{const m=GV.map;return[m.ml+(x-m.x0)/m.X*m.pw,m.h-m.mb-(y-m.y0)/m.Y*m.ph]};
+function gHit(px,py){let best=null,bd=15;(GV.cands||[]).forEach(c=>{const p=w2p(c.x,c.y),d=Math.hypot(p[0]-px,p[1]-py);if(d<bd){bd=d;best=c}});return best}
+function gLineHit(px,py){const m=GV.map;let best=null,bd=18;G.cons.forEach((k,i)=>{const a=ga(i,0),b=ga(i,1);if(!a&&!b)return;const sg=clipLine(a,b,gb(i)-a*m.x0-b*m.y0,m.X,m.Y);if(!sg)return;
+  const A1=w2p(sg[0][0]+m.x0,sg[0][1]+m.y0),B1=w2p(sg[1][0]+m.x0,sg[1][1]+m.y0),dx=B1[0]-A1[0],dy=B1[1]-A1[1],L2=dx*dx+dy*dy||1,t=Math.max(0,Math.min(1,((px-A1[0])*dx+(py-A1[1])*dy)/L2)),d=Math.hypot(px-A1[0]-t*dx,py-A1[1]-t*dy);if(d<bd){bd=d;best=i}});return best}
+function gZoomAt(f,px,py){const m=GV.map;if(!m)return;const nz=Math.max(.04,Math.min(30,GV.z*f)),r=nz/GV.z,wp=g2w(px,py),X2=m.X*r,Y2=m.Y*r;GV.off=[wp[0]-(px-m.ml)/m.pw*X2,wp[1]-(m.h-m.mb-py)/m.ph*Y2];GV.z=nz;gQ()}
+function gHoverTip(c,e){const t=$("#gHover");if(!c){t.style.display="none";return}const r=gcv_.getBoundingClientRect(),wr=t.parentNode.getBoundingClientRect();
+  t.innerHTML=`<b>(${fmt(c.x)}, ${fmt(c.y)})</b><span>${esc(c.names)}${c.feas?" · feasible":""}</span><small>${GV.locks.includes(c.key)?"Click to unlock":"Click to lock"}</small>`;t.style.display="block";
+  const tw=t.offsetWidth,th=t.offsetHeight;let lx=e.clientX-wr.left+14,ly=e.clientY-wr.top-th-12;if(lx+tw>wr.width-4)lx=e.clientX-wr.left-tw-14;if(ly<4)ly=e.clientY-wr.top+18;t.style.left=Math.max(4,lx)+"px";t.style.top=ly+"px"}
+gcv_.addEventListener("pointerdown",e=>{if(!GV.map)return;try{gcv_.setPointerCapture(e.pointerId)}catch(x){}const p=gPt(e);gptr.set(e.pointerId,{x:p.px,y:p.py});
+  if(gptr.size===2){const v=[...gptr.values()];gst={m:"pinch",d0:Math.hypot(v[0].x-v[1].x,v[0].y-v[1].y)||1,z0:GV.z,moved:true}}
+  else{const li=GV.drag?gLineHit(p.px,p.py):null;gst={m:li!=null?"line":"pan",li,sx:p.px,sy:p.py,ox:GV.off[0],oy:GV.off[1],moved:false}}e.preventDefault()});
+gcv_.addEventListener("pointermove",e=>{if(!GV.map)return;const p=gPt(e);if(gptr.has(e.pointerId))gptr.set(e.pointerId,{x:p.px,y:p.py});
+  if(gst&&gst.m==="pinch"&&gptr.size>=2){const v=[...gptr.values()],d=Math.hypot(v[0].x-v[1].x,v[0].y-v[1].y)||1,mx=(v[0].x+v[1].x)/2,my=(v[0].y+v[1].y)/2;gZoomAt(gst.z0*gst.d0/d/GV.z,mx,my);return}
+  if(gst&&gst.m==="pan"&&gptr.size===1){const dx=p.px-gst.sx,dy=p.py-gst.sy;if(Math.hypot(dx,dy)>4)gst.moved=true;if(gst.moved){const m=GV.map;GV.off=[gst.ox-dx/m.pw*m.X,gst.oy+dy/m.ph*m.Y];gHoverTip(null);gQ()}return}
+  if(gst&&gst.m==="line"){gst.moved=true;const q=g2w(p.px,p.py),i=gst.li,a=ga(i,0),b=ga(i,1),v=Math.round((a*q[0]+b*q[1])*10)/10;gSlide("b:"+i,v);return}
+  const hc=gHit(p.px,p.py),nk=hc?hc.key:null;if(nk!==GV.hov){GV.hov=nk;gQ()}gHoverTip(hc,e)});
+gcv_.addEventListener("pointerup",e=>{const p=GV.map?gPt(e):{px:0,py:0};gptr.delete(e.pointerId);
+  if(gst&&!gst.moved&&gst.m!=="pinch"){const c=gHit(p.px,p.py);if(c){const i=GV.locks.indexOf(c.key);if(i>=0)GV.locks.splice(i,1);else GV.locks.push(c.key);gQ();gHoverTip(c,e)}}
+  if(!gptr.size)gst=null});
+gcv_.addEventListener("pointercancel",e=>{gptr.delete(e.pointerId);if(!gptr.size)gst=null});
+gcv_.addEventListener("pointerleave",()=>{if(GV.hov){GV.hov=null;gQ()}gHoverTip(null)});
+gcv_.addEventListener("wheel",e=>{if(!GV.map)return;e.preventDefault();const p=gPt(e);gZoomAt(e.deltaY>0?1.12:1/1.12,p.px,p.py)},{passive:false});
+$("#v-graph").addEventListener("click",e=>{const b=e.target.closest("[data-gv]");if(!b)return;const k=b.dataset.gv;
+  if(k==="zin")gZoomAt(.8,GV.map?GV.map.ml+GV.map.pw/2:0,GV.map?GV.map.mt+GV.map.ph/2:0);else if(k==="zout")gZoomAt(1.25,GV.map?GV.map.ml+GV.map.pw/2:0,GV.map?GV.map.mt+GV.map.ph/2:0);
+  else if(k==="fit"){GV.z=1;GV.off=[0,0];gQ()}else if(k==="unlock"){GV.locks=[];gQ();toast("All points unlocked")}
+  else{GV[k]=GV[k]?0:1;b.classList.toggle("on",!!GV[k]);if(k==="pin")document.querySelector(".gstick").classList.toggle("unpinned",!GV.pin);gRefresh()}});
+/* controls: every number as a slider, edit or what-if */
+var GM2="edit";
+const gpBase=k=>{const p=k.split(":");return p[0]==="o"?num(G.obj[+p[1]]):p[0]==="a"?num(G.cons[+p[1]].a[+p[2]]):num(G.cons[+p[1]].b)};
+const gpEff=k=>{const p=k.split(":");return p[0]==="o"?gc(+p[1]):p[0]==="a"?ga(+p[1],+p[2]):gb(+p[1])};
+const gpStr=v=>String(+(+v).toFixed(4));
+function srow(k,lab){const v=gpBase(k),sp=Math.max(25,Math.abs(v)*3),mn=+(v-sp).toFixed(2),mx=+(v+sp).toFixed(2);
+  return`<div class="srow" data-k="${k}"><span class="sl-l">${lab}</span><div class="rw"><input type="range" data-gs="${k}" min="${mn}" max="${mx}" step="${sp>200?1:.1}" value="${v}" aria-label="${esc(lab)}"></div><input class="vb" inputmode="decimal" data-gvb="${k}" value="${gpStr(v)}" aria-label="${esc(lab)} value"><button class="rx" data-grx="${k}" tabindex="-1" aria-label="Reset">↺</button></div>`}
+function gCtlBuild(){const el=$("#gCtl");if(!el)return;
+  el.innerHTML=`<div class="row" style="align-items:center;margin-bottom:6px"><div class="seg" id="gM2"><button data-gm2="edit" class="${GM2==="edit"?"on":""}">Edit model</button><button data-gm2="whatif" class="${GM2==="whatif"?"on":""}">What-if</button></div><button class="btn sm" data-gm2="reset">Reset what-if</button></div>
+   <div class="preview" style="margin:0 0 8px">${GM2==="edit"?"Sliders change your real numbers and the Model tab.":"Sliders change temporary copies. Your model stays untouched."} Green bar: where the optimum (or its shadow price) stays valid. Tick: original value.</div>
+   <div class="sbody ${GM2}"><div class="sgrp"><div class="sgt">Objective</div>${srow("o:0","c₁ · "+esc(sub(0)))}${srow("o:1","c₂ · "+esc(sub(1)))}</div>
+   ${G.cons.map((c,i)=>`<div class="sgrp"><div class="sgt"><span class="dot" style="background:${COL[i%12]}"></span>${esc(gcn(i))}</div>${srow(`a:${i}:0`,esc(sub(0)))}${srow(`a:${i}:1`,esc(sub(1)))}${srow(`b:${i}`,"RHS")}</div>`).join("")}</div>`;gCtlBands()}
+function gCtlBands(){const R=GP.R;document.querySelectorAll("#gCtl .srow").forEach(r=>{const k=r.dataset.k,sl=r.querySelector("input[type=range]"),rw=r.querySelector(".rw"),mn=+sl.min,mx=+sl.max,fr=v=>Math.max(0,Math.min(1,(v-mn)/((mx-mn)||1)));let q=null;const p=k.split(":");
+  if(R){if(p[0]==="o")q=R.c[+p[1]];else if(p[0]==="b")q=R.rhs[+p[1]]}
+  if(q&&q.lo!=null){rw.classList.add("hasb");rw.style.setProperty("--b0n",q.lo<=-1e29||q.lo===-Infinity?0:fr(q.lo));rw.style.setProperty("--b1n",q.hi>=1e29||q.hi===Infinity?1:fr(q.hi))}else rw.classList.remove("hasb");
+  rw.classList.toggle("hasm",GM2==="whatif");rw.style.setProperty("--mn",fr(gpBase(k)));r.classList.toggle("chg",GM2==="whatif"&&Math.abs(gpEff(k)-gpBase(k))>1e-9)})}
+function gCtlSync(skip){document.querySelectorAll("#gCtl .srow").forEach(r=>{const k=r.dataset.k;if(k===skip)return;const v=gpEff(k),sl=r.querySelector("input[type=range]"),vb=r.querySelector(".vb");if(+sl.min>v)sl.min=v;if(+sl.max<v)sl.max=v;sl.value=v;vb.value=gpStr(v);sl.style.setProperty("--p",((v-sl.min)/((sl.max-sl.min)||1)*100)+"%")});gCtlBands()}
+function gSetBase(k,v){const p=k.split(":");if(p[0]==="o")G.obj[+p[1]]=gpStr(v);else if(p[0]==="a")G.cons[+p[1]].a[+p[2]]=gpStr(v);else G.cons[+p[1]].b=gpStr(v);
+  const q=document.querySelector(p[0]==="o"?`input[data-r="1000"][data-c="${p[1]}"]`:p[0]==="a"?`input[data-r="${1001+ +p[1]}"][data-c="${p[2]}"]`:`input[data-r="${1001+ +p[1]}"][data-c="2"]`);if(q)q.value=gpStr(v)}
+function gSetOv(k,v){const p=k.split(":"),base=gpBase(k),same=Math.abs(v-base)<1e-9;
+  if(p[0]==="o"){gOv.c=gOv.c||[null,null];gOv.c[+p[1]]=same?null:v}else if(p[0]==="a"){gOv.a=gOv.a||{};const i=+p[1];gOv.a[i]=gOv.a[i]||[null,null];gOv.a[i][+p[2]]=same?null:v;if(gOv.a[i][0]==null&&gOv.a[i][1]==null)delete gOv.a[i]}
+  else{gOv.b=gOv.b||{};if(same)delete gOv.b[+p[1]];else gOv.b[+p[1]]=v}}
+let gPend=null,gPraf=0;
+function gSlide(k,v,fromBox){v=+(+v).toFixed(4);const row=document.querySelector(`#gCtl .srow[data-k="${k}"]`);if(row){const sl=row.querySelector("input[type=range]"),vb=row.querySelector(".vb");if(+sl.min>v)sl.min=v;if(+sl.max<v)sl.max=v;sl.value=v;sl.style.setProperty("--p",((v-sl.min)/((sl.max-sl.min)||1)*100)+"%");if(!fromBox)vb.value=gpStr(v)}
+  gPend=gPend||{};gPend[k]=v;if(!gPraf)gPraf=requestAnimationFrame(()=>{gPraf=0;const Q=gPend;gPend=null;if(!Q)return;const ks=Object.keys(Q);
+    if(GM2==="edit"){ks.forEach(q=>gSetBase(q,Q[q]));save();gUpdate();mpvUpdate();gCtlSync(ks.length===1?ks[0]:null)}else{ks.forEach(q=>gSetOv(q,Q[q]));gRefresh();gCtlBands()}})}
+const gc2=$("#gCtl");
+gc2.addEventListener("input",e=>{const t=e.target;if(t.dataset.gs)gSlide(t.dataset.gs,t.value)});
+gc2.addEventListener("change",e=>{const t=e.target;if(t.dataset.gvb){const v=calc(t.value.replace(/^=/,""));const n=v!=null?v:num(t.value);gSlide(t.dataset.gvb,n,false)}});
+gc2.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target.dataset.gvb)e.target.blur()});
+gc2.addEventListener("click",e=>{const b=e.target.closest("[data-gm2],[data-grx]");if(!b)return;
+  if(b.dataset.grx){const k=b.dataset.grx;if(GM2==="whatif"){gSetOv(k,gpBase(k));gRefresh();gCtlSync()}return}
+  const m=b.dataset.gm2;if(m==="reset"){gOv=gNoOv();gRefresh();gCtlSync();return}
+  if(m!==GM2){GM2=m;gOv=gNoOv();gRefresh();gCtlBuild()}});
+function gPivotUI(){const el=$("#gPv");if(!el)return;const A=GB;GP.v0=null;GP.R=null;
+  if(!A||A.inf||A.unb||A.alt||!A.V.length){el.innerHTML=`<div class="preview" style="margin:0">Ranges need one optimal corner. ${!A||A.inf?"The problem is infeasible or empty.":A.unb?"The problem is unbounded.":"There are alternate optima, so the objective already sits on the edge of its range."}</div>`;gCtlBands();return}
+  const v=A.V[A.opt[0]],R=GP.R=gRanges(A),Lt=String.fromCharCode(65+A.opt[0]);GP.v0=v;
+  el.innerHTML=`<div style="font-size:13px;margin-bottom:8px">Optimal corner <b>${Lt}</b> (${fmt(v[0])}, ${fmt(v[1])}), Z* = <b>${fmtZ(A.best)}</b></div>
+   <div style="font-weight:600;margin:8px 0 4px">Range of optimality</div>${tbl(["Coefficient","Current","Lower","Upper"],R.c.map((r,j)=>({c:["c"+(j+1)+" ("+esc(sub(j))+")",fmt(r.cur),rg(r.lo),rg(r.hi)]})))}
+   <div class="preview">The corner stays optimal while the iso-line, pivoting about it, stays between the slopes of the two binding constraints.</div>
+   <div style="font-weight:600;margin:12px 0 4px">Range of feasibility (right-hand sides)</div>${tbl(["Constraint","RHS","Binding","Shadow price","Lower","Upper"],R.rhs.map((r,i)=>r?{c:[esc(gcn(i)),fmt(r.b),r.bind?"yes":"no",fmt(r.sp),rg(r.lo),rg(r.hi)]}:{c:[esc(gcn(i)),"—","—","—","—","—"]}))}
+   <div class="preview">Inside these limits the same constraints stay binding, so the shadow price holds: ΔZ = shadow price × ΔRHS. Use the What-if sliders to watch it happen.</div>`;gCtlBands()}
+function gRefresh(){const sv=gOv;gOv=gNoOv();GB=gAnalyze();gOv=sv;GA=gOvOn()?gAnalyze():GB;gPanels();gDraw()}
+function gUpdate(){gToModel();gOv=gNoOv();gRefresh();gPivotUI();gCtlSync()}
+
 
 /* ---------- Phase 10c: export (PDF, PNG, JPG, HTML, Markdown) ---------- */
 const XP_CSS=`.xp{--bg:#fff;--card:#fff;--tx:#1f1d19;--mut:#6b665b;--bd:#d8d2c3;--pri:#9a3b16;--pri2:#f4e9df;--ok:#3d7a50;--bad:#b0372a;--warn:#946610;--inp:#faf8f3;width:820px;max-width:100%;box-sizing:border-box;background:#fff;color:#1f1d19;font:15px/1.5 "Segoe UI",Roboto,Helvetica,Arial,sans-serif}
@@ -1447,19 +1572,19 @@ function interpModel(){const R=lastRes,f=fmt,goal=S.goal==="max"?"maximum":"mini
   const T_=[[`Z* (${goal})`,f(R.Z)],["Variables",S.n],["Constraints",S.m]];if(R.ip)T_.push(["LP bound",f(R.relZ)],["Integrality gap",f(R.gap)]);
   return{tiles:T_,lines:[...N.plan,...N.sens],tech:N.tech}}
 function interpTp(){const q=tpData(),{c,s,d,rl,cl}=q,cost=A=>A.reduce((t,r,i)=>t+r.reduce((u,v,j)=>u+(v||0)*c[i][j],0),0),A1=nwc(c,s,d),V=vam(c,s,d).A,O=tpOpt(c,s,d),f=fmt;
-  if(!O.ok)return{tiles:[["Status","INFEASIBLE"]],lines:["No feasible shipping plan exists."]};const zo=cost(O.A),z1=cost(A1),z2=cost(V),L=[`The cheapest plan meets all demand at a total cost of <b>${f(zo)}</b>.`];
+  if(!O.ok)return{tiles:[["Status","INFEASIBLE"]],lines:["No feasible shipping plan exists."]};const zo=cost(O.A),z1=cost(A1),z2=cost(V),L=[`The cheapest plan meets all demand at a total cost of <b>${fmtZ(zo)}</b>.`];
   O.A.forEach((r,i)=>r.forEach((v,j)=>{if(v!==null&&v>1e-9){const dm=rl[i]==="Dummy"||cl[j]==="Dummy";L.push(dm?`${rl[i]} → ${cl[j]}: ${f(v)} units (${rl[i]==="Dummy"?"demand that cannot be met":"supply left unshipped"}).`:`${rl[i]} → ${cl[j]}: ${f(v)} units at ${f(c[i][j])} each = ${f(v*c[i][j])}.`)}}));
-  L.push(`Northwest Corner starts at ${f(z1)} (${z1-zo<1e-9?"already optimal":f(z1-zo)+" above the optimum"}); Vogel's method starts at ${f(z2)} (${z2-zo<1e-9?"already optimal":f(z2-zo)+" above the optimum"}).`);
+  L.push(`Northwest Corner starts at ${fmtZ(z1)} (${z1-zo<1e-9?"already optimal":fmtZ(z1-zo)+" above the optimum"}); Vogel's method starts at ${fmtZ(z2)} (${z2-zo<1e-9?"already optimal":f(z2-zo)+" above the optimum"}).`);
   if(q.dummy)L.push(`Supply and demand were unbalanced, so a dummy ${q.dummy==="col"?"destination":"source"} took up ${f(Math.abs(q.S-q.D))} units at zero cost.`);
-  return{tiles:[["Optimal cost",f(zo)],["Northwest Corner",f(z1)],["Vogel (VAM)",f(z2)],["Saved vs NWC",f(z1-zo)]],lines:L}}
+  return{tiles:[["Optimal cost",fmtZ(zo)],["Northwest Corner",fmtZ(z1)],["Vogel (VAM)",fmtZ(z2)],["Saved vs NWC",fmtZ(z1-zo)]],lines:L}}
 function interpAs(){const a=T.as,C=a.c.map(r=>r.map(num)),mx=a.goal==="max",h=hung(C,mx),f=fmt,L=h.match.map((j,i)=>`${esc(an("rn",i))} is assigned to ${esc(an("cn",j))} (${mx?"profit":"cost"} ${f(C[i][j])}).`);
-  L.push(`Total ${mx?"profit":"cost"}: <b>${f(h.cost)}</b>. Every worker gets exactly one job and every job exactly one worker.`);return{tiles:[[mx?"Max profit":"Min cost",f(h.cost)],["Assignments",h.match.length]],lines:L}}
+  L.push(`Total ${mx?"profit":"cost"}: <b>${fmtZ(h.cost)}</b>. Every worker gets exactly one job and every job exactly one worker.`);return{tiles:[[mx?"Max profit":"Min cost",fmtZ(h.cost)],["Assignments",h.match.length]],lines:L}}
 function interpTs(){const N=T.ts.nodes,nb=N.map(x=>num(x.b)),arcs=T.ts.arcs.map(a=>({f:a.f,t:a.t,c:num(a.c),u:num(a.u)})).filter(a=>a.f!==a.t),nm=k=>esc(N[k].nm||"N"+(k+1)),r=tsFlow(nb,arcs),f=fmt;
-  if(!r.ok)return{tiles:[["Status","INFEASIBLE"]],lines:["The routes and capacities cannot carry the required flow."]};const L=[`The cheapest way to move the goods costs <b>${f(r.cost)}</b>.`];
+  if(!r.ok)return{tiles:[["Status","INFEASIBLE"]],lines:["The routes and capacities cannot carry the required flow."]};const L=[`The cheapest way to move the goods costs <b>${fmtZ(r.cost)}</b>.`];
   arcs.forEach((a,i)=>{if(r.fl[i]>1e-9)L.push(`${nm(a.f)} → ${nm(a.t)} carries ${f(r.fl[i])} units at ${f(a.c)} each${a.u>0&&r.fl[i]>=a.u-1e-9?" (this route is at full capacity)":""}.`)});
   N.forEach((x,k)=>{if(nb[k]===0){const inn=arcs.reduce((t,a,i)=>t+(a.t===k?r.fl[i]:0),0);if(inn>1e-9)L.push(`Transshipment node ${nm(k)} passes on ${f(inn)} units.`)}});
   if(Math.abs(r.Sx-r.Dx)>1e-9)L.push(r.Sx>r.Dx?`${f(r.Sx-r.Dx)} units of supply stay unshipped.`:`${f(r.Dx-r.Sx)} units of demand stay unmet.`);
-  return{tiles:[["Min cost",f(r.cost)],["Routes used",arcs.filter((a,i)=>r.fl[i]>1e-9).length]],lines:L}}
+  return{tiles:[["Min cost",fmtZ(r.cost)],["Routes used",arcs.filter((a,i)=>r.fl[i]>1e-9).length]],lines:L}}
 function interpNw(){const E=nwE(),n=NW.n,f=fmt,k=NW.sub;
   if(k==="mst"){const m=kruskal(n,E),L=[`The cheapest network connecting every node uses ${m.chosen.length} edges with total length <b>${f(m.tot)}</b>.`,...m.chosen.map(i=>`${esc(el_(E,i).replace("→","–"))}: ${f(E[i].w)}.`)];if(m.comps>1)L.push(`The graph is disconnected (${m.comps} parts), so this is a spanning forest.`);return{tiles:[["Total length",f(m.tot)],["Edges",m.chosen.length]],lines:L}}
   if(k==="sp"){const d=dijkstra(n,E,NW.src,NW.snk);if(d.neg)return{tiles:[],lines:["Dijkstra's algorithm needs non-negative distances."]};if(d.dist===Infinity)return{tiles:[["Status","UNREACHABLE"]],lines:[`${esc(nl(NW.snk))} cannot be reached from ${esc(nl(NW.src))}.`]};
@@ -1550,18 +1675,18 @@ $("#shB").addEventListener("click",e=>{const b=e.target.closest("[data-xp]");if(
 
 /* ---------- Phase 11: modules menu, contextual tabs, graph link ---------- */
 const sv=p=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
-const ICN={model:'<path d="M5 7h9M18 7h1M5 17h1M10 17h9"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/>',results:'<path d="M5 20V10M12 20V4M19 20v-7"/>',reports:'<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/>',graph:'<path d="M4 4v16h16"/><path d="M8 15l4-5 3 3 4-6"/>',
+const ICN={cube:'<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M12 12l8-4.5M12 12L4 7.5M12 12v9"/>',model:'<path d="M5 7h9M18 7h1M5 17h1M10 17h9"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/>',results:'<path d="M5 20V10M12 20V4M19 20v-7"/>',reports:'<path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/>',graph:'<path d="M4 4v16h16"/><path d="M8 15l4-5 3 3 4-6"/>',
   tr:'<path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/>',nw:'<circle cx="6" cy="6" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="9" cy="18" r="2"/><path d="M8 6.3l8 1.4M7 8l2 8M16.6 9.7l-6 7"/>',pj:'<path d="M4 7h9M7 12h10M10 17h9"/>',
   gm:'<rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r=".6"/><circle cx="15" cy="15" r=".6"/><circle cx="15" cy="9" r=".6"/><circle cx="9" cy="15" r=".6"/>',settings:'<circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/>'};
-const VM={"v-model":"lp","v-results":"lp","v-reports":"lp","v-graph":"lp","v-tr":"tr","v-nw":"nw","v-pj":"pj","v-gm":"gm","v-settings":"set"};
-const MODS=[{id:"lp",name:"Solver",desc:"Linear and integer programming",icon:ICN.model,tabs:[["model","Model",ICN.model],["results","Results",ICN.results],["reports","Reports",ICN.reports],["graph","Graph",ICN.graph,()=>S.n===2]]},
+const VM={"v-model":"lp","v-results":"lp","v-reports":"lp","v-graph":"lp","v-3d":"lp","v-tr":"tr","v-nw":"nw","v-pj":"pj","v-gm":"gm","v-settings":"set"};
+const MODS=[{id:"lp",name:"Solver",desc:"Linear and integer programming",icon:ICN.model,tabs:[["model","Model",ICN.model],["results","Results",ICN.results],["reports","Reports",ICN.reports],["graph","Graph",ICN.graph,()=>S.n===2],["3d","Explore",ICN.cube,()=>S.n>=3]]},
   {id:"tr",name:"Transportation",desc:"Transport, assignment, transshipment",icon:ICN.tr,view:"tr",split:1},{id:"nw",name:"Network",desc:"Spanning tree, shortest path, max flow",icon:ICN.nw,view:"nw",split:1},
   {id:"pj",name:"Project",desc:"CPM and PERT scheduling",icon:ICN.pj,view:"pj",split:1},{id:"gm",name:"Game theory",desc:"Zero-sum games and mixed strategies",icon:ICN.gm,view:"gm",split:1},
   {id:"set",name:"Settings",desc:"Appearance, input, offline use",icon:ICN.settings,view:"settings"}];
 var SUBV={tr:"in",nw:"in",pj:"in",gm:"in"},LASTLP="model";
 const curView=()=>(($(".v.on")||{}).id||"v-model").slice(2),curMod=()=>VM[($(".v.on")||{}).id]||"lp",RESID={tr:"trRes",nw:"nwRes",pj:"pjRes",gm:"gmRes"};
 function drawBnav(){const nb=$("#bnav");if(!nb)return;const m=curMod(),M=MODS.find(x=>x.id===m);
-  if(m==="lp"&&curView()==="graph"&&S.n!==2){goTab("model");return}
+  if(m==="lp"&&((curView()==="graph"&&S.n!==2)||(curView()==="3d"&&S.n<3))){goTab("model");return}
   let tabs=[];if(m==="lp"){tabs=M.tabs.filter(t=>!t[3]||t[3]()).map(t=>({k:"v:"+t[0],l:t[1],i:t[2],on:curView()===t[0]}));LASTLP=curView()}
   else if(M.split)tabs=[{k:"s:in",l:"Setup",i:ICN.model,on:SUBV[m]==="in"},{k:"s:res",l:"Results",i:ICN.results,on:SUBV[m]==="res"}];
   nb.style.display=tabs.length?"":"none";nb.innerHTML=tabs.map(t=>`<button data-m="${t.k}" class="${t.on?"on":""}">${sv(t.i)}${t.l}</button>`).join("");layoutPad()}
@@ -1590,7 +1715,7 @@ const stBadge=(b,t)=>`<span class="state ${b==="viol"?"viol":b?"bind":"loose"}">
 function lpLines(){const R=lastRes,sn=R.rep&&R.rep.sens,f=fmt,max=S.goal==="max",unit=max?"profit":"cost",plan=[],sens=[],tech=[];
   if(R.status!=="optimal"){plan.push(R.status==="infeasible"?"No plan satisfies every constraint at once, so the problem is infeasible. Check the direction of each inequality and the right-hand sides.":"The objective can keep improving without limit, so the problem is unbounded. A constraint is probably missing or points the wrong way.");return{plan,sens,tech}}
   const nm=j=>`<b>${esc(sub(j))}</b>`,used=R.x.map((v,j)=>v>1e-9?`${nm(j)} = <b>${f(v)}</b>`:null).filter(Boolean),zero=R.x.map((v,j)=>v<=1e-9?j:-1).filter(j=>j>=0);
-  plan.push(`The best plan is ${used.join(", ")||"to do nothing"}. That gives the ${max?"highest":"lowest"} ${unit} you can reach: <b>Z* = ${f(R.Z)}</b>.`);
+  plan.push(`The best plan is ${used.join(", ")||"to do nothing"}. That gives the ${max?"highest":"lowest"} ${unit} you can reach: <b>${zl()}* = ${fmtZ(R.Z)}</b>.`);
   if(zero.length&&used.length)plan.push(`${zero.map(nm).join(", ")} ${zero.length>1?"stay":"stays"} at zero: at today's numbers ${zero.length>1?"they don't":"it doesn't"} earn a place in the plan.`);
   if(R.ip)plan.push(`Some variables must be whole numbers, so this plan is ${f(R.gap)} ${max?"lower in profit":"higher in cost"} than the unrestricted LP answer (${f(R.relZ)}). That gap is the price of integrality.`);
   R.rows.forEach((w,i)=>{const n=`<b>${esc(cname(i))}</b>`,b=Math.abs(w.val)<1e-7;
@@ -1620,15 +1745,15 @@ function wiShell(R){return`<h2>Try your own plan</h2><div class="card"><div clas
 function wiUpdate(){const box=$("#wiOut");if(!box||!lastRes)return;const R=lastRes,f=fmt,max=S.goal==="max",x=R.x.map((_,j)=>{const e=document.querySelector(`input[data-r="${8000+j}"]`);return e?num(e.value):0});
   const Z=S.obj.reduce((t,o,j)=>t+num(o)*x[j],0),rows=S.cons.map((k,i)=>{const l=k.a.reduce((t,a,j)=>t+num(a)*x[j],0),b=num(k.b),sl=k.op==="<="?b-l:k.op===">="?l-b:l-b,ok=k.op==="=="?Math.abs(l-b)<1e-6:sl>=-1e-6;return{i,l,b,op:k.op,sl,ok,bind:ok&&Math.abs(sl)<1e-6}});
   const bad=rows.filter(r=>!r.ok),vio=x.map((v,j)=>(S.nonneg&&v<-1e-9)||(S.vt[j]==="i"&&Math.abs(v-Math.round(v))>1e-6)||(S.vt[j]==="b"&&!(Math.abs(v)<1e-6||Math.abs(v-1)<1e-6))?j:-1).filter(j=>j>=0),feas=!bad.length&&!vio.length,d=Z-R.Z;
-  const verdict=feas?`<span class="state bind">Feasible</span> Z = <b>${f(Z)}</b>. ${Math.abs(d)<1e-6?"This matches the optimum.":`That is ${f(Math.abs(d))} ${(max?d<0:d>0)?"worse than":"better than"} the optimum (${f(R.Z)}).`}`:`<span class="state viol">Not feasible</span> Z would be <b>${f(Z)}</b>, but ${[...bad.map(r=>`<b>${esc(cname(r.i))}</b> is broken by ${f(Math.abs(r.sl))}`),...vio.map(j=>`<b>${esc(sub(j))}</b> breaks its ${S.vt[j]==="c"?"non-negativity":S.vt[j]==="b"?"0/1":"whole-number"} rule`)].join("; ")}.`;
+  const verdict=feas?`<span class="state bind">Feasible</span> ${zl()} = <b>${fmtZ(Z)}</b>. ${Math.abs(d)<1e-6?"This matches the optimum.":`That is ${f(Math.abs(d))} ${(max?d<0:d>0)?"worse than":"better than"} the optimum (${f(R.Z)}).`}`:`<span class="state viol">Not feasible</span> Z would be <b>${f(Z)}</b>, but ${[...bad.map(r=>`<b>${esc(cname(r.i))}</b> is broken by ${f(Math.abs(r.sl))}`),...vio.map(j=>`<b>${esc(sub(j))}</b> breaks its ${S.vt[j]==="c"?"non-negativity":S.vt[j]==="b"?"0/1":"whole-number"} rule`)].join("; ")}.`;
   box.innerHTML=`<div style="margin-bottom:8px">${verdict}</div>`+tbl(["Constraint","Plan LHS","","RHS","Slack / surplus","State"],rows.map(r=>({c:[esc(cname(r.i)),f(r.l),r.op==="=="?"=":r.op,f(r.b),r.op==="=="?f(r.sl):f(r.sl),stBadge(r.ok?r.bind:"viol",r.ok?(r.bind?"Binding":"Loose"):"Violated")]})))}
 $("#res").addEventListener("click",e=>{const b=e.target.closest("[data-wi]");if(!b||!lastRes)return;const k=b.dataset.wi;
   lastRes.x.forEach((v,j)=>{const el=document.querySelector(`input[data-r="${8000+j}"]`);if(!el)return;const cur_=num(el.value);el.value=String(k==="opt"?+v.toFixed(6):k==="zero"?0:Math.round(cur_))});wiUpdate()});
 /* colour palettes */
-const PALS=[["rust","Rust"],["ocean","Ocean"],["forest","Forest"],["berry","Berry"],["sunset","Sunset"],["graphite","Graphite"]],PAL_A={rust:["#9a3b16","#e0a14b"],ocean:["#0b6a8f","#5cc0e8"],forest:["#276f2c","#7ad08a"],berry:["#a3245f","#f27aa8"],sunset:["#b04400","#ffb454"],graphite:["#2b4c8c","#8fb0f5"]};
-function renderPal(){const e=$("#palRow");if(!e)return;e.innerHTML=PALS.map(p=>`<button class="pal ${(S.set.pal||"rust")===p[0]?"on":""}" data-pal="${p[0]}" style="--a:${PAL_A[p[0]][0]};--b:${PAL_A[p[0]][1]}"><i></i>${p[1]}</button>`).join("")}
+const PALS=[["rust","Rust"],["ocean","Ocean"],["forest","Forest"],["berry","Berry"],["sunset","Sunset"],["graphite","Graphite"],["mint","Mint"],["coral","Coral"],["lavender","Lavender"],["mocha","Mocha"],["midnight","Midnight"],["custom","Custom"]],PAL_A={rust:["#9a3b16","#e0a14b"],ocean:["#0b6a8f","#5cc0e8"],forest:["#276f2c","#7ad08a"],berry:["#a3245f","#f27aa8"],sunset:["#b04400","#ffb454"],graphite:["#2b4c8c","#8fb0f5"],mint:["#0b705d","#5fd6b8"],coral:["#b53a0a","#ff8f70"],lavender:["#5b3fb0","#b9a4ff"],mocha:["#7a4a2a","#e0b080"],midnight:["#2447b8","#7fa2ff"],custom:["#2f6fb5","#2f6fb5"]};
+function renderPal(){renderPal2()}
 document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-pal]");if(!b)return;S.set.pal=b.dataset.pal;applyLook();save();renderPal()});
-$("#setBtn").onclick=()=>goTab("settings");renderPal();
+var PREVV="model";$("#setBtn").onclick=()=>{if(curView()==="settings")goTab(PREVV||"model");else{PREVV=curView();goTab("settings")}};renderPal();
 
 /* ---------- Phase 13: natural-language input, saved problems, tooltips ---------- */
 /*NAT*/
@@ -1725,29 +1850,237 @@ const TIP_D={ta:{solve:"Solve this problem.",ex:"Load an example problem.",clr:"
   pv:{off:"Switch pivoting off.",c0:"Rotate the iso-line by changing the first objective coefficient.",c1:"Rotate the iso-line by changing the second objective coefficient.",b:"Slide one constraint's right-hand side."},tw:{"-1":"Decrease by 1.","-0.1":"Decrease by 0.1.","0.1":"Increase by 0.1.","1":"Increase by 1."},
   k:{X:"Close the numpad (Esc).",U:"Move to the cell above.",D:"Move to the cell below.",L:"Move one cell left.",R:"Move one cell right.",B:"Delete the last character.","±":"Change the sign.",C:"Clear this cell.",N:"Move to the next cell.",".":"Decimal point.","/":"Fraction or divide.",fx:"Show or hide the formula keys.","=":"Start a formula, like =3*4.","+":"Add.","-":"Subtract.","*":"Multiply.","^":"Power.","(":"Open bracket.",")":"Close bracket."},
   wi:{opt:"Put the optimal values back.",zero:"Set every variable to zero.",round:"Round every value to a whole number."},vtall:{i:"Make every variable an integer.",b:"Make every variable binary (0 or 1).",c:"Make every variable continuous."},
-  m:{"v:model":"Model: enter the objective, constraints and variable types.","v:results":"Results: the optimal plan, interpretation and a what-if panel.","v:reports":"Reports: Excel-style Answer, Sensitivity and Limits.","v:graph":"Graph: plot this two-variable problem and explore it.","s:in":"Setup: enter the problem.","s:res":"Results: see the solution."},
+  m:{"v:model":"Model: enter the objective, constraints and variable types.","v:results":"Results: the optimal plan, interpretation and a what-if panel.","v:reports":"Reports: Excel-style Answer, Sensitivity and Limits.","v:graph":"Graph: plot this two-variable problem and explore it.","v:3d":"Explore: rotate the feasible region in 3D (a slice when there are more than 3 variables).","s:in":"Setup: enter the problem.","s:res":"Results: see the solution."},
   th:{light:"Light mode.",dark:"Dark mode.",auto:"Follow the device setting."},vw:{mobile:"Single-column layout for phones.",desktop:"Wide layout with side-by-side panels."},pal:{rust:"Rust palette.",ocean:"Ocean palette.",forest:"Forest palette.",berry:"Berry palette.",sunset:"Sunset palette.",graphite:"Graphite palette."}};
 const TIP_K0={op:"Tap to cycle the constraint type: ≤, ≥, =.",dup:"Duplicate this constraint.",del:"Delete this constraint.",gop:"Tap to cycle the constraint type: ≤, ≥, =.",gdel:"Delete this constraint.",pclose:"Hide this panel.",dx:"Close the menu.",shx:"Close this panel.",mig:"Convert and open in the Solver.",mex:"Load this example.",xp:"Export in this format.",mod:"Open this module.",sl:"Open this saved problem.",sd:"Download this problem as a file.",sx:"Delete this saved problem.",sug:"Insert this variable name.",vt:"Variable type: continuous, integer or binary.",vn:"Variable name. Click to rename; it is used in results, reports and the preview.",cn:"Constraint name (optional). Used in results and reports.",gcn:"Constraint name (optional).",nm:"Click to rename."};
-function tipText(el){const d=el.dataset||{};if(d.tip)return d.tip;if(el.id&&TIP_ID[el.id])return TIP_ID[el.id];
+function tipText(el){const d=el.dataset||{};const hh=el.closest&&el.closest("[data-tip]");if(hh)return hh.dataset.tip;if(el.id&&TIP_ID[el.id])return TIP_ID[el.id];
   for(const k in TIP_D)if(d[k]!==undefined&&TIP_D[k][d[k]])return TIP_D[k][d[k]];for(const k in TIP_K0)if(d[k]!==undefined)return TIP_K0[k];
   if(el.matches&&el.matches("input.n")){const t=d.t,r=+d.r,c=+d.c;
     if(t==="o")return`Objective coefficient: the profit or cost per unit of ${sub(c)}.`;if(t==="a")return`How much of ${cname(r-1)} one unit of ${sub(c)} uses.`;if(t==="b")return`Right-hand side of ${cname(r-1)}: its limit or requirement.`;
     if(t==="g")return r===1000?`Objective coefficient of ${sub(c)}.`:c<2?`Coefficient of ${sub(c)} in ${gcn(r-1001)}.`:`Right-hand side of ${gcn(r-1001)}.`;if(t==="wi")return`Your own value for ${sub(c===0?r-8000:0)}. Z and the constraints update as you type.`;
     return"Number cell. Arrow keys move between cells; start with = to enter a formula."}
-  if(el.classList.contains("vl"))return TIP_K0.vn;if(el.classList.contains("cnm"))return TIP_K0.cn;if(el.classList.contains("hn"))return TIP_K0.nm;
+  if(el.classList.contains("vl"))return el.value&&el.value.length>9?"Variable name: "+el.value+". Click to rename.":TIP_K0.vn;if(el.classList.contains("cnm"))return TIP_K0.cn;if(el.classList.contains("hn"))return TIP_K0.nm;
   const a=el.getAttribute("aria-label")||el.title;if(a)return a;if(el.placeholder)return"Hint: "+el.placeholder.replace(/\n/g," ");return null}
+
+/* ---------- Phase 14: design system, themes, settings, glossary tips ---------- */
+const hex2rgb=h=>{h=h.replace("#","");return[0,2,4].map(i=>parseInt(h.slice(i,i+2),16))};
+const lumF=h=>{const[r,g,b]=hex2rgb(h).map(v=>{v/=255;return v<=.03928?v/12.92:((v+.055)/1.055)**2.4});return .2126*r+.7152*g+.0722*b};
+const crF=(a,b)=>{const x=lumF(a),y=lumF(b);return(Math.max(x,y)+.05)/(Math.min(x,y)+.05)};
+function hex2hsl(hx){let[r,g,b]=hex2rgb(hx).map(v=>v/255);const mx=Math.max(r,g,b),mn=Math.min(r,g,b);let h=0,s=0;const l=(mx+mn)/2;if(mx!==mn){const d=mx-mn;s=l>.5?d/(2-mx-mn):d/(mx+mn);h=mx===r?(g-b)/d+(g<b?6:0):mx===g?(b-r)/d+2:(r-g)/d+4;h*=60}return[h,s*100,l*100]}
+function hsl2hex(h,s,l){s=Math.max(0,Math.min(100,s))/100;l=Math.max(0,Math.min(100,l))/100;const k=n=>(n+h/30)%12,a=s*Math.min(l,1-l),f=n=>l-a*Math.max(-1,Math.min(k(n)-3,Math.min(9-k(n),1)));return"#"+[f(0),f(8),f(4)].map(v=>Math.round(v*255).toString(16).padStart(2,"0")).join("")}
+function makePal(acc,tint,mode){const[h,s0]=hex2hsl(acc),t=tint/100,sat=Math.max(40,Math.min(85,s0)),on=p=>crF("#ffffff",p)>=crF("#0b0b0b",p)?"#ffffff":"#0b0b0b";let bg,card,tx,mut,bd,bs,inp,pri2,pri;
+  if(mode==="light"){bg=hsl2hex(h,10+22*t,94);card=hsl2hex(h,15+25*t,98);tx=hsl2hex(h,25,11);mut=hsl2hex(h,14,34);bd=hsl2hex(h,10+16*t,82);bs=hsl2hex(h,12,48);inp=hsl2hex(h,20+20*t,99);pri2=hsl2hex(h,45+20*t,92);
+    let L=hex2hsl(acc)[2];pri=acc;for(let i=0;i<70&&(crF(pri,card)<4.7||crF(pri,pri2)<4.5);i++){L-=1.4;pri=hsl2hex(h,sat,L)}return{bg,card,tx,mut,bd,bs,pri,pri2,onpri:on(pri),ok:"#2a6b3f",bad:"#a3301f",warn:"#7f5806",inp}}
+  bg=hsl2hex(h,10+20*t,8);card=hsl2hex(h,12+18*t,12);tx=hsl2hex(h,15,92);mut=hsl2hex(h,10,70);bd=hsl2hex(h,12+10*t,22);bs=hsl2hex(h,12,46);inp=hsl2hex(h,14+14*t,10);pri2=hsl2hex(h,40,17);
+  let L=Math.max(55,hex2hsl(acc)[2]);pri=hsl2hex(h,sat,L);for(let i=0;i<70&&(crF(pri,card)<4.7||crF(pri,pri2)<4.5);i++){L=Math.min(95,L+1.4);pri=hsl2hex(h,sat,L)}
+  return{bg,card,tx,mut,bd,bs,pri,pri2,onpri:on(pri),ok:"#7bb58a",bad:"#f2907f",warn:"#e3b45c",inp}}
+const CC_KEYS=["bg","card","tx","mut","bd","bs","pri","pri2","onpri","ok","bad","warn","inp"];
+function applyCustom(mode){const r=document.documentElement.style;if(S.set.pal!=="custom"){CC_KEYS.forEach(k=>r.removeProperty("--"+k));return}const c=S.set.cc||{acc:"#2f6fb5",tint:50},P=makePal(c.acc,c.tint,mode||document.documentElement.dataset.theme||"light");CC_KEYS.forEach(k=>r.setProperty("--"+k,P[k]))}
+function renderPal2(){const e=$("#palRow");if(!e)return;const cur=S.set.pal||"rust",cc=S.set.cc||{acc:"#2f6fb5",tint:50};
+  e.innerHTML=PALS.map(p=>{const a=p[0]==="custom"?[cc.acc,cc.acc]:PAL_A[p[0]];return`<button class="pal ${cur===p[0]?"on":""}" data-pal="${p[0]}" style="--a:${a[0]};--b:${a[1]}"><i></i>${p[1]}</button>`}).join("");
+  const b=$("#ccBox");if(!b)return;if(cur!=="custom"){b.innerHTML="";return}
+  const th=document.documentElement.dataset.theme||"light",P=makePal(cc.acc,cc.tint,th),worst=Math.min(crF(P.pri,P.card),crF(P.onpri,P.pri),crF(P.tx,P.bg),crF(P.mut,P.card));
+  b.innerHTML=`<div class="ccrow"><label class="ccl">Accent colour<input type="color" id="ccAcc" value="${cc.acc}"></label><label class="ccl">Background tint<input type="range" id="ccTint" min="0" max="100" value="${cc.tint}"></label></div>
+   <div class="preview" id="ccInfo">${worst>=4.5?"Contrast check passed":"Contrast adjusted"} (lowest ratio ${worst.toFixed(1)}:1). Text and buttons are re-tuned automatically so they stay readable in both light and dark mode.</div>`}
+document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-pal]");if(!b)return;S.set.pal=b.dataset.pal;if(S.set.pal==="custom"&&!S.set.cc)S.set.cc={acc:"#2f6fb5",tint:50};applyLook();save();renderPal2()});
+document.addEventListener("input",e=>{if(e.target.id==="ccAcc"||e.target.id==="ccTint"){S.set.cc={acc:$("#ccAcc").value,tint:+$("#ccTint").value};applyCustom();const P=makePal(S.set.cc.acc,S.set.cc.tint,document.documentElement.dataset.theme||"light");$("#ccInfo").textContent=`Contrast ratios: accent ${crF(P.pri,P.card).toFixed(1)}:1, buttons ${crF(P.onpri,P.pri).toFixed(1)}:1, text ${crF(P.tx,P.bg).toFixed(1)}:1.`;save()}});
+/* settings: numbers, label, density, tips */
+const CURS=["","$","€","£","¥","₹","৳","₩","₱","₫","฿","R$","CHF","kr"],THOU=[["","None"],[",","Comma  1,234"],["\u202f","Space  1 234"],["'","Apostrophe  1'234"],[".","Period  1.234"]],ZLS=["Z","Profit","Cost","Revenue","Total cost","Contribution"];
+function renderSetX(){const e=$("#setX");if(!e)return;const st=S.set,curC=CURS.includes(st.cur||"")?st.cur||"":"__c",zC=ZLS.includes(st.zlab||"Z")?st.zlab||"Z":"__c";
+  const opt=(v,l,cur)=>`<option value="${esc(v)}" ${v===cur?"selected":""}>${l}</option>`;
+  e.innerHTML=`<h2>Numbers and labels</h2><div class="card setgrid">
+   <label>Currency sign<select class="sl" data-sx="cur">${CURS.map(c=>opt(c,c||"None",curC)).join("")}${opt("__c","Custom…",curC)}</select></label>
+   <label>Custom sign<input class="tx" data-sx="curc" value="${esc(curC==="__c"?st.cur||"":"")}" maxlength="4" placeholder="e.g. Tk" ${curC==="__c"?"":"disabled"}></label>
+   <label>Sign position<select class="sl" data-sx="curPos">${opt("pre","Before the number",st.curPos||"pre")}${opt("suf","After the number",st.curPos||"pre")}</select></label>
+   <label>Thousands separator<select class="sl" data-sx="thou">${THOU.map(t=>opt(t[0],t[1],st.thou||"")).join("")}</select></label>
+   <label>Decimal mark<select class="sl" data-sx="decm">${opt(".","Point  1.5",st.decm||".")}${opt(",","Comma  1,5",st.decm||".")}</select></label>
+   <label>Objective label<select class="sl" data-sx="zlab">${ZLS.map(z=>opt(z,z,zC)).join("")}${opt("__c","Custom…",zC)}</select></label>
+   <label>Custom label<input class="tx" data-sx="zlabc" value="${esc(zC==="__c"?st.zlab||"":"")}" maxlength="14" placeholder="e.g. Income" ${zC==="__c"?"":"disabled"}></label>
+   <div class="preview" id="sxPrev"></div></div>
+  <h2>Comfort</h2><div class="card setgrid">
+   <div><div class="sxl">Density</div><div class="seg"><button data-sxd="comfortable" class="${(st.density||"comfortable")==="comfortable"?"on":""}">Comfortable</button><button data-sxd="compact" class="${st.density==="compact"?"on":""}">Compact</button></div></div>
+   <label class="row" style="align-items:center"><input type="checkbox" data-sx="tips" ${st.tips===false?"":"checked"}> <span>Show tooltips on hover and long-press</span></label>
+   <div class="row"><button class="btn sm" data-sxa="reset">Reset all settings</button><button class="btn sm bad" data-sxa="delsaves">Delete all saved problems</button></div></div>`;sxPrev()}
+function sxPrev(){const e=$("#sxPrev");if(e)e.innerHTML=`Preview: <b>${fmtZ(1234567.891)}</b> · ${zl()} = <b>${fmtZ(-2500.5)}</b>`}
+document.addEventListener("change",e=>{const t=e.target,k=t.dataset&&t.dataset.sx;if(!k)return;const st=S.set;
+  if(k==="cur"){st.cur=t.value==="__c"?(st.cur||""):t.value;renderSetX()}else if(k==="curc"){st.cur=t.value}else if(k==="curPos")st.curPos=t.value;else if(k==="thou")st.thou=t.value;else if(k==="decm")st.decm=t.value;
+  else if(k==="zlab"){st.zlab=t.value==="__c"?(st.zlab||""):t.value;renderSetX()}else if(k==="zlabc")st.zlab=t.value;else if(k==="tips")st.tips=t.checked;
+  save();sxPrev();if(lastRes){try{showResults();showReports()}catch(x){}}mpvUpdate()});
+document.addEventListener("input",e=>{const k=e.target.dataset&&e.target.dataset.sx;if(k==="curc"||k==="zlabc"){S.set[k==="curc"?"cur":"zlab"]=e.target.value;sxPrev();save()}});
+document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-sxd],[data-sxa]");if(!b)return;
+  if(b.dataset.sxd){S.set.density=b.dataset.sxd;document.body.classList.toggle("compact",S.set.density==="compact");save();renderSetX()}
+  else if(b.dataset.sxa==="reset"){if(!confirm("Reset all settings to their defaults?"))return;S.set={theme:"auto",view:"mobile",pad:false,haptic:true,dec:4};applyLook();save();render();renderSetX();renderPal2();toast("Settings reset")}
+  else if(b.dataset.sxa==="delsaves"){if(!confirm("Delete every saved problem on this device?"))return;try{localStorage.removeItem(SAVEKEY)}catch(x){}toast("Saved problems deleted")}});
+renderSetX();renderPal2();
+/* interpretations: limits report and the other modules */
+function limNarr(a){const RR=lastRes.ip?lastRes.rx:lastRes,x=RR.x,f=fmt,L=[];
+  a.lim.forEach((o,j)=>{L.push(`<b>${esc(sub(j))}</b> is ${f(x[j])} in the plan. With every other variable held at its optimal value, it could be anything from <b>${fx(o.lo)}</b> to <b>${o.hi>=1e29?"unlimited (no constraint stops it)":f(o.hi)}</b> without breaking a constraint. At the lower limit Z would be ${fx(o.zl)}; at the upper limit ${o.zh==null?"it has no limit":"it would be "+f(o.zh)}.`)});
+  return`<h2>How to read this</h2><div class="card narr noprint"><ul class="how">${L.map(t=>`<li>${t}</li>`).join("")}</ul><details open><summary>What the Limits report is for</summary><ul class="how"><li>It shows how far each variable can move on its own, with the others frozen, while every constraint still holds.</li><li>The target result is what the objective becomes at that limit. Moving a variable away from its optimum normally makes the objective worse, so these numbers show the price of doing so.</li><li>Unlike the Sensitivity report, this is about the variable's own value, not its objective coefficient or a right-hand side.</li><li>A limit of 1E+30 means the constraints put no bound on it.</li></ul></details></div>`}
+const TECH={tp:["Northwest Corner starts in the top-left cell and ignores costs, so it is quick but usually far from optimal.","Vogel's method allocates where the penalty (gap between the two cheapest costs in a row or column) is largest, so it is usually close to optimal.","The optimal plan comes from the simplex method on the transportation LP. A basic plan has m + n − 1 cells; fewer means it is degenerate.","A dummy row or column balances unequal totals at zero cost: units sent to it are unshipped supply or unmet demand."],
+ as:["The Hungarian method subtracts row and column minimums, then covers all zeros with the fewest lines. If n lines are needed, a zero-cost one-to-one assignment exists.","If fewer lines are enough, the smallest uncovered value is subtracted from uncovered cells and added to double-covered cells, creating new zeros.","For maximisation, values are first converted to costs by subtracting each from the largest value."],
+ ts:["Transshipment is a minimum-cost flow: for every node, out-flow minus in-flow equals its net supply.","Intermediate nodes have net supply 0, so whatever enters them must leave.","A route at full capacity limits the plan; raising its capacity is the way to lower cost, if any saving exists."],
+ mst:["Kruskal's algorithm sorts the edges by length and adds each one that does not close a cycle, until n − 1 edges are chosen.","The tree is unique unless two edges tie in length."],
+ sp:["Dijkstra's algorithm repeatedly fixes the closest unfixed node and updates its neighbours' distances. It needs non-negative distances.","The Via column shows each node's predecessor on its shortest path."],
+ mf:["Edmonds–Karp pushes flow along the shortest path (fewest edges) that still has spare capacity, again and again.","Max-flow = min-cut: the capacity of the cheapest set of edges separating source from sink equals the maximum flow."],
+ pj:["ES = largest EF of the predecessors; EF = ES + duration; LF = smallest LS of the successors; LS = LF − duration.","Total slack = LS − ES: how long an activity can slip without delaying the project. Free slack: how long it can slip without delaying any successor.","PERT expected time μ = (a + 4m + b)/6, variance = ((b − a)/6)². The project variance adds the variances on the critical path; probabilities use the normal distribution."],
+ gm:["The row player picks the row that maximises the worst case (maximin); the column player picks the column that minimises the best case (minimax). When they are equal there is a saddle point.","A dominated row or column is never worth playing and can be deleted before solving.","Mixed strategies come from an LP: the column player's LP maximises Σy subject to A′y ≤ 1; the value is 1/Σy minus any shift."]};
+function modInterpHTML(kind){let I=null;try{I=kind==="tp"?interpTp():kind==="as"?interpAs():kind==="ts"?interpTs():(kind==="mst"||kind==="sp"||kind==="mf")?interpNw():kind==="pj"?interpPj():kind==="gm"?interpGm():null}catch(e){I=null}
+  if(!I||!I.lines||!I.lines.length)return"";const T=TECH[kind]||[];return`<h2>What this means</h2><div class="card narr"><ul class="how">${I.lines.map(l=>`<li>${l}</li>`).join("")}</ul>${T.length?`<details><summary>Technical notes</summary><ul class="how">${T.map(t=>`<li>${t}</li>`).join("")}</ul></details>`:""}</div>`}
+/* glossary tooltips, hover, long-press, help mode */
+const GLOSS=[["iso-?(?:profit|cost)? ?-?line|iso ?line","Iso-line: every point on it gives the same objective value. Slide it in the improving direction until it just leaves the feasible region. The last corner it touches is the optimum."],
+["objective function|objective coefficient","The quantity to maximise (profit, revenue) or minimise (cost, time). Each coefficient says how much one unit of a variable adds to it."],
+["feasible region","The set of all points that satisfy every constraint at once. The optimum always sits at one of its corners."],
+["corner point|extreme point|vertex|vertices","A corner of the feasible region, where constraint lines meet. An optimal solution exists at a corner."],
+["binding","A binding constraint is used up completely (zero slack or surplus). It is a bottleneck: relaxing it can improve the objective."],
+["loose","A loose constraint still has room to spare, so small changes to it do not change the optimal plan."],
+["slack","Slack is the unused part of a ≤ constraint: limit minus usage."],["surplus","Surplus is how far a ≥ constraint is exceeded: usage minus the minimum."],
+["shadow price|dual value","Change in the optimal objective for one extra unit of a right-hand side, valid inside the allowable range. Sunk cost: the most you would pay. Relevant cost: the premium over the current price you could justify."],
+["reduced cost|opportunity cost","How much a zero-valued variable's per-unit profit must rise (or cost must fall) before it is worth including in the plan."],
+["allowable increase|allowable decrease","How far a coefficient or right-hand side can move, one at a time, before the optimal plan or its shadow prices change."],
+["range of optimality","The span a single objective coefficient can move through while the current optimal corner stays optimal."],
+["range of feasibility","The span a single right-hand side can move through while the same constraints stay binding, so the shadow price holds."],
+["right-hand side|\\bRHS\\b","The limit or requirement on the right of a constraint, such as hours available or units demanded."],
+["sensitivity","Sensitivity analysis asks how the answer changes if a number changes: objective coefficients, right-hand sides, or both."],
+["limits report","Shows the range each variable can take on its own, with the others fixed, and the objective value at each limit."],["answer report","Final values of the objective, the variables and every constraint, with binding status and slack."],
+["non-negativity|x ≥ 0","Variables cannot be negative. Untick it to allow free variables."],
+["integer program|integer|binary","Integer variables must be whole numbers; binary variables must be 0 or 1. They make the problem harder, so it is solved by branch and bound."],
+["branch and bound","Solve the relaxed LP, then split on a fractional variable into two sub-problems and repeat, discarding branches that cannot beat the best integer plan found."],
+["relaxation|integrality gap|price of integrality","The LP relaxation ignores integer rules and gives a bound. The gap is how much the integer requirement costs."],
+["saddle point","A cell that is the smallest in its row and the largest in its column. It gives both players a pure optimal strategy."],["maximin","The best of the row minimums: what the row player can guarantee."],["minimax","The best of the column maximums: what the column player can hold the row player to."],
+["dominat","A dominated strategy is never better than another one, so it can be deleted without changing the game."],["mixed strateg","Playing each option with some probability. Needed when there is no saddle point."],["game value|value of the game","The row player's average payoff per play when both play optimally."],
+["northwest corner","Starts allocating at the top-left cell and ignores costs. Quick, but usually not optimal."],["vogel|\\bVAM\\b|penalt","Vogel's method allocates where the penalty (difference between the two cheapest costs in a row or column) is largest."],["dummy","A made-up row or column with zero costs that balances total supply and total demand."],["degenerate","Fewer basic cells or constraints than expected. The answer is still valid, but ranges may be less reliable."],
+["hungarian","Method for the assignment problem: reduce rows and columns, cover zeros with lines, adjust, and repeat until a full zero assignment exists."],["transshipment","Shipping with intermediate nodes that pass goods on. Their net supply is zero."],
+["spanning tree|kruskal","The cheapest set of edges that connects every node without cycles. Kruskal adds edges from shortest to longest, skipping any that close a loop."],["shortest path|dijkstra","The route of least total distance between two nodes. Dijkstra fixes the closest node each round."],
+["max(?:imum)? flow|edmonds|augmenting path","The most that can flow from source to sink. Each augmenting path pushes more flow along spare capacity."],["min(?:imum)? cut|bottleneck","The cheapest set of edges whose removal separates source from sink. Its capacity equals the maximum flow."],
+["critical path|critical activit","The longest chain of activities. Any delay on it delays the whole project."],["total slack|total float","How long an activity can slip without delaying the project: LS − ES."],["free slack|free float","How long an activity can slip without delaying any following activity."],
+["\\bES\\b|early start","Early start: the earliest an activity can begin, after all predecessors finish."],["\\bEF\\b|early finish","Early finish: early start plus duration."],["\\bLS\\b|late start","Late start: the latest an activity can begin without delaying the project."],["\\bLF\\b|late finish","Late finish: the latest it can finish without delaying the project."],
+["optimistic|most likely|pessimistic","PERT's three estimates: best case (a), most likely (m) and worst case (b)."],["expected (?:duration|time)|expected project","PERT expected time μ = (a + 4m + b) / 6."],["variance|σ²","How spread out a duration is: ((b − a) / 6)². Variances add along the critical path."],["standard deviation","The square root of the variance. About two thirds of outcomes fall within one of it."],
+["probability|z-score","Z = (target − mean) / standard deviation, then the normal curve gives the chance of finishing by the target."],["gantt","Bar chart of the schedule: each bar runs from early start to early finish; hatching shows slack."],["PERT","Program Evaluation and Review Technique: project timing with three time estimates and probabilities."],["\\bCPM\\b","Critical Path Method: project timing with fixed durations."],
+["lower limit|upper limit|target result","The smallest and largest value a variable can take with others fixed, and the objective at that value."],["z\\*|optimal value|optimal objective","The best value of the objective that the constraints allow."]];
+const GRE=GLOSS.map(g=>[new RegExp(g[0],"gi"),g[1]]);
+function glossAt(el,x,y){let txt=null,off=0;
+  try{let r=null;if(document.caretRangeFromPoint)r=document.caretRangeFromPoint(x,y);else if(document.caretPositionFromPoint){const p=document.caretPositionFromPoint(x,y);if(p)r={startContainer:p.offsetNode,startOffset:p.offset}}
+    if(r&&r.startContainer&&r.startContainer.nodeType===3){txt=r.startContainer.textContent;off=r.startOffset}}catch(e){}
+  const find=(t,o)=>{let best=null;for(const[re,tx]of GRE){re.lastIndex=0;let m;while((m=re.exec(t))){const a=m.index,b=a+m[0].length,d=o==null?0:(o>=a&&o<=b?0:Math.min(Math.abs(o-a),Math.abs(o-b)));if(o==null||d<=3){if(!best||d<best.d||(d===best.d&&m[0].length>best.len))best={d,len:m[0].length,tx}}if(m[0].length===0)re.lastIndex++}}return best&&best.tx};
+  if(txt){const a=Math.max(0,off-70),h=find(txt.slice(a,off+70),off-a);if(h)return h}
+  const own=(el.innerText||el.textContent||"").trim();return own&&own.length<=70?find(own,null):null}
+Object.assign(TIP_D.gv,{iso:"Iso-line: every point on it gives the same objective value. Slide it toward better values until it just leaves the feasible region; the last corner it touches is the optimum.",icp:"Intercepts: where each constraint line meets an axis.",cor:"Corner points: the vertices of the feasible region, one of which is optimal.",lat:"Integer points: whole-number points inside the feasible region, with the best one ringed."});
+Object.assign(TIP_ID,{helpBtn:"Help mode: tap ? then tap anything to learn what it is or does."});
 const tipEl=document.createElement("div");tipEl.id="tip";tipEl.setAttribute("role","tooltip");document.body.appendChild(tipEl);
-const TIPSEL="button,select,input,textarea,summary,[data-tip],.pal,.chip";let tipT=0,tipH=0,lpFired=false,lpPos=null,lpEl=null;
-function showTip(el){const t=tipText(el);if(!t)return false;tipEl.textContent=t;tipEl.classList.add("on");const r=el.getBoundingClientRect(),tw=tipEl.offsetWidth,th=tipEl.offsetHeight,hb=($("header")||{offsetHeight:0}).offsetHeight;
-  let x=r.left+r.width/2-tw/2,y=r.top-th-8;if(y<hb+4)y=r.bottom+8;x=Math.max(8,Math.min(innerWidth-tw-8,x));tipEl.style.left=x+"px";tipEl.style.top=y+"px";return true}
+const TIPSEL="button,select,input,textarea,summary,[data-tip],.pal,.chip";let tipT=0,tipH=0,lpFired=false,lpPos=null,lpEl=null,lastEl=null,lx=0,ly=0;
+const hov=()=>matchMedia("(hover:hover)").matches&&S.set.tips!==false;
+function tipFor(el,x,y){return tipText(el)||glossAt(el,x,y)}
+function showTipAt(el,x,y,force){const t=tipFor(el,x,y)||(force?"No description for this item yet.":null);if(!t)return false;tipEl.textContent=t;tipEl.classList.add("on");
+  const r=el.getBoundingClientRect(),tw=tipEl.offsetWidth,th=tipEl.offsetHeight,hb=($("header")||{offsetHeight:0}).offsetHeight,inter=el.matches&&el.matches(TIPSEL);let px,py;
+  if(inter){px=r.left+r.width/2-tw/2;py=r.top-th-8;if(py<hb+4)py=r.bottom+8}else{px=x-tw/2;py=y-th-16;if(py<hb+4)py=y+22}
+  tipEl.style.left=Math.max(8,Math.min(innerWidth-tw-8,px))+"px";tipEl.style.top=Math.max(hb+4,Math.min(innerHeight-th-8,py))+"px";return true}
 function hideTip(){tipEl.classList.remove("on");clearTimeout(tipT)}
-document.addEventListener("mouseover",e=>{if(!matchMedia("(hover:hover)").matches)return;const el=e.target.closest(TIPSEL);if(!el)return;clearTimeout(tipT);tipT=setTimeout(()=>showTip(el),650)});
-document.addEventListener("mouseout",e=>{if(e.target.closest(TIPSEL))hideTip()});document.addEventListener("mousedown",hideTip);addEventListener("scroll",hideTip,true);
-document.addEventListener("touchstart",e=>{hideTip();const el=e.target.closest(TIPSEL);if(!el)return;lpEl=el;const t0=e.touches[0];lpPos=[t0.clientX,t0.clientY];tipT=setTimeout(()=>{if(showTip(el)){lpFired=true;clearTimeout(tipH);tipH=setTimeout(hideTip,3600)}},550)},{passive:true});
+document.addEventListener("mousemove",e=>{if(!hov())return;const el=e.target;if(el===lastEl&&Math.hypot(e.clientX-lx,e.clientY-ly)<6)return;lastEl=el;lx=e.clientX;ly=e.clientY;hideTip();tipT=setTimeout(()=>showTipAt(el,e.clientX,e.clientY),650)},{passive:true});
+document.addEventListener("mouseleave",hideTip);document.addEventListener("mousedown",hideTip);addEventListener("scroll",hideTip,true);
+document.addEventListener("touchstart",e=>{hideTip();if(S.set.tips===false||document.body.classList.contains("help"))return;const el=e.target,t0=e.touches[0];lpEl=el;lpPos=[t0.clientX,t0.clientY];tipT=setTimeout(()=>{if(showTipAt(el,lpPos[0],lpPos[1])){lpFired=true;clearTimeout(tipH);tipH=setTimeout(hideTip,3800)}},550)},{passive:true});
 document.addEventListener("touchmove",e=>{if(!lpPos)return;const t0=e.touches[0];if(Math.hypot(t0.clientX-lpPos[0],t0.clientY-lpPos[1])>10)clearTimeout(tipT)},{passive:true});
 document.addEventListener("touchend",()=>{clearTimeout(tipT);setTimeout(()=>{lpFired=false},400)},{passive:true});
-document.addEventListener("click",e=>{if(lpFired){e.stopPropagation();e.preventDefault();lpFired=false}},true);
-document.addEventListener("contextmenu",e=>{if(lpEl&&e.target.closest(TIPSEL)&&!e.target.closest("input,textarea"))e.preventDefault()});
+document.addEventListener("click",e=>{if(e.target.closest&&e.target.closest("#helpBtn"))return;
+  if(document.body.classList.contains("help")){e.preventDefault();e.stopPropagation();showTipAt(e.target,e.clientX,e.clientY,true);clearTimeout(tipH);tipH=setTimeout(hideTip,4500);return}
+  if(lpFired){e.stopPropagation();e.preventDefault();lpFired=false}},true);
+document.addEventListener("contextmenu",e=>{if(lpEl&&e.target.closest&&e.target.closest(TIPSEL)&&!e.target.closest("input,textarea"))e.preventDefault()});
+$("#helpBtn").onclick=()=>{const on=document.body.classList.toggle("help");$("#helpBtn").classList.toggle("on",on);hideTip();toast(on?"Help mode on":"Help mode off")};
+/* sliders: keep the filled part in step with the thumb */
+let frT=0;function fillRanges(){document.querySelectorAll("input[type=range]").forEach(el=>el.style.setProperty("--p",(((el.value-el.min)/((el.max-el.min)||1))*100)+"%"))}
+document.addEventListener("input",e=>{if(e.target.type==="range")e.target.style.setProperty("--p",(((e.target.value-e.target.min)/((e.target.max-e.target.min)||1))*100)+"%")});
+new MutationObserver(()=>{clearTimeout(frT);frT=setTimeout(fillRanges,40)}).observe(document.body,{childList:true,subtree:true});fillRanges();
+
+Object.assign(TIP_D.gv,{eq:"Equal scale: use the same pixels per unit on both axes, so angles and perpendicular arrows are drawn true.",unlock:"Remove every locked point label.",pin:"Keep the graph pinned at the top while you scroll the controls."});
+Object.assign(TIP_D,{gm2:{edit:"Edit model: sliders change your real numbers (and the Model tab).",whatif:"What-if: sliders change temporary copies so you can explore without touching your data.",reset:"Put every what-if value back to the model's number."},grx:{}});
+Object.assign(TIP_ID,{gPngV:"Save exactly what the graph shows right now as a picture.",gPng:"Save the whole graph, fitted and at high resolution, regardless of where you have panned or zoomed.",gPlay:"Sweep the iso-line from the worst corner up to the optimum.",gIso:"Slide the iso-line along its perpendicular. Past the optimum it turns red because no feasible point is left on it.",gCtlBox:"All sliders in one place."});
+Object.assign(TIP_K0,{gs:"Drag to change this number. The graph and answer update live.",gvb:"Type an exact value and press Enter. Formulas like =3*4 work.",grx:"Reset this value to the model's number."});
+const TIP_TXT={"live model preview":"The problem written out as maximise / subject-to text. It updates as you type.","variables: names and types":"Give variables names and choose continuous, integer or binary.","display options":"Choose what the graph shows and save it as a picture.","format help":"How to write a problem as text.","technical notes":"The formal definitions behind the plain-language explanation.","controls: every number as a slider":"Every coefficient, right-hand side and objective number as a slider. Edit the model or try what-ifs.","corner points":"Every corner of the feasible region with its objective value. The best one is starred.","analysis":"A plain-language reading of the graph plus special-case checks.","ranges and sensitivity":"How far each number can move before the optimal corner or shadow prices change.","what this means":"The result explained in plain language.","try your own plan":"Type your own variable values to see Z and whether the constraints hold.","slack / surplus":"Unused part of a ≤ limit, or the excess over a ≥ minimum.","objective function":"What you want to maximise or minimise.","constraints":"The limits and requirements the plan must respect."};
+const _tt=tipText;tipText=function(el){const r=_tt(el);if(r)return r;const t=((el.textContent||"").trim().toLowerCase().replace(/[:·].*$/,"")).trim();return TIP_TXT[t]||null};
+gCtlBuild();
+
+/* ---------- Phase 16: 3D explorer ---------- */
+var E3={ax:[0,1,2],fx:null,yaw:-.62,pit:.42,zoom:1,auto:0,faces:1,edges:1,axes:1,box:1,verts:1,arrow:1,data:null,pts:[],sig:"",raf:0,hov:null};
+function e3Opt(){if(lastRes&&lastRes.status==="optimal")return lastRes.x.slice();try{const r=lpQuick();if(r&&r.feasible!==false)return S.obj.map((_,j)=>r["x"+j]||0)}catch(e){}return S.obj.map(()=>0)}
+function e3Compute(){const n=S.n,ax=E3.ax,sg=S.goal==="max"?1:-1,f=E3.fx||(E3.fx=e3Opt()),AXN=ax.map(j=>sub(j)),H=[];
+  const co=a=>ax.map(j=>num(a[j]));
+  S.cons.forEach((c,i)=>{const nv=co(c.a),fixed=c.a.reduce((t,v,l)=>ax.includes(l)?t:t+num(v)*f[l],0),h=num(c.b)-fixed,nm=cname(i),col=COL[i%12];
+    if(c.op==="<="||c.op==="==")H.push({n:nv,h,nm,col,ci:i});if(c.op===">="||c.op==="==")H.push({n:nv.map(v=>-v),h:-h,nm,col,ci:i})});
+  if(S.nonneg)[0,1,2].forEach(t=>{const nv=[0,0,0];nv[t]=-1;H.push({n:nv,h:0,nm:AXN[t]+" ≥ 0",col:null,ci:-1})});
+  let inf=false;const P=H.filter(p=>{if(Math.hypot(...p.n)<1e-12){if(p.h<-1e-9)inf=true;return false}return true}).slice(0,120);
+  const solve3=(a,b,c)=>{const p=a.n,q=b.n,r=c.n,C00=q[1]*r[2]-q[2]*r[1],C01=-(q[0]*r[2]-q[2]*r[0]),C02=q[0]*r[1]-q[1]*r[0],C10=-(p[1]*r[2]-p[2]*r[1]),C11=p[0]*r[2]-p[2]*r[0],C12=-(p[0]*r[1]-p[1]*r[0]),C20=p[1]*q[2]-p[2]*q[1],C21=-(p[0]*q[2]-p[2]*q[0]),C22=p[0]*q[1]-p[1]*q[0],det=p[0]*C00+p[1]*C01+p[2]*C02;
+    if(Math.abs(det)<1e-10)return null;const h=[a.h,b.h,c.h];return[(C00*h[0]+C10*h[1]+C20*h[2])/det,(C01*h[0]+C11*h[1]+C21*h[2])/det,(C02*h[0]+C12*h[1]+C22*h[2])/det]};
+  const verts=(PL)=>{const V=[],seen=new Set();for(let i=0;i<PL.length;i++)for(let j=i+1;j<PL.length;j++)for(let k=j+1;k<PL.length;k++){const v=solve3(PL[i],PL[j],PL[k]);if(!v||!v.every(isFinite))continue;
+      if(PL.every(l=>l.n[0]*v[0]+l.n[1]*v[1]+l.n[2]*v[2]<=l.h+1e-7*(1+Math.abs(l.h)))){const key=v.map(t=>Math.round(t*1e6)).join(",");if(!seen.has(key)){seen.add(key);V.push(v)}}}return V};
+  const c=ax.map(j=>num(S.obj[j])),k0=S.obj.reduce((t,v,l)=>ax.includes(l)?t:t+num(v)*f[l],0);
+  if(inf)return{inf:true,AXN,c,k0,sg,f};
+  const V0=verts(P);if(!V0.length)return{inf:true,AXN,c,k0,sg,f};
+  const B=[0,1,2].map(t=>Math.max(1,Math.max(...V0.map(v=>v[t]))*1.35)),PB=P.concat([0,1,2].map(t=>{const nv=[0,0,0];nv[t]=1;return{n:nv,h:B[t],nm:"view limit",col:null,ci:-2,box:true}})),V=verts(PB),F=[];
+  PB.forEach(pl=>{const Vs=V.filter(v=>Math.abs(pl.n[0]*v[0]+pl.n[1]*v[1]+pl.n[2]*v[2]-pl.h)<1e-6*(1+Math.abs(pl.h)));if(Vs.length<3)return;
+    const m=Vs.reduce((t,v)=>[t[0]+v[0]/Vs.length,t[1]+v[1]/Vs.length,t[2]+v[2]/Vs.length],[0,0,0]),nn=Math.hypot(...pl.n),nu=pl.n.map(t=>t/nn),ref=Math.abs(nu[0])<.9?[1,0,0]:[0,1,0];
+    let u=[nu[1]*ref[2]-nu[2]*ref[1],nu[2]*ref[0]-nu[0]*ref[2],nu[0]*ref[1]-nu[1]*ref[0]];const un=Math.hypot(...u);u=u.map(t=>t/un);const w=[nu[1]*u[2]-nu[2]*u[1],nu[2]*u[0]-nu[0]*u[2],nu[0]*u[1]-nu[1]*u[0]];
+    Vs.sort((a,b)=>{const da=[a[0]-m[0],a[1]-m[1],a[2]-m[2]],db=[b[0]-m[0],b[1]-m[1],b[2]-m[2]];return Math.atan2(da[0]*w[0]+da[1]*w[1]+da[2]*w[2],da[0]*u[0]+da[1]*u[1]+da[2]*u[2])-Math.atan2(db[0]*w[0]+db[1]*w[1]+db[2]*w[2],db[0]*u[0]+db[1]*u[1]+db[2]*u[2])});
+    F.push({pl,verts:Vs,box:!!pl.box})});
+  let best=null;V.forEach(v=>{const z=c[0]*v[0]+c[1]*v[1]+c[2]*v[2]+k0;if(!best||sg*z>sg*best.z+1e-9)best={v,z}});
+  const open=best&&[0,1,2].some(t=>Math.abs(best.v[t]-B[t])<1e-6),bind=best?P.filter(l=>Math.abs(l.n[0]*best.v[0]+l.n[1]*best.v[1]+l.n[2]*best.v[2]-l.h)<1e-6*(1+Math.abs(l.h))):[];
+  const real=V.filter(v=>![0,1,2].some(t=>Math.abs(v[t]-B[t])<1e-6&&false));
+  return{P:PB,V,F,B,best,open,bind,AXN,c,k0,sg,f,inf:false,ax}}
+function e3Interp(D){const f=fmt,n=S.n,L=[],slice=n>3,tri=D&&D.AXN?D.AXN.map(esc).join(", "):"";
+  if(!D||D.inf){return`<div class="card narr"><ul class="how"><li>No point in this ${slice?"slice":"view"} satisfies every constraint at once.${slice?" Move the fixed variables (sliders) to find a slice that does.":" The problem has no feasible solution."}</li></ul></div>`}
+  const nreal=D.V.filter(v=>![0,1,2].some(t=>Math.abs(v[t]-D.B[t])<1e-6)).length,faces=D.F.filter(x=>!x.box),names=[...new Set(faces.map(x=>x.pl.nm))];
+  L.push(slice?`You are looking at a <b>3D slice</b> of a ${n}-variable problem: the axes are ${tri}, and the other ${n-3} variable${n-3>1?"s are":" is"} held at the values set below. The solid is the part of the feasible region that lies in that slice.`:`You are looking at the <b>feasible region</b> of the problem as a 3D solid with axes ${tri}. Every point inside it satisfies all the constraints.`);
+  L.push(`The solid has <b>${nreal}</b> corner${nreal===1?"":"s"} and <b>${faces.length}</b> face${faces.length===1?"":"s"}. Each face is a constraint plane or a non-negativity plane (${names.slice(0,6).map(esc).join(", ")}${names.length>6?", …":""}). Drag to look from any side.`);
+  if(D.best){const v=D.best.v,k=S.goal==="max"?"highest":"lowest",bn=[...new Set(D.bind.map(b=>b.nm))].map(esc);
+    L.push(`The ${k} objective in this ${slice?"slice":"view"} is <b>${fmtZ(D.best.z)}</b> at <b>(${v.map(f).join(", ")})</b>${D.open?", but the region is open there, so the true best may lie beyond the view box":""}. That corner is where ${bn.length?bn.join(", "):"the planes"} meet, so ${bn.length?"those are the bottlenecks that decide the result":"nothing but the view limit stops it"}.`);
+    L.push(`The gold arrow points in the direction that improves the objective fastest. Imagine sliding a flat sheet (the iso-plane) along it: the optimum is the last corner the sheet touches before leaving the solid.`);
+    if(slice&&lastRes&&lastRes.status==="optimal"){const same=D.f.every((x,l)=>D.ax.includes(l)||Math.abs(x-lastRes.x[l])<1e-6);L.push(same?`The fixed variables sit at their optimal values, so this slice passes through the true optimum (Z* = ${fmtZ(lastRes.Z)}).`:`The full ${n}-variable optimum is Z* = ${fmtZ(lastRes.Z)}. A slice can only be as good as, or worse than, that. Move the sliders back to the optimal values (button below) to see the true optimum corner.`)}
+    if(slice)L.push("Changing a fixed variable slides every constraint plane. Watching the solid and its best corner change as you drag is sensitivity analysis you can see.")}
+  return`<div class="card narr"><ul class="how">${L.map(t=>`<li>${t}</li>`).join("")}</ul></div>`}
+function e3UI(){const el=$("#e3Ctl");if(!el)return;const n=S.n,ax=E3.ax,opts=sel=>S.obj.map((_,j)=>`<option value="${j}" ${j===sel?"selected":""}>${esc(sub(j))}</option>`).join("");
+  let h=n>3?`<div class="card"><div class="ctitle">Axes</div><div class="e3axes">${["X","Y","Z"].map((a,t)=>`<label>${a}<select class="sl" data-e3ax="${t}">${opts(ax[t])}</select></label>`).join("")}</div></div>`:"";
+  if(n>3){const fx=E3.fx||(E3.fx=e3Opt());h+=`<div class="card"><div class="ctitle">Other variables are held at</div><div class="sgrp" style="margin:0">${S.obj.map((_,l)=>ax.includes(l)?"":`<div class="srow" data-e3f="${l}"><span class="sl-l">${esc(sub(l))}</span><div class="rw"><input type="range" data-e3s="${l}" min="0" max="${+Math.max(10,fx[l]*2,E3.fx[l]*2).toFixed(2)}" step="0.1" value="${fx[l]}" aria-label="${esc(sub(l))}"></div><input class="vb" inputmode="decimal" data-e3b="${l}" value="${gpStr(fx[l])}"><span></span></div>`).join("")}</div><div class="row" style="margin-top:8px"><button class="btn sm" data-e3v="opt">Back to optimal values</button></div></div>`}
+  el.innerHTML=h}
+function e3Open(){const sig=JSON.stringify([S.n,S.goal,S.obj,S.cons]);if(sig!==E3.sig){E3.sig=sig;E3.fx=null;E3.ax=[0,1,2].filter(j=>j<S.n);while(E3.ax.length<3)E3.ax.push(E3.ax.length)}
+  if(S.n<3){$("#e3Info").innerHTML='<div class="card"><div class="preview" style="margin:0">The 3D view needs at least 3 variables. With 2 variables use the Graph tab.</div></div>';return}
+  e3UI();e3Refresh()}
+function e3Refresh(){E3.data=e3Compute();$("#e3Info").innerHTML=e3Interp(E3.data);e3Draw()}
+function e3Draw(){const cv=$("#c3d"),D=E3.data;if(!cv||!cv.clientWidth)return;const w=cv.clientWidth,h=Math.round(Math.min(w*.85,Math.max(260,innerHeight*.55))),dpr=devicePixelRatio||1;cv.width=w*dpr;cv.height=h*dpr;cv.style.height=h+"px";
+  const x=cv.getContext("2d");x.setTransform(dpr,0,0,dpr,0,0);const cs=getComputedStyle(document.documentElement),css=k=>cs.getPropertyValue(k).trim(),tx=css("--tx"),mut=css("--mut"),bd=css("--bd"),bg=css("--card"),gold="#f59e0b",pri=css("--pri");
+  x.fillStyle=bg;x.fillRect(0,0,w,h);E3.pts=[];if(!D||D.inf){x.fillStyle=mut;x.font="600 14px system-ui";x.textAlign="center";x.fillText("No feasible point in this view",w/2,h/2);return}
+  const B=D.B,mx=Math.max(...B),sc=Math.min(w,h)*.36*E3.zoom/mx,cx0=w/2,cy0=h/2+8,cB=B.map(t=>t/2),cyw=Math.cos(E3.yaw),syw=Math.sin(E3.yaw),cp=Math.cos(E3.pit),sp=Math.sin(E3.pit);
+  const T=p=>{const X=p[0]-cB[0],Y=p[1]-cB[1],Z=p[2]-cB[2],x1=X*cyw-Y*syw,y1=X*syw+Y*cyw,y2=y1*cp-Z*sp,z2=y1*sp+Z*cp;return[cx0+x1*sc,cy0-z2*sc,y2]};
+  const lab=(t,px,py,col,b)=>{x.font=(b?"700 ":"600 ")+"12px system-ui";x.textAlign="center";x.lineWidth=3;x.strokeStyle=bg;x.strokeText(t,px,py);x.fillStyle=col;x.fillText(t,px,py)};
+  const line=(a,b,col,wd,dash)=>{const p=T(a),q=T(b);x.strokeStyle=col;x.lineWidth=wd;x.setLineDash(dash||[]);x.beginPath();x.moveTo(p[0],p[1]);x.lineTo(q[0],q[1]);x.stroke();x.setLineDash([])};
+  if(E3.box){const c=[[0,0,0],[B[0],0,0],[B[0],B[1],0],[0,B[1],0],[0,0,B[2]],[B[0],0,B[2]],[B[0],B[1],B[2]],[0,B[1],B[2]]];[[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]].forEach(e=>line(c[e[0]],c[e[1]],bd,1,[3,4]))}
+  if(E3.axes)[0,1,2].forEach(t=>{const o=[0,0,0],e=[0,0,0];e[t]=B[t]*1.06;line(o,e,tx,2);const q=T(e);lab(D.AXN[t],q[0],q[1]-6,tx,1)});
+  const fs=D.F.filter(f=>!f.box).map(f=>({f,pts:f.verts.map(T)})).map(o=>({...o,d:o.pts.reduce((t,p)=>t+p[2],0)/o.pts.length})).sort((a,b)=>b.d-a.d);
+  fs.forEach(({f,pts})=>{const col=f.pl.col||mut;x.beginPath();pts.forEach((p,i)=>i?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1]));x.closePath();if(E3.faces){x.fillStyle=col+(f.pl.col?"40":"28");x.fill()}if(E3.edges){x.strokeStyle=col;x.lineWidth=1.6;x.stroke()}});
+  D.V.forEach(v=>{const p=T(v),isB=[0,1,2].some(t=>Math.abs(v[t]-B[t])<1e-6);if(isB)return;E3.pts.push({x:p[0],y:p[1],v,z:D.c[0]*v[0]+D.c[1]*v[1]+D.c[2]*v[2]+D.k0});if(E3.verts){x.beginPath();x.arc(p[0],p[1],3.4,0,7);x.fillStyle=tx;x.fill()}});
+  if(D.best){const p=T(D.best.v);x.beginPath();x.arc(p[0],p[1],8,0,7);x.fillStyle=gold;x.fill();x.strokeStyle=bg;x.lineWidth=2;x.stroke();lab("★ "+fmtZ(D.best.z),p[0],p[1]-14,gold,1);
+    if(E3.arrow){const g=D.c.map(t=>t*D.sg),gn=Math.hypot(...g)||1,len=mx*.28,e=[D.best.v[0]+g[0]/gn*len,D.best.v[1]+g[1]/gn*len,D.best.v[2]+g[2]/gn*len],q=T(e),an=Math.atan2(q[1]-p[1],q[0]-p[0]);x.strokeStyle=gold;x.fillStyle=gold;x.lineWidth=3;x.lineCap="round";x.beginPath();x.moveTo(p[0],p[1]);x.lineTo(q[0],q[1]);x.stroke();
+      x.beginPath();x.moveTo(q[0]+Math.cos(an)*3,q[1]+Math.sin(an)*3);x.lineTo(q[0]-11*Math.cos(an-.45),q[1]-11*Math.sin(an-.45));x.lineTo(q[0]-11*Math.cos(an+.45),q[1]-11*Math.sin(an+.45));x.closePath();x.fill();x.lineCap="butt";lab("better",q[0],q[1]-9,gold,1)}}}
+const c3=$("#c3d"),c3p=new Map();let c3s=null;
+const e3Q=()=>{if(!E3.raf)E3.raf=requestAnimationFrame(()=>{E3.raf=0;e3Draw()})};
+const c3P=e=>{const r=c3.getBoundingClientRect();return[e.clientX-r.left,e.clientY-r.top]};
+c3.addEventListener("pointerdown",e=>{try{c3.setPointerCapture(e.pointerId)}catch(x){}c3p.set(e.pointerId,c3P(e));if(c3p.size===2){const v=[...c3p.values()];c3s={m:"pinch",d0:Math.hypot(v[0][0]-v[1][0],v[0][1]-v[1][1])||1,z0:E3.zoom}}else c3s={m:"rot",x:e.clientX,y:e.clientY,yaw:E3.yaw,pit:E3.pit};e.preventDefault()});
+c3.addEventListener("pointermove",e=>{const p=c3P(e);if(c3p.has(e.pointerId))c3p.set(e.pointerId,p);
+  if(c3s&&c3s.m==="pinch"&&c3p.size>=2){const v=[...c3p.values()];E3.zoom=Math.max(.3,Math.min(5,c3s.z0*(Math.hypot(v[0][0]-v[1][0],v[0][1]-v[1][1])||1)/c3s.d0));e3Q();return}
+  if(c3s&&c3s.m==="rot"&&c3p.size===1){E3.yaw=c3s.yaw+(e.clientX-c3s.x)*.01;E3.pit=Math.max(-1.55,Math.min(1.55,c3s.pit+(e.clientY-c3s.y)*.01));$("#c3Hover").style.display="none";e3Q();return}
+  let hit=null,bd=14;E3.pts.forEach(q=>{const d=Math.hypot(q.x-p[0],q.y-p[1]);if(d<bd){bd=d;hit=q}});const t=$("#c3Hover");
+  if(!hit){t.style.display="none";return}t.innerHTML=`<b>(${hit.v.map(fmt).join(", ")})</b><span>${esc(E3.data.AXN.join(", "))}</span><small>Objective ${fmtZ(hit.z)}</small>`;t.style.display="block";const wr=t.parentNode.getBoundingClientRect();let lx=e.clientX-wr.left+14,ly=e.clientY-wr.top-t.offsetHeight-12;if(lx+t.offsetWidth>wr.width-4)lx=e.clientX-wr.left-t.offsetWidth-14;if(ly<4)ly=e.clientY-wr.top+18;t.style.left=Math.max(4,lx)+"px";t.style.top=ly+"px"});
+c3.addEventListener("pointerup",e=>{c3p.delete(e.pointerId);if(!c3p.size)c3s=null});c3.addEventListener("pointercancel",e=>{c3p.delete(e.pointerId);if(!c3p.size)c3s=null});c3.addEventListener("pointerleave",()=>{$("#c3Hover").style.display="none"});
+c3.addEventListener("wheel",e=>{e.preventDefault();E3.zoom=Math.max(.3,Math.min(5,E3.zoom*(e.deltaY>0?.92:1.08)));e3Q()},{passive:false});c3.addEventListener("dblclick",()=>{E3.yaw=-.62;E3.pit=.42;E3.zoom=1;e3Q()});
+function e3Spin(){if(!E3.auto||!$("#v-3d").classList.contains("on")){E3.auto=0;$$('[data-e3t=auto]').forEach(b=>b.classList.remove("on"));return}E3.yaw+=.012;e3Draw();requestAnimationFrame(e3Spin)}
+$("#v-3d").addEventListener("click",e=>{const b=e.target.closest("[data-e3v],[data-e3t]");if(!b)return;
+  if(b.dataset.e3v){const v=b.dataset.e3v;if(v==="front"){E3.yaw=0;E3.pit=0}else if(v==="top"){E3.yaw=0;E3.pit=1.5}else if(v==="side"){E3.yaw=1.5708;E3.pit=0}else if(v==="iso"){E3.yaw=-.62;E3.pit=.42}else if(v==="reset"){E3.yaw=-.62;E3.pit=.42;E3.zoom=1}else if(v==="opt"){E3.fx=null;e3UI();e3Refresh();return}e3Draw()}
+  else{const t=b.dataset.e3t;E3[t]=E3[t]?0:1;b.classList.toggle("on",!!E3[t]);if(t==="auto"&&E3.auto)requestAnimationFrame(e3Spin);else e3Draw()}});
+$("#v-3d").addEventListener("change",e=>{const t=e.target;if(t.dataset.e3ax!==undefined){const k=+t.dataset.e3ax,v=+t.value,old=E3.ax[k],j=E3.ax.indexOf(v);if(j>=0&&j!==k)E3.ax[j]=old;E3.ax[k]=v;E3.fx=E3.fx||e3Opt();e3UI();e3Refresh()}else if(t.dataset.e3b!==undefined){const l=+t.dataset.e3b,v=calc(t.value.replace(/^=/,""));E3.fx[l]=v!=null?v:num(t.value);e3UI();e3Refresh()}});
+$("#v-3d").addEventListener("input",e=>{const t=e.target;if(t.dataset.e3s!==undefined){const l=+t.dataset.e3s;E3.fx[l]=+t.value;const vb=document.querySelector(`[data-e3b="${l}"]`);if(vb)vb.value=gpStr(t.value);E3.data=e3Compute();$("#e3Info").innerHTML=e3Interp(E3.data);e3Q()}});
+$("#e3Png").onclick=()=>{e3Draw();c3.toBlob(b=>{xpSave(b,"explore-3d-"+new Date().toISOString().slice(0,10)+".png");toast("Picture saved")})};
+addEventListener("resize",()=>{if($("#v-3d").classList.contains("on"))e3Draw()});
+document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-savepic]");if(!b)return;const cv=document.getElementById(b.dataset.savepic);if(cv&&cv.toBlob)cv.toBlob(bl=>{xpSave(bl,b.dataset.savepic+"-"+new Date().toISOString().slice(0,10)+".png");toast("Picture saved")})});
+Object.assign(TIP_D,{e3v:{front:"Look straight at the front: the X–Z plane.",top:"Look straight down from above: the X–Y plane.",side:"Look from the side.",iso:"A corner view that shows all three axes.",reset:"Return to the starting view.",opt:"Put the held variables back at their optimal values."},e3t:{auto:"Rotate the solid slowly so you can see it from every side.",faces:"Fill each constraint plane with colour.",edges:"Draw the outlines of the faces.",axes:"Show the three axes.",box:"Show the dashed view box. It is only a viewing limit, not a constraint.",verts:"Dot every corner of the solid.",arrow:"Show the arrow along which the objective improves fastest."}});
+Object.assign(TIP_K0,{e3ax:"Choose which variable goes on this axis.",e3s:"Hold this variable at a fixed value and see the slice change.",e3b:"Type an exact value for this held variable."});
+Object.assign(TIP_ID,{c3d:"Drag to rotate, scroll or pinch to zoom, double-click to reset. Hover a corner for its coordinates.",e3Png:"Save the current 3D view as a picture."});
 
 /* ---------- Phase 8: offline, install, connectivity ---------- */
 let dip=null;
@@ -1819,7 +2152,7 @@ document.addEventListener("click",e=>{
   else if(d.rp){rp=d.rp;showReports()}
   else if(d.th){S.set.theme=d.th;render()}
   else if(d.vw){S.set.view=d.vw;render()}
-  else if(d.v){$$(".v").forEach(v=>v.classList.toggle("on",v.id==="v-"+d.v));$$("nav button").forEach(b=>b.classList.toggle("on",b===t));if(d.v==="results")showResults();if(d.v==="reports")showReports();if(d.v==="model")render();if(d.v==="graph"){gLinkIn();gInputs()}if(d.v==="tr")trRender();if(d.v==="nw")nwRender();if(d.v==="pj")pjRender();if(d.v==="gm")gmRender();layoutPad();scrollTo(0,0)}
+  else if(d.v){$$(".v").forEach(v=>v.classList.toggle("on",v.id==="v-"+d.v));$$("nav button").forEach(b=>b.classList.toggle("on",b===t));if(d.v==="results")showResults();if(d.v==="reports")showReports();if(d.v==="model")render();if(d.v==="3d")e3Open();if(d.v==="graph"){gLinkIn();gInputs()}if(d.v==="tr")trRender();if(d.v==="nw")nwRender();if(d.v==="pj")pjRender();if(d.v==="gm")gmRender();layoutPad();scrollTo(0,0)}
 });
 $("#solveBtn").onclick=()=>headSolve();
 $("#addC").onclick=()=>{S.m++;render();const l=at(S.m,0);if(l)go(l)};
